@@ -1,19 +1,14 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
+import GameManagerComponent from "./src/components/GameManagerComponent";
+import SelectPlayerComponent from "./src/components/SelectPlayerComponent";
 
-export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Go Regent !!!!!!!</Text>
-    </View>
-  );
+class App extends React.Component {
+  render() {
+    return (
+        <GameManagerComponent />
+    );
+  }
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+export default App;
