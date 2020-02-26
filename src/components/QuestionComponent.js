@@ -5,7 +5,7 @@ import * as gameActions from "../store/actions/gameAction";
 import {connect} from "react-redux";
 import PropTypes from "prop-types";
 
-class DuelComponent extends React.Component {
+class QuestionComponent extends React.Component {
     constructor(props) {
         super(props);
     }
@@ -13,14 +13,14 @@ class DuelComponent extends React.Component {
 
         return (
             <View>
-                <Text>Duel</Text>
-                <Button onPress = {() => this.props.changeScene("card")} title={"To Card"}/>
+                <Text>Question</Text>
+            <Button onPress = {() => this.props.changeScene("card")} title={"To Card"}/>
             </View>
         );
     }
 }
 
-DuelComponent.propTypes = {
+QuestionComponent.propTypes = {
     changeScene: PropTypes.func,
 };
 const mapStateToProps = (state) => {
@@ -30,9 +30,9 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = dispatch =>
     bindActionCreators({ ...gameActions }, dispatch);
 
-const Duel = connect(
+const Question = connect(
     mapStateToProps,
     mapDispatchToProps
-)(DuelComponent);
+)(QuestionComponent);
 
-export { Duel, DuelComponent };
+export { Question, QuestionComponent };
