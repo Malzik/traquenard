@@ -13,10 +13,15 @@ const changeDifficulty  = newDifficulty => ({
     newDifficulty,
 });
 
+const restart  = () => ({
+    type: 'RESTART',
+});
+
 
 
 export {
     addPlayers,
     changeScene,
-    changeDifficulty
+    changeDifficulty,
+    restart
 };

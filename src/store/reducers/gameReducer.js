@@ -21,6 +21,17 @@ const gameReducer = (state = initialState, action = {}) => {
         case 'CHANGE_DIFFICULTY':
             newState.difficulty = action.newDifficulty;
             break;
+        case 'RESTART':
+            newState.players =
+                this.props.players.map((player) => {
+                    player.sipCount = 0;
+                    player.sipGiven = 0;
+                });
+            newState.difficulty = 3;
+            newState.currentTurn = 0;
+            newState.selectedPlayer = null;
+            newState.scene = null;
+            break;
         default:
             break;
     }
