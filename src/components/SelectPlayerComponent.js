@@ -1,6 +1,10 @@
-import React, {useState} from "react";
-import {Text, StyleSheet, View, Button, FlatList} from "react-native";
-import { Input } from 'react-native-elements';
+import React from "react";
+import {Button, FlatList, StyleSheet, Text, View} from "react-native";
+import {Input} from 'react-native-elements';
+import PropTypes from "prop-types";
+import {bindActionCreators} from "redux";
+import * as gameActions from "../store/actions/gameAction";
+import {connect} from "react-redux";
 
 
 class SelectPlayerComponent extends React.Component {
@@ -9,26 +13,33 @@ class SelectPlayerComponent extends React.Component {
         super(props);
         this.state = {
             players: [
-                {name: 'Jean', sipCount : 0, sipGiven : 0},
-                {name: 'Rene', sipCount : 0, sipGiven : 0},
-                {name: 'Bebe', sipCount : 0, sipGiven : 0},
+                {name: 'Jean', sipCount: 0, sipGiven: 0},
+                {name: 'Rene', sipCount: 0, sipGiven: 0},
+                {name: 'Bebe', sipCount: 0, sipGiven: 0},
             ],
             currentPlayer: ""
         }
     }
 
-    addPlayer(){
-        const newPlayer = {name: this.state.currentPlayer, sipCount : 0, sipGiven : 0};
+    addPlayer() {
+        const newPlayer = {name: this.state.currentPlayer, sipCount: 0, sipGiven: 0};
         this.setState({
             players: [...this.state.players, newPlayer],
-            currentPlayer:""
+            currentPlayer: ""
         })
     }
 
-    removePlayer(index){
+    startGame() {
+        this.props.addPlayers(this.state.players);
+        this.props.navigation.navigate('SelectDifficulty')
+    }
+
+    removePlayer(index) {
         console.log(index);
         this.setState({
-            players: this.state.players.filter(function (item,stateIndex){return index !== stateIndex} )
+            players: this.state.players.filter(function (item, stateIndex) {
+                return index !== stateIndex
+            })
         })
     }
 
@@ -55,12 +66,17 @@ class SelectPlayerComponent extends React.Component {
                     </View>
                     <Input
                         placeholder='Ajouter un joueur'
-                        onChangeText={(text) => this.setState({currentPlayer:text})}
+                        onChangeText={(text) => this.setState({currentPlayer: text})}
                         value={this.state.currentPlayer}
                     />
                     <Button title="Solid Button" onPress={() => {
                         this.addPlayer();
-                    }} />
+                    }}/>
+                </View>
+                <View>
+                    <Button title="Commencer" onPress={() => {
+                        this.startGame()
+                    }}/>
                 </View>
             </View>
 
@@ -97,4 +113,21 @@ const styles = StyleSheet.create({
     },
 });
 
-export default SelectPlayerComponent;
+
+SelectPlayerComponent.propTypes = {
+    changeScene: PropTypes.func,
+    addPlayers: PropTypes.func,
+};
+const mapStateToProps = (state) => {
+    return state
+};
+
+const mapDispatchToProps = dispatch =>
+    bindActionCreators(gameActions, dispatch);
+
+const SelectPlayer = connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(SelectPlayerComponent);
+
+export {SelectPlayer, SelectPlayerComponent};

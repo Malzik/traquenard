@@ -1,9 +1,9 @@
-const addPlayers  = players => ({
+const addPlayers = players => ({
     type: 'ADD_PLAYERS',
     players,
 });
 
-const changeScene  = newScene => ({
+const changeScene = newScene => ({
     type: 'CHANGE_SCENE',
     newScene,
 });

@@ -1,6 +1,6 @@
-import React, {useState} from "react";
-import {Text, StyleSheet, View, Button} from "react-native";
-import { ScreenOrientation } from 'expo';
+import React from "react";
+import {Button, StyleSheet, Text, View} from "react-native";
+import {ScreenOrientation} from 'expo';
 import {bindActionCreators} from "redux";
 import * as gameActions from "../store/actions/gameAction";
 import connect from "react-redux/es/connect/connect";
@@ -15,6 +15,7 @@ class SelectDifficultyComponent extends React.Component {
 
     setDifficulty(difficulty){
         this.props.changeDifficulty(difficulty);
+        this.props.navigation.navigate('GameManager')
     }
 
 

@@ -1,9 +1,8 @@
-import {Text} from "react-native";
-import { connect } from 'react-redux';
-import React from "react";
-import { Duel } from "./DuelComponent";
-import {Card} from "./CardComponent";
 import {View} from "react-native";
+import {connect} from 'react-redux';
+import React from "react";
+import {Duel} from "./DuelComponent";
+import {Card} from "./CardComponent";
 import * as gameActions from '../store/actions/gameAction';
 import {bindActionCreators} from "redux";
 import {Question} from "./QuestionComponent";
@@ -14,23 +13,28 @@ class GameManagerComponent extends React.Component {
 
     constructor(props) {
         super(props);
+
+        this.state = {
+            info: props.gameReducer
+        }
     }
 
     randomScene() {
         const number = Math.floor(Math.random() * 4) + 1;
         switch (number) {
             case 1:
-                return <Duel/>
+                return <Duel/>;
             case 2:
-                return <Question/>
+                return <Question/>;
             case 3:
-                return <FriendShip/>
+                return <FriendShip/>;
             case 4:
                 return <Luck/>
         }
     }
 
     render() {
+        console.log(this.props);
         const sceneToDisplayed = () => {
             switch (this.props.gameReducer.scene) {
                 case "duel":
@@ -44,23 +48,23 @@ class GameManagerComponent extends React.Component {
                 case "random":
                     return this.randomScene();
                 case "card":
-                    return <Card />;
+                    return <Card/>;
                 default:
-                    return <Card />;
+                    return <Card/>;
             }
         };
-
         return (
-            <View>{ sceneToDisplayed() }</View>
+            <View>{sceneToDisplayed()}</View>
         );
     }
 }
-const mapStateToProps = (state) => {
-    return state
+
+const mapStateToProps = state => {
+    return state;
 };
 
 const mapDispatchToProps = dispatch =>
-    bindActionCreators({ ...gameActions }, dispatch);
+    bindActionCreators({...gameActions}, dispatch);
 
 const GameManager = connect(
     mapStateToProps,

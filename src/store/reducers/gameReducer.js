@@ -12,7 +12,7 @@ const gameReducer = (state = initialState, action = {}) => {
 
     switch (action.type) {
         case 'ADD_PLAYERS':
-            newState.players = action.data;
+            newState.players = action.players;
             break;
         case 'CHANGE_SCENE':
             newState.scene = action.newScene;
