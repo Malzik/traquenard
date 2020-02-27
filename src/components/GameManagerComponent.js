@@ -33,18 +33,25 @@ class GameManagerComponent extends React.Component {
         }
     }
 
+    endGame() {
+        this.props.navigation.navigate('EndGame')
+    }
+
     render() {
-        console.log(this.props);
+        console.log(this.props.gameReducer.currentTurn, this.props.gameReducer.maxTurn);
+        if (this.props.gameReducer.currentTurn >= this.props.gameReducer.maxTurn) {
+            this.endGame();
+        }
         const sceneToDisplayed = () => {
             switch (this.props.gameReducer.scene) {
                 case "duel":
-                    return <Duel />;
+                    return <Duel/>;
                 case "question":
-                    return <Question />;
+                    return <Question/>;
                 case "friendship":
-                    return <FriendShip />;
+                    return <FriendShip/>;
                 case "luck":
-                    return <Luck />;
+                    return <Luck/>;
                 case "random":
                     return this.randomScene();
                 case "card":

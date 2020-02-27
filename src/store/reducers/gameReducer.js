@@ -1,6 +1,6 @@
 const initialState = {
     players: [],
-    maxTurn: 30,
+    maxTurn: 4,
     difficulty: 3,
     currentTurn: 0,
     selectedPlayer: null,
@@ -16,17 +16,17 @@ const gameReducer = (state = initialState, action = {}) => {
             break;
         case 'CHANGE_SCENE':
             newState.scene = action.newScene;
-            newState.currentTurn = newState.currentTurn + 1;
+            if (["card", "everyoneplay"].includes(action.newScene))
+                newState.currentTurn = newState.currentTurn + 1;
             break;
         case 'CHANGE_DIFFICULTY':
             newState.difficulty = action.newDifficulty;
             break;
         case 'RESTART':
-            newState.players =
-                this.props.players.map((player) => {
-                    player.sipCount = 0;
-                    player.sipGiven = 0;
-                });
+            newState.players.map((player) => {
+                player.sipCount = 0;
+                player.sipGiven = 0;
+            });
             newState.difficulty = 3;
             newState.currentTurn = 0;
             newState.selectedPlayer = null;

@@ -3,8 +3,8 @@ import {Button, StyleSheet, Text, View} from "react-native";
 import {ScreenOrientation} from 'expo';
 import {bindActionCreators} from "redux";
 import * as gameActions from "../store/actions/gameAction";
-import connect from "react-redux/es/connect/connect";
 import PropTypes from "prop-types";
+import {connect} from "react-redux";
 
 
 class SelectDifficultyComponent extends React.Component {
@@ -76,7 +76,6 @@ const styles = StyleSheet.create({
     }
 });
 
-
 const mapStateToProps = (state) => {
     return state
 };
@@ -90,4 +89,3 @@ const SelectDifficulty = connect(
 )(SelectDifficultyComponent);
 
 export { SelectDifficulty, SelectDifficultyComponent };
-

@@ -6,6 +6,7 @@ import {SelectPlayer} from "./src/components/SelectPlayerComponent";
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import {SelectDifficulty} from "./src/components/SelectDifficultyComponent";
+import {EndGame} from "./src/components/EndGameComponent";
 
 const Stack = createStackNavigator();
 
@@ -18,6 +19,7 @@ class App extends React.Component {
                         <Stack.Screen name="SelectPlayer" component={SelectPlayer}/>
                         <Stack.Screen name="SelectDifficulty" component={SelectDifficulty}/>
                         <Stack.Screen name="GameManager" component={GameManager}/>
+                        <Stack.Screen name="EndGame" component={EndGame}/>
                     </Stack.Navigator>
                 </NavigationContainer>
             </Provider>

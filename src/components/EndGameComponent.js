@@ -1,6 +1,8 @@
-import React, {useState} from "react";
-import {Text, StyleSheet, View, Button, FlatList} from "react-native";
-import { Input } from 'react-native-elements';
+import React from "react";
+import {Button, StyleSheet, Text, View} from "react-native";
+import {bindActionCreators} from "redux";
+import * as gameActions from "../store/actions/gameAction";
+import {connect} from "react-redux";
 
 
 class EndGameComponent extends React.Component {
@@ -9,8 +11,8 @@ class EndGameComponent extends React.Component {
         super(props);
     }
 
-    restart(){
-        this.props.restart();
+    restart() {
+        this.props.restartGame();
         this.props.navigation.navigate('SelectPlayer');
     }
 
@@ -53,4 +55,16 @@ const styles = StyleSheet.create({
 
 });
 
-export default SelectPlayerComponent;
+const mapStateToProps = (state) => {
+    return state
+};
+
+const mapDispatchToProps = dispatch =>
+    bindActionCreators({...gameActions}, dispatch);
+
+const EndGame = connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(EndGameComponent);
+
+export {EndGame, EndGameComponent};
