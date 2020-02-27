@@ -25,6 +25,13 @@ class SelectPlayerComponent extends React.Component {
         })
     }
 
+    removePlayer(index){
+        console.log(index);
+        this.setState({
+            players: this.state.players.filter(function (item,stateIndex){return index !== stateIndex} )
+        })
+    }
+
     render() {
         return (
             <View style={ styles.container }>
@@ -35,8 +42,14 @@ class SelectPlayerComponent extends React.Component {
                     <View style={ styles.list }>
                         <FlatList
                             data={this.state.players}
-                            renderItem={({ item }) => (
-                                <Text>{item.name}</Text>
+                            renderItem={({ item, index }) => (
+                                <View style={ styles.player }>
+                                    <Text>{item.name}</Text>
+                                    <Button title="Supp" onPress={() => {
+                                        this.removePlayer(index);
+                                    }} />
+                                </View>
+
                             )}
                         />
                     </View>
@@ -76,6 +89,11 @@ const styles = StyleSheet.create({
         color: '#fff',
         fontSize: 20,
         fontWeight: 'bold',
+    },
+    player: {
+        flex: 1,
+        flexDirection: 'row',
+        justifyContent: 'space-between',
     },
 });
 

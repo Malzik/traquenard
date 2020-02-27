@@ -18,6 +18,9 @@ const gameReducer = (state = initialState, action = {}) => {
             newState.scene = action.newScene;
             newState.currentTurn = newState.currentTurn + 1;
             break;
+        case 'CHANGE_DIFFICULTY':
+            newState.difficulty = action.newDifficulty;
+            break;
         default:
             break;
     }

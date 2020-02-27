@@ -8,8 +8,15 @@ const changeScene  = newScene => ({
     newScene,
 });
 
+const changeDifficulty  = newDifficulty => ({
+    type: 'CHANGE_DIFFICULTY',
+    newDifficulty,
+});
+
+
 
 export {
     addPlayers,
-    changeScene
+    changeScene,
+    changeDifficulty
 };
