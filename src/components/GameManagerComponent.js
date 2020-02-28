@@ -8,6 +8,7 @@ import {bindActionCreators} from "redux";
 import {Question} from "./QuestionComponent";
 import {FriendShip} from "./FriendShipComponent";
 import {Luck} from "./LuckComponent";
+import {EveryonePlay} from "./EveryonePlayComponent";
 
 class GameManagerComponent extends React.Component {
 
@@ -38,7 +39,6 @@ class GameManagerComponent extends React.Component {
     }
 
     render() {
-        console.log(this.props.gameReducer.currentTurn, this.props.gameReducer.maxTurn);
         if (this.props.gameReducer.currentTurn >= this.props.gameReducer.maxTurn) {
             this.endGame();
         }
@@ -54,6 +54,8 @@ class GameManagerComponent extends React.Component {
                     return <Luck/>;
                 case "random":
                     return this.randomScene();
+                case "everyoneplay":
+                    return <EveryonePlay/>;
                 case "card":
                     return <Card/>;
                 default:

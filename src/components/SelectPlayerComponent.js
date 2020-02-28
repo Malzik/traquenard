@@ -17,16 +17,26 @@ class SelectPlayerComponent extends React.Component {
                 {name: 'Rene', sipCount: 0, sipGiven: 0},
                 {name: 'Bebe', sipCount: 0, sipGiven: 0},
             ],
-            currentPlayer: ""
+            currentPlayer: "",
+            errors: {
+                addPlayer: ""
+            }
         }
     }
 
     addPlayer() {
-        const newPlayer = {name: this.state.currentPlayer, sipCount: 0, sipGiven: 0};
-        this.setState({
-            players: [...this.state.players, newPlayer],
-            currentPlayer: ""
-        })
+        if (this.state.currentPlayer.length > 0) {
+            const newPlayer = {name: this.state.currentPlayer, sipCount: 0, sipGiven: 0};
+            this.setState({
+                players: [...this.state.players, newPlayer],
+                currentPlayer: "",
+                errors: {...this.state.errors, addPlayer: ""}
+            })
+        } else {
+            this.setState({
+                errors: {...this.state.errors, addPlayer: "Le nom de peut pas être vide"}
+            })
+        }
     }
 
     startGame() {
@@ -69,6 +79,7 @@ class SelectPlayerComponent extends React.Component {
                         onChangeText={(text) => this.setState({currentPlayer: text})}
                         value={this.state.currentPlayer}
                     />
+                    <Text>{this.state.errors.addPlayer}</Text>
                     <Button title="Solid Button" onPress={() => {
                         this.addPlayer();
                     }}/>
@@ -105,6 +116,7 @@ const styles = StyleSheet.create({
         color: '#fff',
         fontSize: 20,
         fontWeight: 'bold',
+        fontFamily: "Pacifico"
     },
     player: {
         flex: 1,

@@ -1,6 +1,6 @@
 {
   "expo": {
-    "name": "Blank Template",
+    "name": "Traquenard",
     "slug": "Traquenard",
     "privacy": "public",
     "sdkVersion": "36.0.0",
@@ -25,6 +25,10 @@
     ],
     "ios": {
       "supportsTablet": true
+    },
+    "android": {
+      "package": "com.traquenard.corp",
+      "versionCode": 1
     }
   }
 }

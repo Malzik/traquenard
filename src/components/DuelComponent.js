@@ -14,7 +14,7 @@ class DuelComponent extends React.Component {
         return (
             <View>
                 <Text>Duel</Text>
-                <Button onPress = {() => this.props.changeScene("card")} title={"To Card"}/>
+                <Button onPress={() => this.props.changeScene("everyoneplay")} title={"To Everyone"}/>
             </View>
         );
     }

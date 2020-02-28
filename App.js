@@ -7,11 +7,30 @@ import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import {SelectDifficulty} from "./src/components/SelectDifficultyComponent";
 import {EndGame} from "./src/components/EndGameComponent";
+import * as Font from 'expo-font'
+import {Text} from "react-native";
 
 const Stack = createStackNavigator();
 
 class App extends React.Component {
-    render() {
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            fontIsLoaded: false
+        }
+    }
+
+    async componentDidMount() {
+        await Font.loadAsync({
+            'ComicSansBold': require('./assets/fonts/Rubik-Black.ttf'),
+            'Pacifico': require('./assets/fonts/Pacifico.ttf')
+        });
+
+        this.setState({fontIsLoaded: true})
+    }
+
+    renderFontLoaded() {
         return (
             <Provider store={store}>
                 <NavigationContainer>
@@ -24,6 +43,16 @@ class App extends React.Component {
                 </NavigationContainer>
             </Provider>
         );
+    }
+
+    renderFontNotLoaded() {
+        return (
+            <Text>Font Not Loaded</Text>
+        );
+    }
+
+    render() {
+        return this.state.fontIsLoaded ? this.renderFontLoaded() : this.renderFontNotLoaded()
     }
 }
 

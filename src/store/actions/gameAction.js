@@ -17,11 +17,15 @@ const restartGame = () => ({
     type: 'RESTART',
 });
 
+const updateCurrentUser = () => ({
+    type: 'UPDATE_CURRENT_USER',
+});
 
 
 export {
     addPlayers,
     changeScene,
     changeDifficulty,
-    restartGame
+    restartGame,
+    updateCurrentUser
 };

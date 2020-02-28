@@ -14,7 +14,7 @@ class FriendShipComponent extends React.Component {
         return (
             <View>
                 <Text>FriendShip</Text>
-            <Button onPress = {() => this.props.changeScene("card")} title={"To Card"}/>
+                <Button onPress={() => this.props.changeScene("everyoneplay")} title={"To Everyone"}/>
             </View>
         );
     }
