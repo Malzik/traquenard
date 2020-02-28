@@ -4,6 +4,7 @@ const initialState = {
     difficulty: 3,
     currentTurn: 0,
     currentPlayer: null,
+    selectedPlayer: null,
     scene: null
 };
 
@@ -32,7 +33,8 @@ const gameReducer = (state = initialState, action = {}) => {
             newState.currentPlayer = null;
             newState.scene = null;
             break;
-        case 'UPDATE_CURRENT_USER':
+        case 'UPDATE_CURRENT_PLAYER':
+            console.log("update user");
             if (newState.currentPlayer === null)
                 newState.currentPlayer = 0;
             else if (newState.currentPlayer + 1 < newState.players.length) {
@@ -40,6 +42,9 @@ const gameReducer = (state = initialState, action = {}) => {
             } else {
                 newState.currentPlayer = 0;
             }
+            break;
+        case 'UPDATE_SELECTED_PLAYER':
+            newState.selectedPlayer = action.selectedPlayer;
             break;
         default:
             break;

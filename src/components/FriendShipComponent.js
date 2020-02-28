@@ -8,12 +8,19 @@ import PropTypes from "prop-types";
 class FriendShipComponent extends React.Component {
     constructor(props) {
         super(props);
+
+        this.state = {
+            currentPlayer: this.props.currentPlayer,
+            selectedPlayer: this.props.selectedPlayer,
+        };
+        console.log(this.state)
     }
     render() {
 
         return (
             <View>
                 <Text>FriendShip</Text>
+                <Text>{this.state.currentPlayer.name} joue avec {this.state.selectedPlayer}</Text>
                 <Button onPress={() => this.props.changeScene("everyoneplay")} title={"To Everyone"}/>
             </View>
         );

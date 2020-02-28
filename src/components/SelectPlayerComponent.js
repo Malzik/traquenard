@@ -1,6 +1,6 @@
 import React from "react";
-import {FlatList, StyleSheet, Text, View, ScrollView, Image, TouchableOpacity} from "react-native";
-import {Input, Button} from 'react-native-elements';
+import {FlatList, Image, ScrollView, StyleSheet, Text, TouchableOpacity, View} from "react-native";
+import {Button, Input} from 'react-native-elements';
 import PropTypes from "prop-types";
 import {bindActionCreators} from "redux";
 import * as gameActions from "../store/actions/gameAction";
@@ -45,7 +45,6 @@ class SelectPlayerComponent extends React.Component {
     }
 
     removePlayer(index) {
-        console.log(index);
         this.setState({
             players: this.state.players.filter(function (item, stateIndex) {
                 return index !== stateIndex

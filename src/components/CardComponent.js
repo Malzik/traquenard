@@ -9,16 +9,21 @@ class CardComponent extends React.Component {
 
     constructor(props) {
         super(props);
-        this.props.updateCurrentUser();
         this.state = {
-            currentPlayer: this.props.gameReducer.players[this.props.gameReducer.currentPlayer]
+            currentPlayer: null
         }
+    }
+
+    componentWillMount() {
+        if (this.props.gameReducer.currentTurn > 0)
+            this.props.updateCurrentUser()
     }
 
     render() {
         return (
             <View>
-                <Text>{this.state.currentPlayer.name} choisi ton mode de jeu</Text>
+                <Text>{this.props.gameReducer.players[this.props.gameReducer.currentPlayer].name} choisi ton mode de
+                    jeu</Text>
                 <Button onPress={() => this.props.changeScene("duel")} title={"Duel"}/>
                 <Button onPress={() => this.props.changeScene("question")} title={"Question"}/>
                 <Button onPress={() => this.props.changeScene("friendship")} title={"Amitié"}/>

@@ -8,7 +8,7 @@ const changeScene = newScene => ({
     newScene,
 });
 
-const changeDifficulty  = newDifficulty => ({
+const changeDifficulty = newDifficulty => ({
     type: 'CHANGE_DIFFICULTY',
     newDifficulty,
 });
@@ -18,7 +18,12 @@ const restartGame = () => ({
 });
 
 const updateCurrentUser = () => ({
-    type: 'UPDATE_CURRENT_USER',
+    type: 'UPDATE_CURRENT_PLAYER',
+});
+
+const updateSelectedPlayer = selectedPlayer => ({
+    type: 'UPDATE_SELECTED_PLAYER',
+    selectedPlayer
 });
 
 
@@ -27,5 +32,6 @@ export {
     changeScene,
     changeDifficulty,
     restartGame,
-    updateCurrentUser
+    updateCurrentUser,
+    updateSelectedPlayer
 };

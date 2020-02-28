@@ -1,5 +1,5 @@
 import React from 'react';
-import {StatusBar} from "react-native";
+import {StatusBar, Text} from "react-native";
 import {GameManager} from "./src/components/GameManagerComponent";
 import {Provider} from 'react-redux'
 import {store} from './src/store/store';
@@ -9,7 +9,6 @@ import {createStackNavigator} from '@react-navigation/stack';
 import {SelectDifficulty} from "./src/components/SelectDifficultyComponent";
 import {EndGame} from "./src/components/EndGameComponent";
 import * as Font from 'expo-font'
-import {Text} from "react-native";
 
 const Stack = createStackNavigator();
 
@@ -24,7 +23,6 @@ class App extends React.Component {
 
     async componentDidMount() {
         await Font.loadAsync({
-            'ComicSansBold': require('./assets/fonts/Rubik-Black.ttf'),
             'Pacifico': require('./assets/fonts/Pacifico.ttf')
         });
 

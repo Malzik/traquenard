@@ -9,6 +9,7 @@ import {Question} from "./QuestionComponent";
 import {FriendShip} from "./FriendShipComponent";
 import {Luck} from "./LuckComponent";
 import {EveryonePlay} from "./EveryonePlayComponent";
+import {SelectOtherPlayer} from "./SelectOtherPlayerComponent";
 
 class GameManagerComponent extends React.Component {
 
@@ -16,7 +17,8 @@ class GameManagerComponent extends React.Component {
         super(props);
 
         this.state = {
-            info: props.gameReducer
+            info: props.gameReducer,
+            currentPlayer: this.props.gameReducer.players[this.props.gameReducer.currentPlayer]
         }
     }
 
@@ -39,17 +41,18 @@ class GameManagerComponent extends React.Component {
     }
 
     render() {
+        console.log("gameManager", this.state.currentPlayer, this.props.gameReducer.currentPlayer);
         if (this.props.gameReducer.currentTurn >= this.props.gameReducer.maxTurn) {
             this.endGame();
         }
         const sceneToDisplayed = () => {
             switch (this.props.gameReducer.scene) {
                 case "duel":
-                    return <Duel/>;
+                    return <SelectOtherPlayer game="duel" currentPlayer={this.state.currentPlayer}/>;
                 case "question":
                     return <Question/>;
                 case "friendship":
-                    return <FriendShip/>;
+                    return <SelectOtherPlayer game="friendship" currentPlayer={this.state.currentPlayer}/>;
                 case "luck":
                     return <Luck/>;
                 case "random":
