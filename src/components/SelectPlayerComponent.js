@@ -55,11 +55,11 @@ class SelectPlayerComponent extends React.Component {
 
     render() {
         return (
-            <View style={ styles.container }>
-                <View style={ styles.header }>
-                    <Text  style={ styles.title }> Traquenard </Text>
-                </View>
+            <ScrollView style={ styles.container }>
                 <View style={ styles.content }>
+                    <View style={ styles.header }>
+                        <Text  style={ styles.title }> Traquenard </Text>
+                    </View>
                     <View style={ styles.list }>
                         <ScrollView style={ styles.scroll }>
                             <FlatList
@@ -90,7 +90,7 @@ class SelectPlayerComponent extends React.Component {
                             </TouchableOpacity>
                         </View>
                     </View>
-                    <View style={{justifyContent: 'center', alignItems: 'center'}}>
+                    <View style={{alignItems: 'center', marginTop: 75}}>
                         <Button titleStyle={{textAlign: 'center', color: '#fff',
                             fontSize: 20,  fontFamily: "Pacifico"
                         }} buttonStyle={{ backgroundColor: "#FF7C02",
@@ -99,7 +99,7 @@ class SelectPlayerComponent extends React.Component {
                         }}/>
                     </View>
                 </View>
-            </View>
+            </ScrollView>
 
         );
     }
@@ -111,8 +111,7 @@ const styles = StyleSheet.create({
         backgroundColor: '#FF9C40',
     },
     content: {
-        flex: 0.48,
-        padding: 40,
+        flex: 0.58,
     },
     list: {
         marginTop: 20,
@@ -133,15 +132,8 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-between',
     },
-    start: {
-        flex: 1,
-        flexDirection: 'row',
-    },
     scroll: {
-        height: 125,
-    },
-    marge: {
-        marginTop: 30,
+        height: 150,
     },
     textPlayer: {
         fontSize: 15,
@@ -152,8 +144,7 @@ const styles = StyleSheet.create({
         flex: 1,
         flexDirection: 'row',
         justifyContent: 'space-between',
-        marginTop: 20,
-        marginBottom: 20,
+        marginTop: 30,
     }
 });
 
