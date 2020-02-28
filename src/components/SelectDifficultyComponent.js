@@ -73,7 +73,7 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         color: '#fff',
         fontSize: 20,
-        fontWeight: 'bold',
+        fontFamily: 'KaushanScript-Regular',
     }
 });
 

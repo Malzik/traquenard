@@ -1,6 +1,6 @@
 import React from "react";
-import {Button, FlatList, StyleSheet, Text, View} from "react-native";
-import {Input} from 'react-native-elements';
+import {FlatList, StyleSheet, Text, View, ScrollView, Image, TouchableOpacity} from "react-native";
+import {Input, Button} from 'react-native-elements';
 import PropTypes from "prop-types";
 import {bindActionCreators} from "redux";
 import * as gameActions from "../store/actions/gameAction";
@@ -61,32 +61,43 @@ class SelectPlayerComponent extends React.Component {
                 </View>
                 <View style={ styles.content }>
                     <View style={ styles.list }>
-                        <FlatList
-                            data={this.state.players}
-                            renderItem={({ item, index }) => (
-                                <View style={ styles.player }>
-                                    <Text>{item.name}</Text>
-                                    <Button title="Supp" onPress={() => {
-                                        this.removePlayer(index);
-                                    }} />
-                                </View>
+                        <ScrollView style={ styles.scroll }>
+                            <FlatList
+                                data={this.state.players}
+                                renderItem={({ item, index }) => (
+                                    <View style={ styles.player }>
+                                        <Text style={ styles.textPlayer }>{item.name}</Text>
+                                        <TouchableOpacity onPress={() => this.removePlayer(index)}>
+                                            <Image source={require('./icons/delete.png')} style={{width: 30, height: 30}}/>
+                                        </TouchableOpacity>
+                                    </View>
 
-                            )}
-                        />
+                                )}
+                            />
+                        </ScrollView>
                     </View>
-                    <Input
-                        placeholder='Ajouter un joueur'
-                        onChangeText={(text) => this.setState({currentPlayer: text})}
-                        value={this.state.currentPlayer}
-                    />
-                    <Text>{this.state.errors.addPlayer}</Text>
-                    <Button title="Solid Button" onPress={() => {
-                        this.addPlayer();
-                    }}/>
+                    <View style={ styles.addInputButton }>
+                        <View style={{flex: 0.9}}>
+                            <Input
+                                placeholder='Ajouter un joueur'
+                                onChangeText={(text) => this.setState({currentPlayer: text})}
+                                value={this.state.currentPlayer}
+                            />
+                        </View>
+                        <View style={{flex: 0.1}}>
+                            <TouchableOpacity onPress={() => this.addPlayer()}>
+                                <Image source={require('./icons/add.png')} style={{width: 30, height: 30}}/>
+                            </TouchableOpacity>
+                        </View>
+                    </View>
                 </View>
-                <View>
-                    <Button title="Commencer" onPress={() => {
-                        this.startGame()
+
+                <View style={{justifyContent: 'center', alignItems: 'center'}}>
+                    <Button titleStyle={{textAlign: 'center', color: '#fff',
+                        fontSize: 20,  fontFamily: "Pacifico"
+                    }} buttonStyle={{ backgroundColor: "#FF7C02",
+                                borderRadius: 60, width: 200, }}
+                            title="Commencer" onPress={() => { this.startGame()
                     }}/>
                 </View>
             </View>
@@ -98,9 +109,10 @@ class SelectPlayerComponent extends React.Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#fff',
+        backgroundColor: '#FF9C40',
     },
     content: {
+        flex: 0.45,
         padding: 40,
     },
     list: {
@@ -109,13 +121,12 @@ const styles = StyleSheet.create({
     header: {
         height: 80,
         padding: 38,
-        backgroundColor: 'red',
+        backgroundColor: '#FF9C40',
     },
     title: {
         textAlign: 'center',
         color: '#fff',
         fontSize: 20,
-        fontWeight: 'bold',
         fontFamily: "Pacifico"
     },
     player: {
@@ -123,6 +134,27 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-between',
     },
+    start: {
+        flex: 1,
+        flexDirection: 'row',
+    },
+    scroll: {
+        height: 150,
+    },
+    marge: {
+        marginTop: 30,
+    },
+    textPlayer: {
+        fontSize: 15,
+        marginBottom: 20,
+        marginLeft: 20,
+    },
+    addInputButton: {
+        flex: 1,
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        marginTop: 25,
+    }
 });
 
 

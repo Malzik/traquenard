@@ -1,4 +1,5 @@
 import React from 'react';
+import {StatusBar} from "react-native";
 import {GameManager} from "./src/components/GameManagerComponent";
 import {Provider} from 'react-redux'
 import {store} from './src/store/store';
@@ -33,6 +34,7 @@ class App extends React.Component {
     renderFontLoaded() {
         return (
             <Provider store={store}>
+                <StatusBar hidden={true}/>
                 <NavigationContainer>
                     <Stack.Navigator initialRouteName="SelectPlayer" headerMode={"none"}>
                         <Stack.Screen name="SelectPlayer" component={SelectPlayer}/>
