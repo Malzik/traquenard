@@ -90,15 +90,14 @@ class SelectPlayerComponent extends React.Component {
                             </TouchableOpacity>
                         </View>
                     </View>
-                </View>
-
-                <View style={{justifyContent: 'center', alignItems: 'center'}}>
-                    <Button titleStyle={{textAlign: 'center', color: '#fff',
-                        fontSize: 20,  fontFamily: "Pacifico"
-                    }} buttonStyle={{ backgroundColor: "#FF7C02",
-                                borderRadius: 60, width: 200, }}
-                            title="Commencer" onPress={() => { this.startGame()
-                    }}/>
+                    <View style={{justifyContent: 'center', alignItems: 'center'}}>
+                        <Button titleStyle={{textAlign: 'center', color: '#fff',
+                            fontSize: 20,  fontFamily: "Pacifico"
+                        }} buttonStyle={{ backgroundColor: "#FF7C02",
+                                    borderRadius: 60, width: 200, }}
+                                title="Commencer" onPress={() => { this.startGame()
+                        }}/>
+                    </View>
                 </View>
             </View>
 
@@ -112,7 +111,7 @@ const styles = StyleSheet.create({
         backgroundColor: '#FF9C40',
     },
     content: {
-        flex: 0.45,
+        flex: 0.48,
         padding: 40,
     },
     list: {
@@ -139,7 +138,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
     },
     scroll: {
-        height: 150,
+        height: 125,
     },
     marge: {
         marginTop: 30,
@@ -153,7 +152,8 @@ const styles = StyleSheet.create({
         flex: 1,
         flexDirection: 'row',
         justifyContent: 'space-between',
-        marginTop: 25,
+        marginTop: 20,
+        marginBottom: 20,
     }
 });
 
