@@ -1,5 +1,5 @@
 import React from "react";
-import {Button, StyleSheet, Text, View} from "react-native";
+import {Image, StyleSheet, ScrollView, Text, TouchableOpacity, View} from "react-native";
 import {ScreenOrientation} from 'expo';
 import {bindActionCreators} from "redux";
 import * as gameActions from "../store/actions/gameAction";
@@ -24,25 +24,25 @@ class SelectDifficultyComponent extends React.Component {
         ScreenOrientation.lockAsync(ScreenOrientation.OrientationLock.LANDSCAPE_LEFT);
         return (
             <View style={ styles.container }>
-                <View style={ styles.header }>
-                    <Text  style={ styles.title }> Choisir la difficulté </Text>
+                <View>
+                    <Text  style={ styles.title }> CHOISIR LA DIFFICULTÉ </Text>
                 </View>
                 <View style={ styles.content }>
-                    <Button title="Panaché" onPress={() => {
-                        this.setDifficulty(1);
-                    }} />
-                    <Button title="Bière" onPress={() => {
-                        this.setDifficulty(2);
-                    }} />
-                    <Button title="Vin" onPress={() => {
-                        this.setDifficulty(3);
-                    }} />
-                    <Button title="Vodka" onPress={() => {
-                        this.setDifficulty(4);
-                    }} />
-                    <Button title="Absinthe" onPress={() => {
-                        this.setDifficulty(5);
-                    }} />
+                    <TouchableOpacity onPress={() => this.setDifficulty(1)}>
+                        <Image source={require('./icons/img1.png')} style={{width: 100, height: 100}}/>
+                    </TouchableOpacity>
+                    <TouchableOpacity onPress={() => this.setDifficulty(2)}>
+                        <Image source={require('./icons/img1.png')} style={{width: 100, height: 100}}/>
+                    </TouchableOpacity>
+                    <TouchableOpacity onPress={() => this.setDifficulty(3)}>
+                        <Image source={require('./icons/img1.png')} style={{width: 100, height: 100}}/>
+                    </TouchableOpacity>
+                    <TouchableOpacity onPress={() => this.setDifficulty(4)}>
+                        <Image source={require('./icons/img1.png')} style={{width: 100, height: 100}}/>
+                    </TouchableOpacity>
+                    <TouchableOpacity onPress={() => this.setDifficulty(5)}>
+                        <Image source={require('./icons/img1.png')} style={{width: 100, height: 100}}/>
+                    </TouchableOpacity>
                 </View>
             </View>
 
@@ -57,24 +57,23 @@ SelectDifficultyComponent.propTypes = {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#fff',
+        backgroundColor: '#2A2A2A',
     },
     content: {
+        flex: 0.7,
+        alignItems: 'center',
         padding: 40,
         flexDirection: 'row',
         justifyContent: 'space-between',
-    },
-    header: {
-        height: 80,
-        padding: 38,
-        backgroundColor: 'red',
+        marginHorizontal: 30,
     },
     title: {
+        marginTop: 20,
         textAlign: 'center',
         color: '#fff',
-        fontSize: 20,
-        fontFamily: 'KaushanScript-Regular',
-    }
+        fontSize: 35,
+        fontFamily: "titre"
+    },
 });
 
 const mapStateToProps = (state) => {
