@@ -5,6 +5,15 @@ const initialState = {
     currentTurn: 0,
     currentPlayer: null,
     selectedPlayer: null,
+    selectedCategory: null,
+    categories: [
+        {name: 'Cinéma'},
+        {name: 'Série'},
+        {name: 'Histoire'},
+        {name: 'Jeux-Vidéos'},
+        {name: 'Sport'},
+        {name: 'Musique'},
+    ],
     scene: null
 };
 
@@ -45,6 +54,9 @@ const gameReducer = (state = initialState, action = {}) => {
             break;
         case 'UPDATE_SELECTED_PLAYER':
             newState.selectedPlayer = action.selectedPlayer;
+            break;
+        case 'UPDATE_SELECTED_CATEGORY':
+            newState.selectedCategory = action.selectedCategory;
             break;
         default:
             break;

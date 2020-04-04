@@ -1,28 +1,30 @@
 import {Button, StyleSheet, Text, TouchableOpacity, View} from "react-native";
-import {connect} from 'react-redux';
 import React from "react";
-import * as gameActions from '../store/actions/gameAction';
 import {bindActionCreators} from "redux";
+import * as gameActions from "../store/actions/gameAction";
+import {connect} from "react-redux";
+import PropTypes from "prop-types";
 
-class EveryonePlayComponent extends React.Component {
-
+class OneVersusAllComponent extends React.Component {
     constructor(props) {
         super(props);
     }
-
     render() {
 
         return (
             <View style={ styles.container }>
                 <TouchableOpacity  onPress={() => this.props.changeScene("card")}>
                     <View>
-                        <Text style={ styles.title }> Tout le monde joue !</Text>
+                        <Text style={ styles.title }> Seul contre Tous, Catégorie : Cinéma !</Text>
                     </View>
                     <View>
-                        <Text style={ styles.questionText }>A tour de rôle : celui qui trouvera le plus de personnage dans le film le seigneur des anneaux gagne</Text>
+                        <Text style={ styles.questionText }>
+                            A tour de rôle : celui qui trouvera le plus de personnage
+                            dans le film le seigneur des anneaux gagne
+                        </Text>
                     </View>
                     <View>
-                        <Text style={ styles.gorgeesText }>5 Gorgées en jeu</Text>
+                        <Text style={ styles.gorgeesText }>10 Gorgées en jeu</Text>
                     </View>
                 </TouchableOpacity>
             </View>
@@ -33,7 +35,7 @@ class EveryonePlayComponent extends React.Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#2A2A2A',
+        backgroundColor: '#3FBD4E',
         flexDirection: 'column',
         justifyContent: 'space-between'
     },
@@ -61,16 +63,21 @@ const styles = StyleSheet.create({
     }
 });
 
-const mapStateToProps = state => {
-    return state;
+
+
+OneVersusAllComponent.propTypes = {
+    changeScene: PropTypes.func,
+};
+const mapStateToProps = (state) => {
+    return state
 };
 
 const mapDispatchToProps = dispatch =>
-    bindActionCreators({...gameActions}, dispatch);
+    bindActionCreators({ ...gameActions }, dispatch);
 
-const EveryonePlay = connect(
+const OneVersusAll = connect(
     mapStateToProps,
     mapDispatchToProps
-)(EveryonePlayComponent);
+)(OneVersusAllComponent);
 
-export {EveryonePlay, EveryonePlayComponent};
+export { OneVersusAll, OneVersusAllComponent };

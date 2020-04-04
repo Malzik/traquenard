@@ -7,9 +7,9 @@ import * as gameActions from '../store/actions/gameAction';
 import {bindActionCreators} from "redux";
 import {Question} from "./QuestionComponent";
 import {FriendShip} from "./FriendShipComponent";
-import {Luck} from "./LuckComponent";
 import {EveryonePlay} from "./EveryonePlayComponent";
 import {SelectOtherPlayer} from "./SelectOtherPlayerComponent";
+import {SelectCategoryOneVersusAll} from "./SelectCategoryOneVersusAllComponent";
 
 class GameManagerComponent extends React.Component {
 
@@ -53,8 +53,8 @@ class GameManagerComponent extends React.Component {
                     return <Question/>;
                 case "friendship":
                     return <SelectOtherPlayer game="friendship" currentPlayer={this.state.currentPlayer}/>;
-                case "luck":
-                    return <Luck/>;
+                case "oneversusall":
+                    return <SelectCategoryOneVersusAll currentPlayer={this.state.currentPlayer}/>;
                 case "random":
                     return this.randomScene();
                 case "everyoneplay":
@@ -66,7 +66,7 @@ class GameManagerComponent extends React.Component {
             }
         };
         return (
-            <View>{sceneToDisplayed()}</View>
+            <View style={{flex: 1}}>{sceneToDisplayed()}</View>
         );
     }
 }

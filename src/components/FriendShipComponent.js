@@ -22,7 +22,7 @@ class FriendShipComponent extends React.Component {
             <View style={ styles.container }>
                 <TouchableOpacity  onPress={() => this.props.changeScene("everyoneplay")}>
                     <View>
-                        <Text style={ styles.title }> Amitié: José avec Jean</Text>
+                        <Text style={ styles.title }> Amitié : {this.state.currentPlayer.name} vs {this.state.selectedPlayer.name}</Text>
                     </View>
                     <View>
                         <Text style={ styles.questionText }>Trouver au moins 10 bars à moins de 15 km, si vous perdez buvez chacun le nombre de gorgées en jeu</Text>

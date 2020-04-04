@@ -12,7 +12,7 @@ import {EndGame} from "./src/components/EndGameComponent";
 import {Duel} from "./src/components/DuelComponent";
 import {FriendShip} from "./src/components/FriendShipComponent";
 import {SelectOtherPlayer} from "./src/components/SelectOtherPlayerComponent";
-import {Luck} from "./src/components/LuckComponent";
+import {OneVersusAll} from "./src/components/OneVersusAllComponent";
 import {Question} from "./src/components/QuestionComponent";
 import {EveryonePlay} from "./src/components/EveryonePlayComponent";
 import * as Font from 'expo-font'
@@ -32,7 +32,7 @@ class App extends React.Component {
         await Font.loadAsync({
             'MainTitle': require('./assets/fonts/BlackRyderDemo.ttf'),
             'ABeeZee-Regular': require('./assets/fonts/ABeeZee-Regular.ttf'),
-            'titre': require('./assets/fonts/OpenSans-Semibold.ttf'),
+            'titre': require('./assets/fonts/Qualy_Bold.ttf'),
             'questionText': require('./assets/fonts/OpenSans-Regular.ttf'),
             'gorgeesText': require('./assets/fonts/OpenSans-LightItalic.ttf')
         });
@@ -52,7 +52,7 @@ class App extends React.Component {
                         <Stack.Screen name="SelectOtherPlayer" component={SelectOtherPlayer}/>
                         <Stack.Screen name="Duel" component={Duel}/>
                         <Stack.Screen name="FriendShip" component={FriendShip}/>
-                        <Stack.Screen name="Luck" component={Luck}/>
+                        <Stack.Screen name="OneVersusAll" component={OneVersusAll}/>
                         <Stack.Screen name="Question" component={Question}/>
                         <Stack.Screen name="EveryonePlay" component={EveryonePlay}/>
                         <Stack.Screen name="GameManager" component={GameManager}/>

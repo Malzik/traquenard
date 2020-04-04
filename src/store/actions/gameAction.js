@@ -26,6 +26,11 @@ const updateSelectedPlayer = selectedPlayer => ({
     selectedPlayer
 });
 
+const updateCategory = selectedCategory => ({
+    type: 'UPDATE_SELECTED_CATEGORY',
+    selectedCategory
+});
+
 
 export {
     addPlayers,
@@ -33,5 +38,6 @@ export {
     changeDifficulty,
     restartGame,
     updateCurrentUser,
-    updateSelectedPlayer
+    updateSelectedPlayer,
+    updateCategory
 };

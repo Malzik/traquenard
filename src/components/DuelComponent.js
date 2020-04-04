@@ -14,13 +14,14 @@ class DuelComponent extends React.Component {
             selectedPlayer: this.props.selectedPlayer,
         }
     }
+
     render() {
 
         return (
             <View style={ styles.container }>
                 <TouchableOpacity  onPress={() => this.props.changeScene("everyoneplay")}>
                     <View>
-                        <Text style={ styles.title }> Duel: José vs Jean</Text>
+                        <Text style={ styles.title }> Duel: {this.state.currentPlayer.name} vs {this.state.selectedPlayer.name}</Text>
                     </View>
                     <View>
                         <Text style={ styles.questionText }>A tour de rôle : celui qui trouvera le plus de personnage dans le film le seigneur des anneaux gagne</Text>

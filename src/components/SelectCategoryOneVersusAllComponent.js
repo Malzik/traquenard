@@ -2,11 +2,10 @@ import {Button, Picker, StyleSheet, ScrollView, Text, View, FlatList, TouchableO
 import {connect} from 'react-redux';
 import React from "react";
 import * as gameActions from '../store/actions/gameAction';
-import {bindActionCreators} from "redux";
-import {Duel} from "./DuelComponent";
-import {FriendShip} from "./FriendShipComponent";
+import {bindActionCreators} from "redux"
+import {OneVersusAll} from "./OneVersusAllComponent";
 
-class SelectOtherPlayerComponent extends React.Component {
+class SelectCategoryOneVersusAllComponent extends React.Component {
 
     constructor(props) {
         super(props);
@@ -14,7 +13,7 @@ class SelectOtherPlayerComponent extends React.Component {
         this.state = {
             game: this.props.game,
             currentPlayer: null,
-            selectedPlayer: null
+            category: null
         };
         this.setState({
             currentPlayer: this.props.currentPlayer
@@ -27,23 +26,31 @@ class SelectOtherPlayerComponent extends React.Component {
         })
     }
 
-    changeSelectedPlayer() {
-        this.props.updateSelectedPlayer(this.state.selectedPlayer)
+    categorySelected() {
+        this.props.updateCategory(this.state.category)
     }
 
-    renderSelectPlayer() {
+    renderSelectCategory() {
         return (
             <View style={ styles.container }>
                 <View style={ styles.titleView }>
-                    <Text style={ styles.title }> {this.state.currentPlayer.name} choisi avec qui tu veux jouer </Text>
+                    <Text style={ styles.title }>
+                        {this.state.currentPlayer.name}, tu es seul contre tous !
+                    </Text>
                 </View>
-                <View style={styles.listView}>
+                <View style={ styles.contentTextView }>
+                    <Text style={ styles.contentText }>
+                        Tu estimes être plus fort que tout les autres joueurs
+                        sur une catégorie, choisi la !
+                    </Text>
+                </View>
+                <View style={styles.categoryView}>
                     <FlatList
-                        data={this.props.gameReducer.players}
+                        data={this.props.gameReducer.categories}
                         renderItem={({ item }) => (
                             <TouchableOpacity onPress={() => {
-                                this.changeSelectedPlayer();
-                                this.setState({selectedPlayer: item.name});}}>
+                                this.categorySelected();
+                                this.setState({category: item.name});}}>
                                 <View style={ styles.playerView }>
                                     <Text style={ styles.playerText }>{item.name}</Text>
                                 </View>
@@ -56,45 +63,50 @@ class SelectOtherPlayerComponent extends React.Component {
     }
 
     renderGame() {
-        switch (this.state.game) {
-            case "duel":
-                return <Duel currentPlayer={this.state.currentPlayer} selectedPlayer={this.state.selectedPlayer}/>;
-            case "friendship":
-                return <FriendShip currentPlayer={this.state.currentPlayer} selectedPlayer={this.state.selectedPlayer}/>
-        }
+        return <OneVersusAll currentPlayer={this.state.currentPlayer} selectedCategory={this.state.category}/>
     }
 
     render() {
-        return this.state.selectedPlayer !== null ? this.renderGame() : this.renderSelectPlayer();
+        return this.state.category !== null ? this.renderGame() : this.renderSelectCategory();
     }
 }
 
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#2A2A2A',
+        backgroundColor: '#3FBD4E',
     },
     title: {
+        padding: 10,
+        textAlign: 'center',
+        color: '#fff',
+        fontSize: 40,
+        fontFamily: "MainTitle"
+    },
+    contentText: {
         marginTop: 20,
         textAlign: 'center',
         color: '#fff',
-        fontSize: 35,
+        fontSize: 30,
         fontFamily: "titre"
     },
     titleView: {
         flex:0.2,
     },
-    listView: {
-        flex:0.8,
+    contentTextView: {
+        flex:0.3,
+    },
+    categoryView: {
+        flex:0.5,
         justifyContent:'center',
-        paddingHorizontal: 100,
-        marginBottom: 30
+        paddingHorizontal: 50,
+        marginBottom: 20,
     },
     playerView: {
         flex: 1,
         marginTop: 20,
-        backgroundColor: '#2A9BDA',
-        borderRadius:50,
+        backgroundColor: '#2A2A2A',
+        borderRadius:10,
     },
     playerText:{
         flex:1,
@@ -114,9 +126,9 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch =>
     bindActionCreators({...gameActions}, dispatch);
 
-const SelectOtherPlayer = connect(
+const SelectCategoryOneVersusAll = connect(
     mapStateToProps,
     mapDispatchToProps
-)(SelectOtherPlayerComponent);
+)(SelectCategoryOneVersusAllComponent);
 
-export {SelectOtherPlayer, SelectOtherPlayerComponent};
+export {SelectCategoryOneVersusAll, SelectCategoryOneVersusAllComponent};
