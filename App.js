@@ -14,6 +14,7 @@ import {FriendShip} from "./src/components/FriendShipComponent";
 import {SelectOtherPlayer} from "./src/components/SelectOtherPlayerComponent";
 import {OneVersusAll} from "./src/components/OneVersusAllComponent";
 import {Question} from "./src/components/QuestionComponent";
+import {Question2} from "./src/components/Question2Component";
 import {EveryonePlay} from "./src/components/EveryonePlayComponent";
 import * as Font from 'expo-font'
 
@@ -54,6 +55,7 @@ class App extends React.Component {
                         <Stack.Screen name="FriendShip" component={FriendShip}/>
                         <Stack.Screen name="OneVersusAll" component={OneVersusAll}/>
                         <Stack.Screen name="Question" component={Question}/>
+                        <Stack.Screen name="Question2" component={Question2}/>
                         <Stack.Screen name="EveryonePlay" component={EveryonePlay}/>
                         <Stack.Screen name="GameManager" component={GameManager}/>
                         <Stack.Screen name="EndGame" component={EndGame}/>

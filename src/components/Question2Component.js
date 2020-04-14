@@ -1,61 +1,57 @@
-import {StyleSheet, Text, View} from "react-native";
+import {StyleSheet, Text, TouchableOpacity, View} from "react-native";
 import React from "react";
 import {bindActionCreators} from "redux";
 import * as gameActions from "../store/actions/gameAction";
 import {connect} from "react-redux";
 import {Button} from 'react-native-elements';
 import PropTypes from "prop-types";
-import {Question2} from "./Question2Component";
 
-class QuestionComponent extends React.Component {
+class Question2Component extends React.Component {
     constructor(props) {
         super(props);
+        console.log(this.props);
         this.state = {
-            changeScene: false,
-            question: "En quelle année la France à été sacrée championne du monde pour la première fois",
-            answers: [
-                {content: '1990', color: '#D42A2A', true_false: 0},
-                {content: '1994', color: '#D42A2A', true_false: 0},
-                {content: '1998', color: '#3FBD4E', true_false: 1},
-                {content: '2000', color: '#D42A2A', true_false: 0},
-            ],
+            answers: this.props.vAnswers,
+            answerPlayer: this.props.vPlayerAnswer,
+            titre: '',
+            description: '',
+        };
+    }
+
+    componentDidMount() {
+        if (this.state.answerPlayer.true_false === true){
+            this.setState({titre: "Gagné", description: "Donne 5 gorgées"});
+        } else {
+            this.setState({titre: "Perdu !", description: "Prend 5 gorgées"});
         }
     }
 
-    changeScene(answers, playerAnswer)
-    {
-        this.setState({changeScene: true, answers, playerAnswer});
-    }
-
-
-
-    renderQuestion() {
+    render() {
         return (
-            <View style={ styles.container }>
+
+            <TouchableOpacity style={ styles.container } onPress={() => this.props.changeScene("everyoneplay")}>
                 <View style={ styles.contentTitle }>
-                    <Text style={ styles.title }> {this.props.currentPlayer} répond à la question</Text>
+                    <Text style={ styles.title }>{this.state.titre}</Text>
                 </View>
                 <View style={ styles.contentQuestion }>
-                    <Text style={ styles.questionText }>{this.state.question}</Text>
+                    <Text style={ styles.questionText }>{this.state.description}</Text>
                 </View>
                 <View style={ styles.contentAnswer }>
                     <View style={ styles.duoQuestion }>
                         <View style={{flex: 0.47}}>
                             <Button titleStyle={{textAlign: 'center', color: '#fff',
                                 fontSize: 20,  fontFamily: "MainTitle"
-                            }} buttonStyle={{ backgroundColor: "#2A2A2A",
+                            }} buttonStyle={{ backgroundColor: this.state.answers[0].color,
                                 borderRadius: 60}}
                                     title={this.state.answers[0].content}
-                                    onPress={() => this.changeScene(this.state.answers, this.state.answers[0])}
                             />
                         </View>
                         <View style={{flex: 0.47}}>
                             <Button titleStyle={{textAlign: 'center', color: '#fff',
                                 fontSize: 20,  fontFamily: "MainTitle"
-                            }} buttonStyle={{ backgroundColor: "#2A2A2A",
+                            }} buttonStyle={{ backgroundColor: this.state.answers[1].color,
                                 borderRadius: 60 }}
                                     title={this.state.answers[1].content}
-                                    onPress={() => this.changeScene(this.state.answers, this.state.answers[1])}
                             />
                         </View>
                     </View>
@@ -63,34 +59,25 @@ class QuestionComponent extends React.Component {
                         <View style={{flex: 0.47}}>
                             <Button titleStyle={{textAlign: 'center', color: '#fff',
                                 fontSize: 20,  fontFamily: "MainTitle",
-                            }} buttonStyle={{ backgroundColor: "#2A2A2A",
+                            }} buttonStyle={{ backgroundColor: this.state.answers[2].color,
                                 borderRadius: 60}}
                                     title={this.state.answers[2].content}
-                                    onPress={() => this.changeScene(this.state.answers, this.state.answers[2])}
                             />
                         </View>
                         <View style={{flex: 0.47}}>
                             <Button id={"4"} titleStyle={{textAlign: 'center', color: '#fff',
                                 fontSize: 20,  fontFamily: "MainTitle"
-                            }} buttonStyle={{ backgroundColor: "#2A2A2A",
+                            }} buttonStyle={{ backgroundColor: this.state.answers[3].color,
                                 borderRadius: 60}}
                                     title={this.state.answers[3].content}
-                                    onPress={() => this.changeScene(this.state.answers, this.state.answers[3])}
                             />
                         </View>
                     </View>
                 </View>
-            </View>
+            </TouchableOpacity>
+
 
         );
-    }
-
-    renderAnswer() {
-        return <Question2 vAnswers={this.state.answers} vPlayerAnswer={this.state.playerAnswer}/>
-    }
-
-    render() {
-        return this.state.changeScene !== false ? this.renderAnswer() : this.renderQuestion();
     }
 }
 
@@ -99,7 +86,7 @@ class QuestionComponent extends React.Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#FFE332',
+        backgroundColor: '#2A2A2A',
     },
     contentTitle :{
         flex: 0.2,
@@ -142,7 +129,7 @@ const styles = StyleSheet.create({
     },
 });
 
-QuestionComponent.propTypes = {
+Question2Component.propTypes = {
     changeScene: PropTypes.func,
 };
 const mapStateToProps = (state) => {
@@ -152,9 +139,9 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = dispatch =>
     bindActionCreators({ ...gameActions }, dispatch);
 
-const Question = connect(
+const Question2 = connect(
     mapStateToProps,
     mapDispatchToProps
-)(QuestionComponent);
+)(Question2Component);
 
-export { Question, QuestionComponent };
+export { Question2, Question2Component };
