@@ -5,7 +5,8 @@ import {bindActionCreators} from "redux";
 import * as gameActions from "../store/actions/gameAction";
 import {connect} from "react-redux";
 import * as ScreenOrientation from "expo/build/ScreenOrientation/ScreenOrientation";
-import {Row, Rows, Table} from "react-native-table-component";
+import {Rows, Table} from "react-native-table-component";
+import moment from "moment";
 
 
 class EndGameComponent extends React.Component {
@@ -13,14 +14,22 @@ class EndGameComponent extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            tableHead: ['Nom', 'Données', 'Reçu'],
-            tableData: [
-                ['Jean', '2', '33'],
-                ['Denis', '2', '35'],
-                ['Bruno', '2', '365'],
-                ['Jesus', '2', '332']
-            ]
+            tableDate: []
         }
+    }
+
+    componentDidMount(): void {
+        const currentDate = moment(new Date());
+        const duration = currentDate.diff(this.props.gameReducer.startTime, 'minutes');
+
+        this.setState({
+            duration,
+            tableData: [
+                ['Durée', duration + ' minutes'],
+                ['Gorgées distribuées', this.props.gameReducer.sipGiven],
+                ['Nombre de tour', this.props.gameReducer.maxTurn]
+            ],
+        })
     }
 
     restart() {
@@ -38,7 +47,6 @@ class EndGameComponent extends React.Component {
                     </View>
                     <View style={ styles.result }>
                         <Table>
-                            <Row data={this.state.tableHead} style={styles.head} textStyle={styles.textHead}/>
                             <Rows data={this.state.tableData} style={styles.row} textStyle={styles.textTable}/>
                         </Table>
                     </View>

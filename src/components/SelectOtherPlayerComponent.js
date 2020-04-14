@@ -1,4 +1,4 @@
-import {Button, Picker, StyleSheet, ScrollView, Text, View, FlatList, TouchableOpacity, Image} from "react-native";
+import {FlatList, StyleSheet, Text, TouchableOpacity, View} from "react-native";
 import {connect} from 'react-redux';
 import React from "react";
 import * as gameActions from '../store/actions/gameAction';
@@ -11,10 +11,16 @@ class SelectOtherPlayerComponent extends React.Component {
     constructor(props) {
         super(props);
 
-        this.state = {};
+        this.state = {
+            currentPlayer: {
+                name: null
+            },
+            game: null,
+            selectedPlayer: null
+        };
     }
 
-    componentWillMount() {
+    componentDidMount() {
         this.setState({
             currentPlayer: this.props.gameReducer.players[this.props.gameReducer.currentPlayer],
             game: this.props.game,
@@ -28,7 +34,6 @@ class SelectOtherPlayerComponent extends React.Component {
     }
 
     renderSelectPlayer() {
-        console.log(1);
         return (
             <View style={ styles.container }>
                 <View style={ styles.titleView }>

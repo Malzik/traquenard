@@ -1,4 +1,4 @@
-import {Button, Picker, StyleSheet, ScrollView, Text, View, FlatList, TouchableOpacity, Image} from "react-native";
+import {FlatList, StyleSheet, Text, TouchableOpacity, View} from "react-native";
 import {connect} from 'react-redux';
 import React from "react";
 import * as gameActions from '../store/actions/gameAction';
@@ -12,29 +12,31 @@ class SelectCategoryOneVersusAllComponent extends React.Component {
 
         this.state = {
             game: this.props.game,
-            currentPlayer: null,
+            currentPlayer: {
+                name: null
+            },
             category: null
         };
-        this.setState({
-            currentPlayer: this.props.currentPlayer
-        })
     }
 
-    componentWillMount() {
+    componentDidMount() {
         this.setState({
             currentPlayer: this.props.gameReducer.players[this.props.gameReducer.currentPlayer]
         })
     }
 
-    categorySelected() {
-        this.props.updateCategory(this.state.category)
+    categorySelected(item) {
+        this.setState({
+            category: item.name
+        });
+        this.props.updateCategory(item)
     }
 
     renderSelectCategory() {
         return (
-            <View style={ styles.container }>
-                <View style={ styles.titleView }>
-                    <Text style={ styles.title }>
+            <View style={styles.container}>
+                <View style={styles.titleView}>
+                    <Text style={styles.title}>
                         {this.state.currentPlayer.name}, tu es seul contre tous !
                     </Text>
                 </View>
@@ -49,10 +51,10 @@ class SelectCategoryOneVersusAllComponent extends React.Component {
                         data={this.props.gameReducer.categories}
                         renderItem={({ item }) => (
                             <TouchableOpacity onPress={() => {
-                                this.categorySelected();
-                                this.setState({category: item.name});}}>
-                                <View style={ styles.playerView }>
-                                    <Text style={ styles.playerText }>{item.name}</Text>
+                                this.categorySelected(item)
+                            }}>
+                                <View style={styles.playerView}>
+                                    <Text style={styles.playerText}>{item.name}</Text>
                                 </View>
                             </TouchableOpacity>
                         )}

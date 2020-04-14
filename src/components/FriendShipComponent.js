@@ -1,4 +1,4 @@
-import {Button, StyleSheet, Text, TouchableOpacity, View} from "react-native";
+import {StyleSheet, Text, TouchableOpacity, View} from "react-native";
 import React from "react";
 import {bindActionCreators} from "redux";
 import * as gameActions from "../store/actions/gameAction";
@@ -12,23 +12,35 @@ class FriendShipComponent extends React.Component {
         this.state = {
             currentPlayer: this.props.currentPlayer,
             selectedPlayer: this.props.selectedPlayer,
+            friendship: {
+                question: null,
+                sip: null
+            }
         };
-        console.log(this.state)
+    }
+
+    componentDidMount(): void {
+        const friendships = this.props.gameReducer.friendships;
+        const friendship = friendships[Math.floor(Math.random() * friendships.length)];
+        this.setState({
+            friendship
+        })
     }
 
     render() {
 
         return (
-            <View style={ styles.container }>
-                <TouchableOpacity  onPress={() => this.props.changeScene("everyoneplay")}>
+            <View style={styles.container}>
+                <TouchableOpacity onPress={() => this.props.changeScene("everyoneplay")}>
                     <View>
-                        <Text style={ styles.title }> Amitié : {this.state.currentPlayer.name} vs {this.state.selectedPlayer.name}</Text>
+                        <Text style={styles.title}> Amitié
+                            : {this.state.currentPlayer.name} vs {this.state.selectedPlayer.name}</Text>
                     </View>
                     <View>
-                        <Text style={ styles.questionText }>Trouver au moins 10 bars à moins de 15 km, si vous perdez buvez chacun le nombre de gorgées en jeu</Text>
+                        <Text style={styles.questionText}>{this.state.friendship.question}</Text>
                     </View>
                     <View>
-                        <Text style={ styles.gorgeesText }>5 Gorgées en jeu</Text>
+                        <Text style={styles.gorgeesText}>{this.state.friendship.sip} gorgées en jeu</Text>
                     </View>
                 </TouchableOpacity>
             </View>

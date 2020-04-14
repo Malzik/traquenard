@@ -1,3 +1,10 @@
+import moment from "moment";
+import duel from '../../../assets/json/duel';
+import question from '../../../assets/json/question';
+import oneversusall from '../../../assets/json/oneversusall';
+import friendships from '../../../assets/json/friendship';
+import everyone from '../../../assets/json/everyone';
+
 const initialState = {
     players: [],
     maxTurn: 10,
@@ -6,6 +13,8 @@ const initialState = {
     currentPlayer: null,
     selectedPlayer: null,
     selectedCategory: null,
+    startTime: null,
+    sipGiven: 0,
     categories: [
         {name: 'Cinéma'},
         {name: 'Série'},
@@ -14,7 +23,10 @@ const initialState = {
         {name: 'Sport'},
         {name: 'Musique'},
     ],
-    scene: null
+    scene: null,
+    duels: [],
+    questions: [],
+    oneversusall: []
 };
 
 const gameReducer = (state = initialState, action = {}) => {
@@ -23,11 +35,19 @@ const gameReducer = (state = initialState, action = {}) => {
     switch (action.type) {
         case 'ADD_PLAYERS':
             newState.players = action.players;
+            newState.startTime = moment(new Date());
+            newState.duels = duel.duels;
+            newState.questions = question.questions;
+            newState.oneversusall = oneversusall.oneversusall;
+            newState.categories = Object.keys(oneversusall.oneversusall).map(category => ({name: category}));
+            newState.friendships = friendships.friendships;
+            newState.everyone = everyone.everyone;
             break;
         case 'CHANGE_SCENE':
             newState.scene = action.newScene;
             if (["card", "everyoneplay"].includes(action.newScene))
                 newState.currentTurn = newState.currentTurn + 1;
+            console.log(action);
             break;
         case 'CHANGE_DIFFICULTY':
             newState.difficulty = action.newDifficulty;
@@ -41,6 +61,8 @@ const gameReducer = (state = initialState, action = {}) => {
             newState.currentTurn = 0;
             newState.currentPlayer = null;
             newState.scene = null;
+            newState.startTime = null;
+            newState.sipGiven = 0;
             break;
         case 'UPDATE_CURRENT_PLAYER':
             if (newState.currentPlayer === null)
@@ -56,6 +78,9 @@ const gameReducer = (state = initialState, action = {}) => {
             break;
         case 'UPDATE_SELECTED_CATEGORY':
             newState.selectedCategory = action.selectedCategory;
+            break;
+        case 'ADD_SIP':
+            newState.sipGiven = newState.sipGiven + action.sip;
             break;
         default:
             break;

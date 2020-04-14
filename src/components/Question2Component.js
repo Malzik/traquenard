@@ -9,7 +9,6 @@ import PropTypes from "prop-types";
 class Question2Component extends React.Component {
     constructor(props) {
         super(props);
-        console.log(this.props);
         this.state = {
             answers: this.props.vAnswers,
             answerPlayer: this.props.vPlayerAnswer,
@@ -19,7 +18,7 @@ class Question2Component extends React.Component {
     }
 
     componentDidMount() {
-        if (this.state.answerPlayer.true_false === true){
+        if (this.state.answerPlayer.true_false) {
             this.setState({titre: "Gagné", description: "Donne 5 gorgées"});
         } else {
             this.setState({titre: "Perdu !", description: "Prend 5 gorgées"});
@@ -28,51 +27,29 @@ class Question2Component extends React.Component {
 
     render() {
         return (
-
             <TouchableOpacity style={ styles.container } onPress={() => this.props.changeScene("everyoneplay")}>
                 <View style={ styles.contentTitle }>
                     <Text style={ styles.title }>{this.state.titre}</Text>
                 </View>
-                <View style={ styles.contentQuestion }>
-                    <Text style={ styles.questionText }>{this.state.description}</Text>
+                <View style={styles.contentQuestion}>
+                    <Text style={styles.questionText}>{this.state.description}</Text>
                 </View>
-                <View style={ styles.contentAnswer }>
-                    <View style={ styles.duoQuestion }>
-                        <View style={{flex: 0.47}}>
-                            <Button titleStyle={{textAlign: 'center', color: '#fff',
-                                fontSize: 20,  fontFamily: "MainTitle"
-                            }} buttonStyle={{ backgroundColor: this.state.answers[0].color,
-                                borderRadius: 60}}
-                                    title={this.state.answers[0].content}
-                            />
-                        </View>
-                        <View style={{flex: 0.47}}>
-                            <Button titleStyle={{textAlign: 'center', color: '#fff',
-                                fontSize: 20,  fontFamily: "MainTitle"
-                            }} buttonStyle={{ backgroundColor: this.state.answers[1].color,
-                                borderRadius: 60 }}
-                                    title={this.state.answers[1].content}
-                            />
-                        </View>
-                    </View>
-                    <View style={ styles.duoQuestionBottom }>
-                        <View style={{flex: 0.47}}>
-                            <Button titleStyle={{textAlign: 'center', color: '#fff',
-                                fontSize: 20,  fontFamily: "MainTitle",
-                            }} buttonStyle={{ backgroundColor: this.state.answers[2].color,
-                                borderRadius: 60}}
-                                    title={this.state.answers[2].content}
-                            />
-                        </View>
-                        <View style={{flex: 0.47}}>
-                            <Button id={"4"} titleStyle={{textAlign: 'center', color: '#fff',
-                                fontSize: 20,  fontFamily: "MainTitle"
-                            }} buttonStyle={{ backgroundColor: this.state.answers[3].color,
-                                borderRadius: 60}}
-                                    title={this.state.answers[3].content}
-                            />
-                        </View>
-                    </View>
+                <View style={styles.contentAnswer}>
+                    {
+                        this.state.answers.map(answer => {
+                            return <View style={{flex: 0.47}}>
+                                <Button titleStyle={{
+                                    textAlign: 'center', color: '#fff',
+                                    fontSize: 20, fontFamily: "MainTitle"
+                                }} buttonStyle={{
+                                    backgroundColor: (answer.true_false ? "#3FBD4E" : "#D42A2A"),
+                                    borderRadius: 60
+                                }}
+                                        title={answer.content}
+                                />
+                            </View>
+                        })
+                    }
                 </View>
             </TouchableOpacity>
 

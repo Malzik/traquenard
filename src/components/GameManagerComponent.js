@@ -41,7 +41,6 @@ class GameManagerComponent extends React.Component {
     }
 
     render() {
-        console.log("gameManager", this.state.currentPlayer, this.props.gameReducer.currentPlayer);
         if (this.props.gameReducer.currentTurn >= this.props.gameReducer.maxTurn) {
             this.endGame();
         }

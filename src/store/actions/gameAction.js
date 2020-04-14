@@ -31,6 +31,11 @@ const updateCategory = selectedCategory => ({
     selectedCategory
 });
 
+const addSip = sip => ({
+    type: 'ADD_SIP',
+    sip
+});
+
 
 export {
     addPlayers,
@@ -39,5 +44,6 @@ export {
     restartGame,
     updateCurrentUser,
     updateSelectedPlayer,
-    updateCategory
+    updateCategory,
+    addSip
 };

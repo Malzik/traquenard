@@ -1,4 +1,4 @@
-import {Button, StyleSheet, Text, TouchableOpacity, View} from "react-native";
+import {StyleSheet, Text, TouchableOpacity, View} from "react-native";
 import React from "react";
 import {bindActionCreators} from "redux";
 import * as gameActions from "../store/actions/gameAction";
@@ -8,23 +8,39 @@ import PropTypes from "prop-types";
 class OneVersusAllComponent extends React.Component {
     constructor(props) {
         super(props);
+        this.state = {
+            enonce: {
+                question: null,
+                sip: null
+            }
+        }
     }
+
+    componentDidMount(): void {
+        const category = this.props.gameReducer.selectedCategory;
+        const oneversusall = this.props.gameReducer.oneversusall;
+        const question = oneversusall[category.name][Math.floor(Math.random() * oneversusall[category.name].length)];
+        this.setState({
+            enonce: question
+        })
+    }
+
     render() {
 
         return (
-            <View style={ styles.container }>
-                <TouchableOpacity  onPress={() => this.props.changeScene("card")}>
+            <View style={styles.container}>
+                <TouchableOpacity onPress={() => this.props.changeScene("everyoneplay")}>
                     <View>
-                        <Text style={ styles.title }> Seul contre Tous, Catégorie : Cinéma !</Text>
+                        <Text style={styles.title}> Seul contre Tous, Catégorie
+                            : {this.props.gameReducer.selectedCategory.name} !</Text>
                     </View>
                     <View>
-                        <Text style={ styles.questionText }>
-                            A tour de rôle : celui qui trouvera le plus de personnage
-                            dans le film le seigneur des anneaux gagne
+                        <Text style={styles.questionText}>
+                            {this.state.enonce.question}
                         </Text>
                     </View>
                     <View>
-                        <Text style={ styles.gorgeesText }>10 Gorgées en jeu</Text>
+                        <Text style={styles.gorgeesText}>{this.state.enonce.sip} Gorgées en jeu</Text>
                     </View>
                 </TouchableOpacity>
             </View>

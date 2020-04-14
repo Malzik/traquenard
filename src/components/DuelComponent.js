@@ -1,4 +1,4 @@
-import {Button, Image, StyleSheet, Text, TouchableOpacity, View} from "react-native";
+import {StyleSheet, Text, TouchableOpacity, View} from "react-native";
 import React from "react";
 import {bindActionCreators} from "redux";
 import * as gameActions from "../store/actions/gameAction";
@@ -12,22 +12,35 @@ class DuelComponent extends React.Component {
         this.state = {
             currentPlayer: this.props.currentPlayer,
             selectedPlayer: this.props.selectedPlayer,
+            duel: {
+                question: null,
+                sip: null
+            }
         }
+    }
+
+    componentDidMount(): void {
+        const duels = this.props.gameReducer.duels;
+        const duel = duels[Math.floor(Math.random() * duels.length)];
+        this.setState({
+            duel
+        })
     }
 
     render() {
 
         return (
-            <View style={ styles.container }>
-                <TouchableOpacity  onPress={() => this.props.changeScene("everyoneplay")}>
+            <View style={styles.container}>
+                <TouchableOpacity onPress={() => this.props.changeScene("everyoneplay")}>
                     <View>
-                        <Text style={ styles.title }> Duel: {this.state.currentPlayer.name} vs {this.state.selectedPlayer.name}</Text>
+                        <Text
+                            style={styles.title}> Duel: {this.state.currentPlayer.name} vs {this.state.selectedPlayer.name}</Text>
                     </View>
                     <View>
-                        <Text style={ styles.questionText }>A tour de rôle : celui qui trouvera le plus de personnage dans le film le seigneur des anneaux gagne</Text>
+                        <Text style={styles.questionText}>{this.state.duel.question}</Text>
                     </View>
                     <View>
-                        <Text style={ styles.gorgeesText }>5 Gorgées en jeu</Text>
+                        <Text style={styles.gorgeesText}>{this.state.duel.sip} Gorgées en jeu</Text>
                     </View>
                 </TouchableOpacity>
             </View>

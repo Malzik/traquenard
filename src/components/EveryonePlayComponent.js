@@ -1,4 +1,4 @@
-import {Button, StyleSheet, Text, TouchableOpacity, View} from "react-native";
+import {StyleSheet, Text, TouchableOpacity, View} from "react-native";
 import {connect} from 'react-redux';
 import React from "react";
 import * as gameActions from '../store/actions/gameAction';
@@ -8,6 +8,21 @@ class EveryonePlayComponent extends React.Component {
 
     constructor(props) {
         super(props);
+
+        this.state = {
+            everyone: {
+                question: null,
+                sip: null
+            }
+        };
+    }
+
+    componentDidMount(): void {
+        const everyone = this.props.gameReducer.everyone;
+        const question = everyone[Math.floor(Math.random() * everyone.length)];
+        this.setState({
+            everyone: question
+        })
     }
 
     changeCurrentPlayer() {
@@ -24,10 +39,10 @@ class EveryonePlayComponent extends React.Component {
                         <Text style={ styles.title }> Tout le monde joue !</Text>
                     </View>
                     <View>
-                        <Text style={ styles.questionText }>A tour de rôle : celui qui trouvera le plus de personnage dans le film le seigneur des anneaux gagne</Text>
+                        <Text style={styles.questionText}>{this.state.everyone.question}</Text>
                     </View>
                     <View>
-                        <Text style={ styles.gorgeesText }>5 Gorgées en jeu</Text>
+                        <Text style={styles.gorgeesText}>{this.state.everyone.sip} Gorgées en jeu</Text>
                     </View>
                 </TouchableOpacity>
             </View>
