@@ -43,7 +43,6 @@ const gameReducer = (state = initialState, action = {}) => {
             newState.scene = null;
             break;
         case 'UPDATE_CURRENT_PLAYER':
-            console.log("update user");
             if (newState.currentPlayer === null)
                 newState.currentPlayer = 0;
             else if (newState.currentPlayer + 1 < newState.players.length) {

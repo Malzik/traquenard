@@ -10,11 +10,16 @@ class EveryonePlayComponent extends React.Component {
         super(props);
     }
 
+    changeCurrentPlayer() {
+        this.props.updateCurrentUser();
+        this.props.changeScene("card");
+    }
+
     render() {
 
         return (
             <View style={ styles.container }>
-                <TouchableOpacity  onPress={() => this.props.changeScene("card")}>
+                <TouchableOpacity  onPress={() => this.changeCurrentPlayer()}>
                     <View>
                         <Text style={ styles.title }> Tout le monde joue !</Text>
                     </View>

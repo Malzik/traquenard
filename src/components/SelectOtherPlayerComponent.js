@@ -11,27 +11,24 @@ class SelectOtherPlayerComponent extends React.Component {
     constructor(props) {
         super(props);
 
-        this.state = {
-            game: this.props.game,
-            currentPlayer: null,
-            selectedPlayer: null
-        };
-        this.setState({
-            currentPlayer: this.props.currentPlayer
-        })
+        this.state = {};
     }
 
     componentWillMount() {
         this.setState({
-            currentPlayer: this.props.gameReducer.players[this.props.gameReducer.currentPlayer]
+            currentPlayer: this.props.gameReducer.players[this.props.gameReducer.currentPlayer],
+            game: this.props.game,
+            selectedPlayer: null
         })
     }
 
-    changeSelectedPlayer() {
-        this.props.updateSelectedPlayer(this.state.selectedPlayer)
+    changeSelectedPlayer(player) {
+        this.setState({selectedPlayer: player});
+        this.props.updateSelectedPlayer(this.state.selectedPlayer);
     }
 
     renderSelectPlayer() {
+        console.log(1);
         return (
             <View style={ styles.container }>
                 <View style={ styles.titleView }>
@@ -40,15 +37,15 @@ class SelectOtherPlayerComponent extends React.Component {
                 <View style={styles.listView}>
                     <FlatList
                         data={this.props.gameReducer.players}
-                        renderItem={({ item }) => (
-                            <TouchableOpacity onPress={() => {
-                                this.changeSelectedPlayer();
-                                this.setState({selectedPlayer: item.name});}}>
-                                <View style={ styles.playerView }>
-                                    <Text style={ styles.playerText }>{item.name}</Text>
-                                </View>
-                            </TouchableOpacity>
-                        )}
+                        renderItem={({item}) => {
+                            if (this.state.currentPlayer.name !== item.name) {
+                               return <TouchableOpacity onPress={() => this.changeSelectedPlayer(item)}>
+                                    <View style={styles.playerView}>
+                                        <Text style={styles.playerText}>{item.name}</Text>
+                                    </View>
+                                </TouchableOpacity>
+                            }
+                        }}
                     />
                 </View>
             </View>
