@@ -141,6 +141,7 @@ const styles = StyleSheet.create({
     },
     scroll: {
         paddingHorizontal: 40,
+        height: 150,
     },
     textPlayer: {
         fontSize: 18,

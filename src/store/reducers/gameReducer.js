@@ -7,7 +7,7 @@ import everyone from '../../../assets/json/everyone';
 
 const initialState = {
     players: [],
-    maxTurn: 5,
+    maxTurn: 10,
     difficulty: 3,
     currentTurn: 0,
     currentPlayer: null,
