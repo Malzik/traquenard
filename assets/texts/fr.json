@@ -1,0 +1,23 @@
+{
+  "texts": {
+    "text.game.duel": "Duel",
+    "text.game.friendship": "Amitié",
+    "text.game.question": "Question",
+    "text.game.oneversusall": "Seul Contre Tous",
+    "text.card.title": "{currentPlayer} à toi de jouer !",
+    "text.selectOtherPlayer.title": "{currentPlayer} choisi avec qui tu veux jouer",
+    "text.duel.title": "Duel: {currentPlayer} vs {selectedPlayer}",
+    "text.sip": "{sip} gorgées en jeu",
+    "text.chooseDifficulty.title": "CHOISIR LA DIFFICULTÉ",
+    "text.everyonePlay.title": "Tout le monde joue !",
+    "text.friendship.title": "Amitié : {currentPlayer} et {selectedPlayer}",
+    "text.oneVersusAll.title": "Seul contre Tous, Catégorie: {selectedCategory}",
+    "text.selectCategory.title": "{currentPlayer}, tu es seul contre tous !",
+    "text.selectCategory.description": "Tu estimes être plus fort que tout les autres joueurs sur une catégorie, choisi la !",
+    "text.question.title": "{currentPlayer} répond à la question",
+    "text.question.win": "Gagné !",
+    "text.question.loose": "Perdu !",
+    "text.question.win.description": "Donne {sip} gorgées",
+    "text.question.loose.description": "Bois {sip} gorgées"
+  }
+}

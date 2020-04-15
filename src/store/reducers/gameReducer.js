@@ -4,6 +4,7 @@ import question from '../../../assets/json/question';
 import oneversusall from '../../../assets/json/oneversusall';
 import friendships from '../../../assets/json/friendship';
 import everyone from '../../../assets/json/everyone';
+import texts from '../../../assets/texts/fr';
 
 const initialState = {
     players: [],
@@ -42,12 +43,12 @@ const gameReducer = (state = initialState, action = {}) => {
             newState.categories = Object.keys(oneversusall.oneversusall).map(category => ({name: category}));
             newState.friendships = friendships.friendships;
             newState.everyone = everyone.everyone;
+            newState.texts = texts.texts;
             break;
         case 'CHANGE_SCENE':
             newState.scene = action.newScene;
             if (["card", "everyoneplay"].includes(action.newScene))
                 newState.currentTurn = newState.currentTurn + 1;
-            console.log(action);
             break;
         case 'CHANGE_DIFFICULTY':
             newState.difficulty = action.newDifficulty;

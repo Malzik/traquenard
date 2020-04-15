@@ -1,16 +1,24 @@
 import React from "react";
-import {Image, StyleSheet, ScrollView, Text, TouchableOpacity, View} from "react-native";
+import {Image, StyleSheet, Text, TouchableOpacity, View} from "react-native";
 import {ScreenOrientation} from 'expo';
 import {bindActionCreators} from "redux";
 import * as gameActions from "../store/actions/gameAction";
 import PropTypes from "prop-types";
 import {connect} from "react-redux";
+import {FormattedText} from "./helpers/FormattedText";
 
 
 class SelectDifficultyComponent extends React.Component {
 
     constructor(props) {
         super(props);
+
+        let textCollection = {};
+        textCollection["text.chooseDifficulty.title"] = this.props.gameReducer.texts["text.chooseDifficulty.title"];
+
+        this.state = {
+            texts: textCollection
+        }
     }
 
     setDifficulty(difficulty){
@@ -21,13 +29,17 @@ class SelectDifficultyComponent extends React.Component {
 
 
     render() {
+        const {texts} = this.state;
         ScreenOrientation.lockAsync(ScreenOrientation.OrientationLock.LANDSCAPE_LEFT);
+
         return (
             <View style={ styles.container }>
                 <View>
-                    <Text  style={ styles.title }> CHOISIR LA DIFFICULTÉ </Text>
+                    <Text style={styles.title}>
+                        <FormattedText text={texts["text.chooseDifficulty.title"]}/>
+                    </Text>
                 </View>
-                <View style={ styles.content }>
+                <View style={styles.content}>
                     <TouchableOpacity onPress={() => this.setDifficulty(1)}>
                         <Image source={require('./icons/img1.png')} style={{width: 100, height: 100}}/>
                     </TouchableOpacity>

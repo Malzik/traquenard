@@ -5,38 +5,60 @@ import * as gameActions from "../store/actions/gameAction";
 import {connect} from "react-redux";
 import {Button} from 'react-native-elements';
 import PropTypes from "prop-types";
+import {FormattedText} from "./helpers/FormattedText";
 
 class Question2Component extends React.Component {
     constructor(props) {
         super(props);
+
+        const texts = [
+            "text.question.win",
+            "text.question.loose",
+            "text.question.win.description",
+            "text.question.loose.description"
+        ];
+        let textCollection = {};
+        texts.forEach(text => {
+            textCollection[text] = this.props.gameReducer.texts[text];
+        });
+
+        let title;
+        let description;
+        if (this.props.vPlayerAnswer.true_false) {
+            title = textCollection["text.question.win"];
+            description = textCollection["text.question.win.description"];
+        } else {
+            title = textCollection["text.question.loose"];
+            description = textCollection["text.question.loose.description"];
+        }
+
         this.state = {
-            answers: this.props.vAnswers,
+            question: this.props.vQuestion,
             answerPlayer: this.props.vPlayerAnswer,
-            titre: '',
-            description: '',
+            title,
+            description,
+            texts: textCollection
         };
     }
 
     componentDidMount() {
-        if (this.state.answerPlayer.true_false) {
-            this.setState({titre: "Gagné", description: "Donne 5 gorgées"});
-        } else {
-            this.setState({titre: "Perdu !", description: "Prend 5 gorgées"});
-        }
+
     }
 
     render() {
         return (
             <TouchableOpacity style={ styles.container } onPress={() => this.props.changeScene("everyoneplay")}>
-                <View style={ styles.contentTitle }>
-                    <Text style={ styles.title }>{this.state.titre}</Text>
+                <View style={styles.contentTitle}>
+                    <Text style={styles.title}><FormattedText text={this.state.title}/></Text>
                 </View>
                 <View style={styles.contentQuestion}>
-                    <Text style={styles.questionText}>{this.state.description}</Text>
+                    <Text style={styles.questionText}>
+                        <FormattedText text={this.state.description} sip={this.state.question.sip}/>
+                    </Text>
                 </View>
                 <View style={styles.contentAnswer}>
                     {
-                        this.state.answers.map(answer => {
+                        this.state.question.answers.map(answer => {
                             return <View style={{flex: 0.47}}>
                                 <Button titleStyle={{
                                     textAlign: 'center', color: '#fff',

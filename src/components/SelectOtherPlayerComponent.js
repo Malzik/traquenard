@@ -5,46 +5,54 @@ import * as gameActions from '../store/actions/gameAction';
 import {bindActionCreators} from "redux";
 import {Duel} from "./DuelComponent";
 import {FriendShip} from "./FriendShipComponent";
+import {FormattedText} from "./helpers/FormattedText";
 
 class SelectOtherPlayerComponent extends React.Component {
 
     constructor(props) {
         super(props);
 
+        let textCollection = {};
+        textCollection["text.selectOtherPlayer.title"] = this.props.gameReducer.texts["text.selectOtherPlayer.title"];
+
         this.state = {
             currentPlayer: {
                 name: null
             },
             game: null,
-            selectedPlayer: null
+            selectedPlayer: null,
+            texts: textCollection
         };
     }
 
     componentDidMount() {
         this.setState({
             currentPlayer: this.props.gameReducer.players[this.props.gameReducer.currentPlayer],
-            game: this.props.game,
-            selectedPlayer: null
+            game: this.props.game
         })
     }
 
     changeSelectedPlayer(player) {
+        this.props.updateSelectedPlayer(player);
         this.setState({selectedPlayer: player});
-        this.props.updateSelectedPlayer(this.state.selectedPlayer);
     }
 
     renderSelectPlayer() {
+        const {texts} = this.state;
+
         return (
-            <View style={ styles.container }>
-                <View style={ styles.titleView }>
-                    <Text style={ styles.title }> {this.state.currentPlayer.name} choisi avec qui tu veux jouer </Text>
+            <View style={styles.container}>
+                <View style={styles.titleView}>
+                    <Text style={styles.title}>
+                        <FormattedText text={texts["text.selectOtherPlayer.title"]}/>
+                    </Text>
                 </View>
                 <View style={styles.listView}>
                     <FlatList
                         data={this.props.gameReducer.players}
                         renderItem={({item}) => {
                             if (this.state.currentPlayer.name !== item.name) {
-                               return <TouchableOpacity onPress={() => this.changeSelectedPlayer(item)}>
+                                return <TouchableOpacity onPress={() => this.changeSelectedPlayer(item)}>
                                     <View style={styles.playerView}>
                                         <Text style={styles.playerText}>{item.name}</Text>
                                     </View>

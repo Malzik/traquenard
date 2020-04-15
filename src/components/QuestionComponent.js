@@ -6,17 +6,23 @@ import {connect} from "react-redux";
 import {Button} from 'react-native-elements';
 import PropTypes from "prop-types";
 import {Question2} from "./Question2Component";
+import {FormattedText} from "./helpers/FormattedText";
 
 class QuestionComponent extends React.Component {
     constructor(props) {
         super(props);
+
+        let textCollection = {};
+        textCollection["text.question.title"] = this.props.gameReducer.texts["text.selectOtherPlayer.title"];
+
         this.state = {
             changeScene: false,
             question: {
                 question: null,
                 answers: []
             },
-            playerAnswer: null
+            playerAnswer: null,
+            texts: textCollection
         }
     }
 
@@ -33,14 +39,18 @@ class QuestionComponent extends React.Component {
     }
 
     renderAnswer() {
-        return <Question2 vAnswers={this.state.question.answers} vPlayerAnswer={this.state.playerAnswer}/>
+        return <Question2 vQuestion={this.state.question} vPlayerAnswer={this.state.playerAnswer}/>
     }
 
     renderQuestion() {
+        const {texts} = this.state;
+
         return (
             <View style={styles.container}>
                 <View style={styles.contentTitle}>
-                    <Text style={styles.title}> {this.props.currentPlayer} répond à la question</Text>
+                    <Text style={styles.title}>
+                        <FormattedText text={texts["text.question.title"]}/>
+                    </Text>
                 </View>
                 <View style={styles.contentQuestion}>
                     <Text style={styles.questionText}>{this.state.question.question}</Text>

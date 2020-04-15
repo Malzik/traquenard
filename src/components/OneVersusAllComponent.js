@@ -4,15 +4,27 @@ import {bindActionCreators} from "redux";
 import * as gameActions from "../store/actions/gameAction";
 import {connect} from "react-redux";
 import PropTypes from "prop-types";
+import {FormattedText} from "./helpers/FormattedText";
 
 class OneVersusAllComponent extends React.Component {
     constructor(props) {
         super(props);
+
+        const texts = [
+            "text.oneVersusAll.title",
+            "text.sip"
+        ];
+        let textCollection = {};
+        texts.forEach(text => {
+            textCollection[text] = this.props.gameReducer.texts[text];
+        });
+
         this.state = {
-            enonce: {
+            oneVersusAll: {
                 question: null,
                 sip: null
-            }
+            },
+            texts: textCollection
         }
     }
 
@@ -21,26 +33,30 @@ class OneVersusAllComponent extends React.Component {
         const oneversusall = this.props.gameReducer.oneversusall;
         const question = oneversusall[category.name][Math.floor(Math.random() * oneversusall[category.name].length)];
         this.setState({
-            enonce: question
+            oneVersusAll: question
         })
     }
 
     render() {
+        const {texts} = this.state;
 
         return (
             <View style={styles.container}>
                 <TouchableOpacity onPress={() => this.props.changeScene("everyoneplay")}>
                     <View>
-                        <Text style={styles.title}> Seul contre Tous, Catégorie
-                            : {this.props.gameReducer.selectedCategory.name} !</Text>
-                    </View>
-                    <View>
-                        <Text style={styles.questionText}>
-                            {this.state.enonce.question}
+                        <Text style={styles.title}>
+                            <FormattedText text={texts["text.oneVersusAll.title"]}/>
                         </Text>
                     </View>
                     <View>
-                        <Text style={styles.gorgeesText}>{this.state.enonce.sip} Gorgées en jeu</Text>
+                        <Text style={styles.questionText}>
+                            {this.state.oneVersusAll.question}
+                        </Text>
+                    </View>
+                    <View>
+                        <Text style={styles.gorgeesText}>
+                            <FormattedText text={texts["text.sip"]} sip={this.state.oneVersusAll.sip}/>
+                        </Text>
                     </View>
                 </TouchableOpacity>
             </View>

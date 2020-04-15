@@ -4,18 +4,29 @@ import React from "react";
 import * as gameActions from '../store/actions/gameAction';
 import {bindActionCreators} from "redux"
 import {OneVersusAll} from "./OneVersusAllComponent";
+import {FormattedText} from "./helpers/FormattedText";
 
 class SelectCategoryOneVersusAllComponent extends React.Component {
 
     constructor(props) {
         super(props);
 
+        const texts = [
+            "text.selectCategory.title",
+            "text.selectCategory.description"
+        ];
+        let textCollection = {};
+        texts.forEach(text => {
+            textCollection[text] = this.props.gameReducer.texts[text];
+        });
+
         this.state = {
             game: this.props.game,
             currentPlayer: {
                 name: null
             },
-            category: null
+            category: null,
+            texts: textCollection
         };
     }
 
@@ -33,17 +44,18 @@ class SelectCategoryOneVersusAllComponent extends React.Component {
     }
 
     renderSelectCategory() {
+        const {texts} = this.state;
+
         return (
             <View style={styles.container}>
                 <View style={styles.titleView}>
                     <Text style={styles.title}>
-                        {this.state.currentPlayer.name}, tu es seul contre tous !
+                        <FormattedText text={texts["text.selectCategory.title"]}/>
                     </Text>
                 </View>
-                <View style={ styles.contentTextView }>
-                    <Text style={ styles.contentText }>
-                        Tu estimes être plus fort que tout les autres joueurs
-                        sur une catégorie, choisi la !
+                <View style={styles.contentTextView}>
+                    <Text style={styles.contentText}>
+                        <FormattedText text={texts["text.selectCategory.description"]}/>
                     </Text>
                 </View>
                 <View style={styles.categoryView}>

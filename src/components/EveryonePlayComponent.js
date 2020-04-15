@@ -3,17 +3,28 @@ import {connect} from 'react-redux';
 import React from "react";
 import * as gameActions from '../store/actions/gameAction';
 import {bindActionCreators} from "redux";
+import {FormattedText} from "./helpers/FormattedText";
 
 class EveryonePlayComponent extends React.Component {
 
     constructor(props) {
         super(props);
 
+        const texts = [
+            "text.everyonePlay.title",
+            "text.sip"
+        ];
+        let textCollection = {};
+        texts.forEach(text => {
+            textCollection[text] = this.props.gameReducer.texts[text];
+        });
+
         this.state = {
             everyone: {
                 question: null,
                 sip: null
-            }
+            },
+            texts: textCollection
         };
     }
 
@@ -31,18 +42,23 @@ class EveryonePlayComponent extends React.Component {
     }
 
     render() {
+        const {texts} = this.state;
 
         return (
             <View style={ styles.container }>
                 <TouchableOpacity  onPress={() => this.changeCurrentPlayer()}>
                     <View>
-                        <Text style={ styles.title }> Tout le monde joue !</Text>
+                        <Text style={styles.title}>
+                            <FormattedText text={texts["text.everyonePlay.title"]}/>
+                        </Text>
                     </View>
                     <View>
                         <Text style={styles.questionText}>{this.state.everyone.question}</Text>
                     </View>
                     <View>
-                        <Text style={styles.gorgeesText}>{this.state.everyone.sip} Gorgées en jeu</Text>
+                        <Text style={styles.gorgeesText}>
+                            <FormattedText text={texts["text.sip"]} sip={this.state.everyone.sip}/>
+                        </Text>
                     </View>
                 </TouchableOpacity>
             </View>

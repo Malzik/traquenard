@@ -1,6 +1,6 @@
 import React from "react";
-import {FlatList, Image, ScrollView, StyleSheet, Text, TouchableOpacity, View, TextInput} from "react-native";
-import {Button, Input} from 'react-native-elements';
+import {FlatList, Image, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View} from "react-native";
+import {Button} from 'react-native-elements';
 import PropTypes from "prop-types";
 import {bindActionCreators} from "redux";
 import * as gameActions from "../store/actions/gameAction";
@@ -70,7 +70,6 @@ class SelectPlayerComponent extends React.Component {
                                             <Image source={require('./icons/delete.png')} style={{width: 22, height: 22, opacity: 0.8}}/>
                                         </TouchableOpacity>
                                     </View>
-
                                 )}
                             />
                         </ScrollView>

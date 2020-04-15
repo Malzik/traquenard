@@ -4,10 +4,20 @@ import {bindActionCreators} from "redux";
 import * as gameActions from "../store/actions/gameAction";
 import {connect} from "react-redux";
 import PropTypes from "prop-types";
+import {FormattedText} from "./helpers/FormattedText";
 
 class DuelComponent extends React.Component {
     constructor(props) {
         super(props);
+
+        const texts = [
+            "text.duel.title",
+            "text.sip"
+        ];
+        let textCollection = {};
+        texts.forEach(text => {
+            textCollection[text] = this.props.gameReducer.texts[text];
+        });
 
         this.state = {
             currentPlayer: this.props.currentPlayer,
@@ -15,7 +25,8 @@ class DuelComponent extends React.Component {
             duel: {
                 question: null,
                 sip: null
-            }
+            },
+            texts: textCollection
         }
     }
 
@@ -28,19 +39,23 @@ class DuelComponent extends React.Component {
     }
 
     render() {
+        const {texts} = this.state;
 
         return (
             <View style={styles.container}>
                 <TouchableOpacity onPress={() => this.props.changeScene("everyoneplay")}>
                     <View>
-                        <Text
-                            style={styles.title}> Duel: {this.state.currentPlayer.name} vs {this.state.selectedPlayer.name}</Text>
+                        <Text style={styles.title}>
+                            <FormattedText text={texts["text.duel.title"]}/>
+                        </Text>
                     </View>
                     <View>
                         <Text style={styles.questionText}>{this.state.duel.question}</Text>
                     </View>
                     <View>
-                        <Text style={styles.gorgeesText}>{this.state.duel.sip} Gorgées en jeu</Text>
+                        <Text style={styles.gorgeesText}>
+                            <FormattedText text={texts["text.sip"]} sip={this.state.duel.sip}/>
+                        </Text>
                     </View>
                 </TouchableOpacity>
             </View>
