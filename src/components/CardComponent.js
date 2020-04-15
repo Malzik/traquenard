@@ -14,52 +14,35 @@ class CardComponent extends React.Component {
         this.state = {
             currentPlayer: this.props.currentPlayer,
             selectedPlayer: this.props.selectedPlayer,
+            cards: [
+                {name: 'Duel', color: "#D42A2A", scene: "duel"},
+                {name: 'Amitié', color: "#2A9BDA", scene: "friendship"},
+                {name: 'Question', color: "#FFE332", scene: "question"},
+                {name: 'Seul Contre Tous', color: "#3FBD4E", scene: "oneversusall"},
+            ],
         }
     }
 
     render() {
         return (
             <View style={ styles.container }>
-                <View>
+                <View style={ styles.header }>
                     <Text style={ styles.title }> {this.props.currentPlayer} à toi de jouer !</Text>
                 </View>
                 <View style={ styles.content }>
-                    <View style={ styles.duoQuestion }>
-                        <View style={{flex: 0.47}}>
-                            <Button titleStyle={{textAlign: 'center', color: '#fff',
-                                fontSize: 40,  fontFamily: "MainTitle"
-                            }} buttonStyle={{ backgroundColor: "#D42A2A",
-                                borderRadius: 10}}
-                                    title="Duel" onPress={() => this.props.changeScene("duel")}
-                            />
-                        </View>
-                        <View style={{flex: 0.47}}>
-                            <Button titleStyle={{textAlign: 'center', color: '#fff',
-                                fontSize: 40,  fontFamily: "MainTitle"
-                            }} buttonStyle={{ backgroundColor: "#2A9BDA",
-                                borderRadius: 10 }}
-                                    title="Amitié" onPress={() => this.props.changeScene("friendship")}
-                            />
-                        </View>
-                    </View>
-                    <View style={ styles.duoQuestion }>
-                        <View style={{flex: 0.47}}>
-                            <Button titleStyle={{textAlign: 'center', color: '#fff',
-                                fontSize: 40,  fontFamily: "MainTitle"
-                            }} buttonStyle={{ backgroundColor: "#FFE332",
-                                borderRadius: 10}}
-                                    title="Question" onPress={() => this.props.changeScene("question")}
-                            />
-                        </View>
-                        <View style={{flex: 0.47}}>
-                            <Button titleStyle={{textAlign: 'center', color: '#fff',
-                                fontSize: 40,  fontFamily: "MainTitle"
-                            }} buttonStyle={{ backgroundColor: "#3FBD4E",
-                                borderRadius: 10}}
-                                    title="Seul Contre Tous" onPress={() => this.props.changeScene("oneversusall")}
-                            />
-                        </View>
-                    </View>
+                    {
+                        this.state.cards.map(card => {
+                            return <View style={styles.cards}>
+                                <Button titleStyle={{textAlign: 'center', color: '#fff',
+                                    fontSize: 40,  fontFamily: "MainTitle"
+                                }} buttonStyle={{ backgroundColor: card.color,
+                                    borderRadius: 10}}
+                                        title={card.name}
+                                        onPress={() => this.props.changeScene(card.scene)}
+                                />
+                            </View>
+                        })
+                    }
                 </View>
             </View>
         );
@@ -72,9 +55,15 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: '#2A2A2A',
     },
+    header: {
+        flex: 0.3,
+    },
     content: {
-        flex: 0.8,
+        flex: 0.7,
+        flexDirection: 'row',
         justifyContent: 'center',
+        flexWrap:'wrap',
+        alignItems: 'flex-start',
     },
     title: {
         marginTop: 20,
@@ -91,7 +80,12 @@ const styles = StyleSheet.create({
     randomIcon: {
         padding: 10,
         alignItems: 'center',
-    }
+    },
+    cards: {
+        width: "50%",
+        paddingHorizontal: 20,
+        marginBottom: 10
+    },
 });
 
 

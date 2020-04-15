@@ -40,26 +40,24 @@ class EndGameComponent extends React.Component {
     render() {
         ScreenOrientation.lockAsync(ScreenOrientation.OrientationLock.PORTRAIT);
         return (
-            <ScrollView style={ styles.container }>
-                <View style={ styles.content }>
-                    <View style={ styles.header }>
-                        <Text  style={ styles.title }> Fini </Text>
-                    </View>
-                    <View style={ styles.result }>
-                        <Table>
-                            <Rows data={this.state.tableData} style={styles.row} textStyle={styles.textTable}/>
-                        </Table>
-                    </View>
-                    <View style={{alignItems: 'center', marginTop: 75}}>
-                        <Button titleStyle={{textAlign: 'center', color: '#fff',
-                            fontSize: 20,  fontFamily: "MainTitle"
-                        }} buttonStyle={{ backgroundColor: "#DA2A2A",
-                            borderRadius: 60, width: 200, }}
-                                title="Rejouer" onPress={() => { this.restart();
-                        }}/>
-                    </View>
+            <View style={ styles.container }>
+                <View style={ styles.header }>
+                    <Text  style={ styles.title }> Fini </Text>
                 </View>
-            </ScrollView>
+                <View style={ styles.result }>
+                    <Table>
+                        <Rows data={this.state.tableData} style={styles.row} textStyle={styles.textTable}/>
+                    </Table>
+                </View>
+                <View style={ styles.bottom }>
+                    <Button titleStyle={{textAlign: 'center', color: '#fff',
+                        fontSize: 30,  fontFamily: "MainTitle"
+                    }} buttonStyle={{ backgroundColor: "#DA2A2A",
+                        borderRadius: 60, width: 200, }}
+                            title="Rejouer" onPress={() => { this.restart();
+                    }}/>
+                </View>
+            </View>
         );
     }
 }
@@ -69,12 +67,15 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: '#2A2A2A',
     },
-    content: {
-        flex: 0.58,
+    header: {
+        flex: 0.2,
     },
     result: {
-        marginTop: 20,
-        padding: 30,
+        flex: 0.5,
+    },
+    bottom: {
+        flex: 0.3,
+        alignItems: 'center',
     },
     title: {
         marginTop: 20,
@@ -83,11 +84,8 @@ const styles = StyleSheet.create({
         fontSize: 35,
         fontFamily: "titre"
     },
-    head: {
-        marginBottom: 10,
-    },
     row:{
-        marginTop: 10,
+        marginTop: 30,
     },
     textHead: {
         fontSize: 25,

@@ -48,10 +48,10 @@ class QuestionComponent extends React.Component {
                 <View style={styles.contentAnswer}>
                     {
                         this.state.question.answers.map(answer => {
-                            return <View style={{flex: 0.47}}>
+                            return <View style={styles.answer}>
                                 <Button titleStyle={{
                                     textAlign: 'center', color: '#fff',
-                                    fontSize: 20, fontFamily: "MainTitle"
+                                    fontSize: 25, fontFamily: "MainTitle"
                                 }} buttonStyle={{
                                     backgroundColor: "#2A2A2A",
                                     borderRadius: 60
@@ -64,7 +64,6 @@ class QuestionComponent extends React.Component {
                     }
                 </View>
             </View>
-
         );
     }
 
@@ -79,16 +78,24 @@ const styles = StyleSheet.create({
         backgroundColor: '#FFE332',
     },
     contentTitle :{
-        flex: 0.2,
+        flex: 0.15,
         justifyContent: 'center',
     },
     contentQuestion: {
-        flex: 0.55,
+        flex: 0.52,
         justifyContent: 'center',
     },
     contentAnswer: {
-        flex: 0.25,
+        flex: 0.33,
+        flexDirection: 'row',
         justifyContent: 'center',
+        flexWrap:'wrap',
+        alignItems: 'flex-start',
+    },
+    answer: {
+        width: "50%",
+        paddingHorizontal: 20,
+        marginBottom: 10
     },
     title: {
         marginTop: 20,
@@ -96,18 +103,6 @@ const styles = StyleSheet.create({
         color: '#fff',
         fontSize: 35,
         fontFamily: "titre"
-    },
-    duoQuestion: {
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        marginBottom: 15,
-        marginHorizontal: 20,
-    },
-    duoQuestionBottom: {
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        marginBottom: 40,
-        marginHorizontal: 20,
     },
     questionText: {
         padding: 20,

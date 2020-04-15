@@ -59,40 +59,42 @@ class SelectPlayerComponent extends React.Component {
                     <View style={ styles.header }>
                         <Text  style={ styles.title }> Traquenard </Text>
                     </View>
-                    <View style={ styles.list }>
-                        <ScrollView style={ styles.scroll }>
-                            <FlatList
-                                data={this.state.players}
-                                renderItem={({ item, index }) => (
-                                    <View style={ styles.player }>
-                                        <Text style={ styles.textPlayer }>{item.name}</Text>
-                                        <TouchableOpacity onPress={() => this.removePlayer(index)}>
-                                            <Image source={require('./icons/delete.png')} style={{width: 22, height: 22, opacity: 0.8}}/>
-                                        </TouchableOpacity>
-                                    </View>
+                    <View style={ styles.middle }>
+                        <View style={ styles.list }>
+                            <ScrollView style={ styles.scroll }>
+                                <FlatList
+                                    data={this.state.players}
+                                    renderItem={({ item, index }) => (
+                                        <View style={ styles.player }>
+                                            <Text style={ styles.textPlayer }>{item.name}</Text>
+                                            <TouchableOpacity onPress={() => this.removePlayer(index)}>
+                                                <Image source={require('./icons/delete.png')} style={{width: 22, height: 22, opacity: 0.8}}/>
+                                            </TouchableOpacity>
+                                        </View>
 
-                                )}
-                            />
-                        </ScrollView>
-                    </View>
-                    <View style={ styles.addInputButton }>
-                        <View style={{flex: 0.9}}>
-                            <TextInput
-                                style={ styles.textInputPlayer }
-                                placeholder='Ajouter un joueur'
-                                onChangeText={(text) => this.setState({currentPlayer: text})}
-                                value={this.state.currentPlayer}
-                            />
+                                    )}
+                                />
+                            </ScrollView>
                         </View>
-                        <View style={{flex: 0.1}}>
-                            <TouchableOpacity onPress={() => this.addPlayer()}>
-                                <Image source={require('./icons/add.png')} style={{width: 30, height: 30}}/>
-                            </TouchableOpacity>
+                        <View style={ styles.addInputButton }>
+                            <View style={{flex: 0.9}}>
+                                <TextInput
+                                    style={ styles.textInputPlayer }
+                                    placeholder='Ajouter un joueur'
+                                    onChangeText={(text) => this.setState({currentPlayer: text})}
+                                    value={this.state.currentPlayer}
+                                />
+                            </View>
+                            <View style={{flex: 0.1}}>
+                                <TouchableOpacity onPress={() => this.addPlayer()}>
+                                    <Image source={require('./icons/add.png')} style={{width: 30, height: 30}}/>
+                                </TouchableOpacity>
+                            </View>
                         </View>
                     </View>
                     <View style={{alignItems: 'center', marginTop: 75}}>
                         <Button titleStyle={{textAlign: 'center', color: '#fff',
-                            fontSize: 20,  fontFamily: "MainTitle"
+                            fontSize: 30,  fontFamily: "MainTitle"
                         }} buttonStyle={{ backgroundColor: "#DA2A2A",
                                     borderRadius: 60, width: 200, }}
                                 title="Commencer" onPress={() => { this.startGame()
@@ -113,6 +115,15 @@ const styles = StyleSheet.create({
     content: {
         flex: 0.58,
     },
+    header: {
+        flex: 0.15
+    },
+    middle: {
+        flex: 0.28
+    },
+    bottom: {
+        flex: 0.15
+    },
     list: {
         marginTop: 50,
     },
@@ -129,7 +140,6 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between',
     },
     scroll: {
-        height: 150,
         paddingHorizontal: 40,
     },
     textPlayer: {
@@ -139,7 +149,6 @@ const styles = StyleSheet.create({
         marginBottom: 20,
     },
     addInputButton: {
-        flex: 1,
         flexDirection: 'row',
         justifyContent: 'space-between',
         paddingHorizontal: 40,

@@ -84,10 +84,10 @@ const styles = StyleSheet.create({
         fontFamily: "titre"
     },
     titleView: {
-        flex:0.2,
+        flex:0.3,
     },
     listView: {
-        flex:0.8,
+        flex:0.7,
         justifyContent:'center',
         paddingHorizontal: 100,
         marginBottom: 30
