@@ -34,8 +34,8 @@ class SelectDifficultyComponent extends React.Component {
 
         return (
             <View style={ styles.container }>
-                <View>
-                    <Text style={styles.header}>
+                <View style={styles.header}>
+                    <Text style={styles.title}>
                         <FormattedText text={texts["text.chooseDifficulty.title"]}/>
                     </Text>
                 </View>
