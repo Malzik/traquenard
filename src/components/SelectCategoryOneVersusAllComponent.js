@@ -1,4 +1,4 @@
-import {FlatList, StyleSheet, Text, TouchableOpacity, View} from "react-native";
+import {StyleSheet, Text, View} from "react-native";
 import {connect} from 'react-redux';
 import React from "react";
 import * as gameActions from '../store/actions/gameAction';
@@ -63,8 +63,9 @@ class SelectCategoryOneVersusAllComponent extends React.Component {
                     {
                         this.props.gameReducer.categories.map(category => {
                             return <View style={styles.category}>
-                                <Button titleStyle={{textAlign: 'center', color: '#fff',
-                                    fontSize: 40,  fontFamily: "MainTitle"
+                                <Button titleStyle={{
+                                    textAlign: 'center', color: '#fff',
+                                    fontSize: 35, fontFamily: "MainTitle"
                                 }} buttonStyle={{ backgroundColor: "#2A2A2A",
                                     borderRadius: 10}}
                                         title={category.name}
