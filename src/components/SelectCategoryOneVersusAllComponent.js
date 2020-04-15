@@ -5,6 +5,7 @@ import * as gameActions from '../store/actions/gameAction';
 import {bindActionCreators} from "redux"
 import {OneVersusAll} from "./OneVersusAllComponent";
 import {FormattedText} from "./helpers/FormattedText";
+import {Button} from "react-native-elements";
 
 class SelectCategoryOneVersusAllComponent extends React.Component {
 
@@ -59,18 +60,19 @@ class SelectCategoryOneVersusAllComponent extends React.Component {
                     </Text>
                 </View>
                 <View style={styles.categoryView}>
-                    <FlatList
-                        data={this.props.gameReducer.categories}
-                        renderItem={({ item }) => (
-                            <TouchableOpacity onPress={() => {
-                                this.categorySelected(item)
-                            }}>
-                                <View style={styles.playerView}>
-                                    <Text style={styles.playerText}>{item.name}</Text>
-                                </View>
-                            </TouchableOpacity>
-                        )}
-                    />
+                    {
+                        this.props.gameReducer.categories.map(category => {
+                            return <View style={styles.category}>
+                                <Button titleStyle={{textAlign: 'center', color: '#fff',
+                                    fontSize: 40,  fontFamily: "MainTitle"
+                                }} buttonStyle={{ backgroundColor: "#2A2A2A",
+                                    borderRadius: 10}}
+                                        title={category.name}
+                                        onPress={() => this.categorySelected(category)}
+                                />
+                            </View>
+                        })
+                    }
                 </View>
             </View>
         );
@@ -108,13 +110,14 @@ const styles = StyleSheet.create({
         flex:0.2,
     },
     contentTextView: {
-        flex:0.3,
+        flex:0.35,
     },
     categoryView: {
-        flex:0.5,
-        justifyContent:'center',
-        paddingHorizontal: 50,
-        marginBottom: 20,
+        flex:0.45,
+        flexDirection: 'row',
+        justifyContent: 'center',
+        flexWrap:'wrap',
+        alignItems: 'flex-start',
     },
     playerView: {
         flex: 1,
@@ -129,6 +132,11 @@ const styles = StyleSheet.create({
         fontSize: 40,
         fontFamily: "MainTitle",
         color: "#fff"
+    },
+    category:{
+        width: "30%",
+        paddingHorizontal: 20,
+        marginBottom: 10
     }
 });
 

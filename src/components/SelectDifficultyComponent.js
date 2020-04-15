@@ -35,7 +35,7 @@ class SelectDifficultyComponent extends React.Component {
         return (
             <View style={ styles.container }>
                 <View>
-                    <Text style={styles.title}>
+                    <Text style={styles.header}>
                         <FormattedText text={texts["text.chooseDifficulty.title"]}/>
                     </Text>
                 </View>
@@ -71,13 +71,15 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: '#2A2A2A',
     },
+    header: {
+        flex: 0.1,
+    },
     content: {
-        flex: 0.7,
+        flex: 0.9,
         alignItems: 'center',
-        padding: 40,
         flexDirection: 'row',
         justifyContent: 'space-between',
-        marginHorizontal: 30,
+        marginHorizontal: 40,
     },
     title: {
         marginTop: 20,

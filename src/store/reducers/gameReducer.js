@@ -20,7 +20,7 @@ const initialState = {
         {name: 'Cinéma'},
         {name: 'Série'},
         {name: 'Histoire'},
-        {name: 'Jeux-Vidéos'},
+        {name: 'Jeux-Vidéo'},
         {name: 'Sport'},
         {name: 'Musique'},
     ],
