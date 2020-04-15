@@ -49,12 +49,15 @@ class CardComponent extends React.Component {
                 </View>
                 <View style={ styles.content }>
                     {
-                        this.state.cards.map(card => {
-                            return <View style={styles.cards}>
-                                <Button titleStyle={{textAlign: 'center', color: '#fff',
-                                    fontSize: 40,  fontFamily: "MainTitle"
-                                }} buttonStyle={{ backgroundColor: card.color,
-                                    borderRadius: 10}}
+                        this.state.cards.map((card, index) => {
+                            return <View style={styles.cards} id={index} key={index}>
+                                <Button titleStyle={{
+                                    textAlign: 'center', color: '#fff',
+                                    fontSize: 40, fontFamily: "MainTitle"
+                                }} buttonStyle={{
+                                    backgroundColor: card.color,
+                                    borderRadius: 10
+                                }}
                                         title={texts[card.text]}
                                         onPress={() => this.props.changeScene(card.scene)}
                                 />

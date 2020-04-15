@@ -57,8 +57,8 @@ class QuestionComponent extends React.Component {
                 </View>
                 <View style={styles.contentAnswer}>
                     {
-                        this.state.question.answers.map(answer => {
-                            return <View style={styles.answer}>
+                        this.state.question.answers.map((answer, index) => {
+                            return <View style={styles.answer} key={index.toString()}>
                                 <Button titleStyle={{
                                     textAlign: 'center', color: '#fff',
                                     fontSize: 25, fontFamily: "MainTitle"

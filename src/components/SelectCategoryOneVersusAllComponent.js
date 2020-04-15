@@ -61,13 +61,15 @@ class SelectCategoryOneVersusAllComponent extends React.Component {
                 </View>
                 <View style={styles.categoryView}>
                     {
-                        this.props.gameReducer.categories.map(category => {
-                            return <View style={styles.category}>
+                        this.props.gameReducer.categories.map((category, index) => {
+                            return <View style={styles.category} key={index.toString()}>
                                 <Button titleStyle={{
                                     textAlign: 'center', color: '#fff',
                                     fontSize: 30, fontFamily: "MainTitle"
-                                }} buttonStyle={{ backgroundColor: "#2A2A2A",
-                                    borderRadius: 10}}
+                                }} buttonStyle={{
+                                    backgroundColor: "#2A2A2A",
+                                    borderRadius: 10
+                                }}
                                         title={category.name}
                                         onPress={() => this.categorySelected(category)}
                                 />

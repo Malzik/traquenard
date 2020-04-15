@@ -50,7 +50,7 @@ class SelectOtherPlayerComponent extends React.Component {
                 <View style={styles.listView}>
                     <FlatList
                         data={this.props.gameReducer.players}
-                        renderItem={({item}) => {
+                        renderItem={({item}, index) => {
                             if (this.state.currentPlayer.name !== item.name) {
                                 return <TouchableOpacity onPress={() => this.changeSelectedPlayer(item)}>
                                     <View style={styles.playerView}>
@@ -59,6 +59,7 @@ class SelectOtherPlayerComponent extends React.Component {
                                 </TouchableOpacity>
                             }
                         }}
+                        keyExtractor={(item, index) => index.toString()}
                     />
                 </View>
             </View>

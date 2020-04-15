@@ -1,5 +1,5 @@
 import React from "react";
-import {FlatList, Image, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View} from "react-native";
+import {FlatList, Image, StyleSheet, Text, TextInput, TouchableOpacity, View} from "react-native";
 import {Button} from 'react-native-elements';
 import PropTypes from "prop-types";
 import {bindActionCreators} from "redux";
@@ -54,55 +54,55 @@ class SelectPlayerComponent extends React.Component {
 
     render() {
         return (
-            <ScrollView style={ styles.container }>
-                <View style={ styles.content }>
-                    <View style={ styles.header }>
-                        <Text  style={ styles.title }> Traquenard </Text>
+            <View style={styles.container}>
+                <View style={styles.header}>
+                    <Text style={styles.title}> Traquenard </Text>
+                </View>
+                <View style={styles.middle}>
+                    <View style={styles.list}>
+                        <FlatList
+                            data={this.state.players}
+                            renderItem={({item, index}) => (
+                                <View style={styles.player} id={index}>
+                                    <Text style={styles.textPlayer}>{item.name}</Text>
+                                    <TouchableOpacity onPress={() => this.removePlayer(index)}>
+                                        <Image source={require('./icons/delete.png')}
+                                               style={{width: 22, height: 22, opacity: 0.8}}/>
+                                    </TouchableOpacity>
+                                </View>
+                            )}
+                            keyExtractor={(item, index) => index.toString()}
+                        />
                     </View>
-                    <View style={ styles.middle }>
-                        <View style={ styles.list }>
-                            <ScrollView style={ styles.scroll }>
-                                <FlatList
-                                    data={this.state.players}
-                                    renderItem={({ item, index }) => (
-                                        <View style={ styles.player }>
-                                            <Text style={ styles.textPlayer }>{item.name}</Text>
-                                            <TouchableOpacity onPress={() => this.removePlayer(index)}>
-                                                <Image source={require('./icons/delete.png')} style={{width: 22, height: 22, opacity: 0.8}}/>
-                                            </TouchableOpacity>
-                                        </View>
-
-                                    )}
-                                />
-                            </ScrollView>
+                    <View style={styles.addInputButton}>
+                        <View style={{flex: 0.9}}>
+                            <TextInput
+                                style={styles.textInputPlayer}
+                                placeholder='Ajouter un joueur'
+                                onChangeText={(text) => this.setState({currentPlayer: text})}
+                                value={this.state.currentPlayer}
+                            />
                         </View>
-                        <View style={ styles.addInputButton }>
-                            <View style={{flex: 0.9}}>
-                                <TextInput
-                                    style={ styles.textInputPlayer }
-                                    placeholder='Ajouter un joueur'
-                                    onChangeText={(text) => this.setState({currentPlayer: text})}
-                                    value={this.state.currentPlayer}
-                                />
-                            </View>
-                            <View style={{flex: 0.1}}>
-                                <TouchableOpacity onPress={() => this.addPlayer()}>
-                                    <Image source={require('./icons/add.png')} style={{width: 30, height: 30}}/>
-                                </TouchableOpacity>
-                            </View>
+                        <View style={{flex: 0.1}}>
+                            <TouchableOpacity onPress={() => this.addPlayer()}>
+                                <Image source={require('./icons/add.png')} style={{width: 30, height: 30}}/>
+                            </TouchableOpacity>
                         </View>
-                    </View>
-                    <View style={{alignItems: 'center', marginTop: 75}}>
-                        <Button titleStyle={{textAlign: 'center', color: '#fff',
-                            fontSize: 30,  fontFamily: "MainTitle"
-                        }} buttonStyle={{ backgroundColor: "#DA2A2A",
-                                    borderRadius: 60, width: 200, }}
-                                title="Commencer" onPress={() => { this.startGame()
-                        }}/>
                     </View>
                 </View>
-            </ScrollView>
-
+                <View style={styles.bottom}>
+                    <Button titleStyle={{
+                        textAlign: 'center', color: '#fff',
+                        fontSize: 30, fontFamily: "MainTitle"
+                    }} buttonStyle={{
+                        backgroundColor: "#DA2A2A",
+                        borderRadius: 60, width: 200,
+                    }}
+                            title="Commencer" onPress={() => {
+                        this.startGame()
+                    }}/>
+                </View>
+            </View>
         );
     }
 }
@@ -119,13 +119,16 @@ const styles = StyleSheet.create({
         flex: 0.15
     },
     middle: {
-        flex: 0.28
+        flex: 0.55
     },
     bottom: {
-        flex: 0.15
+        flex: 0.2,
+        alignItems: 'center'
     },
     list: {
         marginTop: 50,
+        paddingHorizontal: 40,
+        height: 150
     },
     title: {
         marginTop: 20,
