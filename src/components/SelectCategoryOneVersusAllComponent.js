@@ -65,7 +65,7 @@ class SelectCategoryOneVersusAllComponent extends React.Component {
                             return <View style={styles.category}>
                                 <Button titleStyle={{
                                     textAlign: 'center', color: '#fff',
-                                    fontSize: 35, fontFamily: "MainTitle"
+                                    fontSize: 30, fontFamily: "MainTitle"
                                 }} buttonStyle={{ backgroundColor: "#2A2A2A",
                                     borderRadius: 10}}
                                         title={category.name}
