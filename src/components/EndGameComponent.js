@@ -19,15 +19,16 @@ class EndGameComponent extends React.Component {
     }
 
     componentDidMount(): void {
+        const {gameReducer} = this.props;
         const currentDate = moment(new Date());
-        const duration = currentDate.diff(this.props.gameReducer.startTime, 'minutes');
+        const duration = currentDate.diff(gameReducer.startTime, 'minutes');
 
         this.setState({
             duration,
             tableData: [
                 ['Durée', duration + ' minutes'],
-                ['Gorgées distribuées', this.props.gameReducer.sipGiven],
-                ['Nombre de tour', this.props.gameReducer.maxTurn]
+                ['Gorgées distribuées', gameReducer.sipGiven * gameReducer.difficulty],
+                ['Nombre de tour', gameReducer.maxTurn]
             ],
         })
     }

@@ -36,13 +36,19 @@ class EveryonePlayComponent extends React.Component {
         })
     }
 
-    changeScene(): void {
-        const {navigation, addSip, updateCurrentUser} = this.props;
+    async changeScene(): void {
+        const {navigation, addSip, updateCurrentUser, addTurn, gameReducer} = this.props;
         const {everyone} = this.state;
 
         updateCurrentUser();
         addSip(everyone.sip);
-        navigation.navigate("Card")
+        await addTurn();
+
+        if (this.props.gameReducer.currentTurn >= gameReducer.maxTurn) {
+            navigation.navigate("EndGame");
+        } else {
+            navigation.navigate("Card")
+        }
     }
 
     render() {

@@ -8,7 +8,7 @@ import texts from '../../../assets/texts/fr';
 
 const initialState = {
     players: [],
-    maxTurn: 10,
+    maxTurn: 3,
     difficulty: 3,
     currentTurn: 0,
     currentPlayer: null,
@@ -46,6 +46,7 @@ const gameReducer = (state = initialState, action = {}) => {
             newState.texts = texts.texts;
             break;
         case 'CHANGE_SCENE':
+            console.log("suppose to be never called");
             newState.scene = action.newScene;
             if (["card", "everyoneplay"].includes(action.newScene))
                 newState.currentTurn = newState.currentTurn + 1;
@@ -81,7 +82,10 @@ const gameReducer = (state = initialState, action = {}) => {
             newState.selectedCategory = action.selectedCategory;
             break;
         case 'ADD_SIP':
-            newState.sipGiven = newState.sipGiven + action.sip;
+            newState.sipGiven = parseInt(newState.sipGiven) + parseInt(action.sip);
+            break;
+        case 'ADD_TURN':
+            newState.currentTurn = newState.currentTurn + 1;
             break;
         default:
             break;

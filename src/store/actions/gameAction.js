@@ -36,6 +36,10 @@ const addSip = sip => ({
     sip
 });
 
+const addTurn = () => ({
+    type: 'ADD_TURN'
+});
+
 
 export {
     addPlayers,
@@ -45,5 +49,6 @@ export {
     updateCurrentUser,
     updateSelectedPlayer,
     updateCategory,
-    addSip
+    addSip,
+    addTurn
 };

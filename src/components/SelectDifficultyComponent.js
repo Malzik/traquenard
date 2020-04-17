@@ -38,19 +38,19 @@ class SelectDifficultyComponent extends React.Component {
                     </Text>
                 </View>
                 <View style={styles.content}>
+                    <TouchableOpacity onPress={() => this.setDifficulty(0.5)}>
+                        <Image source={require('./icons/img1.png')} style={{width: 100, height: 100}}/>
+                    </TouchableOpacity>
+                    <TouchableOpacity onPress={() => this.setDifficulty(0.75)}>
+                        <Image source={require('./icons/img1.png')} style={{width: 100, height: 100}}/>
+                    </TouchableOpacity>
                     <TouchableOpacity onPress={() => this.setDifficulty(1)}>
                         <Image source={require('./icons/img1.png')} style={{width: 100, height: 100}}/>
                     </TouchableOpacity>
+                    <TouchableOpacity onPress={() => this.setDifficulty(1.5)}>
+                        <Image source={require('./icons/img1.png')} style={{width: 100, height: 100}}/>
+                    </TouchableOpacity>
                     <TouchableOpacity onPress={() => this.setDifficulty(2)}>
-                        <Image source={require('./icons/img1.png')} style={{width: 100, height: 100}}/>
-                    </TouchableOpacity>
-                    <TouchableOpacity onPress={() => this.setDifficulty(3)}>
-                        <Image source={require('./icons/img1.png')} style={{width: 100, height: 100}}/>
-                    </TouchableOpacity>
-                    <TouchableOpacity onPress={() => this.setDifficulty(4)}>
-                        <Image source={require('./icons/img1.png')} style={{width: 100, height: 100}}/>
-                    </TouchableOpacity>
-                    <TouchableOpacity onPress={() => this.setDifficulty(5)}>
                         <Image source={require('./icons/img1.png')} style={{width: 100, height: 100}}/>
                     </TouchableOpacity>
                 </View>

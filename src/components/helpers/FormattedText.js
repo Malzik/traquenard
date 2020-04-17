@@ -10,20 +10,24 @@ class FormattedTextComponent extends React.Component {
     }
 
     formatText(text) {
+        const {gameReducer} = this.props;
+
         if (text.includes("{currentPlayer}")) {
-            const currentPlayer = this.props.gameReducer.players[this.props.gameReducer.currentPlayer];
+            const currentPlayer = gameReducer.players[gameReducer.currentPlayer];
             text = text.replace("{currentPlayer}", currentPlayer.name)
         }
         if (text.includes("{selectedPlayer}")) {
-            const selectedPlayer = this.props.gameReducer.selectedPlayer;
+            const selectedPlayer = gameReducer.selectedPlayer;
             text = text.replace("{selectedPlayer}", selectedPlayer.name)
         }
         if (text.includes("{selectedCategory}")) {
-            const selectedCategory = this.props.gameReducer.selectedCategory;
+            const selectedCategory = gameReducer.selectedCategory;
             text = text.replace("{selectedCategory}", selectedCategory.name)
         }
         if (text.includes("{sip}")) {
-            text = text.replace("{sip}", this.props.sip)
+            const difficulty = gameReducer.difficulty;
+            const sip = Math.round(parseInt(this.props.sip) * difficulty);
+            text = text.replace("{sip}", sip)
         }
         return text;
     }

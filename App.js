@@ -1,6 +1,5 @@
 import React from 'react';
 import {StatusBar, Text} from "react-native";
-import {GameManager} from "./src/components/GameManagerComponent";
 import {Provider} from 'react-redux'
 import {store} from './src/store/store';
 import {SelectPlayer} from "./src/components/SelectPlayerComponent";
@@ -62,7 +61,6 @@ class App extends React.Component {
                         <Stack.Screen name="Question" component={Question}/>
                         <Stack.Screen name="AnswerQuestion" component={AnswerQuestion}/>
                         <Stack.Screen name="EveryonePlay" component={EveryonePlay}/>
-                        <Stack.Screen name="GameManager" component={GameManager}/>
                         <Stack.Screen name="EndGame" component={EndGame}/>
                     </Stack.Navigator>
                 </NavigationContainer>
