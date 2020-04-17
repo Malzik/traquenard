@@ -5,8 +5,52 @@
       "sip": "5"
     },
     {
-      "question": "everyone 2",
-      "sip": "75"
+      "question": "Chacun choisi un chiffre entre 1 et 6, la sutie arrive",
+      "sip": "3"
+    },
+    {
+      "question": "Tout le monde boit",
+      "sip": "1"
+    },
+    {
+      "question": "JoueurX demande à JoueurY de faire ce que tu veux pendant 2 minutes, si joeurY refuse il boit",
+      "sip": "5"
+    },
+
+    //La première personne qui donne
+    {
+      "question": "La première personne qui donne un slogan gagne",
+      "sip": "5"
+    },
+    {
+      "question": "La première personne qui donne une marque de voiture",
+      "sip": "5"
+    },
+
+    //Tout le monde désigne la personne la plus
+    {
+      "question": "Tout le monde désigne la personne la plus Nion Nion, la personne désigné boit",
+      "sip": "5"
+    },
+    {
+      "question": "Tout le monde désigne la personne la plus débile, la personne désigné boit",
+      "sip": "5"
+    },
+    {
+      "question": "Tout le monde désigne la personne la plus Nion Nion, la personne désigné boit",
+      "sip": "5"
+    },
+    {
+      "question": "Tout le monde désigne la personne la plus belle, la personne désigné boit",
+      "sip": "5"
+    },
+    {
+      "question": "Tout le monde désigne la personne la plus timide, la personne désigné boit",
+      "sip": "5"
+    },
+    {
+      "question": "Tout le monde désigne la personne la plus sale, la personne désigné boit",
+      "sip": "5"
     }
   ]
 }
