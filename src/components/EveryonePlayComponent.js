@@ -36,26 +36,30 @@ class EveryonePlayComponent extends React.Component {
         })
     }
 
-    changeCurrentPlayer() {
-        this.props.updateCurrentUser();
-        this.props.changeScene("card");
+    changeScene(): void {
+        const {navigation, addSip, updateCurrentUser} = this.props;
+        const {everyone} = this.state;
+
+        updateCurrentUser();
+        addSip(everyone.sip);
+        navigation.navigate("Card")
     }
 
     render() {
         const {texts} = this.state;
 
         return (
-                <TouchableOpacity style={ styles.container }  onPress={() => this.changeCurrentPlayer()}>
-                    <View style={ styles.flex1 }>
-                        <Text style={styles.title}>
-                            <FormattedText text={texts["text.everyonePlay.title"]}/>
-                        </Text>
-                    </View>
-                    <View style={ styles.flex2 }>
-                        <Text style={styles.questionText}>{this.state.everyone.question}</Text>
-                    </View>
-                    <View style={ styles.flex3 }>
-                        <Text style={styles.gorgeesText}>
+            <TouchableOpacity style={styles.container} onPress={() => this.changeScene()}>
+                <View style={styles.flex1}>
+                    <Text style={styles.title}>
+                        <FormattedText text={texts["text.everyonePlay.title"]}/>
+                    </Text>
+                </View>
+                <View style={styles.flex2}>
+                    <Text style={styles.questionText}>{this.state.everyone.question}</Text>
+                </View>
+                <View style={styles.flex3}>
+                    <Text style={styles.gorgeesText}>
                             <FormattedText text={texts["text.sip"]} sip={this.state.everyone.sip}/>
                         </Text>
                     </View>

@@ -17,6 +17,7 @@ import {Question} from "./src/components/QuestionComponent";
 import {AnswerQuestion} from "./src/components/AnswerQuestionComponent";
 import {EveryonePlay} from "./src/components/EveryonePlayComponent";
 import * as Font from 'expo-font'
+import {SelectCategoryOneVersusAll} from "./src/components/SelectCategoryOneVersusAllComponent";
 
 const Stack = createStackNavigator();
 
@@ -46,11 +47,15 @@ class App extends React.Component {
             <Provider store={store}>
                 <StatusBar hidden={true}/>
                 <NavigationContainer>
-                    <Stack.Navigator initialRouteName="SelectPlayer" headerMode={"none"}>
+                    <Stack.Navigator
+                        initialRouteName="SelectPlayer"
+                        headerMode={"none"}
+                    >
                         <Stack.Screen name="SelectPlayer" component={SelectPlayer}/>
                         <Stack.Screen name="SelectDifficulty" component={SelectDifficulty}/>
                         <Stack.Screen name="Card" component={Card}/>
                         <Stack.Screen name="SelectOtherPlayer" component={SelectOtherPlayer}/>
+                        <Stack.Screen name="SelectCategory" component={SelectCategoryOneVersusAll}/>
                         <Stack.Screen name="Duel" component={Duel}/>
                         <Stack.Screen name="FriendShip" component={FriendShip}/>
                         <Stack.Screen name="OneVersusAll" component={OneVersusAll}/>

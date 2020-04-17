@@ -34,15 +34,15 @@ class QuestionComponent extends React.Component {
         })
     }
 
-    changeScene(playerAnswer) {
-        this.setState({changeScene: true, playerAnswer});
+    changeScene(selectedAnswer): void {
+        const {navigation} = this.props;
+        const {question} = this.state;
+
+        navigation.navigate("AnswerQuestion", {question, selectedAnswer})
     }
 
-    renderAnswer() {
-        return <AnswerQuestion vQuestion={this.state.question} vPlayerAnswer={this.state.playerAnswer}/>
-    }
+    render() {
 
-    renderQuestion() {
         const {texts} = this.state;
 
         return (
@@ -75,10 +75,6 @@ class QuestionComponent extends React.Component {
                 </View>
             </View>
         );
-    }
-
-    render() {
-        return this.state.changeScene !== false ? this.renderAnswer() : this.renderQuestion();
     }
 }
 

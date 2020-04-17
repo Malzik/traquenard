@@ -37,14 +37,14 @@ class SelectCategoryOneVersusAllComponent extends React.Component {
         })
     }
 
-    categorySelected(item) {
-        this.props.updateCategory(item);
-        this.setState({
-            category: item.name
-        });
+    changeScene(category): void {
+        const {navigation, updateCategory} = this.props;
+
+        updateCategory(category);
+        navigation.navigate("OneVersusAll")
     }
 
-    renderSelectCategory() {
+    render() {
         const {texts} = this.state;
 
         return (
@@ -71,7 +71,7 @@ class SelectCategoryOneVersusAllComponent extends React.Component {
                                     borderRadius: 10
                                 }}
                                         title={category.name}
-                                        onPress={() => this.categorySelected(category)}
+                                        onPress={() => this.changeScene(category)}
                                 />
                             </View>
                         })
@@ -79,14 +79,6 @@ class SelectCategoryOneVersusAllComponent extends React.Component {
                 </View>
             </View>
         );
-    }
-
-    renderGame() {
-        return <OneVersusAll currentPlayer={this.state.currentPlayer} selectedCategory={this.state.category}/>
-    }
-
-    render() {
-        return this.state.category !== null ? this.renderGame() : this.renderSelectCategory();
     }
 }
 

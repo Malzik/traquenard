@@ -37,13 +37,23 @@ class CardComponent extends React.Component {
                     text: "text.game.friendship"
                 },
                 {name: 'Question', color: "#FFE332", scene: "Question", text: "text.game.question"},
-                {name: 'Seul Contre Tous', color: "#3FBD4E", scene: "OneVersusAll", text: "text.game.oneversusall"},
+                {
+                    name: 'Seul Contre Tous',
+                    color: "#3FBD4E",
+                    scene: "OneVersusAll",
+                    selectCategory: true,
+                    text: "text.game.oneversusall"
+                },
             ],
         };
     }
 
     changeScene(card) {
         if (card.selectPlayer) {
+            this.props.navigation.navigate("SelectOtherPlayer", {component: card.scene});
+        } else if (card.selectCategory) {
+            this.props.navigation.navigate("SelectCategory", {component: card.scene});
+        } else {
             this.props.navigation.navigate(card.scene);
         }
     }

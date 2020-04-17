@@ -3,8 +3,6 @@ import {connect} from 'react-redux';
 import React from "react";
 import * as gameActions from '../store/actions/gameAction';
 import {bindActionCreators} from "redux";
-import {Duel} from "./DuelComponent";
-import {FriendShip} from "./FriendShipComponent";
 import {FormattedText} from "./helpers/FormattedText";
 
 class SelectOtherPlayerComponent extends React.Component {
@@ -19,26 +17,28 @@ class SelectOtherPlayerComponent extends React.Component {
             currentPlayer: {
                 name: null
             },
-            game: null,
-            selectedPlayer: null,
-            texts: textCollection
+            texts: textCollection,
+            selectedComponent: this.props.route.params.component
         };
     }
 
     componentDidMount() {
         this.setState({
-            currentPlayer: this.props.gameReducer.players[this.props.gameReducer.currentPlayer],
-            game: this.props.game
+            currentPlayer: this.props.gameReducer.players[this.props.gameReducer.currentPlayer]
         })
     }
 
     changeSelectedPlayer(player) {
-        this.props.updateSelectedPlayer(player);
-        this.setState({selectedPlayer: player});
+        const {navigation, updateSelectedPlayer} = this.props;
+        const {selectedComponent} = this.state;
+
+        updateSelectedPlayer(player);
+        navigation.navigate(selectedComponent)
     }
 
-    renderSelectPlayer() {
-        const {texts} = this.state;
+    render() {
+        const {players} = this.props.gameReducer;
+        const {texts, currentPlayer} = this.state;
 
         return (
             <View style={styles.container}>
@@ -49,9 +49,9 @@ class SelectOtherPlayerComponent extends React.Component {
                 </View>
                 <View style={styles.listView}>
                     <FlatList
-                        data={this.props.gameReducer.players}
-                        renderItem={({item}, index) => {
-                            if (this.state.currentPlayer.name !== item.name) {
+                        data={players}
+                        renderItem={({item}) => {
+                            if (currentPlayer.name !== item.name) {
                                 return <TouchableOpacity onPress={() => this.changeSelectedPlayer(item)}>
                                     <View style={styles.playerView}>
                                         <Text style={styles.playerText}>{item.name}</Text>
@@ -64,19 +64,6 @@ class SelectOtherPlayerComponent extends React.Component {
                 </View>
             </View>
         );
-    }
-
-    renderGame() {
-        switch (this.state.game) {
-            case "duel":
-                return <Duel currentPlayer={this.state.currentPlayer} selectedPlayer={this.state.selectedPlayer}/>;
-            case "friendship":
-                return <FriendShip currentPlayer={this.state.currentPlayer} selectedPlayer={this.state.selectedPlayer}/>
-        }
-    }
-
-    render() {
-        return this.state.selectedPlayer !== null ? this.renderGame() : this.renderSelectPlayer();
     }
 }
 

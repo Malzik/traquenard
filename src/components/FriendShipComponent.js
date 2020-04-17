@@ -38,21 +38,29 @@ class FriendShipComponent extends React.Component {
         })
     }
 
+    changeScene(): void {
+        const {navigation, addSip} = this.props;
+        const {friendship} = this.state;
+
+        addSip(friendship.sip);
+        navigation.navigate("EveryonePlay")
+    }
+
     render() {
         const {texts} = this.state;
 
         return (
-                <TouchableOpacity style={styles.container} onPress={() => this.props.changeScene("everyoneplay")}>
-                    <View style={ styles.flex1 }>
-                        <Text style={styles.title}>
-                            <FormattedText text={texts["text.friendship.title"]}/>
-                        </Text>
-                    </View>
-                    <View style={ styles.flex2 }>
-                        <Text style={styles.questionText}>{this.state.friendship.question}</Text>
-                    </View>
-                    <View style={ styles.flex3 }>
-                        <Text style={styles.gorgeesText}>
+            <TouchableOpacity style={styles.container} onPress={() => this.changeScene()}>
+                <View style={styles.flex1}>
+                    <Text style={styles.title}>
+                        <FormattedText text={texts["text.friendship.title"]}/>
+                    </Text>
+                </View>
+                <View style={styles.flex2}>
+                    <Text style={styles.questionText}>{this.state.friendship.question}</Text>
+                </View>
+                <View style={styles.flex3}>
+                    <Text style={styles.gorgeesText}>
                             <FormattedText text={texts["text.sip"]} sip={this.state.friendship.sip}/>
                         </Text>
                     </View>

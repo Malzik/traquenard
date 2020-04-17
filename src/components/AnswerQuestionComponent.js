@@ -11,6 +11,7 @@ class AnswerQuestionComponent extends React.Component {
     constructor(props) {
         super(props);
 
+        const {selectedAnswer, question} = this.props.route.params;
         const texts = [
             "text.question.win",
             "text.question.loose",
@@ -24,7 +25,7 @@ class AnswerQuestionComponent extends React.Component {
 
         let title;
         let description;
-        if (this.props.vPlayerAnswer.true_false) {
+        if (selectedAnswer.true_false) {
             title = textCollection["text.question.win"];
             description = textCollection["text.question.win.description"];
         } else {
@@ -33,21 +34,25 @@ class AnswerQuestionComponent extends React.Component {
         }
 
         this.state = {
-            question: this.props.vQuestion,
-            answerPlayer: this.props.vPlayerAnswer,
+            question: question,
+            answerPlayer: selectedAnswer,
             title,
             description,
             texts: textCollection
         };
     }
 
-    componentDidMount() {
+    changeScene(): void {
+        const {navigation, addSip} = this.props;
+        const {question} = this.state;
 
+        addSip(question.sip);
+        navigation.navigate("EveryonePlay")
     }
 
     render() {
         return (
-            <TouchableOpacity style={ styles.container } onPress={() => this.props.changeScene("everyoneplay")}>
+            <TouchableOpacity style={styles.container} onPress={() => this.changeScene()}>
                 <View style={styles.contentTitle}>
                     <Text style={styles.title}><FormattedText text={this.state.title}/></Text>
                 </View>

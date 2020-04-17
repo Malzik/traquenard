@@ -5,6 +5,7 @@ import PropTypes from "prop-types";
 import {bindActionCreators} from "redux";
 import * as gameActions from "../store/actions/gameAction";
 import {connect} from "react-redux";
+import * as ScreenOrientation from "expo/build/ScreenOrientation/ScreenOrientation";
 
 
 class SelectPlayerComponent extends React.Component {
@@ -21,7 +22,8 @@ class SelectPlayerComponent extends React.Component {
             errors: {
                 addPlayer: ""
             }
-        }
+        };
+        ScreenOrientation.lockAsync(ScreenOrientation.OrientationLock.PORTRAIT);
     }
 
     addPlayer() {
@@ -40,6 +42,7 @@ class SelectPlayerComponent extends React.Component {
     }
 
     startGame() {
+        ScreenOrientation.lockAsync(ScreenOrientation.OrientationLock.LANDSCAPE_LEFT);
         this.props.addPlayers(this.state.players);
         this.props.navigation.navigate('SelectDifficulty')
     }
