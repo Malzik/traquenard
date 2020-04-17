@@ -38,10 +38,10 @@ class SelectCategoryOneVersusAllComponent extends React.Component {
     }
 
     categorySelected(item) {
+        this.props.updateCategory(item);
         this.setState({
             category: item.name
         });
-        this.props.updateCategory(item)
     }
 
     renderSelectCategory() {

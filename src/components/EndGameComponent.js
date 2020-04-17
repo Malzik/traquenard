@@ -1,10 +1,10 @@
 import React from "react";
-import {ScrollView, StyleSheet, Text, View} from "react-native";
+import {StyleSheet, Text, View} from "react-native";
 import {Button} from 'react-native-elements';
 import {bindActionCreators} from "redux";
 import * as gameActions from "../store/actions/gameAction";
 import {connect} from "react-redux";
-import * as ScreenOrientation from "expo/build/ScreenOrientation/ScreenOrientation";
+import {lockAsync, OrientationLock} from "expo-screen-orientation";
 import {Rows, Table} from "react-native-table-component";
 import moment from "moment";
 
@@ -38,7 +38,7 @@ class EndGameComponent extends React.Component {
     }
 
     render() {
-        ScreenOrientation.lockAsync(ScreenOrientation.OrientationLock.PORTRAIT);
+        lockAsync(OrientationLock.PORTRAIT);
         return (
             <View style={ styles.container }>
                 <View style={ styles.header }>
