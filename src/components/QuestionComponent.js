@@ -5,7 +5,7 @@ import * as gameActions from "../store/actions/gameAction";
 import {connect} from "react-redux";
 import {Button} from 'react-native-elements';
 import PropTypes from "prop-types";
-import {Question2} from "./Question2Component";
+import {AnswerQuestion} from "./AnswerQuestionComponent";
 import {FormattedText} from "./helpers/FormattedText";
 
 class QuestionComponent extends React.Component {
@@ -39,7 +39,7 @@ class QuestionComponent extends React.Component {
     }
 
     renderAnswer() {
-        return <Question2 vQuestion={this.state.question} vPlayerAnswer={this.state.playerAnswer}/>
+        return <AnswerQuestion vQuestion={this.state.question} vPlayerAnswer={this.state.playerAnswer}/>
     }
 
     renderQuestion() {

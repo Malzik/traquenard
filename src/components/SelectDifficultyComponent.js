@@ -24,7 +24,7 @@ class SelectDifficultyComponent extends React.Component {
     setDifficulty(difficulty){
         this.props.changeDifficulty(difficulty);
         this.props.updateCurrentUser();
-        this.props.navigation.navigate('GameManager')
+        this.props.navigation.navigate('Card')
     }
 
 

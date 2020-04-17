@@ -28,15 +28,24 @@ class CardComponent extends React.Component {
             currentPlayer: this.props.currentPlayer,
             selectedPlayer: this.props.selectedPlayer,
             cards: [
-                {name: 'Duel', color: "#D42A2A", scene: "duel", text: "text.game.duel"},
-                {name: 'Amitié', color: "#2A9BDA", scene: "friendship", text: "text.game.friendship"},
-                {name: 'Question', color: "#FFE332", scene: "question", text: "text.game.question"},
-                {name: 'Seul Contre Tous', color: "#3FBD4E", scene: "oneversusall", text: "text.game.oneversusall"},
+                {name: 'Duel', color: "#D42A2A", scene: "Duel", selectPlayer: true, text: "text.game.duel"},
+                {
+                    name: 'Amitié',
+                    color: "#2A9BDA",
+                    scene: "FriendShip",
+                    selectPlayer: true,
+                    text: "text.game.friendship"
+                },
+                {name: 'Question', color: "#FFE332", scene: "Question", text: "text.game.question"},
+                {name: 'Seul Contre Tous', color: "#3FBD4E", scene: "OneVersusAll", text: "text.game.oneversusall"},
             ],
         };
     }
 
-    componentDidMount(): void {
+    changeScene(card) {
+        if (card.selectPlayer) {
+            this.props.navigation.navigate(card.scene);
+        }
     }
 
     render() {
@@ -44,7 +53,7 @@ class CardComponent extends React.Component {
 
         return (
             <View style={styles.container}>
-                <View style={ styles.header }>
+                <View style={styles.header}>
                     <Text style={styles.title}><FormattedText text={texts["text.card.title"]}/></Text>
                 </View>
                 <View style={ styles.content }>
@@ -59,7 +68,7 @@ class CardComponent extends React.Component {
                                     borderRadius: 10
                                 }}
                                         title={texts[card.text]}
-                                        onPress={() => this.props.changeScene(card.scene)}
+                                        onPress={() => this.changeScene(card)}
                                 />
                             </View>
                         })

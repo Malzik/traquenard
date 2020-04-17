@@ -7,7 +7,7 @@ import {Button} from 'react-native-elements';
 import PropTypes from "prop-types";
 import {FormattedText} from "./helpers/FormattedText";
 
-class Question2Component extends React.Component {
+class AnswerQuestionComponent extends React.Component {
     constructor(props) {
         super(props);
 
@@ -123,7 +123,7 @@ const styles = StyleSheet.create({
     },
 });
 
-Question2Component.propTypes = {
+AnswerQuestionComponent.propTypes = {
     changeScene: PropTypes.func,
 };
 const mapStateToProps = (state) => {
@@ -133,9 +133,9 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = dispatch =>
     bindActionCreators({ ...gameActions }, dispatch);
 
-const Question2 = connect(
+const AnswerQuestion = connect(
     mapStateToProps,
     mapDispatchToProps
-)(Question2Component);
+)(AnswerQuestionComponent);
 
-export { Question2, Question2Component };
+export {AnswerQuestion, AnswerQuestionComponent};

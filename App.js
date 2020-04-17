@@ -1,5 +1,5 @@
 import React from 'react';
-import {StatusBar, Text, SafeAreaView, TabBarIOS} from "react-native";
+import {StatusBar, Text} from "react-native";
 import {GameManager} from "./src/components/GameManagerComponent";
 import {Provider} from 'react-redux'
 import {store} from './src/store/store';
@@ -14,7 +14,7 @@ import {FriendShip} from "./src/components/FriendShipComponent";
 import {SelectOtherPlayer} from "./src/components/SelectOtherPlayerComponent";
 import {OneVersusAll} from "./src/components/OneVersusAllComponent";
 import {Question} from "./src/components/QuestionComponent";
-import {Question2} from "./src/components/Question2Component";
+import {AnswerQuestion} from "./src/components/AnswerQuestionComponent";
 import {EveryonePlay} from "./src/components/EveryonePlayComponent";
 import * as Font from 'expo-font'
 
@@ -29,7 +29,7 @@ class App extends React.Component {
         }
     }
 
-    async componentDidMount() {
+    async componentDidMount(): void {
         await Font.loadAsync({
             'MainTitle': require('./assets/fonts/BlackRyderDemo.ttf'),
             'ABeeZee-Regular': require('./assets/fonts/ABeeZee-Regular.ttf'),
@@ -55,7 +55,7 @@ class App extends React.Component {
                         <Stack.Screen name="FriendShip" component={FriendShip}/>
                         <Stack.Screen name="OneVersusAll" component={OneVersusAll}/>
                         <Stack.Screen name="Question" component={Question}/>
-                        <Stack.Screen name="Question2" component={Question2}/>
+                        <Stack.Screen name="AnswerQuestion" component={AnswerQuestion}/>
                         <Stack.Screen name="EveryonePlay" component={EveryonePlay}/>
                         <Stack.Screen name="GameManager" component={GameManager}/>
                         <Stack.Screen name="EndGame" component={EndGame}/>
