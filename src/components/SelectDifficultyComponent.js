@@ -1,6 +1,6 @@
 import React from "react";
 import {Image, StyleSheet, Text, TouchableOpacity, View} from "react-native";
-import {lockAsync, OrientationLock} from "expo-screen-orientation";
+import {ScreenOrientation} from 'expo';
 import {bindActionCreators} from "redux";
 import * as gameActions from "../store/actions/gameAction";
 import PropTypes from "prop-types";
@@ -30,7 +30,7 @@ class SelectDifficultyComponent extends React.Component {
 
     render() {
         const {texts} = this.state;
-        lockAsync(OrientationLock.LANDSCAPE_LEFT);
+        ScreenOrientation.lockAsync(ScreenOrientation.OrientationLock.LANDSCAPE_LEFT);
 
         return (
             <View style={ styles.container }>
