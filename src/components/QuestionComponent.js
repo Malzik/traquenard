@@ -2,6 +2,7 @@ import {StyleSheet, Text, View} from "react-native";
 import React from "react";
 import {bindActionCreators} from "redux";
 import * as gameActions from "../store/actions/gameAction";
+import * as textActions from "../store/actions/textAction";
 import {connect} from "react-redux";
 import {Button} from 'react-native-elements';
 import PropTypes from "prop-types";
@@ -13,7 +14,7 @@ class QuestionComponent extends React.Component {
         super(props);
 
         let textCollection = {};
-        textCollection["text.question.title"] = this.props.gameReducer.texts["text.selectOtherPlayer.title"];
+        textCollection["text.question.title"] = this.props.textReducer.texts["text.selectOtherPlayer.title"];
 
         this.state = {
             changeScene: false,
@@ -27,11 +28,12 @@ class QuestionComponent extends React.Component {
     }
 
     componentDidMount(): void {
-        const questions = this.props.gameReducer.questions;
+        const questions = this.props.textReducer.questions;
         const question = questions[Math.floor(Math.random() * questions.length)];
         this.setState({
             question
-        })
+        });
+        this.props.removeQuestion("questions", question);
     }
 
     changeScene(selectedAnswer): void {
@@ -128,7 +130,7 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = dispatch =>
-    bindActionCreators({ ...gameActions }, dispatch);
+    bindActionCreators({...gameActions, ...textActions}, dispatch);
 
 const Question = connect(
     mapStateToProps,

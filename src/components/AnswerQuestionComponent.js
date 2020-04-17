@@ -20,7 +20,7 @@ class AnswerQuestionComponent extends React.Component {
         ];
         let textCollection = {};
         texts.forEach(text => {
-            textCollection[text] = this.props.gameReducer.texts[text];
+            textCollection[text] = this.props.textReducer.texts[text];
         });
 
         let title;

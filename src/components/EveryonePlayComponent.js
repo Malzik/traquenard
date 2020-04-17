@@ -2,6 +2,7 @@ import {StyleSheet, Text, TouchableOpacity, View} from "react-native";
 import {connect} from 'react-redux';
 import React from "react";
 import * as gameActions from '../store/actions/gameAction';
+import * as textActions from '../store/actions/textAction';
 import {bindActionCreators} from "redux";
 import {FormattedText} from "./helpers/FormattedText";
 
@@ -16,7 +17,7 @@ class EveryonePlayComponent extends React.Component {
         ];
         let textCollection = {};
         texts.forEach(text => {
-            textCollection[text] = this.props.gameReducer.texts[text];
+            textCollection[text] = this.props.textReducer.texts[text];
         });
 
         this.state = {
@@ -29,11 +30,12 @@ class EveryonePlayComponent extends React.Component {
     }
 
     componentDidMount(): void {
-        const everyone = this.props.gameReducer.everyone;
+        const everyone = this.props.textReducer.everyone;
         const question = everyone[Math.floor(Math.random() * everyone.length)];
         this.setState({
             everyone: question
-        })
+        });
+        this.props.removeQuestion("everyone", question);
     }
 
     async changeScene(): void {
@@ -44,7 +46,7 @@ class EveryonePlayComponent extends React.Component {
         addSip(everyone.sip);
         await addTurn();
 
-        if (this.props.gameReducer.currentTurn >= gameReducer.maxTurn) {
+        if (this.props.gameReducer.currentTurn >= gameReducer.maxTurn || this.props.textReducer.everyone.length === 0) {
             navigation.navigate("EndGame");
         } else {
             navigation.navigate("Card")
@@ -117,7 +119,7 @@ const mapStateToProps = state => {
 };
 
 const mapDispatchToProps = dispatch =>
-    bindActionCreators({...gameActions}, dispatch);
+    bindActionCreators({...gameActions, ...textActions}, dispatch);
 
 const EveryonePlay = connect(
     mapStateToProps,

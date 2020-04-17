@@ -11,7 +11,7 @@ class SelectOtherPlayerComponent extends React.Component {
         super(props);
 
         let textCollection = {};
-        textCollection["text.selectOtherPlayer.title"] = this.props.gameReducer.texts["text.selectOtherPlayer.title"];
+        textCollection["text.selectOtherPlayer.title"] = this.props.textReducer.texts["text.selectOtherPlayer.title"];
 
         this.state = {
             currentPlayer: {

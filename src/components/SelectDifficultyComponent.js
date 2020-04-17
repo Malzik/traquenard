@@ -13,7 +13,7 @@ class SelectDifficultyComponent extends React.Component {
         super(props);
 
         let textCollection = {};
-        textCollection["text.chooseDifficulty.title"] = this.props.gameReducer.texts["text.chooseDifficulty.title"];
+        textCollection["text.chooseDifficulty.title"] = this.props.textReducer.texts["text.chooseDifficulty.title"];
 
         this.state = {
             texts: textCollection

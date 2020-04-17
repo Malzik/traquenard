@@ -21,24 +21,24 @@ class CardComponent extends React.Component {
         ];
         let textCollection = {};
         texts.forEach(text => {
-            textCollection[text] = this.props.gameReducer.texts[text];
+            textCollection[text] = this.props.textReducer.texts[text];
         });
         this.state = {
             texts: textCollection,
             currentPlayer: this.props.currentPlayer,
             selectedPlayer: this.props.selectedPlayer,
             cards: [
-                {name: 'Duel', color: "#D42A2A", scene: "Duel", selectPlayer: true, text: "text.game.duel"},
+                {type: "duels", color: "#D42A2A", scene: "Duel", selectPlayer: true, text: "text.game.duel"},
                 {
-                    name: 'Amitié',
+                    type: "friendships",
                     color: "#2A9BDA",
                     scene: "FriendShip",
                     selectPlayer: true,
                     text: "text.game.friendship"
                 },
-                {name: 'Question', color: "#FFE332", scene: "Question", text: "text.game.question"},
+                {type: "questions", color: "#FFE332", scene: "Question", text: "text.game.question"},
                 {
-                    name: 'Seul Contre Tous',
+                    type: "everyone",
                     color: "#3FBD4E",
                     scene: "OneVersusAll",
                     selectCategory: true,
@@ -46,6 +46,12 @@ class CardComponent extends React.Component {
                 },
             ],
         };
+    }
+
+    checkIfQuestionRemaining(card) {
+        const {textReducer} = this.props;
+
+        return !textReducer[card.type].length > 0;
     }
 
     changeScene(card) {
@@ -79,6 +85,7 @@ class CardComponent extends React.Component {
                                 }}
                                         title={texts[card.text]}
                                         onPress={() => this.changeScene(card)}
+                                        disabled={this.checkIfQuestionRemaining(card)}
                                 />
                             </View>
                         })

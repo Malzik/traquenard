@@ -1,10 +1,4 @@
 import moment from "moment";
-import duel from '../../../assets/json/duel';
-import question from '../../../assets/json/question';
-import oneversusall from '../../../assets/json/oneversusall';
-import friendships from '../../../assets/json/friendship';
-import everyone from '../../../assets/json/everyone';
-import texts from '../../../assets/texts/fr';
 
 const initialState = {
     players: [],
@@ -16,18 +10,7 @@ const initialState = {
     selectedCategory: null,
     startTime: null,
     sipGiven: 0,
-    categories: [
-        {name: 'Cinéma'},
-        {name: 'Série'},
-        {name: 'Histoire'},
-        {name: 'Jeux-Vidéo'},
-        {name: 'Sport'},
-        {name: 'Musique'},
-    ],
     scene: null,
-    duels: [],
-    questions: [],
-    oneversusall: []
 };
 
 const gameReducer = (state = initialState, action = {}) => {
@@ -37,13 +20,6 @@ const gameReducer = (state = initialState, action = {}) => {
         case 'ADD_PLAYERS':
             newState.players = action.players;
             newState.startTime = moment(new Date());
-            newState.duels = duel.duels;
-            newState.questions = question.questions;
-            newState.oneversusall = oneversusall.oneversusall;
-            newState.categories = Object.keys(oneversusall.oneversusall).map(category => ({name: category}));
-            newState.friendships = friendships.friendships;
-            newState.everyone = everyone.everyone;
-            newState.texts = texts.texts;
             break;
         case 'CHANGE_SCENE':
             console.log("suppose to be never called");

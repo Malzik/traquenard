@@ -18,7 +18,7 @@ class SelectCategoryOneVersusAllComponent extends React.Component {
         ];
         let textCollection = {};
         texts.forEach(text => {
-            textCollection[text] = this.props.gameReducer.texts[text];
+            textCollection[text] = this.props.textReducer.texts[text];
         });
 
         this.state = {
@@ -61,7 +61,7 @@ class SelectCategoryOneVersusAllComponent extends React.Component {
                 </View>
                 <View style={styles.categoryView}>
                     {
-                        this.props.gameReducer.categories.map((category, index) => {
+                        this.props.textReducer.categories.map((category, index) => {
                             return <View style={styles.category} key={index.toString()}>
                                 <Button titleStyle={{
                                     textAlign: 'center', color: '#fff',

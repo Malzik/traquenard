@@ -2,6 +2,7 @@ import {StyleSheet, Text, TouchableOpacity, View} from "react-native";
 import React from "react";
 import {bindActionCreators} from "redux";
 import * as gameActions from "../store/actions/gameAction";
+import * as textActions from "../store/actions/textAction";
 import {connect} from "react-redux";
 import PropTypes from "prop-types";
 import {FormattedText} from "./helpers/FormattedText";
@@ -16,7 +17,7 @@ class FriendShipComponent extends React.Component {
         ];
         let textCollection = {};
         texts.forEach(text => {
-            textCollection[text] = this.props.gameReducer.texts[text];
+            textCollection[text] = this.props.textReducer.texts[text];
         });
 
         this.state = {
@@ -31,11 +32,12 @@ class FriendShipComponent extends React.Component {
     }
 
     componentDidMount(): void {
-        const friendships = this.props.gameReducer.friendships;
+        const friendships = this.props.textReducer.friendships;
         const friendship = friendships[Math.floor(Math.random() * friendships.length)];
         this.setState({
             friendship
-        })
+        });
+        this.props.removeQuestion("friendships", friendship);
     }
 
     changeScene(): void {
@@ -115,7 +117,7 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = dispatch =>
-    bindActionCreators({ ...gameActions }, dispatch);
+    bindActionCreators({...gameActions, ...textActions}, dispatch);
 
 const FriendShip = connect(
     mapStateToProps,

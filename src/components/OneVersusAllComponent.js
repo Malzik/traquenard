@@ -2,6 +2,7 @@ import {StyleSheet, Text, TouchableOpacity, View} from "react-native";
 import React from "react";
 import {bindActionCreators} from "redux";
 import * as gameActions from "../store/actions/gameAction";
+import * as textActions from "../store/actions/textAction";
 import {connect} from "react-redux";
 import PropTypes from "prop-types";
 import {FormattedText} from "./helpers/FormattedText";
@@ -16,7 +17,7 @@ class OneVersusAllComponent extends React.Component {
         ];
         let textCollection = {};
         texts.forEach(text => {
-            textCollection[text] = this.props.gameReducer.texts[text];
+            textCollection[text] = this.props.textReducer.texts[text];
         });
 
         this.state = {
@@ -30,11 +31,11 @@ class OneVersusAllComponent extends React.Component {
 
     componentDidMount(): void {
         const category = this.props.gameReducer.selectedCategory;
-        const oneversusall = this.props.gameReducer.oneversusall;
+        const oneversusall = this.props.textReducer.oneversusall;
         const question = oneversusall[category.name][Math.floor(Math.random() * oneversusall[category.name].length)];
         this.setState({
             oneVersusAll: question
-        })
+        });
     }
 
     changeScene(): void {
@@ -118,7 +119,7 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = dispatch =>
-    bindActionCreators({ ...gameActions }, dispatch);
+    bindActionCreators({...gameActions, ...textActions}, dispatch);
 
 const OneVersusAll = connect(
     mapStateToProps,

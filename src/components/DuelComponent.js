@@ -2,6 +2,7 @@ import {StyleSheet, Text, TouchableOpacity, View} from "react-native";
 import React from "react";
 import {bindActionCreators} from "redux";
 import * as gameActions from "../store/actions/gameAction";
+import * as textActions from "../store/actions/textAction";
 import {connect} from "react-redux";
 import PropTypes from "prop-types";
 import {FormattedText} from "./helpers/FormattedText";
@@ -16,7 +17,7 @@ class DuelComponent extends React.Component {
         ];
         let textCollection = {};
         texts.forEach(text => {
-            textCollection[text] = this.props.gameReducer.texts[text];
+            textCollection[text] = this.props.textReducer.texts[text];
         });
 
         this.state = {
@@ -29,11 +30,12 @@ class DuelComponent extends React.Component {
     }
 
     componentDidMount(): void {
-        const duels = this.props.gameReducer.duels;
+        const duels = this.props.textReducer.duels;
         const duel = duels[Math.floor(Math.random() * duels.length)];
         this.setState({
             duel
-        })
+        });
+        this.props.removeQuestion("duels", duel);
     }
 
     changeScene(): void {
@@ -113,7 +115,7 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = dispatch =>
-    bindActionCreators({ ...gameActions }, dispatch);
+    bindActionCreators({...gameActions, ...textActions}, dispatch);
 
 const Duel = connect(
     mapStateToProps,

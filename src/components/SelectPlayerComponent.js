@@ -4,6 +4,7 @@ import {Button} from 'react-native-elements';
 import PropTypes from "prop-types";
 import {bindActionCreators} from "redux";
 import * as gameActions from "../store/actions/gameAction";
+import * as textActions from "../store/actions/textAction";
 import {connect} from "react-redux";
 import * as ScreenOrientation from "expo/build/ScreenOrientation/ScreenOrientation";
 
@@ -42,9 +43,12 @@ class SelectPlayerComponent extends React.Component {
     }
 
     startGame() {
+        const {addPlayers, initGame, navigation} = this.props;
         ScreenOrientation.lockAsync(ScreenOrientation.OrientationLock.LANDSCAPE_LEFT);
-        this.props.addPlayers(this.state.players);
-        this.props.navigation.navigate('SelectDifficulty')
+
+        initGame();
+        addPlayers(this.state.players);
+        navigation.navigate('SelectDifficulty')
     }
 
     removePlayer(index) {
@@ -177,7 +181,7 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = dispatch =>
-    bindActionCreators(gameActions, dispatch);
+    bindActionCreators({...gameActions, ...textActions}, dispatch);
 
 const SelectPlayer = connect(
     mapStateToProps,
