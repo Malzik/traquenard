@@ -18,6 +18,9 @@
     "text.question.win": "Gagné !",
     "text.question.loose": "Perdu !",
     "text.question.win.description": "Donne {sip} gorgées",
-    "text.question.loose.description": "Bois {sip} gorgées"
+    "text.question.loose.description": "Bois {sip} gorgées",
+    "text.exit.title": "Veux-tu vraiment quitter le jeu ?",
+    "text.exit.yes": "Oui",
+    "text.exit.no": "Non"
   }
 }

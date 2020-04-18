@@ -6,6 +6,7 @@ import PropTypes from "prop-types";
 import {connect} from "react-redux";
 import {Button} from 'react-native-elements';
 import {FormattedText} from "./helpers/FormattedText";
+import {handleAndroidBackButton, removeAndroidBackButtonHandler} from "./helpers/BackHandlerHelper";
 
 class CardComponent extends React.Component {
 
@@ -48,6 +49,14 @@ class CardComponent extends React.Component {
         };
     }
 
+    componentDidMount(): void {
+        handleAndroidBackButton(this.props.textReducer);
+    }
+
+    componentWillUnmount() {
+        removeAndroidBackButtonHandler();
+    }
+
     checkIfQuestionRemaining(card) {
         const {textReducer} = this.props;
 
@@ -55,26 +64,30 @@ class CardComponent extends React.Component {
     }
 
     changeScene(card) {
+        const {navigation} = this.props;
+
         if (card.selectPlayer) {
-            this.props.navigation.navigate("SelectOtherPlayer", {component: card.scene});
+            navigation.navigate("SelectOtherPlayer", {component: card.scene});
         } else if (card.selectCategory) {
-            this.props.navigation.navigate("SelectCategory", {component: card.scene});
+            navigation.navigate("SelectCategory", {component: card.scene});
         } else {
-            this.props.navigation.navigate(card.scene);
+            navigation.navigate(card.scene);
         }
     }
 
     render() {
-        const {texts} = this.state;
+        const {texts, cards} = this.state;
 
         return (
             <View style={styles.container}>
                 <View style={styles.header}>
-                    <Text style={styles.title}><FormattedText text={texts["text.card.title"]}/></Text>
+                    <Text style={styles.title}>
+                        <FormattedText text={texts["text.card.title"]}/>
+                    </Text>
                 </View>
-                <View style={ styles.content }>
+                <View style={styles.content}>
                     {
-                        this.state.cards.map((card, index) => {
+                        cards.map((card, index) => {
                             return <View style={styles.cards} id={index} key={index}>
                                 <Button titleStyle={{
                                     textAlign: 'center', color: '#fff',

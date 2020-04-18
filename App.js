@@ -26,7 +26,7 @@ class App extends React.Component {
 
         this.state = {
             fontIsLoaded: false
-        }
+        };
     }
 
     async componentDidMount(): void {
@@ -49,10 +49,11 @@ class App extends React.Component {
                     <Stack.Navigator
                         initialRouteName="SelectPlayer"
                         headerMode={"none"}
+                        gestureEnabled={true}
                     >
                         <Stack.Screen name="SelectPlayer" component={SelectPlayer}/>
                         <Stack.Screen name="SelectDifficulty" component={SelectDifficulty}/>
-                        <Stack.Screen name="Card" component={Card}/>
+                        <Stack.Screen name="Card" component={Card} gesturesEnabled={false}/>
                         <Stack.Screen name="SelectOtherPlayer" component={SelectOtherPlayer}/>
                         <Stack.Screen name="SelectCategory" component={SelectCategoryOneVersusAll}/>
                         <Stack.Screen name="Duel" component={Duel}/>
