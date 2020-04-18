@@ -13,27 +13,24 @@ class QuestionComponent extends React.Component {
     constructor(props) {
         super(props);
 
-        let textCollection = {};
-        textCollection["text.question.title"] = this.props.textReducer.texts["text.selectOtherPlayer.title"];
-
         this.state = {
             changeScene: false,
             question: {
                 question: null,
                 answers: []
-            },
-            playerAnswer: null,
-            texts: textCollection
+            }
         }
     }
 
     componentDidMount(): void {
-        const questions = this.props.textReducer.questions;
+        const {textReducer, removeQuestion} = this.props;
+
+        const questions = textReducer.questions;
         const question = questions[Math.floor(Math.random() * questions.length)];
         this.setState({
             question
         });
-        this.props.removeQuestion("questions", question);
+        removeQuestion("questions", question);
     }
 
     changeScene(selectedAnswer): void {
@@ -44,8 +41,8 @@ class QuestionComponent extends React.Component {
     }
 
     render() {
-
-        const {texts} = this.state;
+        const {texts} = this.props.textReducer;
+        const {question, answers} = this.state.question;
 
         return (
             <View style={styles.container}>
@@ -55,11 +52,11 @@ class QuestionComponent extends React.Component {
                     </Text>
                 </View>
                 <View style={styles.contentQuestion}>
-                    <Text style={styles.questionText}>{this.state.question.question}</Text>
+                    <Text style={styles.questionText}>{question}</Text>
                 </View>
                 <View style={styles.contentAnswer}>
                     {
-                        this.state.question.answers.map((answer, index) => {
+                        answers.map((answer, index) => {
                             return <View style={styles.answer} key={index.toString()}>
                                 <Button titleStyle={{
                                     textAlign: 'center', color: '#fff',

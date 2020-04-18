@@ -8,7 +8,14 @@ const removeQuestion = (questionType, question) => ({
     question
 });
 
+const removeQuestionFromCategory = (category, question) => ({
+    type: 'REMOVE_QUESTION_FROM_CATEGORY',
+    category,
+    question
+});
+
 export {
     initGame,
-    removeQuestion
+    removeQuestion,
+    removeQuestionFromCategory
 };

@@ -12,22 +12,11 @@ class SelectCategoryOneVersusAllComponent extends React.Component {
     constructor(props) {
         super(props);
 
-        const texts = [
-            "text.selectCategory.title",
-            "text.selectCategory.description"
-        ];
-        let textCollection = {};
-        texts.forEach(text => {
-            textCollection[text] = this.props.textReducer.texts[text];
-        });
-
         this.state = {
             game: this.props.game,
             currentPlayer: {
                 name: null
-            },
-            category: null,
-            texts: textCollection
+            }
         };
     }
 
@@ -44,8 +33,14 @@ class SelectCategoryOneVersusAllComponent extends React.Component {
         navigation.navigate("OneVersusAll")
     }
 
+    checkIfQuestionRemaining(category) {
+        const {textReducer} = this.props;
+
+        return !textReducer.oneversusall[category.name].length > 0;
+    }
+
     render() {
-        const {texts} = this.state;
+        const {categories, texts} = this.props.textReducer;
 
         return (
             <View style={styles.container}>
@@ -61,7 +56,7 @@ class SelectCategoryOneVersusAllComponent extends React.Component {
                 </View>
                 <View style={styles.categoryView}>
                     {
-                        this.props.textReducer.categories.map((category, index) => {
+                        categories.map((category, index) => {
                             return <View style={styles.category} key={index.toString()}>
                                 <Button titleStyle={{
                                     textAlign: 'center', color: '#fff',
@@ -72,6 +67,7 @@ class SelectCategoryOneVersusAllComponent extends React.Component {
                                 }}
                                         title={category.name}
                                         onPress={() => this.changeScene(category)}
+                                        disabled={this.checkIfQuestionRemaining(category)}
                                 />
                             </View>
                         })

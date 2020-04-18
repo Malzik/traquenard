@@ -1,8 +1,8 @@
-import duel from '../../../assets/json/duel';
-import question from '../../../assets/json/question';
-import oneversusall from '../../../assets/json/oneversusall';
-import friendships from '../../../assets/json/friendship';
-import everyone from '../../../assets/json/everyone';
+import duel from '../../../assets/game/duel';
+import question from '../../../assets/game/question';
+import oneversusall from '../../../assets/game/oneversusall';
+import friendships from '../../../assets/game/friendship';
+import everyone from '../../../assets/game/everyone';
 import texts from '../../../assets/texts/fr';
 
 const initialState = {
@@ -29,7 +29,14 @@ const textReducer = (state = initialState, action = {}) => {
             newState.texts = texts.texts;
             break;
         case 'REMOVE_QUESTION':
-            newState[action.questionType] = newState[action.questionType].filter(question => question.question !== action.question.question);
+            newState[action.questionType] = newState[action.questionType].filter(question =>
+                question.question !== action.question.question
+            );
+            break;
+        case 'REMOVE_QUESTION_FROM_CATEGORY':
+            newState.oneversusall[action.category] = newState.oneversusall[action.category].filter(question =>
+                question.question !== action.question.question
+            );
             break;
         default:
             break;

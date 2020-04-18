@@ -13,19 +13,7 @@ class CardComponent extends React.Component {
     constructor(props) {
         super(props);
 
-        const texts = [
-            "text.game.duel",
-            "text.game.friendship",
-            "text.game.question",
-            "text.game.oneversusall",
-            "text.card.title"
-        ];
-        let textCollection = {};
-        texts.forEach(text => {
-            textCollection[text] = this.props.textReducer.texts[text];
-        });
         this.state = {
-            texts: textCollection,
             currentPlayer: this.props.currentPlayer,
             selectedPlayer: this.props.selectedPlayer,
             cards: [
@@ -76,7 +64,8 @@ class CardComponent extends React.Component {
     }
 
     render() {
-        const {texts, cards} = this.state;
+        const {texts} = this.props.textReducer;
+        const {cards} = this.state;
 
         return (
             <View style={styles.container}>

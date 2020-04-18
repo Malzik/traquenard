@@ -11,31 +11,23 @@ class EveryonePlayComponent extends React.Component {
     constructor(props) {
         super(props);
 
-        const texts = [
-            "text.everyonePlay.title",
-            "text.sip"
-        ];
-        let textCollection = {};
-        texts.forEach(text => {
-            textCollection[text] = this.props.textReducer.texts[text];
-        });
-
         this.state = {
             everyone: {
                 question: null,
                 sip: null
-            },
-            texts: textCollection
+            }
         };
     }
 
     componentDidMount(): void {
-        const everyone = this.props.textReducer.everyone;
+        const {textReducer, removeQuestion} = this.props;
+
+        const everyone = textReducer.everyone;
         const question = everyone[Math.floor(Math.random() * everyone.length)];
         this.setState({
             everyone: question
         });
-        this.props.removeQuestion("everyone", question);
+        removeQuestion("everyone", question);
     }
 
     async changeScene(): void {
@@ -54,7 +46,8 @@ class EveryonePlayComponent extends React.Component {
     }
 
     render() {
-        const {texts} = this.state;
+        const {texts} = this.props.textReducer;
+        const {question, sip} = this.state.everyone;
 
         return (
             <TouchableOpacity style={styles.container} onPress={() => this.changeScene()}>
@@ -64,13 +57,13 @@ class EveryonePlayComponent extends React.Component {
                     </Text>
                 </View>
                 <View style={styles.flex2}>
-                    <Text style={styles.questionText}>{this.state.everyone.question}</Text>
+                    <Text style={styles.questionText}>{question}</Text>
                 </View>
                 <View style={styles.flex3}>
-                    <Text style={styles.gorgeesText}>
-                            <FormattedText text={texts["text.sip"]} sip={this.state.everyone.sip}/>
-                        </Text>
-                    </View>
+                    <Text style={styles.sipText}>
+                        <FormattedText text={texts["text.sip"]} sip={sip}/>
+                    </Text>
+                </View>
                 </TouchableOpacity>
         );
     }
@@ -106,7 +99,7 @@ const styles = StyleSheet.create({
         fontSize: 35,
         fontFamily: "questionText",
     },
-    gorgeesText: {
+    sipText: {
         textAlign: 'right',
         color: '#fff',
         fontSize: 30,

@@ -11,24 +11,18 @@ class SelectDifficultyComponent extends React.Component {
 
     constructor(props) {
         super(props);
-
-        let textCollection = {};
-        textCollection["text.chooseDifficulty.title"] = this.props.textReducer.texts["text.chooseDifficulty.title"];
-
-        this.state = {
-            texts: textCollection
-        }
     }
 
     setDifficulty(difficulty){
-        this.props.changeDifficulty(difficulty);
-        this.props.updateCurrentUser();
-        this.props.navigation.navigate('Card')
+        const {changeDifficulty, updateCurrentUser, navigation} = this.props;
+
+        changeDifficulty(difficulty);
+        updateCurrentUser();
+        navigation.navigate('Card')
     }
 
-
     render() {
-        const {texts} = this.state;
+        const {texts} = this.props.textReducer;
 
         return (
             <View style={ styles.container }>

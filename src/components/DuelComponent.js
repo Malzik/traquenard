@@ -11,31 +11,23 @@ class DuelComponent extends React.Component {
     constructor(props) {
         super(props);
 
-        const texts = [
-            "text.duel.title",
-            "text.sip"
-        ];
-        let textCollection = {};
-        texts.forEach(text => {
-            textCollection[text] = this.props.textReducer.texts[text];
-        });
-
         this.state = {
             duel: {
                 question: null,
                 sip: null
-            },
-            texts: textCollection
+            }
         }
     }
 
     componentDidMount(): void {
-        const duels = this.props.textReducer.duels;
+        const {textReducer, removeQuestion} = this.props;
+
+        const duels = textReducer.duels;
         const duel = duels[Math.floor(Math.random() * duels.length)];
         this.setState({
             duel
         });
-        this.props.removeQuestion("duels", duel);
+        removeQuestion("duels", duel);
     }
 
     changeScene(): void {
@@ -47,7 +39,8 @@ class DuelComponent extends React.Component {
     }
 
     render() {
-        const {texts} = this.state;
+        const {texts} = this.props.textReducer;
+        const {question, sip} = this.state.duel;
 
         return (
             <TouchableOpacity style={styles.container} onPress={() => this.changeScene()}>
@@ -57,13 +50,13 @@ class DuelComponent extends React.Component {
                     </Text>
                 </View>
                 <View style={styles.flex2}>
-                    <Text style={styles.questionText}>{this.state.duel.question}</Text>
+                    <Text style={styles.questionText}>{question}</Text>
                 </View>
                 <View style={styles.flex3}>
-                    <Text style={styles.gorgeesText}>
-                            <FormattedText text={texts["text.sip"]} sip={this.state.duel.sip}/>
-                        </Text>
-                    </View>
+                    <Text style={styles.sipText}>
+                        <FormattedText text={texts["text.sip"]} sip={sip}/>
+                    </Text>
+                </View>
                 </TouchableOpacity>
         );
     }
@@ -99,7 +92,7 @@ const styles = StyleSheet.create({
         fontSize: 35,
         fontFamily: "questionText",
     },
-    gorgeesText: {
+    sipText: {
         textAlign: 'right',
         color: '#fff',
         fontSize: 30,
@@ -108,8 +101,12 @@ const styles = StyleSheet.create({
 });
 
 DuelComponent.propTypes = {
-    changeScene: PropTypes.func,
+    addSip: PropTypes.func,
+    removeQuestion: PropTypes.func,
+    navigation: PropTypes.object,
+    textReducer: PropTypes.object
 };
+
 const mapStateToProps = (state) => {
     return state
 };

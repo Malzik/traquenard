@@ -10,32 +10,25 @@ import {FormattedText} from "./helpers/FormattedText";
 class OneVersusAllComponent extends React.Component {
     constructor(props) {
         super(props);
-
-        const texts = [
-            "text.oneVersusAll.title",
-            "text.sip"
-        ];
-        let textCollection = {};
-        texts.forEach(text => {
-            textCollection[text] = this.props.textReducer.texts[text];
-        });
-
         this.state = {
             oneVersusAll: {
                 question: null,
                 sip: null
-            },
-            texts: textCollection
+            }
         }
     }
 
     componentDidMount(): void {
-        const category = this.props.gameReducer.selectedCategory;
-        const oneversusall = this.props.textReducer.oneversusall;
+        const {textReducer, gameReducer, removeQuestionFromCategory} = this.props;
+
+        const category = gameReducer.selectedCategory;
+        const oneversusall = textReducer.oneversusall;
         const question = oneversusall[category.name][Math.floor(Math.random() * oneversusall[category.name].length)];
         this.setState({
             oneVersusAll: question
         });
+
+        removeQuestionFromCategory(category.name, question);
     }
 
     changeScene(): void {
@@ -47,7 +40,8 @@ class OneVersusAllComponent extends React.Component {
     }
 
     render() {
-        const {texts} = this.state;
+        const {texts} = this.props.textReducer;
+        const {question, sip} = this.state.oneVersusAll;
 
         return (
             <TouchableOpacity style={styles.container} onPress={() => this.changeScene()}>
@@ -57,15 +51,13 @@ class OneVersusAllComponent extends React.Component {
                     </Text>
                 </View>
                 <View style={styles.flex2}>
-                    <Text style={styles.questionText}>
-                        {this.state.oneVersusAll.question}
+                    <Text style={styles.questionText}>{question}</Text>
+                </View>
+                <View style={styles.flex3}>
+                    <Text style={styles.sipText}>
+                        <FormattedText text={texts["text.sip"]} sip={sip}/>
                     </Text>
                 </View>
-                    <View style={ styles.flex3 }>
-                        <Text style={styles.gorgeesText}>
-                            <FormattedText text={texts["text.sip"]} sip={this.state.oneVersusAll.sip}/>
-                        </Text>
-                    </View>
                 </TouchableOpacity>
         );
     }
@@ -101,7 +93,7 @@ const styles = StyleSheet.create({
         fontSize: 35,
         fontFamily: "questionText",
     },
-    gorgeesText: {
+    sipText: {
         textAlign: 'right',
         color: '#fff',
         fontSize: 30,

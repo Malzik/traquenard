@@ -10,14 +10,10 @@ class SelectOtherPlayerComponent extends React.Component {
     constructor(props) {
         super(props);
 
-        let textCollection = {};
-        textCollection["text.selectOtherPlayer.title"] = this.props.textReducer.texts["text.selectOtherPlayer.title"];
-
         this.state = {
             currentPlayer: {
                 name: null
             },
-            texts: textCollection,
             selectedComponent: this.props.route.params.component
         };
     }
@@ -38,7 +34,8 @@ class SelectOtherPlayerComponent extends React.Component {
 
     render() {
         const {players} = this.props.gameReducer;
-        const {texts, currentPlayer} = this.state;
+        const {texts} = this.props.textReducer;
+        const {currentPlayer} = this.state;
 
         return (
             <View style={styles.container}>

@@ -1,11 +1,5 @@
 import {Alert, BackHandler} from 'react-native';
 
-const exitTexts = [
-    "text.exit.title",
-    "text.exit.yes",
-    "text.exit.no"
-];
-
 const handleAndroidBackButton = textReducer => {
     BackHandler.addEventListener('hardwareBackPress', () => {
         backAction(textReducer);
@@ -14,16 +8,13 @@ const handleAndroidBackButton = textReducer => {
 };
 
 const backAction = textReducer => {
-    const title = textReducer.texts["text.exit.title"].toString();
-    const yes = textReducer.texts["text.exit.yes"].toString();
-    const no = textReducer.texts["text.exit.no"].toString();
-    Alert.alert(title, null, [
+    Alert.alert(textReducer.texts["text.exit.title"], null, [
             {
-                text: no,
+                text: textReducer.texts["text.exit.no"],
                 onPress: () => null,
                 style: "cancel"
             },
-            {text: yes, onPress: () => BackHandler.exitApp()}
+            {text: textReducer.texts["text.exit.yes"], onPress: () => BackHandler.exitApp()}
         ],
         {cancelable: false});
     return true;
