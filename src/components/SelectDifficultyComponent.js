@@ -6,6 +6,7 @@ import PropTypes from "prop-types";
 import {connect} from "react-redux";
 import {FormattedText} from "./helpers/FormattedText";
 import * as ScreenOrientation from "expo/build/ScreenOrientation/ScreenOrientation";
+import {widthPercentageToDP as wp} from "react-native-responsive-screen";
 
 
 class SelectDifficultyComponent extends React.Component {
@@ -65,8 +66,11 @@ const styles = StyleSheet.create({
         backgroundColor: '#2A2A2A',
         flexDirection: 'column'
     },
+    header: {
+        height: wp('10%'),
+    },
     content: {
-        marginTop: "7%",
+        height: wp('90%'),
         flexDirection: 'row',
         marginHorizontal: 40,
     },
