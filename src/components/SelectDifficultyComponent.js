@@ -34,19 +34,19 @@ class SelectDifficultyComponent extends React.Component {
                 </View>
                 <View style={styles.content}>
                     <TouchableOpacity onPress={() => this.setDifficulty(0.5)} style={styles.img}>
-                        <Image source={require('./icons/img1.png')} style={{width: 100, height: 100}}/>
+                        <Image source={require('./icons/img1.png')} style={{width: 75, height: 75}}/>
                     </TouchableOpacity>
                     <TouchableOpacity onPress={() => this.setDifficulty(0.75)} style={styles.img}>
-                        <Image source={require('./icons/img1.png')} style={{width: 100, height: 100}}/>
+                        <Image source={require('./icons/img1.png')} style={{width: 75, height: 75}}/>
                     </TouchableOpacity>
                     <TouchableOpacity onPress={() => this.setDifficulty(1)} style={styles.img}>
-                        <Image source={require('./icons/img1.png')} style={{width: 100, height: 100}}/>
+                        <Image source={require('./icons/img1.png')} style={{width: 75, height: 75}}/>
                     </TouchableOpacity>
                     <TouchableOpacity onPress={() => this.setDifficulty(1.5)} style={styles.img}>
-                        <Image source={require('./icons/img1.png')} style={{width: 100, height: 100}}/>
+                        <Image source={require('./icons/img1.png')} style={{width: 75, height: 75}}/>
                     </TouchableOpacity>
                     <TouchableOpacity onPress={() => this.setDifficulty(2)} style={styles.img}>
-                        <Image source={require('./icons/img1.png')} style={{width: 100, height: 100}}/>
+                        <Image source={require('./icons/img1.png')} style={{width: 75, height: 75}}/>
                     </TouchableOpacity>
                 </View>
             </View>
@@ -76,7 +76,7 @@ const styles = StyleSheet.create({
         marginHorizontal: 40,
     },
     img: {
-        padding: 20
+        padding: 15
     },
     title: {
         marginTop: 20,

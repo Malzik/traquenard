@@ -31,6 +31,10 @@
       "versionCode": 1,
       "permissions": []
     },
-    "description": ""
+    "description": "",
+    "androidNavigationBar": {
+      "visible": true,
+      "backgroundColor": "#2A2A2A"
+    }
   }
 }
