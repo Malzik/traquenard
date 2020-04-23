@@ -1,6 +1,6 @@
 import {Dimensions, StyleSheet, Text, View} from "react-native";
 import React, { Component } from "react";
-import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
+import {widthPercentageToDP as wp} from 'react-native-responsive-screen';
 import {bindActionCreators} from "redux";
 import * as gameActions from "../store/actions/gameAction";
 import * as textActions from "../store/actions/textAction";

@@ -5,7 +5,6 @@ import * as gameActions from "../store/actions/gameAction";
 import PropTypes from "prop-types";
 import {connect} from "react-redux";
 import {FormattedText} from "./helpers/FormattedText";
-import * as ScreenOrientation from "expo/build/ScreenOrientation/ScreenOrientation";
 import {widthPercentageToDP as wp} from "react-native-responsive-screen";
 
 
@@ -71,7 +70,9 @@ const styles = StyleSheet.create({
     },
     content: {
         height: wp('90%'),
+        alignItems: 'center',
         flexDirection: 'row',
+        justifyContent: 'space-between',
         marginHorizontal: 40,
     },
     img: {
