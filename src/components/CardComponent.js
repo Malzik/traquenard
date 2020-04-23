@@ -1,5 +1,5 @@
 import React from "react";
-import {StyleSheet, Text, View} from "react-native";
+import {Dimensions, StyleSheet, Text, View} from "react-native";
 import {bindActionCreators} from "redux";
 import * as gameActions from "../store/actions/gameAction";
 import PropTypes from "prop-types";
@@ -7,7 +7,11 @@ import {connect} from "react-redux";
 import {Button} from 'react-native-elements';
 import {FormattedText} from "./helpers/FormattedText";
 import {handleAndroidBackButton, removeAndroidBackButtonHandler} from "./helpers/BackHandlerHelper";
-import {widthPercentageToDP as wp} from "react-native-responsive-screen";
+import {
+    heightPercentageToDP as hp,
+    listenOrientationChange,
+    removeOrientationListener
+} from "react-native-responsive-screen";
 
 class CardComponent extends React.Component {
 
@@ -15,6 +19,8 @@ class CardComponent extends React.Component {
         super(props);
 
         this.state = {
+            width: Dimensions.get('window').width,
+            height: Dimensions.get('window').height,
             currentPlayer: this.props.currentPlayer,
             selectedPlayer: this.props.selectedPlayer,
             cards: [
@@ -36,14 +42,25 @@ class CardComponent extends React.Component {
                 },
             ],
         };
+
+        this.onLayout = this.onLayout.bind(this);
+    }
+
+    onLayout(e) {
+        this.setState({
+            width: Dimensions.get('window').width,
+            height: Dimensions.get('window').height,
+        });
     }
 
     componentDidMount(): void {
         handleAndroidBackButton(this.props.textReducer);
+        listenOrientationChange(this);
     }
 
     componentWillUnmount() {
         removeAndroidBackButtonHandler();
+        removeOrientationListener();
     }
 
     checkIfQuestionRemaining(card) {
@@ -69,7 +86,8 @@ class CardComponent extends React.Component {
         const {cards} = this.state;
 
         return (
-            <View style={styles.container}>
+            <View style={styles.container}
+                  onLayout={this.onLayout}>
                 <View style={styles.header}>
                     <Text style={styles.title}>
                         <FormattedText text={texts["text.card.title"]}/>
@@ -107,13 +125,13 @@ const styles = StyleSheet.create({
         flexDirection: 'column'
     },
     header: {
-        height: wp('30%'),
+        height: hp('30%'),
     },
     content: {
-        height: wp('70%'),
+        height: hp('70%'),
         flexDirection: 'row',
         justifyContent: 'center',
-        flexWrap:'wrap',
+        flexWrap: 'wrap',
         alignItems: 'flex-start',
     },
     title: {

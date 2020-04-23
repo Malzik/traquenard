@@ -21,12 +21,6 @@ const gameReducer = (state = initialState, action = {}) => {
             newState.players = action.players;
             newState.startTime = moment(new Date());
             break;
-        case 'CHANGE_SCENE':
-            console.log("suppose to be never called");
-            newState.scene = action.newScene;
-            if (["card", "everyoneplay"].includes(action.newScene))
-                newState.currentTurn = newState.currentTurn + 1;
-            break;
         case 'CHANGE_DIFFICULTY':
             newState.difficulty = action.newDifficulty;
             break;

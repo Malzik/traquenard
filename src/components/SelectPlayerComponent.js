@@ -37,7 +37,7 @@ class SelectPlayerComponent extends React.Component {
             })
         } else {
             this.setState({
-                errors: {...this.state.errors, addPlayer: "Le nom de peut pas être vide"}
+                errors: {...this.state.errors, addPlayer: "Le nom ne peut pas être vide"}
             })
         }
     }
@@ -126,10 +126,10 @@ const styles = StyleSheet.create({
         backgroundColor: '#2A2A2A',
     },
     content: {
-        height: "70%"
+        height: "80%"
     },
     header: {
-        height: "10%"
+        height: "15%"
     },
     middle: {
         height: "60%"
