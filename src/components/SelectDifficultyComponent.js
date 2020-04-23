@@ -5,26 +5,13 @@ import * as gameActions from "../store/actions/gameAction";
 import PropTypes from "prop-types";
 import {connect} from "react-redux";
 import {FormattedText} from "./helpers/FormattedText";
-import {
-    heightPercentageToDP as hp,
-    listenOrientationChange,
-    removeOrientationListener,
-    widthPercentageToDP as wp
-} from "react-native-responsive-screen";
+import {widthPercentageToDP as wp} from "react-native-responsive-screen";
 
 
 class SelectDifficultyComponent extends React.Component {
 
     constructor(props) {
         super(props);
-    }
-
-    componentDidMount(): void {
-        listenOrientationChange(this);
-    }
-
-    componentWillUnmount(): void {
-        removeOrientationListener();
     }
 
     setDifficulty(difficulty) {
@@ -79,10 +66,10 @@ const styles = StyleSheet.create({
         flexDirection: 'column'
     },
     header: {
-        height: hp('10%'),
+        height: wp('10%'),
     },
     content: {
-        height: hp('90%'),
+        height: wp('90%'),
         alignItems: 'center',
         flexDirection: 'row',
         justifyContent: 'space-between',

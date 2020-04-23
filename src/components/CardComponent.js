@@ -1,5 +1,5 @@
 import React from "react";
-import {Dimensions, StyleSheet, Text, View} from "react-native";
+import {StyleSheet, Text, View} from "react-native";
 import {bindActionCreators} from "redux";
 import * as gameActions from "../store/actions/gameAction";
 import PropTypes from "prop-types";
@@ -7,11 +7,7 @@ import {connect} from "react-redux";
 import {Button} from 'react-native-elements';
 import {FormattedText} from "./helpers/FormattedText";
 import {handleAndroidBackButton, removeAndroidBackButtonHandler} from "./helpers/BackHandlerHelper";
-import {
-    heightPercentageToDP as hp,
-    listenOrientationChange,
-    removeOrientationListener
-} from "react-native-responsive-screen";
+import {widthPercentageToDP as wp} from "react-native-responsive-screen";
 
 class CardComponent extends React.Component {
 
@@ -19,8 +15,6 @@ class CardComponent extends React.Component {
         super(props);
 
         this.state = {
-            width: Dimensions.get('window').width,
-            height: Dimensions.get('window').height,
             currentPlayer: this.props.currentPlayer,
             selectedPlayer: this.props.selectedPlayer,
             cards: [
@@ -46,21 +40,12 @@ class CardComponent extends React.Component {
         this.onLayout = this.onLayout.bind(this);
     }
 
-    onLayout(e) {
-        this.setState({
-            width: Dimensions.get('window').width,
-            height: Dimensions.get('window').height,
-        });
-    }
-
     componentDidMount(): void {
         handleAndroidBackButton(this.props.textReducer);
-        listenOrientationChange(this);
     }
 
     componentWillUnmount() {
         removeAndroidBackButtonHandler();
-        removeOrientationListener();
     }
 
     checkIfQuestionRemaining(card) {
@@ -125,10 +110,10 @@ const styles = StyleSheet.create({
         flexDirection: 'column'
     },
     header: {
-        height: hp('30%'),
+        height: wp('30%'),
     },
     content: {
-        height: hp('70%'),
+        height: wp('70%'),
         flexDirection: 'row',
         justifyContent: 'center',
         flexWrap: 'wrap',
