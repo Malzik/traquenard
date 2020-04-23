@@ -57,9 +57,6 @@ class QuestionComponent extends React.Component {
 
         return (
             <View style={styles.container}>
-                <Text>
-                    Largeur : {this.state.width} / Hauteur : {this.state.height}
-                </Text>
                 <View style={styles.contentTitle}>
                     <Text style={styles.title}>
                         <FormattedText text={texts["text.question.title"]}/>

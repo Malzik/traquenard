@@ -6,6 +6,7 @@ import {bindActionCreators} from "redux"
 import {OneVersusAll} from "./OneVersusAllComponent";
 import {FormattedText} from "./helpers/FormattedText";
 import {Button} from "react-native-elements";
+import {widthPercentageToDP as wp} from "react-native-responsive-screen";
 
 class SelectCategoryOneVersusAllComponent extends React.Component {
 
@@ -98,13 +99,13 @@ const styles = StyleSheet.create({
         fontFamily: "titre"
     },
     titleView: {
-        height: "20%",
+        height: wp('20%'),
     },
     contentTextView: {
-        height: "35%",
+        height: wp('35%'),
     },
     categoryView: {
-        height: "45%",
+        height: wp('45%'),
         flexDirection: 'row',
         justifyContent: 'center',
         flexWrap:'wrap',

@@ -6,6 +6,7 @@ import {connect} from "react-redux";
 import {Button} from 'react-native-elements';
 import PropTypes from "prop-types";
 import {FormattedText} from "./helpers/FormattedText";
+import {widthPercentageToDP as wp} from "react-native-responsive-screen";
 
 class AnswerQuestionComponent extends React.Component {
     constructor(props) {
@@ -90,15 +91,15 @@ const styles = StyleSheet.create({
         backgroundColor: '#2A2A2A',
     },
     contentTitle :{
-        height: "15%",
+        height: wp('15%'),
         justifyContent: 'center',
     },
     contentQuestion: {
-        height: "52%",
+        height: wp('52%'),
         justifyContent: 'center',
     },
     contentAnswer: {
-        height: "33%",
+        height: wp('33%'),
         flexDirection: 'row',
         justifyContent: 'center',
         flexWrap:'wrap',

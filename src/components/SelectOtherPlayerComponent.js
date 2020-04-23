@@ -4,6 +4,7 @@ import React from "react";
 import * as gameActions from '../store/actions/gameAction';
 import {bindActionCreators} from "redux";
 import {FormattedText} from "./helpers/FormattedText";
+import {widthPercentageToDP as wp} from "react-native-responsive-screen";
 
 class SelectOtherPlayerComponent extends React.Component {
 
@@ -76,8 +77,11 @@ const styles = StyleSheet.create({
         fontSize: 35,
         fontFamily: "titre"
     },
+    titleView: {
+        height: wp('20%'),
+    },
     listView: {
-        marginTop: "1%",
+        height: wp('80%'),
         justifyContent:'center',
         paddingHorizontal: 100,
         marginBottom: 30

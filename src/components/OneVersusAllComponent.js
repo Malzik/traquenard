@@ -6,6 +6,7 @@ import * as textActions from "../store/actions/textAction";
 import {connect} from "react-redux";
 import PropTypes from "prop-types";
 import {FormattedText} from "./helpers/FormattedText";
+import {widthPercentageToDP as wp} from "react-native-responsive-screen";
 
 class OneVersusAllComponent extends React.Component {
     constructor(props) {
@@ -69,16 +70,16 @@ const styles = StyleSheet.create({
         backgroundColor: '#3FBD4E',
     },
     flex1: {
-        height: "15%",
+        height: wp('20%'),
         padding: 10,
     },
     flex2: {
-        height: "65%",
+        height: wp('60%'),
         justifyContent: 'center',
         marginBottom: 10,
     },
     flex3: {
-        height: "20%",
+        height: wp('20%'),
         marginRight: 30
     },
     title: {

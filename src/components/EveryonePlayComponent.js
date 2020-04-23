@@ -5,6 +5,7 @@ import * as gameActions from '../store/actions/gameAction';
 import * as textActions from '../store/actions/textAction';
 import {bindActionCreators} from "redux";
 import {FormattedText} from "./helpers/FormattedText";
+import {widthPercentageToDP as wp} from "react-native-responsive-screen";
 
 class EveryonePlayComponent extends React.Component {
 
@@ -75,17 +76,17 @@ const styles = StyleSheet.create({
         backgroundColor: '#2A2A2A',
     },
     flex1: {
+        height: wp('20%'),
         padding: 10,
     },
     flex2: {
-        marginTop: "5%",
+        height: wp('60%'),
         justifyContent: 'center',
         marginBottom: 10,
     },
     flex3: {
-        flex: 1,
-        margin: 30,
-        justifyContent: 'flex-end',
+        height: wp('20%'),
+        marginRight: 30
     },
     title: {
         textAlign: 'left',

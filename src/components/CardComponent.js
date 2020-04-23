@@ -7,7 +7,7 @@ import {connect} from "react-redux";
 import {Button} from 'react-native-elements';
 import {FormattedText} from "./helpers/FormattedText";
 import {handleAndroidBackButton, removeAndroidBackButtonHandler} from "./helpers/BackHandlerHelper";
-import * as ScreenOrientation from "expo/build/ScreenOrientation/ScreenOrientation";
+import {widthPercentageToDP as wp} from "react-native-responsive-screen";
 
 class CardComponent extends React.Component {
 
@@ -106,10 +106,15 @@ const styles = StyleSheet.create({
         backgroundColor: '#2A2A2A',
         flexDirection: 'column'
     },
+    header: {
+        height: wp('30%'),
+    },
     content: {
-        marginTop: "8%",
+        height: wp('70%'),
         flexDirection: 'row',
+        justifyContent: 'center',
         flexWrap:'wrap',
+        alignItems: 'flex-start',
     },
     title: {
         marginTop: 20,

@@ -6,6 +6,7 @@ import * as textActions from "../store/actions/textAction";
 import {connect} from "react-redux";
 import PropTypes from "prop-types";
 import {FormattedText} from "./helpers/FormattedText";
+import {widthPercentageToDP as wp} from "react-native-responsive-screen";
 
 class DuelComponent extends React.Component {
     constructor(props) {
@@ -68,17 +69,17 @@ const styles = StyleSheet.create({
         backgroundColor: '#D42A2A',
     },
     flex1: {
+        height: wp('20%'),
         padding: 10,
     },
     flex2: {
-        marginTop: "6%",
+        height: wp('60%'),
         justifyContent: 'center',
         marginBottom: 10,
     },
     flex3: {
-        flex: 1,
-        margin: 30,
-        justifyContent: 'flex-end',
+        height: wp('20%'),
+        marginRight: 30
     },
     title: {
         textAlign: 'left',
