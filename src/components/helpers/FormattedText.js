@@ -29,6 +29,23 @@ class FormattedTextComponent extends React.Component {
             const sip = Math.round(parseInt(this.props.sip) * difficulty);
             text = text.replace("{sip}", sip)
         }
+        if (text.includes("{playerX}")){
+            text = text.replace("{playerX}", "lol");
+        }
+        if (text.includes("{playerX}")){
+            const place = Math.floor(Math.random() * gameReducer.players.length);
+            let player = gameReducer.players[place];
+            text = text.replace("{playerX}", player.name);
+            if (text.includes("{playerY}")) {
+                let place2 = Math.floor(Math.random() * gameReducer.players.length);
+                while (place2 === place){
+                    place2 = Math.floor(Math.random() * gameReducer.players.length);
+                }
+                player = gameReducer.players[place2];
+                text = text.replace("{playerY}", player.name)
+            }
+
+        }
         return text;
     }
 

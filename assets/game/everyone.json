@@ -13,7 +13,7 @@
       "sip": "1"
     },
     {
-      "question": "JoueurX demande à JoueurY de faire ce que tu veux pendant 2 minutes, si joeurY refuse il boit",
+      "question": "{playerX} demande à {playerY} de faire ce que tu veux pendant 2 minutes, si {playerY} refuse il boit",
       "sip": "5"
     },
     {

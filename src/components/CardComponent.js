@@ -37,7 +37,6 @@ class CardComponent extends React.Component {
             ],
         };
 
-        this.onLayout = this.onLayout.bind(this);
     }
 
     componentDidMount(): void {
