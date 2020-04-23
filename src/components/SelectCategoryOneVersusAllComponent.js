@@ -98,13 +98,13 @@ const styles = StyleSheet.create({
         fontFamily: "titre"
     },
     titleView: {
-        flex:0.2,
+        height: "20%",
     },
     contentTextView: {
-        flex:0.35,
+        height: "35%",
     },
     categoryView: {
-        flex:0.45,
+        height: "45%",
         flexDirection: 'row',
         justifyContent: 'center',
         flexWrap:'wrap',

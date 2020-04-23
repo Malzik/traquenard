@@ -76,11 +76,8 @@ const styles = StyleSheet.create({
         fontSize: 35,
         fontFamily: "titre"
     },
-    titleView: {
-        flex:0.3,
-    },
     listView: {
-        flex:0.7,
+        marginTop: "1%",
         justifyContent:'center',
         paddingHorizontal: 100,
         marginBottom: 30

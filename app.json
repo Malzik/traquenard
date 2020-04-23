@@ -10,7 +10,7 @@
       "web"
     ],
     "version": "1.0.0",
-    "orientation": "portrait",
+    "orientation": "default",
     "icon": "./assets/chevreIcon.png",
     "splash": {
       "image": "./assets/chevre.png",
@@ -28,7 +28,8 @@
     },
     "android": {
       "package": "com.traquenard.corp",
-      "versionCode": 1
+      "versionCode": 1,
+      "permissions": []
     },
     "description": ""
   }

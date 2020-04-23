@@ -69,16 +69,16 @@ const styles = StyleSheet.create({
         backgroundColor: '#3FBD4E',
     },
     flex1: {
-        flex: 0.2,
+        height: "15%",
         padding: 10,
     },
     flex2: {
-        flex: 0.6,
+        height: "65%",
         justifyContent: 'center',
         marginBottom: 10,
     },
     flex3: {
-        flex: 0.2,
+        height: "20%",
         marginRight: 30
     },
     title: {

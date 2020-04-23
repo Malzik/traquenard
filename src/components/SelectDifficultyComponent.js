@@ -5,6 +5,7 @@ import * as gameActions from "../store/actions/gameAction";
 import PropTypes from "prop-types";
 import {connect} from "react-redux";
 import {FormattedText} from "./helpers/FormattedText";
+import * as ScreenOrientation from "expo/build/ScreenOrientation/ScreenOrientation";
 
 
 class SelectDifficultyComponent extends React.Component {
@@ -32,19 +33,19 @@ class SelectDifficultyComponent extends React.Component {
                     </Text>
                 </View>
                 <View style={styles.content}>
-                    <TouchableOpacity onPress={() => this.setDifficulty(0.5)}>
+                    <TouchableOpacity onPress={() => this.setDifficulty(0.5)} style={styles.img}>
                         <Image source={require('./icons/img1.png')} style={{width: 100, height: 100}}/>
                     </TouchableOpacity>
-                    <TouchableOpacity onPress={() => this.setDifficulty(0.75)}>
+                    <TouchableOpacity onPress={() => this.setDifficulty(0.75)} style={styles.img}>
                         <Image source={require('./icons/img1.png')} style={{width: 100, height: 100}}/>
                     </TouchableOpacity>
-                    <TouchableOpacity onPress={() => this.setDifficulty(1)}>
+                    <TouchableOpacity onPress={() => this.setDifficulty(1)} style={styles.img}>
                         <Image source={require('./icons/img1.png')} style={{width: 100, height: 100}}/>
                     </TouchableOpacity>
-                    <TouchableOpacity onPress={() => this.setDifficulty(1.5)}>
+                    <TouchableOpacity onPress={() => this.setDifficulty(1.5)} style={styles.img}>
                         <Image source={require('./icons/img1.png')} style={{width: 100, height: 100}}/>
                     </TouchableOpacity>
-                    <TouchableOpacity onPress={() => this.setDifficulty(2)}>
+                    <TouchableOpacity onPress={() => this.setDifficulty(2)} style={styles.img}>
                         <Image source={require('./icons/img1.png')} style={{width: 100, height: 100}}/>
                     </TouchableOpacity>
                 </View>
@@ -62,16 +63,15 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: '#2A2A2A',
-    },
-    header: {
-        flex: 0.1,
+        flexDirection: 'column'
     },
     content: {
-        flex: 0.9,
-        alignItems: 'center',
+        marginTop: "7%",
         flexDirection: 'row',
-        justifyContent: 'space-between',
         marginHorizontal: 40,
+    },
+    img: {
+        padding: 20
     },
     title: {
         marginTop: 20,

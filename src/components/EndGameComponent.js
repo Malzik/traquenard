@@ -69,13 +69,13 @@ const styles = StyleSheet.create({
         backgroundColor: '#2A2A2A',
     },
     header: {
-        flex: 0.2,
+        height: "20%",
     },
     result: {
-        flex: 0.5,
+        height: "50%",
     },
     bottom: {
-        flex: 0.3,
+        height: "30%",
         alignItems: 'center',
     },
     title: {

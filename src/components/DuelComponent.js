@@ -68,17 +68,17 @@ const styles = StyleSheet.create({
         backgroundColor: '#D42A2A',
     },
     flex1: {
-        flex: 0.2,
         padding: 10,
     },
     flex2: {
-        flex: 0.6,
+        marginTop: "6%",
         justifyContent: 'center',
         marginBottom: 10,
     },
     flex3: {
-        flex: 0.2,
-        marginRight: 30
+        flex: 1,
+        margin: 30,
+        justifyContent: 'flex-end',
     },
     title: {
         textAlign: 'left',

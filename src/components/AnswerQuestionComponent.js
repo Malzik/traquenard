@@ -79,8 +79,6 @@ class AnswerQuestionComponent extends React.Component {
                     }
                 </View>
             </TouchableOpacity>
-
-
         );
     }
 }
@@ -92,15 +90,15 @@ const styles = StyleSheet.create({
         backgroundColor: '#2A2A2A',
     },
     contentTitle :{
-        flex: 0.15,
+        height: "15%",
         justifyContent: 'center',
     },
     contentQuestion: {
-        flex: 0.52,
+        height: "52%",
         justifyContent: 'center',
     },
     contentAnswer: {
-        flex: 0.33,
+        height: "33%",
         flexDirection: 'row',
         justifyContent: 'center',
         flexWrap:'wrap',

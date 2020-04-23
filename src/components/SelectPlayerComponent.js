@@ -62,52 +62,54 @@ class SelectPlayerComponent extends React.Component {
     render() {
         return (
             <View style={styles.container}>
-                <View style={styles.header}>
-                    <Text style={styles.title}> Traquenard </Text>
-                </View>
-                <View style={styles.middle}>
-                    <View style={styles.list}>
-                        <FlatList
-                            data={this.state.players}
-                            renderItem={({item, index}) => (
-                                <View style={styles.player} id={index}>
-                                    <Text style={styles.textPlayer}>{item.name}</Text>
-                                    <TouchableOpacity onPress={() => this.removePlayer(index)}>
-                                        <Image source={require('./icons/delete.png')}
-                                               style={{width: 22, height: 22, opacity: 0.8}}/>
-                                    </TouchableOpacity>
-                                </View>
-                            )}
-                            keyExtractor={(item, index) => index.toString()}
-                        />
+                <View style={styles.content}>
+                    <View style={styles.header}>
+                        <Text style={styles.title}> Traquenard </Text>
                     </View>
-                    <View style={styles.addInputButton}>
-                        <View style={{flex: 0.9}}>
-                            <TextInput
-                                style={styles.textInputPlayer}
-                                placeholder='Ajouter un joueur'
-                                onChangeText={(text) => this.setState({currentPlayer: text})}
-                                value={this.state.currentPlayer}
+                    <View style={styles.middle}>
+                        <View style={styles.list}>
+                            <FlatList
+                                data={this.state.players}
+                                renderItem={({item, index}) => (
+                                    <View style={styles.player} id={index}>
+                                        <Text style={styles.textPlayer}>{item.name}</Text>
+                                        <TouchableOpacity onPress={() => this.removePlayer(index)}>
+                                            <Image source={require('./icons/delete.png')}
+                                                   style={{width: 22, height: 22, opacity: 0.8}}/>
+                                        </TouchableOpacity>
+                                    </View>
+                                )}
+                                keyExtractor={(item, index) => index.toString()}
                             />
                         </View>
-                        <View style={{flex: 0.1}}>
-                            <TouchableOpacity onPress={() => this.addPlayer()}>
-                                <Image source={require('./icons/add.png')} style={{width: 30, height: 30}}/>
-                            </TouchableOpacity>
+                        <View style={styles.addInputButton}>
+                            <View style={{flex: 0.9}}>
+                                <TextInput
+                                    style={styles.textInputPlayer}
+                                    placeholder='Ajouter un joueur'
+                                    onChangeText={(text) => this.setState({currentPlayer: text})}
+                                    value={this.state.currentPlayer}
+                                />
+                            </View>
+                            <View style={{flex: 0.1}}>
+                                <TouchableOpacity onPress={() => this.addPlayer()}>
+                                    <Image source={require('./icons/add.png')} style={{width: 30, height: 30}}/>
+                                </TouchableOpacity>
+                            </View>
                         </View>
                     </View>
-                </View>
-                <View style={styles.bottom}>
-                    <Button titleStyle={{
-                        textAlign: 'center', color: '#fff',
-                        fontSize: 30, fontFamily: "MainTitle"
-                    }} buttonStyle={{
-                        backgroundColor: "#DA2A2A",
-                        borderRadius: 60, width: 200,
-                    }}
-                            title="Commencer" onPress={() => {
-                        this.startGame()
-                    }}/>
+                    <View style={styles.bottom}>
+                        <Button titleStyle={{
+                            textAlign: 'center', color: '#fff',
+                            fontSize: 30, fontFamily: "MainTitle"
+                        }} buttonStyle={{
+                            backgroundColor: "#DA2A2A",
+                            borderRadius: 60, width: 200,
+                        }}
+                                title="Commencer" onPress={() => {
+                            this.startGame()
+                        }}/>
+                    </View>
                 </View>
             </View>
         );
@@ -120,16 +122,16 @@ const styles = StyleSheet.create({
         backgroundColor: '#2A2A2A',
     },
     content: {
-        flex: 0.58,
+        height: "70%"
     },
     header: {
-        flex: 0.15
+        height: "10%"
     },
     middle: {
-        flex: 0.55
+        height: "60%"
     },
     bottom: {
-        flex: 0.2,
+        height: "20%",
         alignItems: 'center'
     },
     list: {

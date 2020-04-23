@@ -1,5 +1,6 @@
-import {StyleSheet, Text, View} from "react-native";
-import React from "react";
+import {Dimensions, StyleSheet, Text, View} from "react-native";
+import React, { Component } from "react";
+import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
 import {bindActionCreators} from "redux";
 import * as gameActions from "../store/actions/gameAction";
 import * as textActions from "../store/actions/textAction";
@@ -14,12 +15,22 @@ class QuestionComponent extends React.Component {
         super(props);
 
         this.state = {
+            width: Dimensions.get('window').width,
+            height: Dimensions.get('window').height,
             changeScene: false,
             question: {
                 question: null,
                 answers: []
             }
         }
+        this.onLayout = this.onLayout.bind(this);
+    }
+
+    onLayout(e) {
+        this.setState({
+            width: Dimensions.get('window').width,
+            height: Dimensions.get('window').height,
+        });
     }
 
     componentDidMount(): void {
@@ -46,6 +57,9 @@ class QuestionComponent extends React.Component {
 
         return (
             <View style={styles.container}>
+                <Text>
+                    Largeur : {this.state.width} / Hauteur : {this.state.height}
+                </Text>
                 <View style={styles.contentTitle}>
                     <Text style={styles.title}>
                         <FormattedText text={texts["text.question.title"]}/>
@@ -83,15 +97,15 @@ const styles = StyleSheet.create({
         backgroundColor: '#FFE332',
     },
     contentTitle :{
-        flex: 0.15,
+        height: wp('17%'),
         justifyContent: 'center',
     },
     contentQuestion: {
-        flex: 0.52,
+        height: wp('52%'),
         justifyContent: 'center',
     },
     contentAnswer: {
-        flex: 0.33,
+        height: wp('33%'),
         flexDirection: 'row',
         justifyContent: 'center',
         flexWrap:'wrap',
