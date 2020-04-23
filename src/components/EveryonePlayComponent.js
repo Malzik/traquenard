@@ -58,7 +58,9 @@ class EveryonePlayComponent extends React.Component {
                     </Text>
                 </View>
                 <View style={styles.flex2}>
-                    <Text style={styles.questionText}>{question}</Text>
+                    <Text style={styles.questionText}>
+                        <FormattedText text={question}/>
+                    </Text>
                 </View>
                 <View style={styles.flex3}>
                     <Text style={styles.sipText}>

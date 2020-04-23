@@ -30,9 +30,6 @@ class FormattedTextComponent extends React.Component {
             text = text.replace("{sip}", sip)
         }
         if (text.includes("{playerX}")){
-            text = text.replace("{playerX}", "lol");
-        }
-        if (text.includes("{playerX}")){
             const place = Math.floor(Math.random() * gameReducer.players.length);
             let player = gameReducer.players[place];
             text = text.replace("{playerX}", player.name);
@@ -42,7 +39,7 @@ class FormattedTextComponent extends React.Component {
                     place2 = Math.floor(Math.random() * gameReducer.players.length);
                 }
                 player = gameReducer.players[place2];
-                text = text.replace("{playerY}", player.name)
+                text = text.replace(/{playerY}/g, player.name)
             }
 
         }
@@ -50,7 +47,10 @@ class FormattedTextComponent extends React.Component {
     }
 
     render() {
-        return this.formatText(this.props.text)
+        if (this.props.text !== null) {
+            return this.formatText(this.props.text)
+        }
+        return this.props.text;
     }
 }
 

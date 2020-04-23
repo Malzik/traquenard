@@ -1,18 +1,6 @@
 {
   "everyone": [
     {
-      "question": "A tour de rôle : celui qui trouvera le plus de personnage dans le film le seigneur des anneaux gagne",
-      "sip": "5"
-    },
-    {
-      "question": "Chacun choisi un chiffre entre 1 et 6, la sutie arrive",
-      "sip": "3"
-    },
-    {
-      "question": "Tout le monde boit",
-      "sip": "1"
-    },
-    {
       "question": "{playerX} demande à {playerY} de faire ce que tu veux pendant 2 minutes, si {playerY} refuse il boit",
       "sip": "5"
     },
