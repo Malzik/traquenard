@@ -7,7 +7,7 @@ import {connect} from "react-redux";
 import {Button} from 'react-native-elements';
 import {FormattedText} from "./helpers/FormattedText";
 import {handleAndroidBackButton, removeAndroidBackButtonHandler} from "./helpers/BackHandlerHelper";
-import {widthPercentageToDP as wp} from "react-native-responsive-screen";
+import {widthPercentageToDP as wp, heightPercentageToDP as hp} from "react-native-responsive-screen";
 
 class CardComponent extends React.Component {
 
@@ -83,10 +83,10 @@ class CardComponent extends React.Component {
                             return <View style={styles.cards} id={index} key={index}>
                                 <Button titleStyle={{
                                     textAlign: 'center', color: '#fff',
-                                    fontSize: 40, fontFamily: "MainTitle"
+                                    fontSize: wp("10%"), fontFamily: "MainTitle"
                                 }} buttonStyle={{
                                     backgroundColor: card.color,
-                                    borderRadius: 10
+                                    borderRadius: wp("2%")
                                 }}
                                         title={texts[card.text]}
                                         onPress={() => this.changeScene(card)}
@@ -119,16 +119,16 @@ const styles = StyleSheet.create({
         alignItems: 'flex-start',
     },
     title: {
-        marginTop: 20,
+        marginTop: wp("7%"),
         textAlign: 'center',
         color: '#fff',
-        fontSize: 35,
+        fontSize: wp("10%"),
         fontFamily: "titre"
     },
     cards: {
         width: "50%",
-        paddingHorizontal: 20,
-        marginBottom: 10
+        paddingHorizontal: wp("5%"),
+        marginBottom: wp("5%")
     },
 });
 

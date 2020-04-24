@@ -7,6 +7,7 @@ import {connect} from "react-redux";
 import * as ScreenOrientation from "expo/build/ScreenOrientation/ScreenOrientation";
 import {Rows, Table} from "react-native-table-component";
 import moment from "moment";
+import {widthPercentageToDP as wp, heightPercentageToDP as hp} from "react-native-responsive-screen";
 
 
 class EndGameComponent extends React.Component {
@@ -52,9 +53,9 @@ class EndGameComponent extends React.Component {
                 </View>
                 <View style={ styles.bottom }>
                     <Button titleStyle={{textAlign: 'center', color: '#fff',
-                        fontSize: 30,  fontFamily: "MainTitle"
+                        fontSize: wp('10%'),  fontFamily: "MainTitle"
                     }} buttonStyle={{ backgroundColor: "#DA2A2A",
-                        borderRadius: 60, width: 200, }}
+                        borderRadius: 60, width: wp('50%'), }}
                             title="Rejouer" onPress={() => { this.restart();
                     }}/>
                 </View>
@@ -73,29 +74,24 @@ const styles = StyleSheet.create({
     },
     result: {
         height: "50%",
+        paddingHorizontal: "6%"
     },
     bottom: {
         height: "30%",
         alignItems: 'center',
     },
     title: {
-        marginTop: 20,
+        marginTop: wp('10%'),
         textAlign: 'center',
         color: '#fff',
-        fontSize: 35,
+        fontSize: wp('13%'),
         fontFamily: "titre"
     },
     row:{
-        marginTop: 30,
-    },
-    textHead: {
-        fontSize: 25,
-        color: '#fff',
-        fontFamily: 'titre',
-        textAlign: 'center',
+        marginTop: wp('10%'),
     },
     textTable: {
-        fontSize: 22,
+        fontSize: wp('6%'),
         color: '#fff',
         fontFamily: 'gorgeesText',
         textAlign: 'center',

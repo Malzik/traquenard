@@ -7,6 +7,7 @@ import * as gameActions from "../store/actions/gameAction";
 import * as textActions from "../store/actions/textAction";
 import {connect} from "react-redux";
 import * as ScreenOrientation from "expo/build/ScreenOrientation/ScreenOrientation";
+import {widthPercentageToDP as wp, heightPercentageToDP as hp} from "react-native-responsive-screen";
 
 
 class SelectPlayerComponent extends React.Component {
@@ -14,11 +15,7 @@ class SelectPlayerComponent extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            players: [
-                {name: 'Jean', sipCount: 0, sipGiven: 0},
-                {name: 'Rene', sipCount: 0, sipGiven: 0},
-                {name: 'Bebe', sipCount: 0, sipGiven: 0},
-            ],
+            players: [],
             currentPlayer: "",
             errors: {
                 addPlayer: ""
@@ -53,6 +50,10 @@ class SelectPlayerComponent extends React.Component {
         initGame();
         addPlayers(this.state.players);
         navigation.navigate('SelectDifficulty')
+    }
+
+    checkEnoughPlayer() {
+        return this.state.players.length < 2;
     }
 
     removePlayer(index) {
@@ -105,14 +106,15 @@ class SelectPlayerComponent extends React.Component {
                     <View style={styles.bottom}>
                         <Button titleStyle={{
                             textAlign: 'center', color: '#fff',
-                            fontSize: 30, fontFamily: "MainTitle"
+                            fontSize: wp("9%"), fontFamily: "MainTitle"
                         }} buttonStyle={{
                             backgroundColor: "#DA2A2A",
-                            borderRadius: 60, width: 200,
+                            borderRadius: wp("10%"), width: wp("70%"),
                         }}
-                                title="Commencer" onPress={() => {
-                            this.startGame()
-                        }}/>
+                                title="Commencer"
+                                onPress={() => {this.startGame()}}
+                                disabled={this.checkEnoughPlayer()}
+                        />
                     </View>
                 </View>
             </View>
@@ -139,15 +141,15 @@ const styles = StyleSheet.create({
         alignItems: 'center'
     },
     list: {
-        marginTop: 50,
-        paddingHorizontal: 40,
-        height: 150
+        marginTop: wp("10%"),
+        paddingHorizontal: wp("11%"),
+        height: wp("40%")
     },
     title: {
-        marginTop: 20,
+        marginTop: wp("7%"),
         textAlign: 'center',
         color: '#fff',
-        fontSize: 35,
+        fontSize: wp("10%"),
         fontFamily: "titre"
     },
     player: {
@@ -155,25 +157,22 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-between',
     },
-    scroll: {
-        paddingHorizontal: 40,
-        height: 150,
-    },
     textPlayer: {
-        fontSize: 18,
+        fontSize: wp("6%"),
         color: '#fff',
         fontFamily: 'ABeeZee-Regular',
-        marginBottom: 20,
+        marginBottom: wp("4.5%"),
     },
     addInputButton: {
         flexDirection: 'row',
         justifyContent: 'space-between',
-        paddingHorizontal: 40,
-        marginTop: 30,
+        paddingHorizontal: wp("11%"),
+        marginTop: wp("8%"),
     },
     textInputPlayer: {
         color: '#fff',
-        fontSize: 20,
+        fontSize: wp("6%"),
+        fontFamily: 'ABeeZee-Regular',
     }
 });
 

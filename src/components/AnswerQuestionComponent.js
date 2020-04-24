@@ -6,7 +6,7 @@ import {connect} from "react-redux";
 import {Button} from 'react-native-elements';
 import PropTypes from "prop-types";
 import {FormattedText} from "./helpers/FormattedText";
-import {widthPercentageToDP as wp} from "react-native-responsive-screen";
+import {widthPercentageToDP as wp, heightPercentageToDP as hp} from "react-native-responsive-screen";
 
 class AnswerQuestionComponent extends React.Component {
     constructor(props) {
@@ -68,10 +68,10 @@ class AnswerQuestionComponent extends React.Component {
                             return <View style={styles.answer} key={index.toString()}>
                                 <Button titleStyle={{
                                     textAlign: 'center', color: '#fff',
-                                    fontSize: 25, fontFamily: "MainTitle"
+                                    fontSize: wp('6%'), fontFamily: "MainTitle"
                                 }} buttonStyle={{
                                     backgroundColor: (answer.true_false ? "#3FBD4E" : "#D42A2A"),
-                                    borderRadius: 60
+                                    borderRadius: wp('6%')
                                 }}
                                         title={answer.content}
                                 />
@@ -91,7 +91,7 @@ const styles = StyleSheet.create({
         backgroundColor: '#2A2A2A',
     },
     contentTitle :{
-        height: wp('15%'),
+        height: wp('17%'),
         justifyContent: 'center',
     },
     contentQuestion: {
@@ -99,7 +99,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
     },
     contentAnswer: {
-        height: wp('33%'),
+        height: wp('30%'),
         flexDirection: 'row',
         justifyContent: 'center',
         flexWrap:'wrap',
@@ -107,23 +107,22 @@ const styles = StyleSheet.create({
     },
     answer: {
         width: "50%",
-        paddingHorizontal: 20,
-        marginBottom: 10
+        paddingHorizontal: wp('6%'),
+        marginBottom: wp('2%')
     },
     title: {
-        marginTop: 20,
+        marginTop: wp("7%"),
         textAlign: 'center',
         color: '#fff',
-        fontSize: 35,
+        fontSize: wp("10%"),
         fontFamily: "titre"
     },
     questionText: {
-        padding: 20,
+        padding: wp("5%"),
         textAlign: 'center',
         color: '#fff',
-        fontSize: 30,
+        fontSize: wp("8%"),
         fontFamily: "questionText",
-        marginBottom: 30,
     },
 });
 

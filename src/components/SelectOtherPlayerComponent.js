@@ -4,7 +4,7 @@ import React from "react";
 import * as gameActions from '../store/actions/gameAction';
 import {bindActionCreators} from "redux";
 import {FormattedText} from "./helpers/FormattedText";
-import {widthPercentageToDP as wp} from "react-native-responsive-screen";
+import {widthPercentageToDP as wp, heightPercentageToDP as hp} from "react-native-responsive-screen";
 
 class SelectOtherPlayerComponent extends React.Component {
 
@@ -71,32 +71,30 @@ const styles = StyleSheet.create({
         backgroundColor: '#2A2A2A',
     },
     title: {
-        marginTop: 20,
+        marginTop: wp("7%"),
         textAlign: 'center',
         color: '#fff',
-        fontSize: 35,
+        fontSize: wp("8%"),
         fontFamily: "titre"
     },
     titleView: {
         height: wp('20%'),
     },
     listView: {
-        height: wp('80%'),
+        height: wp('70%'),
         justifyContent:'center',
-        paddingHorizontal: 100,
-        marginBottom: 30
+        paddingHorizontal: wp('28%'),
     },
     playerView: {
         flex: 1,
-        marginTop: 20,
+        marginTop: wp('3%'),
         backgroundColor: '#2A9BDA',
-        borderRadius:50,
+        borderRadius:wp('5%'),
     },
     playerText:{
         flex:1,
-        height:60,
         textAlign: 'center',
-        fontSize: 40,
+        fontSize: wp('12%'),
         fontFamily: "MainTitle",
         color: "#fff"
     }

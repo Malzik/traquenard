@@ -6,7 +6,7 @@ import {bindActionCreators} from "redux"
 import {OneVersusAll} from "./OneVersusAllComponent";
 import {FormattedText} from "./helpers/FormattedText";
 import {Button} from "react-native-elements";
-import {widthPercentageToDP as wp} from "react-native-responsive-screen";
+import {widthPercentageToDP as wp, heightPercentageToDP as hp} from "react-native-responsive-screen";
 
 class SelectCategoryOneVersusAllComponent extends React.Component {
 
@@ -61,10 +61,10 @@ class SelectCategoryOneVersusAllComponent extends React.Component {
                             return <View style={styles.category} key={index.toString()}>
                                 <Button titleStyle={{
                                     textAlign: 'center', color: '#fff',
-                                    fontSize: 30, fontFamily: "MainTitle"
+                                    fontSize: wp("8%"), fontFamily: "MainTitle"
                                 }} buttonStyle={{
                                     backgroundColor: "#2A2A2A",
-                                    borderRadius: 10
+                                    borderRadius: wp("3%")
                                 }}
                                         title={category.name}
                                         onPress={() => this.changeScene(category)}
@@ -85,50 +85,35 @@ const styles = StyleSheet.create({
         backgroundColor: '#3FBD4E',
     },
     title: {
-        padding: 10,
+        padding: wp("4%"),
         textAlign: 'center',
         color: '#fff',
-        fontSize: 40,
+        fontSize: wp("11%"),
         fontFamily: "MainTitle"
     },
     contentText: {
-        marginTop: 20,
         textAlign: 'center',
         color: '#fff',
-        fontSize: 30,
+        fontSize: wp("8%"),
         fontFamily: "titre"
     },
     titleView: {
-        height: wp('20%'),
+        height: wp('28%'),
     },
     contentTextView: {
-        height: wp('35%'),
+        height: wp('32%'),
     },
     categoryView: {
-        height: wp('45%'),
+        height: wp('40%'),
         flexDirection: 'row',
         justifyContent: 'center',
         flexWrap:'wrap',
         alignItems: 'flex-start',
     },
-    playerView: {
-        flex: 1,
-        marginTop: 20,
-        backgroundColor: '#2A2A2A',
-        borderRadius:10,
-    },
-    playerText:{
-        flex:1,
-        height:60,
-        textAlign: 'center',
-        fontSize: 40,
-        fontFamily: "MainTitle",
-        color: "#fff"
-    },
     category:{
         width: "30%",
-        paddingHorizontal: 20,
-        marginBottom: 10
+        paddingHorizontal: wp("2%"),
+        marginBottom: wp("3%")
     }
 });
 

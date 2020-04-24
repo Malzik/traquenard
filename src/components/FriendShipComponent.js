@@ -6,7 +6,7 @@ import * as textActions from "../store/actions/textAction";
 import {connect} from "react-redux";
 import PropTypes from "prop-types";
 import {FormattedText} from "./helpers/FormattedText";
-import {widthPercentageToDP as wp} from "react-native-responsive-screen";
+import {widthPercentageToDP as wp, heightPercentageToDP as hp} from "react-native-responsive-screen";
 
 class FriendShipComponent extends React.Component {
     constructor(props) {
@@ -72,33 +72,32 @@ const styles = StyleSheet.create({
     },
     flex1: {
         height: wp('20%'),
-        padding: 10,
+        padding: wp("3%"),
     },
     flex2: {
         height: wp('60%'),
         justifyContent: 'center',
-        marginBottom: 10,
     },
     flex3: {
         height: wp('20%'),
-        marginRight: 30
+        marginRight: wp("6%")
     },
     title: {
         textAlign: 'left',
         color: '#fff',
-        fontSize: 40,
+        fontSize: wp("11%"),
         fontFamily: "MainTitle"
     },
     questionText: {
         textAlign: 'center',
         color: '#fff',
-        fontSize: 35,
+        fontSize: wp("9%"),
         fontFamily: "questionText",
     },
     sipText: {
         textAlign: 'right',
         color: '#fff',
-        fontSize: 30,
+        fontSize: wp("8%"),
         fontFamily: "gorgeesText",
     }
 });

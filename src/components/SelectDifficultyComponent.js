@@ -5,7 +5,7 @@ import * as gameActions from "../store/actions/gameAction";
 import PropTypes from "prop-types";
 import {connect} from "react-redux";
 import {FormattedText} from "./helpers/FormattedText";
-import {widthPercentageToDP as wp} from "react-native-responsive-screen";
+import {widthPercentageToDP as wp, heightPercentageToDP as hp} from "react-native-responsive-screen";
 
 
 class SelectDifficultyComponent extends React.Component {
@@ -34,19 +34,19 @@ class SelectDifficultyComponent extends React.Component {
                 </View>
                 <View style={styles.content}>
                     <TouchableOpacity onPress={() => this.setDifficulty(0.5)} style={styles.img}>
-                        <Image source={require('./icons/img1.png')} style={{width: wp("15%"), height: wp("15%")}}/>
+                        <Image source={require('./icons/img1.png')} style={{width: wp("30%"), height: wp("30%")}}/>
                     </TouchableOpacity>
                     <TouchableOpacity onPress={() => this.setDifficulty(0.75)} style={styles.img}>
-                        <Image source={require('./icons/img1.png')} style={{width: wp("15%"), height: wp("15%")}}/>
+                        <Image source={require('./icons/img1.png')} style={{width: wp("30%"), height: wp("30%")}}/>
                     </TouchableOpacity>
                     <TouchableOpacity onPress={() => this.setDifficulty(1)} style={styles.img}>
-                        <Image source={require('./icons/img1.png')} style={{width: wp("15%"), height: wp("15%")}}/>
+                        <Image source={require('./icons/img1.png')} style={{width: wp("30%"), height: wp("30%")}}/>
                     </TouchableOpacity>
                     <TouchableOpacity onPress={() => this.setDifficulty(1.5)} style={styles.img}>
-                        <Image source={require('./icons/img1.png')} style={{width: wp("15%"), height: wp("15%")}}/>
+                        <Image source={require('./icons/img1.png')} style={{width: wp("30%"), height: wp("30%")}}/>
                     </TouchableOpacity>
                     <TouchableOpacity onPress={() => this.setDifficulty(2)} style={styles.img}>
-                        <Image source={require('./icons/img1.png')} style={{width: wp("15%"), height: wp("15%")}}/>
+                        <Image source={require('./icons/img1.png')} style={{width: wp("30%"), height: wp("30%")}}/>
                     </TouchableOpacity>
                 </View>
             </View>
@@ -73,16 +73,16 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         flexDirection: 'row',
         justifyContent: 'space-between',
-        marginHorizontal: 40,
+        marginHorizontal: wp('7%'),
     },
     img: {
         padding: wp("1%")
     },
     title: {
-        marginTop: 20,
+        marginTop: wp("7%"),
         textAlign: 'center',
         color: '#fff',
-        fontSize: 35,
+        fontSize: wp("10%"),
         fontFamily: "titre"
     },
 });

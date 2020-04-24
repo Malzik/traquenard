@@ -1,6 +1,6 @@
 import {Dimensions, StyleSheet, Text, View} from "react-native";
 import React, { Component } from "react";
-import {widthPercentageToDP as wp} from 'react-native-responsive-screen';
+import {widthPercentageToDP as wp, heightPercentageToDP as hp} from "react-native-responsive-screen";
 import {bindActionCreators} from "redux";
 import * as gameActions from "../store/actions/gameAction";
 import * as textActions from "../store/actions/textAction";
@@ -71,10 +71,10 @@ class QuestionComponent extends React.Component {
                             return <View style={styles.answer} key={index.toString()}>
                                 <Button titleStyle={{
                                     textAlign: 'center', color: '#fff',
-                                    fontSize: 25, fontFamily: "MainTitle"
+                                    fontSize: wp('6%'), fontFamily: "MainTitle"
                                 }} buttonStyle={{
                                     backgroundColor: "#2A2A2A",
-                                    borderRadius: 60
+                                    borderRadius: wp('6%')
                                 }}
                                         title={answer.content}
                                         onPress={() => this.changeScene(answer)}
@@ -102,7 +102,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
     },
     contentAnswer: {
-        height: wp('33%'),
+        height: wp('30%'),
         flexDirection: 'row',
         justifyContent: 'center',
         flexWrap:'wrap',
@@ -110,23 +110,22 @@ const styles = StyleSheet.create({
     },
     answer: {
         width: "50%",
-        paddingHorizontal: 20,
-        marginBottom: 10
+        paddingHorizontal: wp('6%'),
+        marginBottom: wp('2%')
     },
     title: {
-        marginTop: 20,
+        marginTop: wp("7%"),
         textAlign: 'center',
         color: '#fff',
-        fontSize: 35,
+        fontSize: wp("10%"),
         fontFamily: "titre"
     },
     questionText: {
-        padding: 20,
+        padding: wp("5%"),
         textAlign: 'center',
         color: '#fff',
-        fontSize: 30,
+        fontSize: wp("8%"),
         fontFamily: "questionText",
-        marginBottom: 30,
     },
 });
 
