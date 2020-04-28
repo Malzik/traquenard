@@ -11,9 +11,9 @@
     ],
     "version": "1.0.0",
     "orientation": "default",
-    "icon": "./assets/chevreIcon.png",
+    "icon": "./assets/bottle1.png",
     "splash": {
-      "image": "./assets/chevre.png",
+      "image": "./assets/bottle1.png",
       "resizeMode": "contain",
       "backgroundColor": "#FFFFFF"
     },

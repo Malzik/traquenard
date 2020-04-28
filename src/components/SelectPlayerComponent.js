@@ -1,5 +1,5 @@
 import React from "react";
-import {FlatList, Image, StyleSheet, Text, TextInput, TouchableOpacity, View} from "react-native";
+import {FlatList, Image, StyleSheet, Text, TextInput, InteractionManager, TouchableOpacity, View} from "react-native";
 import {Button} from 'react-native-elements';
 import PropTypes from "prop-types";
 import {bindActionCreators} from "redux";
@@ -15,7 +15,7 @@ class SelectPlayerComponent extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            players: [],
+            players: [].reverse(),
             currentPlayer: "",
             errors: {
                 addPlayer: ""
@@ -28,7 +28,7 @@ class SelectPlayerComponent extends React.Component {
         if (this.state.currentPlayer.length > 0) {
             const newPlayer = {name: this.state.currentPlayer, sipCount: 0, sipGiven: 0};
             this.setState({
-                players: [...this.state.players, newPlayer],
+                players: [newPlayer, ...this.state.players],
                 currentPlayer: "",
                 errors: {...this.state.errors, addPlayer: ""}
             })
@@ -64,6 +64,49 @@ class SelectPlayerComponent extends React.Component {
         })
     }
 
+    inputRef = React.createRef();
+
+    componentDidMount() {
+        this.focusInputWithKeyboard()
+    }
+
+    focusInputWithKeyboard() {
+        InteractionManager.runAfterInteractions(() => {
+            this.inputRef.current.focus()
+        });
+    }
+
+    message(){
+        if (this.state.players.length < 1){
+            return(
+                <View style={styles.messageView}>
+                    <Image source={require('./icons/info.png')}
+                           style={{width: wp("13%"), height: wp("13%")}}/>
+                    <Text style={styles.message}>Ajouter au moins 2 joueurs pour jouer !</Text>
+                </View>
+            )
+        }
+        else {
+            return(
+                <View style={styles.list}>
+                    <FlatList
+                        data={this.state.players}
+                        renderItem={({item, index}) => (
+                            <View style={styles.player} id={index}>
+                                <Text style={styles.textPlayer}>{item.name}</Text>
+                                <TouchableOpacity onPress={() => this.removePlayer(index)}>
+                                    <Image source={require('./icons/delete.png')}
+                                           style={{width: 22, height: 22, opacity: 0.8}}/>
+                                </TouchableOpacity>
+                            </View>
+                        )}
+                        keyExtractor={(item, index) => index.toString()}
+                    />
+                </View>
+            )
+        }
+    }
+
     render() {
         return (
             <View style={styles.container}>
@@ -72,26 +115,14 @@ class SelectPlayerComponent extends React.Component {
                         <Text style={styles.title}> Traquenard </Text>
                     </View>
                     <View style={styles.middle}>
-                        <View style={styles.list}>
-                            <FlatList
-                                data={this.state.players}
-                                renderItem={({item, index}) => (
-                                    <View style={styles.player} id={index}>
-                                        <Text style={styles.textPlayer}>{item.name}</Text>
-                                        <TouchableOpacity onPress={() => this.removePlayer(index)}>
-                                            <Image source={require('./icons/delete.png')}
-                                                   style={{width: 22, height: 22, opacity: 0.8}}/>
-                                        </TouchableOpacity>
-                                    </View>
-                                )}
-                                keyExtractor={(item, index) => index.toString()}
-                            />
-                        </View>
+                        {this.message()}
                         <View style={styles.addInputButton}>
                             <View style={{flex: 0.9}}>
                                 <TextInput
+                                    ref={this.inputRef}
+                                    autoFocus={true}
                                     style={styles.textInputPlayer}
-                                    placeholder='Ajouter un joueur'
+                                    placeholder='Ajouter un joueur ..'
                                     onChangeText={(text) => this.setState({currentPlayer: text})}
                                     value={this.state.currentPlayer}
                                 />
@@ -128,16 +159,23 @@ const styles = StyleSheet.create({
         backgroundColor: '#2A2A2A',
     },
     content: {
-        height: "80%"
+        height: "70%"
     },
     header: {
-        height: "15%"
+        height: "20%"
     },
     middle: {
         height: "60%"
     },
     bottom: {
         height: "20%",
+        alignItems: 'center'
+    },
+    messageView: {
+        marginTop: wp("1%"),
+        paddingHorizontal: wp("10%"),
+        height: wp("40%"),
+        justifyContent: 'center',
         alignItems: 'center'
     },
     list: {
@@ -163,10 +201,19 @@ const styles = StyleSheet.create({
         fontFamily: 'ABeeZee-Regular',
         marginBottom: wp("4.5%"),
     },
+    message: {
+        marginTop: wp("3%"),
+        fontSize: wp("6%"),
+        color: '#fff',
+        fontFamily: 'questionText',
+        marginBottom: wp("4.5%"),
+        textAlign: 'center',
+    },
     addInputButton: {
         flexDirection: 'row',
         justifyContent: 'space-between',
-        paddingHorizontal: wp("11%"),
+        marginHorizontal: wp("11%"),
+        padding: wp("2%"),
         marginTop: wp("8%"),
     },
     textInputPlayer: {

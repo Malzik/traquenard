@@ -34,19 +34,19 @@ class SelectDifficultyComponent extends React.Component {
                 </View>
                 <View style={styles.content}>
                     <TouchableOpacity onPress={() => this.setDifficulty(0.5)} style={styles.img}>
-                        <Image source={require('./icons/img1.png')} style={{width: wp("30%"), height: wp("30%")}}/>
+                        <Image source={require('./icons/diff_1.png')} style={{width: wp("30%"), height: wp("30%")}}/>
                     </TouchableOpacity>
                     <TouchableOpacity onPress={() => this.setDifficulty(0.75)} style={styles.img}>
-                        <Image source={require('./icons/img1.png')} style={{width: wp("30%"), height: wp("30%")}}/>
+                        <Image source={require('./icons/diff_2.png')} style={{width: wp("30%"), height: wp("30%")}}/>
                     </TouchableOpacity>
                     <TouchableOpacity onPress={() => this.setDifficulty(1)} style={styles.img}>
-                        <Image source={require('./icons/img1.png')} style={{width: wp("30%"), height: wp("30%")}}/>
+                        <Image source={require('./icons/diff_3.png')} style={{width: wp("30%"), height: wp("30%")}}/>
                     </TouchableOpacity>
                     <TouchableOpacity onPress={() => this.setDifficulty(1.5)} style={styles.img}>
-                        <Image source={require('./icons/img1.png')} style={{width: wp("30%"), height: wp("30%")}}/>
+                        <Image source={require('./icons/diff_4.png')} style={{width: wp("30%"), height: wp("30%")}}/>
                     </TouchableOpacity>
                     <TouchableOpacity onPress={() => this.setDifficulty(2)} style={styles.img}>
-                        <Image source={require('./icons/img1.png')} style={{width: wp("30%"), height: wp("30%")}}/>
+                        <Image source={require('./icons/diff_5.png')} style={{width: wp("30%"), height: wp("30%")}}/>
                     </TouchableOpacity>
                 </View>
             </View>
@@ -66,11 +66,11 @@ const styles = StyleSheet.create({
         flexDirection: 'column'
     },
     header: {
-        height: wp('10%'),
+        height: wp('20%'),
     },
     content: {
-        height: wp('90%'),
-        alignItems: 'center',
+        height: wp('80%'),
+        marginTop: wp('20%'),
         flexDirection: 'row',
         justifyContent: 'space-between',
         marginHorizontal: wp('7%'),
