@@ -11,9 +11,9 @@
     ],
     "version": "1.0.0",
     "orientation": "default",
-    "icon": "./assets/bottle1.png",
+    "icon": "./assets/logo.png",
     "splash": {
-      "image": "./assets/bottle1.png",
+      "image": "./assets/logo.png",
       "resizeMode": "contain",
       "backgroundColor": "#FFFFFF"
     },
