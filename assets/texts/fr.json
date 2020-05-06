@@ -11,7 +11,7 @@
     "text.chooseDifficulty.title": "CHOISIR LA DIFFICULTÉ",
     "text.everyonePlay.title": "Tout le monde joue !",
     "text.friendship.title": "Amitié : {currentPlayer} et {selectedPlayer}",
-    "text.oneVersusAll.title": "Seul contre Tous, Catégorie: {selectedCategory}",
+    "text.oneVersusAll.title": "{currentPlayer} contre le reste des joueurs",
     "text.selectCategory.title": "{currentPlayer}, tu es seul contre tous !",
     "text.selectCategory.description": "Tu estimes être plus fort que tout les autres joueurs sur une catégorie, choisi la !",
     "text.question.title": "{currentPlayer} répond à la question",
