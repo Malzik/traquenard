@@ -14,36 +14,40 @@ class FormattedTextComponent extends React.Component {
 
         if (text.includes("{currentPlayer}")) {
             const currentPlayer = gameReducer.players[gameReducer.currentPlayer];
-            text = text.replaceAll("{currentPlayer}", currentPlayer.name)
+            text = this.replaceAll(text, "{currentPlayer}", currentPlayer.name)
         }
         if (text.includes("{selectedPlayer}")) {
             const selectedPlayer = gameReducer.selectedPlayer;
-            text = text.replaceAll("{selectedPlayer}", selectedPlayer.name)
+            text = this.replaceAll(text, "{selectedPlayer}", selectedPlayer.name)
         }
         if (text.includes("{selectedCategory}")) {
             const selectedCategory = gameReducer.selectedCategory;
-            text = text.replaceAll("{selectedCategory}", selectedCategory.name)
+            text = this.replaceAll(text, "{selectedCategory}", selectedCategory.name)
         }
         if (text.includes("{sip}")) {
             const difficulty = gameReducer.difficulty;
             const sip = Math.round(parseInt(this.props.sip) * difficulty);
-            text = text.replaceAll("{sip}", sip)
+            text = this.replaceAll(text, "{sip}", sip)
         }
         if (text.includes("{playerX}")){
             const place = Math.floor(Math.random() * gameReducer.players.length);
             let player = gameReducer.players[place];
-            text = text.replaceAll("{playerX}", player.name);
+            text = this.replaceAll(text, "{playerX}", player.name);
             if (text.includes("{playerY}")) {
                 let place2 = Math.floor(Math.random() * gameReducer.players.length);
                 while (place2 === place){
                     place2 = Math.floor(Math.random() * gameReducer.players.length);
                 }
                 player = gameReducer.players[place2];
-                text = text.replaceAll(/{playerY}/g, player.name)
+                text = this.replaceAll(text, "{playerY}", player.name)
             }
 
         }
         return text;
+    }
+
+    replaceAll(string, search, replace) {
+        return string.split(search).join(replace);
     }
 
     render() {
