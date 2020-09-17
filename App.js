@@ -31,7 +31,7 @@ class App extends React.Component {
 
     async componentDidMount(): void {
         await Font.loadAsync({
-            'MainTitle': require('./assets/fonts/BlackRyderDemo.ttf'),
+            'MainTitle': require('./assets/fonts/RAPIDSQUAD.otf'),
             'ABeeZee-Regular': require('./assets/fonts/ABeeZee-Regular.ttf'),
             'titre': require('./assets/fonts/Qualy_Bold.ttf'),
             'questionText': require('./assets/fonts/OpenSans-Regular.ttf'),

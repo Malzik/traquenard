@@ -76,6 +76,7 @@ const styles = StyleSheet.create({
     flex2: {
         height: wp('60%'),
         justifyContent: 'center',
+        marginHorizontal:  wp('2%')
     },
     flex3: {
         height: wp('20%'),
@@ -90,7 +91,7 @@ const styles = StyleSheet.create({
     questionText: {
         textAlign: 'center',
         color: '#fff',
-        fontSize: wp("9%"),
+        fontSize: wp("7.5%"),
         fontFamily: "questionText",
     },
     sipText: {

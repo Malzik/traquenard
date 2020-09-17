@@ -1,7 +1,7 @@
-import duel from '../../../assets/game/duel';
-import question from '../../../assets/game/question';
+import duel from '../../../assets/game/duels';
+import question from '../../../assets/game/questions';
 import oneversusall from '../../../assets/game/oneversusall';
-import friendships from '../../../assets/game/friendship';
+import friendships from '../../../assets/game/friendships';
 import everyone from '../../../assets/game/everyone';
 import texts from '../../../assets/texts/fr';
 

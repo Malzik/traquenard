@@ -71,7 +71,7 @@ class QuestionComponent extends React.Component {
                             return <View style={styles.answer} key={index.toString()}>
                                 <Button titleStyle={{
                                     textAlign: 'center', color: '#fff',
-                                    fontSize: wp('6%'), fontFamily: "MainTitle"
+                                    fontSize: wp('6%'), fontFamily: "titre"
                                 }} buttonStyle={{
                                     backgroundColor: "#2A2A2A",
                                     borderRadius: wp('6%')
@@ -100,6 +100,7 @@ const styles = StyleSheet.create({
     contentQuestion: {
         height: wp('52%'),
         justifyContent: 'center',
+        marginHorizontal:  wp('2%')
     },
     contentAnswer: {
         height: wp('30%'),
@@ -124,7 +125,7 @@ const styles = StyleSheet.create({
         padding: wp("5%"),
         textAlign: 'center',
         color: '#fff',
-        fontSize: wp("8%"),
+        fontSize: wp("7.5%"),
         fontFamily: "questionText",
     },
 });

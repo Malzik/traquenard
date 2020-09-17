@@ -10,6 +10,8 @@
     "text.sip": "{sip} gorgées en jeu",
     "text.chooseDifficulty.title": "CHOISIR LA DIFFICULTÉ",
     "text.everyonePlay.title": "Tout le monde joue !",
+    "text.currentPlayer": "{currentPlayer}",
+    "text.selectedPlayer": "{selectedPlayer}",
     "text.friendship.title": "Amitié : {currentPlayer} et {selectedPlayer}",
     "text.oneVersusAll.title": "{currentPlayer} contre le reste des joueurs",
     "text.selectCategory.title": "{currentPlayer}, tu es seul contre tous !",

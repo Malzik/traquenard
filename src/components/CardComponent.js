@@ -18,21 +18,36 @@ class CardComponent extends React.Component {
             currentPlayer: this.props.currentPlayer,
             selectedPlayer: this.props.selectedPlayer,
             cards: [
-                {type: "duels", color: "#D42A2A", scene: "Duel", selectPlayer: true, text: "text.game.duel"},
+                {
+                    type: "duels",
+                    color: "#D42A2A",
+                    scene: "Duel",
+                    selectPlayer: true,
+                    text: "text.game.duel",
+                    img: "./icons/Duel.png"
+                },
                 {
                     type: "friendships",
                     color: "#2A9BDA",
                     scene: "FriendShip",
                     selectPlayer: true,
-                    text: "text.game.friendship"
+                    text: "text.game.friendship",
+                    img: "./icons/Friend.png"
                 },
-                {type: "questions", color: "#FFE332", scene: "Question", text: "text.game.question"},
+                {
+                    type: "questions",
+                    color: "#FFE332",
+                    scene: "Question",
+                    text: "text.game.question",
+                    img: "./icons/Question.png"
+                },
                 {
                     type: "everyone",
                     color: "#3FBD4E",
                     scene: "OneVersusAll",
                     selectCategory: true,
-                    text: "text.game.oneversusall"
+                    text: "text.game.oneversusall",
+                    img: "./icons/OneVersusAll.png"
                 },
             ],
         };
@@ -83,10 +98,10 @@ class CardComponent extends React.Component {
                             return <View style={styles.cards} id={index} key={index}>
                                 <Button titleStyle={{
                                     textAlign: 'center', color: '#fff',
-                                    fontSize: wp("10%"), fontFamily: "MainTitle"
+                                    fontSize: wp("12%"), fontFamily: "MainTitle"
                                 }} buttonStyle={{
                                     backgroundColor: card.color,
-                                    borderRadius: wp("2%")
+                                    borderRadius: wp("3%")
                                 }}
                                         title={texts[card.text]}
                                         onPress={() => this.changeScene(card)}

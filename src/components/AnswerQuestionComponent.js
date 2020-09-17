@@ -68,7 +68,7 @@ class AnswerQuestionComponent extends React.Component {
                             return <View style={styles.answer} key={index.toString()}>
                                 <Button titleStyle={{
                                     textAlign: 'center', color: '#fff',
-                                    fontSize: wp('6%'), fontFamily: "MainTitle"
+                                    fontSize: wp('6%'), fontFamily: "titre"
                                 }} buttonStyle={{
                                     backgroundColor: (answer.true_false ? "#3FBD4E" : "#D42A2A"),
                                     borderRadius: wp('6%')
