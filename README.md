@@ -27,15 +27,21 @@ git
 
 Première étape vous devez cloner le projet sur votre machine en tapant la commande suivante dans git
 
-`git clone https://gitlab.com/Senniinn/traquenard`
+```
+git clone https://gitlab.com/Senniinn/traquenard
+```
 
 Quand le projet est cloné dans un dossier local, se rendre dans  celui-ci et lancez la commande d'installation de npm
 
-`npm install`
+```
+npm install
+```
 
 Installer le package expo permettant d'installer expo
 
-`npm install expo-cli --global`
+```
+npm install expo-cli --global
+```
 
 Une fois toute l'installation finie, entrez la commande de lancement de l'applcation sous expo
 
