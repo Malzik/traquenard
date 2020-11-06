@@ -81,7 +81,7 @@ class SelectPlayerComponent extends React.Component {
             return(
                 <View style={styles.messageView}>
                     <Image source={require('./icons/info.png')}
-                           style={{width: wp("13%"), height: wp("13%")}}/>
+                           style={{width: wp("9%"), height: wp("9%")}}/>
                     <Text style={styles.message}>Ajouter au moins 2 joueurs pour jouer !</Text>
                 </View>
             )
@@ -112,8 +112,14 @@ class SelectPlayerComponent extends React.Component {
             <View style={styles.container}>
                 <View style={styles.content}>
                     <View style={styles.header}>
-                        <Text style={styles.title}> Captain </Text>
-                        <Image source={require('./icons/captain_icon.jpg')} style={{width: 50, height: 50}}/>
+                        <Text style={styles.title_captain}> Captain </Text>
+                        <Image source={require('./icons/captain_icon.png')}
+                               style={{
+                                   width: wp("17%"),
+                                   height: wp("17%"),
+                                   marginTop: wp("5%"),
+                                   paddingHorizontal: wp("10%"),
+                               }}/>
                         <Text style={styles.title}> Gnole </Text>
                     </View>
                     <View style={styles.middle}>
@@ -125,6 +131,7 @@ class SelectPlayerComponent extends React.Component {
                                     autoFocus={true}
                                     style={styles.textInputPlayer}
                                     placeholder='Ajouter un joueur ..'
+                                    placeholderTextColor={'#E7E7E7'}
                                     onChangeText={(text) => this.setState({currentPlayer: text})}
                                     value={this.state.currentPlayer}
                                 />
@@ -165,14 +172,15 @@ const styles = StyleSheet.create({
     },
     header: {
         flexDirection: 'row',
-        justifyContent: 'space-between',
-        height: "20%"
+        justifyContent: 'center',
+        height: "20%",
+        alignItems: 'center'
     },
     middle: {
-        height: "60%"
+        height: "55%"
     },
     bottom: {
-        height: "20%",
+        height: "25%",
         alignItems: 'center'
     },
     messageView: {
@@ -191,7 +199,14 @@ const styles = StyleSheet.create({
         marginTop: wp("7%"),
         textAlign: 'center',
         color: '#fff',
-        fontSize: wp("10%"),
+        fontSize: wp("8%"),
+        fontFamily: "titre"
+    },
+    title_captain: {
+        marginTop: wp("7%"),
+        textAlign: 'center',
+        color: '#fff',
+        fontSize: wp("8%"),
         fontFamily: "titre"
     },
     player: {
