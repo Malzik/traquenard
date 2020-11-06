@@ -112,7 +112,9 @@ class SelectPlayerComponent extends React.Component {
             <View style={styles.container}>
                 <View style={styles.content}>
                     <View style={styles.header}>
-                        <Text style={styles.title}> Traquenard </Text>
+                        <Text style={styles.title}> Captain </Text>
+                        <Image source={require('./icons/captain_icon.jpg')} style={{width: 50, height: 50}}/>
+                        <Text style={styles.title}> Gnole </Text>
                     </View>
                     <View style={styles.middle}>
                         {this.message()}
@@ -156,12 +158,14 @@ class SelectPlayerComponent extends React.Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#2A2A2A',
+        backgroundColor: '#d6cab3',
     },
     content: {
         height: "70%"
     },
     header: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
         height: "20%"
     },
     middle: {
