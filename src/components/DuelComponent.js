@@ -66,7 +66,7 @@ class DuelComponent extends React.Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#D42A2A',
+        backgroundColor: '#D47431',
     },
     flex1: {
         height: wp('20%'),

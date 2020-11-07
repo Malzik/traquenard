@@ -153,7 +153,7 @@ class SelectPlayerComponent extends React.Component {
                             textAlign: 'center', color: '#fff',
                             fontSize: wp("9%"), fontFamily: "MainTitle"
                         }} buttonStyle={{
-                            backgroundColor: "#DA2A2A",
+                            backgroundColor: "#D47431",
                             borderRadius: wp("10%"), width: wp("70%"),
                         }}
                                 title="Commencer"
@@ -170,7 +170,7 @@ class SelectPlayerComponent extends React.Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#d6cab3',
+        backgroundColor: '#2A2A2A',
     },
     content: {
         height: "70%"
@@ -202,6 +202,7 @@ const styles = StyleSheet.create({
     },
     title: {
         marginTop: wp("7%"),
+        paddingRight: wp("5%"),
         textAlign: 'center',
         color: '#fff',
         fontSize: wp("7%"),

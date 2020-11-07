@@ -207,15 +207,20 @@ const styles = StyleSheet.create({
         color: '#fff',
         fontSize: wp("10%"),
         fontFamily: "titre",
-        marginLeft: wp("4%")
+        marginLeft: wp("5%")
     },
     nbPts:{
-        marginTop: wp("7%"),
+        marginTop: wp("5%"),
         textAlign: 'center',
         color: '#fff',
-        fontSize: wp("10%"),
+        padding: wp("3%"),
+        fontSize: wp("7%"),
+        borderWidth: 1,
+        borderColor: "#fff",
+        borderRadius: 6,
         fontFamily: "titre",
-        marginRight: wp("1%"),
+        marginRight: wp("5%"),
+        height: wp("15%"),
     },
     cards: {
         width: "50%",

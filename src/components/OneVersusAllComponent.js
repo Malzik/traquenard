@@ -67,7 +67,7 @@ class OneVersusAllComponent extends React.Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#3FBD4E',
+        backgroundColor: '#DA2A2A',
     },
     flex1: {
         height: wp('20%'),
