@@ -3,7 +3,7 @@
     "text.game.duel": "Duel",
     "text.game.friendship": "Amitié",
     "text.game.question": "Question",
-    "text.game.oneversusall": "Seul Contre Tous",
+    "text.game.oneversusall": "Seul VS Tous",
     "text.card.title": "{currentPlayer} à toi de jouer !",
     "text.selectOtherPlayer.title": "{currentPlayer} choisi avec qui tu veux jouer",
     "text.duel.title": "Duel: {currentPlayer} vs {selectedPlayer}",

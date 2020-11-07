@@ -112,15 +112,20 @@ class SelectPlayerComponent extends React.Component {
             <View style={styles.container}>
                 <View style={styles.content}>
                     <View style={styles.header}>
-                        <Text style={styles.title_captain}> Captain </Text>
-                        <Image source={require('./icons/captain_icon.png')}
-                               style={{
-                                   width: wp("17%"),
-                                   height: wp("17%"),
-                                   marginTop: wp("5%"),
-                                   paddingHorizontal: wp("10%"),
-                               }}/>
-                        <Text style={styles.title}> Gnole </Text>
+                        <View style={styles.col4}>
+                            <Text style={styles.title_captain}> Captain </Text>
+                        </View>
+                        <View style={styles.col3}>
+                            <Image source={require('./icons/captain_icon.png')}
+                                   style={{
+                                       width: wp("15%"),
+                                       height: wp("15%"),
+                                       marginTop: wp("5%"),
+                                   }}/>
+                        </View>
+                        <View style={styles.col4}>
+                            <Text style={styles.title}> Gnole </Text>
+                        </View>
                     </View>
                     <View style={styles.middle}>
                         {this.message()}
@@ -199,15 +204,15 @@ const styles = StyleSheet.create({
         marginTop: wp("7%"),
         textAlign: 'center',
         color: '#fff',
-        fontSize: wp("8%"),
-        fontFamily: "titre"
+        fontSize: wp("7%"),
+        fontFamily: "titre",
     },
     title_captain: {
         marginTop: wp("7%"),
         textAlign: 'center',
         color: '#fff',
-        fontSize: wp("8%"),
-        fontFamily: "titre"
+        fontSize: wp("7%"),
+        fontFamily: "titre",
     },
     player: {
         flex: 1,
@@ -239,6 +244,16 @@ const styles = StyleSheet.create({
         color: '#fff',
         fontSize: wp("6%"),
         fontFamily: 'ABeeZee-Regular',
+    },
+    col3: {
+        width: "20%",
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    col4: {
+        width: "33%",
+        justifyContent: 'center',
+        alignItems: 'center',
     }
 });
 

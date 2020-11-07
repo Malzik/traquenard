@@ -1,10 +1,9 @@
 import React from "react";
-import {StyleSheet, Text, View} from "react-native";
+import {Image, StyleSheet, Text, TouchableOpacity, View} from "react-native";
 import {bindActionCreators} from "redux";
 import * as gameActions from "../store/actions/gameAction";
 import PropTypes from "prop-types";
 import {connect} from "react-redux";
-import {Button} from 'react-native-elements';
 import {FormattedText} from "./helpers/FormattedText";
 import {handleAndroidBackButton, removeAndroidBackButtonHandler} from "./helpers/BackHandlerHelper";
 import {widthPercentageToDP as wp, heightPercentageToDP as hp} from "react-native-responsive-screen";
@@ -20,11 +19,12 @@ class CardComponent extends React.Component {
             cards: [
                 {
                     type: "duels",
-                    color: "#D42A2A",
+                    color: "#D47431",
                     scene: "Duel",
                     selectPlayer: true,
                     text: "text.game.duel",
-                    img: "./icons/Duel.png"
+                    pts: require('./icons/3.png'),
+                    desc: "Defi contre un autre joueur de ton choix"
                 },
                 {
                     type: "friendships",
@@ -32,22 +32,25 @@ class CardComponent extends React.Component {
                     scene: "FriendShip",
                     selectPlayer: true,
                     text: "text.game.friendship",
-                    img: "./icons/Friend.png"
+                    pts: require('./icons/3.png'),
+                    desc: "Defi avec un autre joueur de ton choix"
                 },
                 {
                     type: "questions",
                     color: "#FFE332",
                     scene: "Question",
                     text: "text.game.question",
-                    img: "./icons/Question.png"
+                    pts: require('./icons/2.png'),
+                    desc: "Question de culture générale"
                 },
                 {
                     type: "everyone",
-                    color: "#3FBD4E",
+                    color: "#D42A2A",
                     scene: "OneVersusAll",
                     selectCategory: true,
                     text: "text.game.oneversusall",
-                    img: "./icons/OneVersusAll.png"
+                    pts: require('./icons/5.png'),
+                    desc: "Tu es seul contre le reste des joueur"
                 },
             ],
         };
@@ -91,23 +94,86 @@ class CardComponent extends React.Component {
                     <Text style={styles.title}>
                         <FormattedText text={texts["text.card.title"]}/>
                     </Text>
+                    <Text style={styles.nbPts}>
+                        Points : 12
+                    </Text>
                 </View>
                 <View style={styles.content}>
                     {
                         cards.map((card, index) => {
-                            return <View style={styles.cards} id={index} key={index}>
-                                <Button titleStyle={{
-                                    textAlign: 'center', color: '#fff',
-                                    fontSize: wp("12%"), fontFamily: "MainTitle"
-                                }} buttonStyle={{
-                                    backgroundColor: card.color,
-                                    borderRadius: wp("3%")
-                                }}
-                                        title={texts[card.text]}
-                                        onPress={() => this.changeScene(card)}
-                                        disabled={this.checkIfQuestionRemaining(card)}
-                                />
-                            </View>
+                            if (index !== 1 && index !== 3)
+                                return <View style={styles.cards} id={index} key={index}>
+                                    <TouchableOpacity onPress={() => this.changeScene(card)}>
+                                        <View style={{
+                                            backgroundColor: card.color,
+                                            borderRadius: wp("3%"),
+                                        }}>
+                                            <View style={{
+                                                flexDirection: 'row',
+                                                justifyContent: "space-between"
+                                            }}>
+                                                <View style={{
+                                                    width: "80%"
+                                                }}>
+                                                    <Text style={styles.textCard}>{texts[card.text]}</Text>
+                                                </View>
+                                                <View style={{
+                                                    padding: wp("3%"),
+                                                    justifyContent: 'center',
+                                                    alignItems: 'center',
+                                                    width: "20%"
+                                                }}>
+                                                    <Image source={card.pts}
+                                                           style={{
+                                                               width: wp("12%"),
+                                                               height: wp("12%"),
+                                                           }}/>
+                                                </View>
+
+                                            </View>
+                                            <View>
+                                                <Text style={styles.textDesc}>{card.desc}</Text>
+                                            </View>
+                                        </View>
+                                    </TouchableOpacity>
+                                </View>
+                            else
+                                return <View style={styles.cards} id={index} key={index}>
+                                    <TouchableOpacity onPress={() => this.changeScene(card)}>
+                                        <View style={{
+                                            backgroundColor: card.color,
+                                            borderRadius: wp("3%"),
+                                        }}>
+                                            <View style={{
+                                                flexDirection: 'row',
+                                                justifyContent: "space-between",
+
+                                            }}>
+                                                <View style={{
+                                                    padding: wp("3%"),
+                                                    justifyContent: 'center',
+                                                    alignItems: 'center',
+                                                    width: "20%"
+                                                }}>
+                                                    <Image source={card.pts}
+                                                           style={{
+                                                               width: wp("12%"),
+                                                               height: wp("12%"),
+                                                           }}/>
+                                                </View>
+                                                <View style={{
+                                                    width: "80%"
+                                                }}>
+                                                    <Text style={styles.textCardLeft}>{texts[card.text]}</Text>
+                                                </View>
+                                            </View>
+                                            <View>
+                                                <Text style={styles.textDesc}>{card.desc}</Text>
+                                            </View>
+                                        </View>
+                                    </TouchableOpacity>
+                                </View>
+
                         })
                     }
                 </View>
@@ -125,6 +191,8 @@ const styles = StyleSheet.create({
     },
     header: {
         height: wp('30%'),
+        flexDirection: 'row',
+        justifyContent: 'space-between',
     },
     content: {
         height: wp('70%'),
@@ -138,13 +206,43 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         color: '#fff',
         fontSize: wp("10%"),
-        fontFamily: "titre"
+        fontFamily: "titre",
+        marginLeft: wp("4%")
+    },
+    nbPts:{
+        marginTop: wp("7%"),
+        textAlign: 'center',
+        color: '#fff',
+        fontSize: wp("10%"),
+        fontFamily: "titre",
+        marginRight: wp("1%"),
     },
     cards: {
         width: "50%",
         paddingHorizontal: wp("5%"),
         marginBottom: wp("5%")
     },
+    textCard: {
+        color: '#fff',
+        fontSize: wp("9%"),
+        paddingTop: wp("4%"),
+        paddingLeft: wp("4%"),
+        fontFamily: "MainTitle"
+    },
+    textCardLeft: {
+        color: '#fff',
+        fontSize: wp("9%"),
+        paddingTop: wp("4%"),
+        paddingRight: wp("4%"),
+        fontFamily: "MainTitle",
+        textAlign: 'right'
+    },
+    textDesc: {
+        color: '#fff',
+        fontSize: wp("4%"),
+        fontFamily: "gorgeesText",
+        padding: wp("2%"),
+    }
 });
 
 
