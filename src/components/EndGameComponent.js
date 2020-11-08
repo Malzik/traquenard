@@ -28,7 +28,7 @@ class EndGameComponent extends React.Component {
             duration,
             tableData: [
                 ['Durée', duration + ' minutes'],
-                ['Gorgées distribuées', gameReducer.sipGiven * gameReducer.difficulty],
+                ['Gorgées distribuées', "TODO"],
                 ['Nombre de tour', gameReducer.currentTurn]
             ],
         })

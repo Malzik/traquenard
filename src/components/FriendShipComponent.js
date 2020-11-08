@@ -6,7 +6,7 @@ import * as textActions from "../store/actions/textAction";
 import {connect} from "react-redux";
 import PropTypes from "prop-types";
 import {FormattedText} from "./helpers/FormattedText";
-import {widthPercentageToDP as wp, heightPercentageToDP as hp} from "react-native-responsive-screen";
+import {widthPercentageToDP as wp} from "react-native-responsive-screen";
 
 class FriendShipComponent extends React.Component {
     POINTS = 3;
@@ -36,10 +36,8 @@ class FriendShipComponent extends React.Component {
     }
 
     changeScene(): void {
-        const {navigation, addSip} = this.props;
-        const {friendship} = this.state;
+        const { navigation } = this.props;
 
-        addSip(friendship.sip);
         navigation.navigate("WinLoose", {points: this.POINTS, type: "friendship"})
     }
 

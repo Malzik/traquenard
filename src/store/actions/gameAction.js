@@ -31,11 +31,6 @@ const updateCategory = selectedCategory => ({
     selectedCategory
 });
 
-const addSip = sip => ({
-    type: 'ADD_SIP',
-    sip
-});
-
 const addPointsDuel = (points, win) => ({
     type: 'ADD_POINTS_DUEL',
     points,
@@ -67,7 +62,6 @@ export {
     updateCurrentUser,
     updateSelectedPlayer,
     updateCategory,
-    addSip,
     addPointsDuel,
     addPointsFriendship,
     addPoints,

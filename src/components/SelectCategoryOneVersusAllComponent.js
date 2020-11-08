@@ -6,7 +6,7 @@ import {bindActionCreators} from "redux"
 import {OneVersusAll} from "./OneVersusAllComponent";
 import {FormattedText} from "./helpers/FormattedText";
 import {Button} from "react-native-elements";
-import {widthPercentageToDP as wp, heightPercentageToDP as hp} from "react-native-responsive-screen";
+import {widthPercentageToDP as wp} from "react-native-responsive-screen";
 
 class SelectCategoryOneVersusAllComponent extends React.Component {
 

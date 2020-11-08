@@ -34,10 +34,8 @@ class DuelComponent extends React.Component {
     }
 
     changeScene(): void {
-        const {navigation, addSip} = this.props;
-        const {duel} = this.state;
+        const {navigation} = this.props;
 
-        addSip(duel.sip);
         navigation.navigate("WinLoose", {points: this.POINTS, type: "duel"})
     }
 
@@ -106,7 +104,6 @@ const styles = StyleSheet.create({
 });
 
 DuelComponent.propTypes = {
-    addSip: PropTypes.func,
     removeQuestion: PropTypes.func,
     navigation: PropTypes.object,
     textReducer: PropTypes.object
