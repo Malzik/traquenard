@@ -136,7 +136,6 @@ class SelectPlayerComponent extends React.Component {
                                     autoFocus={true}
                                     style={styles.textInputPlayer}
                                     placeholder='Ajouter un joueur ..'
-                                    placeholderTextColor={'#E7E7E7'}
                                     onChangeText={(text) => this.setState({currentPlayer: text})}
                                     value={this.state.currentPlayer}
                                 />
@@ -173,19 +172,19 @@ const styles = StyleSheet.create({
         backgroundColor: '#2A2A2A',
     },
     content: {
-        height: "70%"
+        flex: 0.6
     },
     header: {
         flexDirection: 'row',
         justifyContent: 'center',
-        height: "20%",
+        flex: 0.2,
         alignItems: 'center'
     },
     middle: {
-        height: "55%"
+        flex: 0.68
     },
     bottom: {
-        height: "25%",
+        flex: 0.12,
         alignItems: 'center'
     },
     messageView: {
