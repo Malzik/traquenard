@@ -45,15 +45,24 @@ class WinLooseComponent extends React.Component {
 
     render() {
         return (
-            <View>
-                <View>
-                    <TouchableOpacity style={styles.loose} onPress={() => this.changeScene(this.LOOSE)}>
-                        <Text>LOOSE</Text>
-                    </TouchableOpacity>
+            <View style={styles.container}>
+                <View style={styles.head}>
+                    <View style={styles.col1}>
+                        <Text style={styles.textGame}>Duel</Text>
+                    </View>
+                    <View style={styles.col2}>
+                        <Text style={styles.textMain}>John tu as ?</Text>
+                    </View>
+                    <View style={styles.col3}>
+                        <Text style={styles.textPts}>3 PTS</Text>
+                    </View>
                 </View>
-                <View>
+                <View style={styles.content}>
+                    <TouchableOpacity style={styles.loose} onPress={() => this.changeScene(this.LOOSE)}>
+                        <Text style={styles.textLoose}>Perdu</Text>
+                    </TouchableOpacity>
                     <TouchableOpacity style={styles.win} onPress={() => this.changeScene(this.WIN)}>
-                        <Text>WIN</Text>
+                        <Text style={styles.textWin}>Gagné</Text>
                     </TouchableOpacity>
                 </View>
             </View>
@@ -62,15 +71,76 @@ class WinLooseComponent extends React.Component {
 }
 
 const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        backgroundColor: '#2A2A2A',
+    },
+    head: {
+        flex: 0.2,
+        flexDirection: 'row',
+        borderBottomColor: "#FFF",
+        borderBottomWidth: 2
+    },
+    content: {
+        flex: 0.8,
+        flexDirection: 'row',
+    },
+    col1: {
+        flex: 0.33
+    },
+    col2: {
+        flex: 0.33
+    },
+    col3: {
+        flex: 0.33
+    },
     loose :{
-        height: wp('50%'),
+        flex: 0.5,
         justifyContent: 'center',
         backgroundColor: '#D42A2A',
+        borderRightColor: "#FFF",
+        borderRightWidth: 1,
     },
     win :{
-        height: wp('50%'),
+        flex: 0.5,
         justifyContent: 'center',
         backgroundColor: '#3FBD4E',
+        borderLeftColor: "#FFF",
+        borderLeftWidth: 1
+    },
+    textGame: {
+        marginTop: wp("4%"),
+        paddingLeft: wp("4%"),
+        color: '#fff',
+        fontSize: wp("9%"),
+        fontFamily: "titre",
+    },
+    textPts: {
+        marginTop: wp("4%"),
+        paddingRight: wp("4%"),
+        color: '#fff',
+        textAlign: 'right',
+        fontSize: wp("9%"),
+        fontFamily: "titre",
+    },
+    textMain: {
+        marginTop: wp("3%"),
+        color: '#fff',
+        textAlign: 'center',
+        fontSize: wp("10%"),
+        fontFamily: "MainTitle"
+    },
+    textWin: {
+        color: '#fff',
+        textAlign: 'center',
+        fontSize: wp("15%"),
+        fontFamily: "MainTitle"
+    },
+    textLoose: {
+        color: '#fff',
+        textAlign: 'center',
+        fontSize: wp("15%"),
+        fontFamily: "MainTitle"
     },
 });
 
