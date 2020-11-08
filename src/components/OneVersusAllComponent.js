@@ -35,10 +35,8 @@ class OneVersusAllComponent extends React.Component {
     }
 
     changeScene(): void {
-        const {navigation, addSip} = this.props;
-        const {oneVersusAll} = this.state;
+        const {navigation} = this.props;
 
-        addSip(oneVersusAll.sip);
         navigation.navigate("WinLoose", {points: this.POINTS, type: "oneversusall"})
     }
 

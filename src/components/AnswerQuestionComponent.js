@@ -6,7 +6,7 @@ import {connect} from "react-redux";
 import {Button} from 'react-native-elements';
 import PropTypes from "prop-types";
 import {FormattedText} from "./helpers/FormattedText";
-import {widthPercentageToDP as wp, heightPercentageToDP as hp} from "react-native-responsive-screen";
+import {widthPercentageToDP as wp} from "react-native-responsive-screen";
 
 class AnswerQuestionComponent extends React.Component {
     POINTS = 2;
@@ -45,10 +45,9 @@ class AnswerQuestionComponent extends React.Component {
     }
 
     changeScene(): void {
-        const {navigation, addSip, addPoints} = this.props;
-        const {question, selectedAnswer } = this.state;
+        const {navigation, addPoints} = this.props;
+        const { selectedAnswer } = this.state;
 
-        addSip(question.sip);
         addPoints(this.POINTS, selectedAnswer.true_false);
         navigation.navigate("EveryonePlay")
     }

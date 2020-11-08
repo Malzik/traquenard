@@ -9,7 +9,6 @@ const initialState = {
     selectedPlayer: null,
     selectedCategory: null,
     startTime: null,
-    sipGiven: 0,
     scene: null,
 };
 
@@ -26,15 +25,13 @@ const gameReducer = (state = initialState, action = {}) => {
             break;
         case 'RESTART':
             newState.players.map((player) => {
-                player.sipCount = 0;
-                player.sipGiven = 0;
+                player.points = 0;
             });
             newState.difficulty = 3;
             newState.currentTurn = 0;
             newState.currentPlayer = null;
             newState.scene = null;
             newState.startTime = null;
-            newState.sipGiven = 0;
             break;
         case 'UPDATE_CURRENT_PLAYER':
             if (newState.currentPlayer === null)
@@ -50,9 +47,6 @@ const gameReducer = (state = initialState, action = {}) => {
             break;
         case 'UPDATE_SELECTED_CATEGORY':
             newState.selectedCategory = action.selectedCategory;
-            break;
-        case 'ADD_SIP':
-            newState.sipGiven = parseInt(newState.sipGiven) + parseInt(action.sip);
             break;
         case 'ADD_POINTS_DUEL':
             if(action.win) {
