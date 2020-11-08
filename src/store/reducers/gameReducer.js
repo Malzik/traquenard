@@ -54,6 +54,28 @@ const gameReducer = (state = initialState, action = {}) => {
         case 'ADD_SIP':
             newState.sipGiven = parseInt(newState.sipGiven) + parseInt(action.sip);
             break;
+        case 'ADD_POINTS_DUEL':
+            if(action.win) {
+                const currentPlayer = newState.players[newState.currentPlayer];
+                currentPlayer.points += action.points;
+                break;
+            }
+            newState.selectedPlayer.points += action.points;
+            break;
+        case 'ADD_POINTS_FRIENDSHIP':
+            if(action.win) {
+                const currentPlayer = newState.players[newState.currentPlayer];
+
+                currentPlayer.points += action.points;
+                newState.selectedPlayer.points += action.points;
+            }
+            break;
+        case 'ADD_POINTS':
+            if(action.win) {
+                const currentPlayer = newState.players[newState.currentPlayer];
+                currentPlayer.points += action.points;
+            }
+            break;
         case 'ADD_TURN':
             newState.currentTurn = newState.currentTurn + 1;
             break;

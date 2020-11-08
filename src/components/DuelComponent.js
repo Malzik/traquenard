@@ -6,9 +6,11 @@ import * as textActions from "../store/actions/textAction";
 import {connect} from "react-redux";
 import PropTypes from "prop-types";
 import {FormattedText} from "./helpers/FormattedText";
-import {widthPercentageToDP as wp, heightPercentageToDP as hp} from "react-native-responsive-screen";
+import {widthPercentageToDP as wp} from "react-native-responsive-screen";
 
 class DuelComponent extends React.Component {
+    POINTS = 3;
+    static TYPE = "duel";
     constructor(props) {
         super(props);
 
@@ -36,7 +38,7 @@ class DuelComponent extends React.Component {
         const {duel} = this.state;
 
         addSip(duel.sip);
-        navigation.navigate("EveryonePlay")
+        navigation.navigate("WinLoose", {points: this.POINTS, type: "duel"})
     }
 
     render() {
@@ -51,7 +53,9 @@ class DuelComponent extends React.Component {
                     </Text>
                 </View>
                 <View style={styles.flex2}>
-                    <Text style={styles.questionText}>{question}</Text>
+                    <Text style={styles.questionText}>
+                        <FormattedText text={question}/>
+                    </Text>
                 </View>
                 <View style={styles.flex3}>
                     <Text style={styles.sipText}>

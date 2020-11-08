@@ -9,6 +9,8 @@ import {FormattedText} from "./helpers/FormattedText";
 import {widthPercentageToDP as wp, heightPercentageToDP as hp} from "react-native-responsive-screen";
 
 class FriendShipComponent extends React.Component {
+    POINTS = 3;
+    static TYPE = "friendship";
     constructor(props) {
         super(props);
 
@@ -38,7 +40,7 @@ class FriendShipComponent extends React.Component {
         const {friendship} = this.state;
 
         addSip(friendship.sip);
-        navigation.navigate("EveryonePlay")
+        navigation.navigate("WinLoose", {points: this.POINTS, type: "friendship"})
     }
 
     render() {
@@ -53,7 +55,9 @@ class FriendShipComponent extends React.Component {
                     </Text>
                 </View>
                 <View style={styles.flex2}>
-                    <Text style={styles.questionText}>{question}</Text>
+                    <Text style={styles.questionText}>
+                        <FormattedText text={question}/>
+                    </Text>
                 </View>
                 <View style={styles.flex3}>
                     <Text style={styles.sipText}>

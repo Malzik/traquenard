@@ -36,6 +36,24 @@ const addSip = sip => ({
     sip
 });
 
+const addPointsDuel = (points, win) => ({
+    type: 'ADD_POINTS_DUEL',
+    points,
+    win
+});
+
+const addPointsFriendship = (points, win) => ({
+    type: 'ADD_POINTS_FRIENDSHIP',
+    points,
+    win
+});
+
+const addPoints = (points, win) => ({
+    type: 'ADD_POINTS',
+    points,
+    win
+});
+
 const addTurn = () => ({
     type: 'ADD_TURN'
 });
@@ -50,5 +68,8 @@ export {
     updateSelectedPlayer,
     updateCategory,
     addSip,
+    addPointsDuel,
+    addPointsFriendship,
+    addPoints,
     addTurn
 };

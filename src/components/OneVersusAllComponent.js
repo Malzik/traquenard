@@ -9,6 +9,8 @@ import {FormattedText} from "./helpers/FormattedText";
 import {widthPercentageToDP as wp, heightPercentageToDP as hp} from "react-native-responsive-screen";
 
 class OneVersusAllComponent extends React.Component {
+    POINTS = 5;
+    static TYPE = "oneversusall";
     constructor(props) {
         super(props);
         this.state = {
@@ -37,7 +39,7 @@ class OneVersusAllComponent extends React.Component {
         const {oneVersusAll} = this.state;
 
         addSip(oneVersusAll.sip);
-        navigation.navigate("EveryonePlay")
+        navigation.navigate("WinLoose", {points: this.POINTS, type: "oneversusall"})
     }
 
     render() {
@@ -52,7 +54,9 @@ class OneVersusAllComponent extends React.Component {
                     </Text>
                 </View>
                 <View style={styles.flex2}>
-                    <Text style={styles.questionText}>{question}</Text>
+                    <Text style={styles.questionText}>
+                        <FormattedText text={question}/>
+                    </Text>
                 </View>
                 <View style={styles.flex3}>
                     <Text style={styles.sipText}>

@@ -9,6 +9,7 @@ import {FormattedText} from "./helpers/FormattedText";
 import {widthPercentageToDP as wp, heightPercentageToDP as hp} from "react-native-responsive-screen";
 
 class AnswerQuestionComponent extends React.Component {
+    POINTS = 2;
     constructor(props) {
         super(props);
 
@@ -36,7 +37,7 @@ class AnswerQuestionComponent extends React.Component {
 
         this.state = {
             question: question,
-            answerPlayer: selectedAnswer,
+            selectedAnswer,
             title,
             description,
             texts: textCollection
@@ -44,10 +45,11 @@ class AnswerQuestionComponent extends React.Component {
     }
 
     changeScene(): void {
-        const {navigation, addSip} = this.props;
-        const {question} = this.state;
+        const {navigation, addSip, addPoints} = this.props;
+        const {question, selectedAnswer } = this.state;
 
         addSip(question.sip);
+        addPoints(this.POINTS, selectedAnswer.true_false);
         navigation.navigate("EveryonePlay")
     }
 
@@ -55,7 +57,9 @@ class AnswerQuestionComponent extends React.Component {
         return (
             <TouchableOpacity style={styles.container} onPress={() => this.changeScene()}>
                 <View style={styles.contentTitle}>
-                    <Text style={styles.title}><FormattedText text={this.state.title}/></Text>
+                    <Text style={styles.title}>
+                        <FormattedText text={this.state.title}/>
+                    </Text>
                 </View>
                 <View style={styles.contentQuestion}>
                     <Text style={styles.questionText}>

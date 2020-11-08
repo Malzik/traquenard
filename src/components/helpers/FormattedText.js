@@ -12,6 +12,10 @@ class FormattedTextComponent extends React.Component {
     formatText(text) {
         const {gameReducer} = this.props;
 
+        if (text.includes("points")) {
+            const currentPlayer = gameReducer.players[gameReducer.currentPlayer];
+            text = this.replaceAll(text, "points", currentPlayer.points)
+        }
         if (text.includes("{currentPlayer}")) {
             const currentPlayer = gameReducer.players[gameReducer.currentPlayer];
             text = this.replaceAll(text, "{currentPlayer}", currentPlayer.name)

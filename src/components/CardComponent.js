@@ -14,8 +14,6 @@ class CardComponent extends React.Component {
         super(props);
 
         this.state = {
-            currentPlayer: this.props.currentPlayer,
-            selectedPlayer: this.props.selectedPlayer,
             cards: [
                 {
                     type: "duels",
@@ -65,12 +63,6 @@ class CardComponent extends React.Component {
         removeAndroidBackButtonHandler();
     }
 
-    checkIfQuestionRemaining(card) {
-        const {textReducer} = this.props;
-
-        return !textReducer[card.type].length > 0;
-    }
-
     changeScene(card) {
         const {navigation} = this.props;
 
@@ -95,7 +87,7 @@ class CardComponent extends React.Component {
                         <FormattedText text={texts["text.card.title"]}/>
                     </Text>
                     <Text style={styles.nbPts}>
-                        Points : 12
+                        Points : <FormattedText text={"points"} />
                     </Text>
                 </View>
                 <View style={styles.content}>

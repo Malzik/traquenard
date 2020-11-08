@@ -6,17 +6,18 @@ import {SelectPlayer} from "./src/components/SelectPlayerComponent";
 import {Card} from "./src/components/CardComponent";
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
-import {SelectDifficulty} from "./src/components/SelectDifficultyComponent";
-import {EndGame} from "./src/components/EndGameComponent";
-import {Duel} from "./src/components/DuelComponent";
-import {FriendShip} from "./src/components/FriendShipComponent";
-import {SelectOtherPlayer} from "./src/components/SelectOtherPlayerComponent";
-import {OneVersusAll} from "./src/components/OneVersusAllComponent";
-import {Question} from "./src/components/QuestionComponent";
-import {AnswerQuestion} from "./src/components/AnswerQuestionComponent";
-import {EveryonePlay} from "./src/components/EveryonePlayComponent";
-import * as Font from 'expo-font'
+import {SelectDifficulty}           from "./src/components/SelectDifficultyComponent";
+import {EndGame}                    from "./src/components/EndGameComponent";
+import {Duel}                       from "./src/components/DuelComponent";
+import {FriendShip}                 from "./src/components/FriendShipComponent";
+import {SelectOtherPlayer}          from "./src/components/SelectOtherPlayerComponent";
+import {OneVersusAll}               from "./src/components/OneVersusAllComponent";
+import {Question}                   from "./src/components/QuestionComponent";
+import {AnswerQuestion}             from "./src/components/AnswerQuestionComponent";
+import {EveryonePlay}               from "./src/components/EveryonePlayComponent";
+import * as Font                    from 'expo-font'
 import {SelectCategoryOneVersusAll} from "./src/components/SelectCategoryOneVersusAllComponent";
+import { WinLoose }                 from "./src/components/WinLooseComponent";
 
 const Stack = createStackNavigator();
 
@@ -62,6 +63,7 @@ class App extends React.Component {
                         <Stack.Screen name="Question" component={Question}/>
                         <Stack.Screen name="AnswerQuestion" component={AnswerQuestion}/>
                         <Stack.Screen name="EveryonePlay" component={EveryonePlay}/>
+                        <Stack.Screen name="WinLoose" component={WinLoose}/>
                         <Stack.Screen name="EndGame" component={EndGame}/>
                     </Stack.Navigator>
                 </NavigationContainer>

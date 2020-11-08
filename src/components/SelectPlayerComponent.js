@@ -26,7 +26,7 @@ class SelectPlayerComponent extends React.Component {
 
     addPlayer() {
         if (this.state.currentPlayer.length > 0) {
-            const newPlayer = {name: this.state.currentPlayer, sipCount: 0, sipGiven: 0};
+            const newPlayer = {name: this.state.currentPlayer, sipCount: 0, sipGiven: 0, points: 0};
             this.setState({
                 players: [newPlayer, ...this.state.players],
                 currentPlayer: "",

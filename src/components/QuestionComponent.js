@@ -11,6 +11,7 @@ import {AnswerQuestion} from "./AnswerQuestionComponent";
 import {FormattedText} from "./helpers/FormattedText";
 
 class QuestionComponent extends React.Component {
+    static TYPE = "question";
     constructor(props) {
         super(props);
 
@@ -63,7 +64,9 @@ class QuestionComponent extends React.Component {
                     </Text>
                 </View>
                 <View style={styles.contentQuestion}>
-                    <Text style={styles.questionText}>{question}</Text>
+                    <Text style={styles.questionText}>
+                        <FormattedText text={question}/>
+                    </Text>
                 </View>
                 <View style={styles.contentAnswer}>
                     {
