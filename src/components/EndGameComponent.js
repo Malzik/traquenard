@@ -1,5 +1,5 @@
 import React from "react";
-import {FlatList, StyleSheet, Text, View} from "react-native";
+import {FlatList, Image, StyleSheet, Text, TouchableOpacity, View} from "react-native";
 import {Button} from 'react-native-elements';
 import {bindActionCreators} from "redux";
 import * as gameActions from "../store/actions/gameAction";
@@ -41,12 +41,16 @@ class EndGameComponent extends React.Component {
 
     render() {
         const {players} = this.props.gameReducer;
+        players.sort(function (a, b) {
+            return b.points - a.points ;
+        });
+        console.log(players)
 
         ScreenOrientation.lockAsync(ScreenOrientation.OrientationLock.PORTRAIT);
         return (
             <View style={ styles.container }>
                 <View style={ styles.header }>
-                    <Text  style={ styles.title }> Fini </Text>
+                    <Text  style={ styles.title }> Fin de la partie </Text>
                 </View>
                 <View style={ styles.middle }>
                     <View>
@@ -55,7 +59,7 @@ class EndGameComponent extends React.Component {
                                 <Text  style={ styles.textHead }> Place </Text>
                             </View>
                             <View style={ styles.headRowName }>
-                                <Text  style={ styles.textHead }> Name </Text>
+                                <Text  style={ styles.textHead }> Nom </Text>
                             </View>
                             <View style={ styles.headRowPoints }>
                                 <Text  style={ styles.textHead }> Points </Text>
@@ -63,49 +67,39 @@ class EndGameComponent extends React.Component {
                         </View>
 
 
-                        <View style={ styles.row }>
-                            <View style={ styles.headRowID }>
-                                <Text  style={ styles.textTable }> 1 </Text>
-                            </View>
-                            <View style={ styles.headRowName }>
-                                <Text  style={ styles.textTable }> Jean </Text>
-                            </View>
-                            <View style={ styles.headRowPoints }>
-                                <Text  style={ styles.textTable }> 15 </Text>
-                            </View>
-                        </View>
-                        <View style={ styles.row }>
-                            <View style={ styles.headRowID }>
-                                <Text  style={ styles.textTable }> 2 </Text>
-                            </View>
-                            <View style={ styles.headRowName }>
-                                <Text  style={ styles.textTable }> Pierre </Text>
-                            </View>
-                            <View style={ styles.headRowPoints }>
-                                <Text  style={ styles.textTable }> 12 </Text>
-                            </View>
-                        </View>
-                        <View style={ styles.row }>
-                            <View style={ styles.headRowID }>
-                                <Text  style={ styles.textTable }> 3 </Text>
-                            </View>
-                            <View style={ styles.headRowName }>
-                                <Text  style={ styles.textTable }> Paul </Text>
-                            </View>
-                            <View style={ styles.headRowPoints }>
-                                <Text  style={ styles.textTable }> 10 </Text>
-                            </View>
-                        </View>
-                        <View style={ styles.row }>
-                            <View style={ styles.headRowID }>
-                                <Text  style={ styles.textTable }> 4 </Text>
-                            </View>
-                            <View style={ styles.headRowName }>
-                                <Text  style={ styles.textTable }> Jack </Text>
-                            </View>
-                            <View style={ styles.headRowPoints }>
-                                <Text  style={ styles.textTable }> 8 </Text>
-                            </View>
+                        <View style={styles.list}>
+                            <FlatList
+                                data={players}
+                                renderItem={({item, index}) => (
+                                    <View style={ styles.row }>
+                                        <View style={ styles.headRowID }>
+                                            {index !== 0 ?
+                                                (<Text  style={ styles.textTable }> {index+1} </Text>) :
+                                                (
+                                                    <View style={{
+                                                        justifyContent: 'center',
+                                                        alignItems: 'center',
+                                                    }}>
+                                                        <Image source={require('./icons/crowns.png')}
+                                                            style={{
+                                                                width: wp("10%"),
+                                                                height: wp("10%"),
+                                                            }}/>
+                                                    </View>
+                                                )
+
+                                            }
+                                        </View>
+                                        <View style={ styles.headRowName }>
+                                            <Text  style={ styles.textTable }> {item.name} </Text>
+                                        </View>
+                                        <View style={ styles.headRowPoints }>
+                                            <Text  style={ styles.textTable }> {item.points} </Text>
+                                        </View>
+                                    </View>
+                                )}
+                                keyExtractor={(item, index) => index.toString()}
+                            />
                         </View>
 
                     </View>
@@ -132,18 +126,18 @@ const styles = StyleSheet.create({
         height: "20%",
     },
     middle: {
-        height: "50%",
+        height: "55%",
         paddingHorizontal: "6%"
     },
     bottom: {
-        height: "30%",
+        height: "25%",
         alignItems: 'center',
     },
     title: {
         marginTop: wp('10%'),
         textAlign: 'center',
         color: '#fff',
-        fontSize: wp('13%'),
+        fontSize: wp('11%'),
         fontFamily: "titre"
     },
     headRow:{
@@ -179,7 +173,10 @@ const styles = StyleSheet.create({
     },
     headRowPoints: {
         flex:0.3
-    }
+    },
+    list: {
+        height: wp("85%")
+    },
 });
 
 const mapStateToProps = (state) => {
