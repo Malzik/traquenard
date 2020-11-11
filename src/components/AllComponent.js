@@ -6,15 +6,21 @@ import * as textActions from "../store/actions/textAction";
 import {connect} from "react-redux";
 import PropTypes from "prop-types";
 import {FormattedText} from "./helpers/FormattedText";
-import {widthPercentageToDP as wp, heightPercentageToDP as hp} from "react-native-responsive-screen";
+import {widthPercentageToDP as wp} from "react-native-responsive-screen";
 
-class OneVersusAllComponent extends React.Component {
-    POINTS = 5;
-    static TYPE = "oneversusall";
+class AllComponent extends React.Component {
+    static DUEL = 'duels';
+    static FRIENDSHIP = 'friendships';
+    static ONEVERSUSALL = 'oneversusall';
+    static QUESTION = 'questions';
     constructor(props) {
         super(props);
+
+        const {card} = this.props.route.params;
+
         this.state = {
-            oneVersusAll: {
+            card,
+            question: {
                 question: null,
                 sip: null
             }
@@ -22,13 +28,36 @@ class OneVersusAllComponent extends React.Component {
     }
 
     componentDidMount(): void {
-        const {textReducer, gameReducer, removeQuestionFromCategory} = this.props;
+        const {textReducer} = this.props;
+        const {card} = this.state;
+
+        const rules = textReducer[card.type];
+
+        if (card.type === AllComponent.ONEVERSUSALL) {
+           this.getRuleOneVersusAll(rules)
+        } else {
+            this.getRule(rules, card)
+        }
+    }
+
+    getRule(rules, card)
+    {
+        const { removeQuestion} = this.props;
+        const question = rules[Math.floor(Math.random() * rules.length)];
+        this.setState({
+            question
+        });
+        removeQuestion(card.type, question);
+    }
+
+    getRuleOneVersusAll(rules)
+    {
+        const { gameReducer, removeQuestionFromCategory} = this.props;
 
         const category = gameReducer.selectedCategory;
-        const oneversusall = textReducer.oneversusall;
-        const question = oneversusall[category.name][Math.floor(Math.random() * oneversusall[category.name].length)];
+        const question = rules[category.name][Math.floor(Math.random() * rules[category.name].length)];
         this.setState({
-            oneVersusAll: question
+            question
         });
 
         removeQuestionFromCategory(category.name, question);
@@ -36,19 +65,21 @@ class OneVersusAllComponent extends React.Component {
 
     changeScene(): void {
         const {navigation} = this.props;
+        const {card} = this.state;
 
-        navigation.navigate("WinLoose", {points: this.POINTS, type: "oneversusall"})
+        navigation.navigate("WinLoose", {points: card.points, type: card.type})
     }
 
     render() {
         const {texts} = this.props.textReducer;
-        const {question, sip} = this.state.oneVersusAll;
+        const {card} = this.state;
+        const {question, sip} = this.state.question;
 
         return (
-            <TouchableOpacity style={styles.container} onPress={() => this.changeScene()}>
+            <TouchableOpacity style={styles[card.type + 'Container']} onPress={() => this.changeScene()}>
                 <View style={styles.flex1}>
                     <Text style={styles.title}>
-                        <FormattedText text={texts["text.oneVersusAll.title"]}/>
+                        <FormattedText text={texts['text.' + card.type + '.title']}/>
                     </Text>
                 </View>
                 <View style={styles.flex2}>
@@ -61,13 +92,21 @@ class OneVersusAllComponent extends React.Component {
                         <FormattedText text={texts["text.sip"]} sip={sip}/>
                     </Text>
                 </View>
-                </TouchableOpacity>
+            </TouchableOpacity>
         );
     }
 }
 
 const styles = StyleSheet.create({
-    container: {
+    duelsContainer: {
+        flex: 1,
+        backgroundColor: '#D47431',
+    },
+    friendshipsContainer: {
+        flex: 1,
+        backgroundColor: '#2A9BDA',
+    },
+    oneversusallContainer: {
         flex: 1,
         backgroundColor: '#DA2A2A',
     },
@@ -87,7 +126,7 @@ const styles = StyleSheet.create({
     title: {
         textAlign: 'left',
         color: '#fff',
-        fontSize: wp("10%"),
+        fontSize: wp("11%"),
         fontFamily: "MainTitle"
     },
     questionText: {
@@ -104,11 +143,12 @@ const styles = StyleSheet.create({
     }
 });
 
-
-
-OneVersusAllComponent.propTypes = {
-    changeScene: PropTypes.func,
+AllComponent.propTypes = {
+    removeQuestion: PropTypes.func,
+    navigation: PropTypes.object,
+    textReducer: PropTypes.object
 };
+
 const mapStateToProps = (state) => {
     return state
 };
@@ -116,9 +156,9 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = dispatch =>
     bindActionCreators({...gameActions, ...textActions}, dispatch);
 
-const OneVersusAll = connect(
+const All = connect(
     mapStateToProps,
     mapDispatchToProps
-)(OneVersusAllComponent);
+)(AllComponent);
 
-export { OneVersusAll, OneVersusAllComponent };
+export { All, AllComponent };

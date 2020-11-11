@@ -15,10 +15,10 @@ class AnswerQuestionComponent extends React.Component {
 
         const {selectedAnswer, question} = this.props.route.params;
         const texts = [
-            "text.question.win",
-            "text.question.loose",
-            "text.question.win.description",
-            "text.question.loose.description"
+            "text.questions.win",
+            "text.questions.loose",
+            "text.questions.win.description",
+            "text.questions.loose.description"
         ];
         let textCollection = {};
         texts.forEach(text => {
@@ -28,11 +28,11 @@ class AnswerQuestionComponent extends React.Component {
         let title;
         let description;
         if (selectedAnswer.true_false) {
-            title = textCollection["text.question.win"];
-            description = textCollection["text.question.win.description"];
+            title = textCollection["text.questions.win"];
+            description = textCollection["text.questions.win.description"];
         } else {
-            title = textCollection["text.question.loose"];
-            description = textCollection["text.question.loose.description"];
+            title = textCollection["text.questions.loose"];
+            description = textCollection["text.questions.loose.description"];
         }
 
         this.state = {

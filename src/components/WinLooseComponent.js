@@ -4,10 +4,7 @@ import {bindActionCreators}                       from "redux";
 import {connect}                                  from "react-redux";
 import * as gameActions                           from "../store/actions/gameAction";
 import { widthPercentageToDP as wp }              from "react-native-responsive-screen";
-import { DuelComponent }                          from "./DuelComponent";
-import { FriendShipComponent }                    from "./FriendShipComponent";
-import { QuestionComponent }                      from "./QuestionComponent";
-import { OneVersusAllComponent }                  from "./OneVersusAllComponent";
+import { AllComponent }                           from "./AllComponent";
 
 class WinLooseComponent extends React.Component {
     WIN = true;
@@ -28,14 +25,14 @@ class WinLooseComponent extends React.Component {
         const {navigation, addPoints, addPointsDuel, addPointsFriendship} = this.props;
         const { points, type } = this.state;
         switch (type) {
-            case DuelComponent.TYPE:
+            case AllComponent.DUEL:
                 addPointsDuel(points, win);
                 break;
-            case FriendShipComponent.TYPE:
+            case AllComponent.FRIENDSHIP:
                 addPointsFriendship(points, win);
                 break;
-            case QuestionComponent.TYPE:
-            case OneVersusAllComponent.TYPE:
+            case AllComponent.ONEVERSUSALL:
+            case AllComponent.QUESTION:
                 addPoints(points, win);
                 break;
         }

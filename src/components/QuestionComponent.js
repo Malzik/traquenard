@@ -60,7 +60,7 @@ class QuestionComponent extends React.Component {
             <View style={styles.container}>
                 <View style={styles.contentTitle}>
                     <Text style={styles.title}>
-                        <FormattedText text={texts["text.question.title"]}/>
+                        <FormattedText text={texts["text.questions.title"]}/>
                     </Text>
                 </View>
                 <View style={styles.contentQuestion}>
