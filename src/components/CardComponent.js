@@ -6,7 +6,7 @@ import PropTypes from "prop-types";
 import {connect} from "react-redux";
 import {FormattedText} from "./helpers/FormattedText";
 import {handleAndroidBackButton, removeAndroidBackButtonHandler} from "./helpers/BackHandlerHelper";
-import {widthPercentageToDP as wp, heightPercentageToDP as hp} from "react-native-responsive-screen";
+import {widthPercentageToDP as wp} from "react-native-responsive-screen";
 
 class CardComponent extends React.Component {
 
@@ -22,7 +22,8 @@ class CardComponent extends React.Component {
                     selectPlayer: true,
                     text: "text.game.duel",
                     pts: require('./icons/3.png'),
-                    desc: "Defi contre un autre joueur de ton choix"
+                    desc: "Defi contre un autre joueur de ton choix",
+                    points: 3
                 },
                 {
                     type: "friendships",
@@ -31,7 +32,8 @@ class CardComponent extends React.Component {
                     selectPlayer: true,
                     text: "text.game.friendship",
                     pts: require('./icons/3.png'),
-                    desc: "Defi avec un autre joueur de ton choix"
+                    desc: "Defi avec un autre joueur de ton choix",
+                    points: 3
                 },
                 {
                     type: "questions",
@@ -39,16 +41,18 @@ class CardComponent extends React.Component {
                     scene: "Question",
                     text: "text.game.question",
                     pts: require('./icons/2.png'),
-                    desc: "Question de culture générale"
+                    desc: "Question de culture générale",
+                    points: 2
                 },
                 {
-                    type: "everyone",
+                    type: "oneversusall",
                     color: "#D42A2A",
                     scene: "OneVersusAll",
                     selectCategory: true,
                     text: "text.game.oneversusall",
                     pts: require('./icons/5.png'),
-                    desc: "Tu es seul contre le reste des joueur"
+                    desc: "Tu es seul contre le reste des joueur",
+                    points: 5
                 },
             ],
         };
@@ -67,11 +71,11 @@ class CardComponent extends React.Component {
         const {navigation} = this.props;
 
         if (card.selectPlayer) {
-            navigation.navigate("SelectOtherPlayer", {component: card.scene});
+            navigation.navigate("SelectOtherPlayer", {card});
         } else if (card.selectCategory) {
-            navigation.navigate("SelectCategory", {component: card.scene});
+            navigation.navigate("SelectCategory", {card});
         } else {
-            navigation.navigate(card.scene);
+            navigation.navigate(card.scene, {card});
         }
     }
 
