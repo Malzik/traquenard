@@ -4,7 +4,7 @@ import React from "react";
 import * as gameActions from '../store/actions/gameAction';
 import {bindActionCreators} from "redux";
 import {FormattedText} from "./helpers/FormattedText";
-import {widthPercentageToDP as wp, heightPercentageToDP as hp} from "react-native-responsive-screen";
+import {widthPercentageToDP as wp} from "react-native-responsive-screen";
 
 class SelectOtherPlayerComponent extends React.Component {
 
@@ -15,7 +15,7 @@ class SelectOtherPlayerComponent extends React.Component {
             currentPlayer: {
                 name: null
             },
-            selectedComponent: this.props.route.params.component
+            card: this.props.route.params.card
         };
     }
 
@@ -27,10 +27,10 @@ class SelectOtherPlayerComponent extends React.Component {
 
     changeSelectedPlayer(player) {
         const {navigation, updateSelectedPlayer} = this.props;
-        const {selectedComponent} = this.state;
+        const {card} = this.state;
 
         updateSelectedPlayer(player);
-        navigation.navigate(selectedComponent)
+        navigation.navigate("All", {card})
     }
 
     render() {
