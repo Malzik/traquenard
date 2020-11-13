@@ -1,5 +1,5 @@
 import React from "react";
-import {FlatList, Image, StyleSheet, Text, TextInput, InteractionManager, TouchableOpacity, View} from "react-native";
+import {FlatList, Image, StyleSheet, Text, TextInput, InteractionManager, TouchableOpacity, View, Keyboard} from "react-native";
 import {Button} from 'react-native-elements';
 import PropTypes from "prop-types";
 import {bindActionCreators} from "redux";
@@ -45,6 +45,7 @@ class SelectPlayerComponent extends React.Component {
 
     startGame() {
         const {addPlayers, initGame, navigation} = this.props;
+        Keyboard.dismiss()
         this.changeScreenOrientation();
 
         initGame();
@@ -76,6 +77,7 @@ class SelectPlayerComponent extends React.Component {
         });
     }
 
+
     message(){
         if (this.state.players.length < 1){
             return(
@@ -106,6 +108,7 @@ class SelectPlayerComponent extends React.Component {
             )
         }
     }
+
 
     render() {
         return (
@@ -181,11 +184,11 @@ const styles = StyleSheet.create({
         alignItems: 'center'
     },
     middle: {
-        flex: 0.68
+        flex: 0.68,
     },
     bottom: {
         flex: 0.12,
-        alignItems: 'center'
+        alignItems: 'center',
     },
     messageView: {
         marginTop: wp("1%"),
