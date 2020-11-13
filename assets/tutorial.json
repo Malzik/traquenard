@@ -1,0 +1,18 @@
+{
+    "game": {
+      "title": "Comment on joue le jeu là ?",
+      "text": "on appuie sur les boutons connard !",
+      "position": 0
+    },
+    "points": {
+      "title": "Et ça fonctionne comment les points ?",
+      "text": "Tu comptes sur tes doigts !",
+      "position": 1
+    },
+    "difficulty": {
+      "title": "Et il faut choisir quelle difficulté ?",
+      "text": "La plus basse et bois de l'eau !",
+      "end": true,
+      "position": 2
+    }
+}
