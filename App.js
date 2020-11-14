@@ -14,8 +14,10 @@ import {AnswerQuestion}             from "./src/components/AnswerQuestionCompone
 import {EveryonePlay}               from "./src/components/EveryonePlayComponent";
 import * as Font                    from 'expo-font'
 import {SelectCategoryOneVersusAll} from "./src/components/SelectCategoryOneVersusAllComponent";
-import { WinLoose }          from "./src/components/WinLooseComponent";
-import { All } from "./src/components/AllComponent";
+import { WinLoose }                 from "./src/components/WinLooseComponent";
+import { All }                      from "./src/components/AllComponent";
+import { Tutorial }                 from "./src/components/TutorialComponent";
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const Stack = createStackNavigator();
 
@@ -24,11 +26,14 @@ class App extends React.Component {
         super(props);
 
         this.state = {
-            fontIsLoaded: false
+            fontIsLoaded: false,
+            startPage: 'SelectPlayer'
         };
+        AsyncStorage.removeItem('tutorial')
     }
 
     async componentDidMount(): void {
+        await this.getStorageData();
         await Font.loadAsync({
             'MainTitle': require('./assets/fonts/RAPIDSQUAD.otf'),
             'ABeeZee-Regular': require('./assets/fonts/ABeeZee-Regular.ttf'),
@@ -40,16 +45,32 @@ class App extends React.Component {
         this.setState({fontIsLoaded: true})
     }
 
+    async getStorageData() {
+        try {
+            await AsyncStorage.getItem('tutorial').then(response => {
+                if (response !== 'true') {
+                    this.setState({
+                        startPage: 'Tutorial'
+                    })
+                }
+            });
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
     renderFontLoaded() {
+        const { startPage } = this.state;
         return (
             <Provider store={store}>
                 <StatusBar hidden={true}/>
                 <NavigationContainer>
                     <Stack.Navigator
-                        initialRouteName="SelectPlayer"
+                        initialRouteName={startPage}
                         headerMode={"none"}
                         gestureEnabled={true}
                     >
+                        <Stack.Screen name="Tutorial" component={Tutorial}/>
                         <Stack.Screen name="SelectPlayer" component={SelectPlayer}/>
                         <Stack.Screen name="SelectDifficulty" component={SelectDifficulty}/>
                         <Stack.Screen name="Card" component={Card} gesturesEnabled={false}/>
