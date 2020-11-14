@@ -15,4 +15,3 @@ yarn.lock
 
 # macOS
 .DS_Store
-package-lock.json
