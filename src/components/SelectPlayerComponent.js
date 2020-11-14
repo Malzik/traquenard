@@ -1,19 +1,19 @@
-import React from "react";
+import React                                                                                                from "react";
 import {FlatList, Image, StyleSheet, Text, TextInput, InteractionManager, TouchableOpacity, View, Keyboard} from "react-native";
-import {Button} from 'react-native-elements';
-import PropTypes from "prop-types";
-import {bindActionCreators} from "redux";
-import * as gameActions from "../store/actions/gameAction";
-import * as textActions from "../store/actions/textAction";
-import {connect} from "react-redux";
-import * as ScreenOrientation from "expo/build/ScreenOrientation/ScreenOrientation";
-import {widthPercentageToDP as wp, heightPercentageToDP as hp} from "react-native-responsive-screen";
-
+import {Button}                                                                                             from 'react-native-elements';
+import PropTypes                                                                                            from "prop-types";
+import {bindActionCreators}                                                                                 from "redux";
+import * as gameActions                                                                                     from "../store/actions/gameAction";
+import * as textActions                                                                                     from "../store/actions/textAction";
+import {connect}                                                                                            from "react-redux";
+import * as ScreenOrientation                                                                               from "expo/build/ScreenOrientation/ScreenOrientation";
+import {widthPercentageToDP as wp, heightPercentageToDP as hp}                                              from "react-native-responsive-screen";
 
 class SelectPlayerComponent extends React.Component {
 
     constructor(props) {
         super(props);
+
         this.state = {
             players: [].reverse(),
             currentPlayer: "",
@@ -46,11 +46,11 @@ class SelectPlayerComponent extends React.Component {
     startGame() {
         const {addPlayers, initGame, navigation} = this.props;
         Keyboard.dismiss()
-        this.changeScreenOrientation();
-
-        initGame();
-        addPlayers(this.state.players);
-        navigation.navigate('SelectDifficulty')
+        this.changeScreenOrientation().then(() => {
+            initGame();
+            addPlayers(this.state.players);
+            navigation.navigate('SelectDifficulty')
+        });
     }
 
     checkEnoughPlayer() {
