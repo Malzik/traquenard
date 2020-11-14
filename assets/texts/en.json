@@ -1,0 +1,26 @@
+{
+  "texts": {
+    "text.game.duel": "Duel",
+    "text.game.friendship": "Friendship",
+    "text.game.question": "Question",
+    "text.game.oneversusall": "One versus All",
+    "text.card.title": "{currentPlayer} your turn to play !",
+    "text.selectOtherPlayer.title": "{currentPlayer} chooses who you want to play with",
+    "text.duels.title": "Duel: {currentPlayer} vs {selectedPlayer}",
+    "text.sip": "{sip} sips in play",
+    "text.chooseDifficulty.title": "CHOOSE THE DIFFICULTY",
+    "text.everyonePlay.title": "Everyone is playing !",
+    "text.friendships.title": "Friendship : {currentPlayer} and {selectedPlayer}",
+    "text.oneVersusAll.title": "One vs All, Category: {selectedCategory}",
+    "text.selectCategory.title": "{currentPlayer}, you are alone against everyone !",
+    "text.selectCategory.description": "You think you are stronger than all the other players in a category, choose it!",
+    "text.question.title": "{currentPlayer} answers the question",
+    "text.questions.win": "Win !",
+    "text.questions.loose": "Loose !",
+    "text.questions.win.description": "Gives  {sip} sips",
+    "text.questions.loose.description": "Drink {sip} sips",
+    "text.exit.title": "Do you really want to quit the game?",
+    "text.exit.yes": "Yes",
+    "text.exit.no": "No"
+  }
+}
