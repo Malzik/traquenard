@@ -5,7 +5,7 @@ import {Button, Image, StyleSheet, Text, TouchableOpacity, View} from "react-nat
 import AsyncStorage                       from '@react-native-async-storage/async-storage';
 import tutorial                           from '../../assets/tutorial';
 import {widthPercentageToDP as wp} from "react-native-responsive-screen";
-import * as ScreenOrientation from "expo/build/ScreenOrientation/ScreenOrientation";
+import * as ScreenOrientation from 'expo-screen-orientation';
 
 
 class TutorialComponent extends React.Component {
