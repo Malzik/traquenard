@@ -6,8 +6,8 @@ import {bindActionCreators}                                                     
 import * as gameActions                                                                                     from "../store/actions/gameAction";
 import * as textActions                                                                                     from "../store/actions/textAction";
 import {connect}                                                                                            from "react-redux";
-import * as ScreenOrientation                                                                               from "expo/build/ScreenOrientation/ScreenOrientation";
-import {widthPercentageToDP as wp, heightPercentageToDP as hp}                                              from "react-native-responsive-screen";
+import * as ScreenOrientation from 'expo-screen-orientation';
+import {widthPercentageToDP as wp}                                              from "react-native-responsive-screen";
 
 class SelectPlayerComponent extends React.Component {
 
@@ -140,6 +140,7 @@ class SelectPlayerComponent extends React.Component {
                                     style={styles.textInputPlayer}
                                     maxLength={10}
                                     placeholder='Ajouter un joueur ..'
+                                    placeholderTextColor={"#fff"}
                                     onChangeText={(text) => this.setState({currentPlayer: text})}
                                     value={this.state.currentPlayer}
                                 />
@@ -153,7 +154,7 @@ class SelectPlayerComponent extends React.Component {
                     </View>
                     <View style={styles.bottom}>
                         <Button titleStyle={{
-                            textAlign: 'center', color: '#fff',
+                            textAlign: 'center',
                             fontSize: wp("9%"), fontFamily: "MainTitle"
                         }} buttonStyle={{
                             backgroundColor: "#D47431",
@@ -189,7 +190,7 @@ const styles = StyleSheet.create({
     },
     bottom: {
         flex: 0.12,
-        alignItems: 'center',
+        alignItems: 'center'
     },
     messageView: {
         marginTop: wp("1%"),
@@ -245,7 +246,7 @@ const styles = StyleSheet.create({
         marginTop: wp("8%"),
     },
     textInputPlayer: {
-        color: '#fff',
+        color: 'white',
         fontSize: wp("6%"),
         fontFamily: 'ABeeZee-Regular',
     },

@@ -27,7 +27,7 @@ class AllComponent extends React.Component {
         }
     }
 
-    componentDidMount(): void {
+    componentDidMount() {
         const {textReducer} = this.props;
         const {card} = this.state;
 
@@ -63,7 +63,7 @@ class AllComponent extends React.Component {
         removeQuestionFromCategory(category.name, question);
     }
 
-    changeScene(): void {
+    changeScene() {
         const {navigation} = this.props;
         const {card} = this.state;
 

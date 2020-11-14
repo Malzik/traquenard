@@ -34,7 +34,7 @@ class QuestionComponent extends React.Component {
         });
     }
 
-    componentDidMount(): void {
+    componentDidMount() {
         const {textReducer, removeQuestion} = this.props;
 
         const questions = textReducer.questions;
@@ -45,7 +45,7 @@ class QuestionComponent extends React.Component {
         removeQuestion("questions", question);
     }
 
-    changeScene(selectedAnswer): void {
+    changeScene(selectedAnswer) {
         const {navigation} = this.props;
         const {question} = this.state;
 

@@ -4,7 +4,7 @@ import {Button} from 'react-native-elements';
 import {bindActionCreators} from "redux";
 import * as gameActions from "../store/actions/gameAction";
 import {connect} from "react-redux";
-import * as ScreenOrientation from "expo/build/ScreenOrientation/ScreenOrientation";
+import * as ScreenOrientation from 'expo-screen-orientation';
 import {Rows, Table} from "react-native-table-component";
 import moment from "moment";
 import {widthPercentageToDP as wp, heightPercentageToDP as hp} from "react-native-responsive-screen";
@@ -19,7 +19,7 @@ class EndGameComponent extends React.Component {
         }
     }
 
-    componentDidMount(): void {
+    componentDidMount() {
         const {gameReducer} = this.props;
         const currentDate = moment(new Date());
         const duration = currentDate.diff(gameReducer.startTime, 'minutes');

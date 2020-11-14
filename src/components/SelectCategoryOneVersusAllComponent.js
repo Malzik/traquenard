@@ -19,8 +19,6 @@ class SelectCategoryOneVersusAllComponent extends React.Component {
             },
             card: this.props.route.params.card
         };
-
-        console.log(this.props.route.params.card.type)
     }
 
     componentDidMount() {
@@ -29,7 +27,7 @@ class SelectCategoryOneVersusAllComponent extends React.Component {
         })
     }
 
-    changeScene(category): void {
+    changeScene(category) {
         const {navigation, updateCategory} = this.props;
         const {card} = this.state;
 

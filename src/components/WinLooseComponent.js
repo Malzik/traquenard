@@ -22,7 +22,7 @@ class WinLooseComponent extends React.Component {
         }
     }
 
-    changeScene(win): void {
+    changeScene(win) {
         const {navigation, addPoints, addPointsDuel, addPointsFriendship} = this.props;
         const { points, type } = this.state;
         switch (type) {

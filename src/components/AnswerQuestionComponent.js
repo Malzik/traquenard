@@ -44,7 +44,7 @@ class AnswerQuestionComponent extends React.Component {
         };
     }
 
-    changeScene(): void {
+    changeScene() {
         const {navigation, addPoints} = this.props;
         const { selectedAnswer } = this.state;
 

@@ -20,7 +20,7 @@ class EveryonePlayComponent extends React.Component {
         };
     }
 
-    componentDidMount(): void {
+    componentDidMount() {
         const {textReducer, removeQuestion} = this.props;
 
         const everyone = textReducer.everyone;
@@ -31,7 +31,7 @@ class EveryonePlayComponent extends React.Component {
         removeQuestion("everyone", question);
     }
 
-    async changeScene(): void {
+    async changeScene() {
         const {navigation, updateCurrentUser, addTurn, gameReducer} = this.props;
 
         updateCurrentUser();
