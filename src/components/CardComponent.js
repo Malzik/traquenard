@@ -37,7 +37,7 @@ class CardComponent extends React.Component {
                 },
                 {
                     type: "questions",
-                    color: "#FFE332",
+                    color: "#3FBD4E",
                     scene: "Question",
                     text: "text.game.questions",
                     pts: require('./icons/2.png'),

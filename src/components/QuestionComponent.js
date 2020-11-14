@@ -94,7 +94,7 @@ class QuestionComponent extends React.Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#FFE332',
+        backgroundColor: '#3FBD4E',
     },
     contentTitle :{
         height: wp('17%'),

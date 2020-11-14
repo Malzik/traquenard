@@ -138,6 +138,7 @@ class SelectPlayerComponent extends React.Component {
                                     ref={this.inputRef}
                                     autoFocus={true}
                                     style={styles.textInputPlayer}
+                                    maxLength={10}
                                     placeholder='Ajouter un joueur ..'
                                     onChangeText={(text) => this.setState({currentPlayer: text})}
                                     value={this.state.currentPlayer}
