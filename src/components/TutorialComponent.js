@@ -17,36 +17,16 @@ class TutorialComponent extends React.Component {
             tutorials,
             currentTutorial: tutorials.find(tutorial => tutorial.position === 0),
             index: 0,
-            end: false
+            end: false,
+            images: {
+                screen1: require('./icons/card_tuto.jpg'),
+                screen2: require('./icons/card_tuto.jpg'),
+                screen3: require('./icons/win_loose_tuto.jpg'),
+                screen4: require('./icons/regle_tuto.jpg'),
+            }
         }
 
         this.changeScene = this.changeScene.bind(this);
-    }
-
-    back() {
-        const { index, end } = this.state;
-
-        const newIndex = index - 1;
-
-        if (end) {
-            setTimeout(() => {
-                this.setState({
-                    end: false
-                })
-            }, 50)
-        }
-        this.changeTutorial(newIndex)
-    }
-
-    next() {
-        const { index, end} = this.state;
-
-        const newIndex = index + 1;
-        if (end) {
-            this.changeScene()
-        } else {
-            this.changeTutorial(newIndex)
-        }
     }
 
     changeTutorial(newIndex) {
@@ -77,6 +57,32 @@ class TutorialComponent extends React.Component {
         })
     }
 
+    back() {
+        const { index, end } = this.state;
+
+        const newIndex = index - 1;
+
+        if (end) {
+            setTimeout(() => {
+                this.setState({
+                    end: false
+                })
+            }, 50)
+        }
+        this.changeTutorial(newIndex)
+    }
+
+    next() {
+        const { index, end} = this.state;
+
+        const newIndex = index + 1;
+        if (end) {
+            this.changeScene()
+        } else {
+            this.changeTutorial(newIndex)
+        }
+    }
+
     renderBackButton() {
         const { index } = this.state;
 
@@ -105,10 +111,9 @@ class TutorialComponent extends React.Component {
         )
     }
 
-
-
     render() {
         const { currentTutorial } = this.state;
+
         ScreenOrientation.lockAsync(ScreenOrientation.OrientationLock.LANDSCAPE_LEFT);
         return (
             <View style={styles.container}>
@@ -124,7 +129,7 @@ class TutorialComponent extends React.Component {
                         <Text style={styles.textCard}>{currentTutorial.text2}</Text>
                     </View>
                     <View style={styles.imgView}>
-                        <Image source={require('./icons/card_tuto.jpg')}
+                        <Image source={this.state.images[currentTutorial.name]}
                                style={{
                                    width: wp("100%"),
                                    height: wp("50%"),
@@ -187,7 +192,6 @@ const styles = StyleSheet.create({
         fontSize: wp("5%"),
         fontFamily: "questionText",
     },
-
 });
 
 

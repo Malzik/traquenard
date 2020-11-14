@@ -1,28 +1,32 @@
 {
     "screen1": {
+      "name": "screen1",
       "title": "Comment jouer ? étape 1",
       "text": "Vous jouez a tour de rôle",
       "text2": "Possibilité de choisir entre 4 choix",
-      "img": "./icons/card_tuto.jpg",
+      "img": "'./icons/card_tuto.jpg'",
       "position": 0
     },
     "screen2": {
+      "name": "screen2",
       "title": "Comment jouer ? étape 2",
       "text": "Chaque choix te rapporte un certain nombre de points si tu gagne ton défi",
       "img": "./icons/card_tuto.jpg",
       "position": 1
     },
     "screen3": {
+      "name": "screen3",
       "title": "Comment jouer ? étape 3",
       "text": "A l'isssue de chaque défi tu sélectionneras si tu as gagné ou perdu",
       "img": "./icons/win_loose_tuto.jpg",
       "position": 2
     },
     "screen4": {
+      "name": "screen4",
       "title": "Comment jouer ? étape 4",
       "text": "Après chaque défi tu devras boire un certain nombre de gorgées si tu perds, tu les distriburas si tu gagne !",
       "img": "./icons/regle_tuto.jpg",
-      "end": true,
-      "position": 3
+      "position": 3,
+      "end": true
     }
 }
