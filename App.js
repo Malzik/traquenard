@@ -87,6 +87,7 @@ class App extends React.Component {
             </Provider>
         );
     }
+
     renderFontNotLoaded() {
         return (
             <Text>Font Not Loaded</Text>

@@ -20,7 +20,7 @@ class CardComponent extends React.Component {
                     color: "#D47431",
                     scene: "Duel",
                     selectPlayer: true,
-                    text: "text.game.duel",
+                    text: "text.game.duels",
                     pts: require('./icons/3.png'),
                     desc: "Defi contre un autre joueur de ton choix",
                     points: 3
@@ -30,7 +30,7 @@ class CardComponent extends React.Component {
                     color: "#2A9BDA",
                     scene: "FriendShip",
                     selectPlayer: true,
-                    text: "text.game.friendship",
+                    text: "text.game.friendships",
                     pts: require('./icons/3.png'),
                     desc: "Defi avec un autre joueur de ton choix",
                     points: 3
@@ -39,7 +39,7 @@ class CardComponent extends React.Component {
                     type: "questions",
                     color: "#FFE332",
                     scene: "Question",
-                    text: "text.game.question",
+                    text: "text.game.questions",
                     pts: require('./icons/2.png'),
                     desc: "Question de culture générale",
                     points: 2
