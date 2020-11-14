@@ -40,7 +40,7 @@ class SelectPlayerComponent extends React.Component {
     }
 
     async changeScreenOrientation() {
-        await ScreenOrientation.lockAsync(ScreenOrientation.OrientationLock.LANDSCAPE_LEFT);
+        await ScreenOrientation.lockAsync(ScreenOrientation.OrientationLock.LANDSCAPE_RIGHT);
     }
 
     startGame() {

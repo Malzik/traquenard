@@ -114,7 +114,7 @@ class TutorialComponent extends React.Component {
     render() {
         const { currentTutorial } = this.state;
 
-        ScreenOrientation.lockAsync(ScreenOrientation.OrientationLock.LANDSCAPE_LEFT);
+        ScreenOrientation.lockAsync(ScreenOrientation.OrientationLock.LANDSCAPE_RIGHT);
         return (
             <View style={styles.container}>
                 <View style={styles.backButton}>
@@ -124,17 +124,19 @@ class TutorialComponent extends React.Component {
                     <View style={styles.viewTitle}>
                         <Text style={styles.textTitle}>{currentTutorial.title}</Text>
                     </View>
-                    <View style={styles.viewContent}>
-                        <Text style={styles.textCard}>{currentTutorial.text}</Text>
-                        <Text style={styles.textCard}>{currentTutorial.text2}</Text>
-                    </View>
                     <View style={styles.imgView}>
                         <Image source={this.state.images[currentTutorial.name]}
                                style={{
                                    width: wp("100%"),
                                    height: wp("50%"),
+                                   borderRadius: 10,
                                }}/>
                     </View>
+                    <View style={styles.viewContent}>
+                        <Text style={styles.textCard}>{currentTutorial.text}</Text>
+                        <Text style={styles.textCard}>{currentTutorial.text2}</Text>
+                    </View>
+
                 </View>
                 <View style={styles.nextButton}>
                     {this.renderNextButton()}
@@ -160,12 +162,12 @@ const styles = StyleSheet.create({
         flex: 0.15,
     },
     viewContent: {
-        flex: 0.20,
-        width: wp("135%"),
+        flex: 0.25,
+        width: wp("140%"),
+        marginTop: wp("3%"),
     },
     imgView: {
-        flex: 0.55,
-        marginTop: wp("4%"),
+        flex: 0.6,
         padding: wp("4%"),
         borderWidth: 1,
         borderColor: "#FFF",
@@ -189,7 +191,7 @@ const styles = StyleSheet.create({
     textCard: {
         color: '#fff',
         textAlign: 'center',
-        fontSize: wp("5%"),
+        fontSize: wp("6%"),
         fontFamily: "questionText",
     },
 });

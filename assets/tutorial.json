@@ -24,7 +24,7 @@
     "screen4": {
       "name": "screen4",
       "title": "Comment jouer ? étape 4",
-      "text": "Après chaque défi tu devras boire un certain nombre de gorgées si tu perds, tu les distriburas si tu gagne !",
+      "text": "Tu devras boire un certain nombre de gorgées si tu perds, tu les distriburas si tu gagne !",
       "img": "./icons/regle_tuto.jpg",
       "position": 3,
       "end": true
