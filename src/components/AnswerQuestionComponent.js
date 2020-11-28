@@ -45,11 +45,17 @@ class AnswerQuestionComponent extends React.Component {
     }
 
     changeScene() {
-        const {navigation, addPoints} = this.props;
+        const {navigation, addPoints, gameReducer, updateCurrentUser} = this.props;
         const { selectedAnswer } = this.state;
 
         addPoints(this.POINTS, selectedAnswer.true_false);
-        navigation.navigate("EveryonePlay")
+
+        if (gameReducer.showEveryone) {
+            navigation.navigate("EveryonePlay")
+        } else {
+            updateCurrentUser();
+            navigation.navigate("Card")
+        }
     }
 
     render() {

@@ -49,10 +49,6 @@ const addPoints = (points, win) => ({
     win
 });
 
-const addTurn = () => ({
-    type: 'ADD_TURN'
-});
-
 
 export {
     addPlayers,
@@ -64,6 +60,5 @@ export {
     updateCategory,
     addPointsDuel,
     addPointsFriendship,
-    addPoints,
-    addTurn
+    addPoints
 };

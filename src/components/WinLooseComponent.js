@@ -23,7 +23,7 @@ class WinLooseComponent extends React.Component {
     }
 
     changeScene(win) {
-        const {navigation, addPoints, addPointsDuel, addPointsFriendship} = this.props;
+        const {navigation, addPoints, addPointsDuel, addPointsFriendship, gameReducer, updateCurrentUser} = this.props;
         const { points, type } = this.state;
         switch (type) {
             case AllComponent.DUEL:
@@ -38,7 +38,12 @@ class WinLooseComponent extends React.Component {
                 break;
         }
 
-        navigation.navigate("EveryonePlay")
+        if (gameReducer.showEveryone) {
+            navigation.navigate("EveryonePlay")
+        } else {
+            updateCurrentUser();
+            navigation.navigate("Card")
+        }
     }
 
     render() {

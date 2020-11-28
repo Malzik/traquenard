@@ -2,7 +2,7 @@ import moment from "moment";
 
 const initialState = {
     players: [],
-    maxTurn: 6,
+    maxTurn: 2,
     difficulty: 3,
     currentTurn: 0,
     currentPlayer: null,
@@ -10,6 +10,7 @@ const initialState = {
     selectedCategory: null,
     startTime: null,
     scene: null,
+    showEveryone: true
 };
 
 const gameReducer = (state = initialState, action = {}) => {
@@ -32,6 +33,7 @@ const gameReducer = (state = initialState, action = {}) => {
             newState.currentPlayer = null;
             newState.scene = null;
             newState.startTime = null;
+            newState.showEveryone = true;
             break;
         case 'UPDATE_CURRENT_PLAYER':
             if (newState.currentPlayer === null)
@@ -39,8 +41,10 @@ const gameReducer = (state = initialState, action = {}) => {
             else if (newState.currentPlayer + 1 < newState.players.length) {
                 newState.currentPlayer = newState.currentPlayer + 1;
             } else {
+                newState.currentTurn = newState.currentTurn + 1;
                 newState.currentPlayer = 0;
             }
+            newState.showEveryone = !newState.showEveryone;
             break;
         case 'UPDATE_SELECTED_PLAYER':
             newState.selectedPlayer = action.selectedPlayer;
@@ -49,12 +53,14 @@ const gameReducer = (state = initialState, action = {}) => {
             newState.selectedCategory = action.selectedCategory;
             break;
         case 'ADD_POINTS_DUEL':
+            const currentPlayer = newState.players[newState.currentPlayer];
             if(action.win) {
-                const currentPlayer = newState.players[newState.currentPlayer];
                 currentPlayer.points += action.points;
+                newState.selectedPlayer.points -= action.points;
                 break;
             }
             newState.selectedPlayer.points += action.points;
+            currentPlayer.points -= action.points;
             break;
         case 'ADD_POINTS_FRIENDSHIP':
             if(action.win) {
@@ -69,9 +75,6 @@ const gameReducer = (state = initialState, action = {}) => {
                 const currentPlayer = newState.players[newState.currentPlayer];
                 currentPlayer.points += action.points;
             }
-            break;
-        case 'ADD_TURN':
-            newState.currentTurn = newState.currentTurn + 1;
             break;
         default:
             break;

@@ -60,7 +60,9 @@ class CardComponent extends React.Component {
     }
 
     componentDidMount(): void {
-        handleAndroidBackButton(this.props.textReducer);
+        const {textReducer} = this.props;
+        handleAndroidBackButton(textReducer);
+
     }
 
     componentWillUnmount() {
@@ -79,10 +81,19 @@ class CardComponent extends React.Component {
         }
     }
 
+    isEndGame() {
+        const {navigation, gameReducer} = this.props;
+
+        if (gameReducer.currentTurn >= gameReducer.maxTurn) {
+            navigation.navigate("EndGame");
+        }
+    }
+
     render() {
         const {texts} = this.props.textReducer;
         const {cards} = this.state;
 
+        this.isEndGame()
         return (
             <View style={styles.container}
                   onLayout={this.onLayout}>

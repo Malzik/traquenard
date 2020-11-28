@@ -31,17 +31,12 @@ class EveryonePlayComponent extends React.Component {
         removeQuestion("everyone", question);
     }
 
-    async changeScene() {
-        const {navigation, updateCurrentUser, addTurn, gameReducer} = this.props;
+    changeScene() {
+        const {navigation, updateCurrentUser, gameReducer} = this.props;
 
         updateCurrentUser();
-        await addTurn();
 
-        if (this.props.gameReducer.currentTurn >= gameReducer.maxTurn || this.props.textReducer.everyone.length === 0) {
-            navigation.navigate("EndGame");
-        } else {
-            navigation.navigate("Card")
-        }
+        navigation.navigate("Card")
     }
 
     render() {

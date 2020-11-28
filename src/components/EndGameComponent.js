@@ -1,13 +1,13 @@
-import React from "react";
-import {FlatList, Image, StyleSheet, Text, TouchableOpacity, View} from "react-native";
-import {Button} from 'react-native-elements';
-import {bindActionCreators} from "redux";
-import * as gameActions from "../store/actions/gameAction";
-import {connect} from "react-redux";
+import React                                                       from "react";
+import {FlatList, StyleSheet, Text, View} from "react-native";
+import {Button}                                                    from 'react-native-elements';
+import {bindActionCreators}                                        from "redux";
+import * as gameActions                                            from "../store/actions/gameAction";
+import {connect}                                                   from "react-redux";
 import * as ScreenOrientation from 'expo-screen-orientation';
-import {Rows, Table} from "react-native-table-component";
-import moment from "moment";
-import {widthPercentageToDP as wp, heightPercentageToDP as hp} from "react-native-responsive-screen";
+import moment                                                      from "moment";
+import {widthPercentageToDP as wp}     from "react-native-responsive-screen";
+import { EndGamePlayer }                                           from "./EndGamePlayerComponent";
 
 
 class EndGameComponent extends React.Component {
@@ -39,13 +39,28 @@ class EndGameComponent extends React.Component {
         this.props.navigation.navigate('SelectPlayer');
     }
 
-    render() {
+    sortPlayer() {
         const {players} = this.props.gameReducer;
-        players.sort(function (a, b) {
-            return b.points - a.points ;
-        });
+
+        players.sort((a, b) => (a.points - b.points))
+
+        const length = players.length;
+        const winner = players[length-1]
+
+        players.forEach((player, index) => {
+            if (player.points === winner.points) {
+                player.position = 1
+            } else {
+                player.position = length - index;
+            }
+        })
         console.log(players)
 
+        return players;
+    }
+
+    render() {
+        const players = this.sortPlayer()
         ScreenOrientation.lockAsync(ScreenOrientation.OrientationLock.PORTRAIT);
         return (
             <View style={ styles.container }>
@@ -69,34 +84,10 @@ class EndGameComponent extends React.Component {
 
                         <View style={styles.list}>
                             <FlatList
+                                inverted
                                 data={players}
                                 renderItem={({item, index}) => (
-                                    <View style={ styles.row }>
-                                        <View style={ styles.headRowID }>
-                                            {index !== 0 ?
-                                                (<Text  style={ styles.textTable }> {index+1} </Text>) :
-                                                (
-                                                    <View style={{
-                                                        justifyContent: 'center',
-                                                        alignItems: 'center',
-                                                    }}>
-                                                        <Image source={require('./icons/crowns.png')}
-                                                            style={{
-                                                                width: wp("10%"),
-                                                                height: wp("10%"),
-                                                            }}/>
-                                                    </View>
-                                                )
-
-                                            }
-                                        </View>
-                                        <View style={ styles.headRowName }>
-                                            <Text  style={ styles.textTable }> {item.name} </Text>
-                                        </View>
-                                        <View style={ styles.headRowPoints }>
-                                            <Text  style={ styles.textTable }> {item.points} </Text>
-                                        </View>
-                                    </View>
+                                    <EndGamePlayer time={index * 1000} item={item} />
                                 )}
                                 keyExtractor={(item, index) => index.toString()}
                             />
@@ -175,7 +166,7 @@ const styles = StyleSheet.create({
         flex:0.3
     },
     list: {
-        height: wp("85%")
+        maxHeight: wp("85%")
     },
 });
 
