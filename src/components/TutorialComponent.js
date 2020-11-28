@@ -23,6 +23,7 @@ class TutorialComponent extends React.Component {
                 screen2: require('./icons/card_tuto.jpg'),
                 screen3: require('./icons/win_loose_tuto.jpg'),
                 screen4: require('./icons/regle_tuto.jpg'),
+                screen5: require('./icons/everyone_tuto.jpg'),
             }
         }
 

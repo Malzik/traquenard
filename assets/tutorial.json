@@ -26,7 +26,15 @@
       "title": "Comment jouer ? étape 4",
       "text": "Tu devras boire un certain nombre de gorgées si tu perds, tu les distriburas si tu gagne !",
       "img": "./icons/regle_tuto.jpg",
-      "position": 3,
+      "position": 3
+    },
+    "screen5": {
+      "name": "screen5",
+      "title": "Comment jouer ? étape 5",
+      "text": "Tout le monde joue, aucun point n'est distribués",
+      "text2": "Place au fun avant le retour à la compétition !",
+      "img": "./icons/everyone_tuto.jpg",
+      "position": 4,
       "end": true
     }
 }
