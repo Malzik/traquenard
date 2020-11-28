@@ -69,6 +69,10 @@ class CardComponent extends React.Component {
         removeAndroidBackButtonHandler();
     }
 
+    componentDidUpdate(prevProps: Readonly<P>, prevState: Readonly<S>, snapshot: SS) {
+        this.isEndGame()
+    }
+
     changeScene(card) {
         const {navigation} = this.props;
 
@@ -93,7 +97,6 @@ class CardComponent extends React.Component {
         const {texts} = this.props.textReducer;
         const {cards} = this.state;
 
-        this.isEndGame()
         return (
             <View style={styles.container}
                   onLayout={this.onLayout}>

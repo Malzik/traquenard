@@ -54,7 +54,6 @@ class EndGameComponent extends React.Component {
                 player.position = length - index;
             }
         })
-        console.log(players)
 
         return players;
     }
