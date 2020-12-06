@@ -38,8 +38,8 @@ class EndGamePlayerComponent extends React.Component {
                             }}>
                                 <Image source={require('./icons/crowns.png')}
                                        style={{
-                                           width: wp("10%"),
-                                           height: wp("10%"),
+                                           width: wp("9%"),
+                                           height: wp("9%"),
                                        }}/>
                             </View>
                         )

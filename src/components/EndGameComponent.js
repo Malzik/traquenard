@@ -87,7 +87,7 @@ class EndGameComponent extends React.Component {
                                 inverted
                                 data={players}
                                 renderItem={({item, index}) => (
-                                    <EndGamePlayer time={index * 1000} item={item} />
+                                    <EndGamePlayer time={index * 2500} item={item} />
                                 )}
                                 keyExtractor={(item, index) => index.toString()}
                             />
