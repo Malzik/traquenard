@@ -39,7 +39,8 @@ class App extends React.Component {
             'ABeeZee-Regular': require('./assets/fonts/ABeeZee-Regular.ttf'),
             'titre': require('./assets/fonts/Qualy_Bold.ttf'),
             'questionText': require('./assets/fonts/OpenSans-Regular.ttf'),
-            'gorgeesText': require('./assets/fonts/OpenSans-LightItalic.ttf')
+            'gorgeesText': require('./assets/fonts/OpenSans-LightItalic.ttf'),
+            'TheTitle': require('./assets/fonts/Designero.ttf')
         });
 
         this.setState({fontIsLoaded: true})

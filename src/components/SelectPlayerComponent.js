@@ -115,20 +115,7 @@ class SelectPlayerComponent extends React.Component {
             <View style={styles.container}>
                 <View style={styles.content}>
                     <View style={styles.header}>
-                        <View style={styles.col4}>
-                            <Text style={styles.title_captain}> Captain </Text>
-                        </View>
-                        <View style={styles.col3}>
-                            <Image source={require('./icons/captain_icon.png')}
-                                   style={{
-                                       width: wp("15%"),
-                                       height: wp("15%"),
-                                       marginTop: wp("5%"),
-                                   }}/>
-                        </View>
-                        <View style={styles.col4}>
-                            <Text style={styles.title}> Gnole </Text>
-                        </View>
+                        <Text style={styles.title_captain}> Captain Gnole </Text>
                     </View>
                     <View style={styles.middle}>
                         {this.message()}
@@ -157,7 +144,7 @@ class SelectPlayerComponent extends React.Component {
                             textAlign: 'center',
                             fontSize: wp("9%"), fontFamily: "MainTitle"
                         }} buttonStyle={{
-                            backgroundColor: "#D47431",
+                            backgroundColor: "#D42A2A",
                             borderRadius: wp("10%"), width: wp("70%"),
                         }}
                                 title="Commencer"
@@ -216,8 +203,8 @@ const styles = StyleSheet.create({
         marginTop: wp("7%"),
         textAlign: 'center',
         color: '#fff',
-        fontSize: wp("7%"),
-        fontFamily: "titre",
+        fontSize: wp("14%"),
+        fontFamily: "TheTitle",
     },
     player: {
         flex: 1,
