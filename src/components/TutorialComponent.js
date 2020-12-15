@@ -6,6 +6,7 @@ import AsyncStorage                       from '@react-native-async-storage/asyn
 import tutorial                           from '../../assets/tutorial';
 import {widthPercentageToDP as wp} from "react-native-responsive-screen";
 import * as ScreenOrientation from 'expo-screen-orientation';
+import { ProgressSteps, ProgressStep } from 'react-native-progress-steps';
 
 
 class TutorialComponent extends React.Component {
@@ -15,6 +16,7 @@ class TutorialComponent extends React.Component {
         const tutorials = Object.values(tutorial)
         this.state = {
             tutorials,
+            activeStep: 0,
             currentTutorial: tutorials.find(tutorial => tutorial.position === 0),
             index: 0,
             end: false,
@@ -44,7 +46,8 @@ class TutorialComponent extends React.Component {
             this.setState({
                 end: newEnd,
                 index: newIndex,
-                currentTutorial: tutorial
+                currentTutorial: tutorial,
+                activeStep: newIndex
             })
         }, 50)
 
@@ -113,7 +116,7 @@ class TutorialComponent extends React.Component {
     }
 
     render() {
-        const { currentTutorial } = this.state;
+        const { currentTutorial, images, tutorials, activeStep } = this.state;
 
         ScreenOrientation.lockAsync(ScreenOrientation.OrientationLock.LANDSCAPE_RIGHT);
         return (
@@ -125,20 +128,27 @@ class TutorialComponent extends React.Component {
                     <View style={styles.viewTitle}>
                         <Text style={styles.textTitle}>{currentTutorial.title}</Text>
                     </View>
-                    <View style={styles.viewPrgressStep}>
+                    <View style={styles.viewProgressStep}>
+                        <ProgressSteps activeStep={activeStep}>
+                            <ProgressStep nextBtnText="" previousBtnText="" finishBtnText=""/>
+                            <ProgressStep nextBtnText="" previousBtnText="" finishBtnText=""/>
+                            <ProgressStep nextBtnText="" previousBtnText="" finishBtnText=""/>
+                            <ProgressStep nextBtnText="" previousBtnText="" finishBtnText=""/>
+                            <ProgressStep nextBtnText="" previousBtnText="" finishBtnText=""/>
+                        </ProgressSteps>
                     </View>
-                    <View style={styles.imgView}>
-                        <Image source={this.state.images[currentTutorial.name]}
-                               style={{
-                                   width: wp("100%"),
-                                   height: wp("50%"),
-                                   borderRadius: 10,
-                               }}/>
-                    </View>
-                    <View style={styles.viewContent}>
-                        <Text style={styles.textCard}>{currentTutorial.text}</Text>
-                        <Text style={styles.textCard}>{currentTutorial.text2}</Text>
-                    </View>
+                    {/*<View style={styles.imgView}>*/}
+                    {/*    <Image source={images[currentTutorial.name]}*/}
+                    {/*           style={{*/}
+                    {/*               width: wp("100%"),*/}
+                    {/*               height: wp("50%"),*/}
+                    {/*               borderRadius: 10,*/}
+                    {/*           }}/>*/}
+                    {/*</View>*/}
+                    {/*<View style={styles.viewContent}>*/}
+                    {/*    <Text style={styles.textCard}>{currentTutorial.text}</Text>*/}
+                    {/*    <Text style={styles.textCard}>{currentTutorial.text2}</Text>*/}
+                    {/*</View>*/}
 
                 </View>
                 <View style={styles.nextButton}>
@@ -164,7 +174,7 @@ const styles = StyleSheet.create({
     viewTitle: {
         flex: 0.15,
     },
-    viewPrgressStep: {
+    viewProgressStep: {
         flex: 0.1,
     },
     viewContent: {
