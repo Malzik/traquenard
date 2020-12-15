@@ -129,7 +129,16 @@ class TutorialComponent extends React.Component {
                         <Text style={styles.textTitle}>{currentTutorial.title}</Text>
                     </View>
                     <View style={styles.viewProgressStep}>
-                        <ProgressSteps activeStep={activeStep}>
+                        <ProgressSteps
+                            activeStep={activeStep}
+                            topOffset={-5}
+                            activeStepIconBorderColor="#2A9BDA"
+                            completedProgressBarColor="#2A9BDA"
+                            completedStepIconColor="#2A9BDA"
+                            disabledStepNumColor="#000000"
+                            activeLabelColor="#FFF"
+                            activeStepNumColor="#FFF"
+                        >
                             <ProgressStep nextBtnText="" previousBtnText="" finishBtnText=""/>
                             <ProgressStep nextBtnText="" previousBtnText="" finishBtnText=""/>
                             <ProgressStep nextBtnText="" previousBtnText="" finishBtnText=""/>
@@ -137,18 +146,18 @@ class TutorialComponent extends React.Component {
                             <ProgressStep nextBtnText="" previousBtnText="" finishBtnText=""/>
                         </ProgressSteps>
                     </View>
-                    {/*<View style={styles.imgView}>*/}
-                    {/*    <Image source={images[currentTutorial.name]}*/}
-                    {/*           style={{*/}
-                    {/*               width: wp("100%"),*/}
-                    {/*               height: wp("50%"),*/}
-                    {/*               borderRadius: 10,*/}
-                    {/*           }}/>*/}
-                    {/*</View>*/}
-                    {/*<View style={styles.viewContent}>*/}
-                    {/*    <Text style={styles.textCard}>{currentTutorial.text}</Text>*/}
-                    {/*    <Text style={styles.textCard}>{currentTutorial.text2}</Text>*/}
-                    {/*</View>*/}
+                    <View style={styles.imgView}>
+                        <Image source={images[currentTutorial.name]}
+                               style={{
+                                   width: wp("100%"),
+                                   height: wp("50%"),
+                                   borderRadius: 10,
+                               }}/>
+                    </View>
+                    <View style={styles.viewContent}>
+                        <Text style={styles.textCard}>{currentTutorial.text}</Text>
+                        <Text style={styles.textCard}>{currentTutorial.text2}</Text>
+                    </View>
 
                 </View>
                 <View style={styles.nextButton}>
@@ -177,17 +186,17 @@ const styles = StyleSheet.create({
     viewProgressStep: {
         flex: 0.1,
     },
-    viewContent: {
-        flex: 0.15,
-        width: wp("140%"),
-        marginTop: wp("3%"),
-    },
     imgView: {
         flex: 0.55,
         padding: wp("4%"),
         borderWidth: 1,
         borderColor: "#FFF",
         borderRadius: 6,
+    },
+    viewContent: {
+        flex: 0.20,
+        width: wp("140%"),
+        marginTop: wp("3%"),
     },
     backButton: {
         flex: 0.20,

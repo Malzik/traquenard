@@ -140,23 +140,12 @@ class SelectPlayerComponent extends React.Component {
                         </View>
                     </View>
                     <View style={styles.bottom}>
-                        <TouchableOpacity onPress={() => this.removePlayer(index)}>
-                            <View style={{
-                                backgroundColor: "#2A9BDA",
-                                borderRadius: wp("3%"),
-                                padding: wp("3%"),
-                                marginRight: wp("3%"),
-                            }}>
-                                <Image source={require('./icons/reglages.png')}
-                                       style={{width: 30, height: 30}}/>
-                            </View>
-                        </TouchableOpacity>
                         <Button titleStyle={{
                             textAlign: 'center',
                             fontSize: wp("8%"), fontFamily: "MainTitle"
                         }} buttonStyle={{
                             backgroundColor: "#D42A2A",
-                            borderRadius: wp("3%"), width: wp("55%"),
+                            borderRadius: wp("3%"), width: wp("70%"),
                             marginLeft: wp("3%"),
                         }}
                                 title="Commencer"
@@ -190,8 +179,6 @@ const styles = StyleSheet.create({
     bottom: {
         flex: 0.12,
         alignItems: 'center',
-        flexDirection: 'row',
-        justifyContent: 'center',
     },
     messageView: {
         marginTop: wp("1%"),
