@@ -126,7 +126,7 @@ const styles = StyleSheet.create({
     title: {
         textAlign: 'left',
         color: '#fff',
-        fontSize: wp("11%"),
+        fontSize: wp("10%"),
         fontFamily: "MainTitle"
     },
     questionText: {

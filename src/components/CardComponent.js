@@ -51,7 +51,7 @@ class CardComponent extends React.Component {
                     selectCategory: true,
                     text: "text.game.oneversusall",
                     pts: require('./icons/5.png'),
-                    desc: "Tu es seul contre le reste des joueur",
+                    desc: "Tu es seul contre le reste des joueurs",
                     points: 5
                 },
             ],
