@@ -125,6 +125,8 @@ class TutorialComponent extends React.Component {
                     <View style={styles.viewTitle}>
                         <Text style={styles.textTitle}>{currentTutorial.title}</Text>
                     </View>
+                    <View style={styles.viewPrgressStep}>
+                    </View>
                     <View style={styles.imgView}>
                         <Image source={this.state.images[currentTutorial.name]}
                                style={{
@@ -162,20 +164,23 @@ const styles = StyleSheet.create({
     viewTitle: {
         flex: 0.15,
     },
+    viewPrgressStep: {
+        flex: 0.1,
+    },
     viewContent: {
-        flex: 0.25,
+        flex: 0.15,
         width: wp("140%"),
         marginTop: wp("3%"),
     },
     imgView: {
-        flex: 0.6,
+        flex: 0.55,
         padding: wp("4%"),
         borderWidth: 1,
         borderColor: "#FFF",
         borderRadius: 6,
     },
     backButton: {
-        flex: 0.15,
+        flex: 0.20,
         justifyContent: "center",
         alignItems: "center"
     },
@@ -192,7 +197,7 @@ const styles = StyleSheet.create({
     textCard: {
         color: '#fff',
         textAlign: 'center',
-        fontSize: wp("6%"),
+        fontSize: wp("5%"),
         fontFamily: "questionText",
     },
 });

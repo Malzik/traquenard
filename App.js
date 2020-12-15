@@ -29,7 +29,7 @@ class App extends React.Component {
             fontIsLoaded: false,
             startPage: 'SelectPlayer'
         };
-        // AsyncStorage.removeItem('tutorial')
+         AsyncStorage.removeItem('tutorial')
     }
 
     async componentDidMount(): void {
