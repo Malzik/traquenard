@@ -2,7 +2,7 @@ import moment from "moment";
 
 const initialState = {
     players: [],
-    maxTurn: 30,
+    maxTurn: 1,
     difficulty: 3,
     currentTurn: 0,
     currentPlayer: null,

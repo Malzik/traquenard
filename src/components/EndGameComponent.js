@@ -12,6 +12,7 @@ import { EndGamePlayer }                                           from "./EndGa
 
 class EndGameComponent extends React.Component {
 
+
     constructor(props) {
         super(props);
         this.state = {
@@ -41,6 +42,7 @@ class EndGameComponent extends React.Component {
 
     sortPlayer() {
         const {players} = this.props.gameReducer;
+
 
         players.sort((a, b) => (a.points - b.points))
 
@@ -83,8 +85,11 @@ class EndGameComponent extends React.Component {
 
                         <View style={styles.list}>
                             <FlatList
+                                ref={el => this.flatList = el}
                                 inverted
                                 data={players}
+                                onContentSizeChange={() => this.flatList.scrollToEnd({animated: true, offset: 0})}
+                                onLayout={() => this.flatList.scrollToEnd({animated: true, offset: 0 })}
                                 renderItem={({item, index}) => (
                                     <EndGamePlayer time={index * 2500} item={item} />
                                 )}
@@ -105,6 +110,11 @@ class EndGameComponent extends React.Component {
             </View>
         );
     }
+
+    onLayout() {
+        this.list.scrollToOffset({ animated: true, offset: 0 });
+    }
+
 }
 
 const styles = StyleSheet.create({
