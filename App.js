@@ -1,6 +1,6 @@
-import React from 'react';
-import {StatusBar, Text} from "react-native";
-import {Provider} from 'react-redux'
+import React                                                    from 'react';
+import { ActivityIndicator, StatusBar, StyleSheet, Text, View } from "react-native";
+import {Provider}                                               from 'react-redux'
 import {store} from './src/store/store';
 import {SelectPlayer} from "./src/components/SelectPlayerComponent";
 import {Card} from "./src/components/CardComponent";
@@ -91,7 +91,13 @@ class App extends React.Component {
 
     renderFontNotLoaded() {
         return (
-            <Text>Font Not Loaded</Text>
+            <View style={styles.container}>
+                <ActivityIndicator
+                    animating = {true}
+                    color = '#bc2b78'
+                    size = "large"/>
+                <Text style={styles.text}>Please wait !</Text>
+            </View>
         );
     }
 
@@ -99,5 +105,13 @@ class App extends React.Component {
         return this.state.fontIsLoaded ? this.renderFontLoaded() : this.renderFontNotLoaded()
     }
 }
+const styles = StyleSheet.create({
+    container: {
+        backgroundColor: '#E0BA77',
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center'
+    }
+})
 
 export default App;
