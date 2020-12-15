@@ -31,7 +31,7 @@ class App extends React.Component {
             startPage: 'SelectPlayer',
             alert: true
         };
-         AsyncStorage.removeItem('tutorial')
+         // AsyncStorage.removeItem('tutorial')
     }
 
     async componentDidMount(): void {
@@ -124,7 +124,6 @@ class App extends React.Component {
     }
 
     render() {
-
         return this.state.alert === true ? this.renderAlert() : this.state.fontIsLoaded ? this.renderFontLoaded() : this.renderFontNotLoaded()
     }
 }
