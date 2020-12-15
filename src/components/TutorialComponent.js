@@ -1,12 +1,13 @@
-import React                              from "react";
-import {bindActionCreators}               from "redux";
-import {connect}                          from "react-redux";
+import React                                                     from "react";
+import {bindActionCreators}                                      from "redux";
+import {connect}                                                 from "react-redux";
 import {Button, Image, StyleSheet, Text, TouchableOpacity, View} from "react-native";
-import AsyncStorage                       from '@react-native-async-storage/async-storage';
-import tutorial                           from '../../assets/tutorial';
-import {widthPercentageToDP as wp} from "react-native-responsive-screen";
-import * as ScreenOrientation from 'expo-screen-orientation';
-import { ProgressSteps, ProgressStep } from 'react-native-progress-steps';
+import AsyncStorage                                              from '@react-native-async-storage/async-storage';
+import tutorial                                                  from '../../assets/tutorial';
+import {widthPercentageToDP as wp}                               from "react-native-responsive-screen";
+import * as ScreenOrientation                                    from 'expo-screen-orientation';
+import ProgressSteps                                             from "./progressbar/ProgressSteps";
+import ProgressStep                                              from "./progressbar/ProgressStep";
 
 
 class TutorialComponent extends React.Component {
