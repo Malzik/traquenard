@@ -1,23 +1,24 @@
-import React                                                    from 'react';
-import { ActivityIndicator, StatusBar, StyleSheet, Text, View } from "react-native";
-import {Provider}                                               from 'react-redux'
+import React                                                                               from 'react';
+import { ActivityIndicator, Alert, BackHandler, Image, StatusBar, StyleSheet, Text, View } from "react-native";
+import {Provider}                                                                          from 'react-redux'
 import {store} from './src/store/store';
 import {SelectPlayer} from "./src/components/SelectPlayerComponent";
 import {Card} from "./src/components/CardComponent";
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import {SelectDifficulty}           from "./src/components/SelectDifficultyComponent";
-import {EndGame}                    from "./src/components/EndGameComponent";
-import {SelectOtherPlayer}          from "./src/components/SelectOtherPlayerComponent";
-import {Question}                   from "./src/components/QuestionComponent";
-import {AnswerQuestion}             from "./src/components/AnswerQuestionComponent";
-import {EveryonePlay}               from "./src/components/EveryonePlayComponent";
-import * as Font                    from 'expo-font'
-import {SelectCategoryOneVersusAll} from "./src/components/SelectCategoryOneVersusAllComponent";
-import { WinLoose }                 from "./src/components/WinLooseComponent";
-import { All }                      from "./src/components/AllComponent";
-import { Tutorial }                 from "./src/components/TutorialComponent";
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import {EndGame}                                                                           from "./src/components/EndGameComponent";
+import {SelectOtherPlayer}                                                                 from "./src/components/SelectOtherPlayerComponent";
+import {Question}                                                                          from "./src/components/QuestionComponent";
+import {AnswerQuestion}                                                                    from "./src/components/AnswerQuestionComponent";
+import {EveryonePlay}                                                                      from "./src/components/EveryonePlayComponent";
+import * as Font                                                                           from 'expo-font'
+import {SelectCategoryOneVersusAll}                                                        from "./src/components/SelectCategoryOneVersusAllComponent";
+import { WinLoose }                                                                        from "./src/components/WinLooseComponent";
+import { All }                                                                             from "./src/components/AllComponent";
+import { Tutorial }                                                                        from "./src/components/TutorialComponent";
+import AsyncStorage                                                                        from '@react-native-async-storage/async-storage';
+import { widthPercentageToDP as wp }                                                       from "react-native-responsive-screen";
 
 const Stack = createStackNavigator();
 
@@ -27,9 +28,10 @@ class App extends React.Component {
 
         this.state = {
             fontIsLoaded: false,
-            startPage: 'SelectPlayer'
+            startPage: 'SelectPlayer',
+            alert: true
         };
-         AsyncStorage.removeItem('tutorial')
+         // AsyncStorage.removeItem('tutorial')
     }
 
     async componentDidMount(): void {
@@ -58,6 +60,26 @@ class App extends React.Component {
         } catch (error) {
             console.log(error);
         }
+    }
+
+    renderAlert()
+    {
+        Alert.alert("Attention !",
+            "L'abus d'alcool est dangereux pour la santé. En poursuivant vous confirmez être responsable des éventuelles conséquences que pourrait engendrer l'utilisation de Captain Gnole",
+            [
+                {
+                    text: 'OK',
+                    onPress: () => this.setState({alert: false}),
+                    style: "cancel"
+                },
+                {text: 'FERMER', onPress: () => BackHandler.exitApp()}
+            ],
+            {cancelable: false});
+        return (
+            <View style={styles.container}>
+                <Image source={require('./assets/logo_captain.png')} />
+            </View>
+        );
     }
 
     renderFontLoaded() {
@@ -102,7 +124,7 @@ class App extends React.Component {
     }
 
     render() {
-        return this.state.fontIsLoaded ? this.renderFontLoaded() : this.renderFontNotLoaded()
+        return this.state.alert === true ? this.renderAlert() : this.state.fontIsLoaded ? this.renderFontLoaded() : this.renderFontNotLoaded()
     }
 }
 const styles = StyleSheet.create({
