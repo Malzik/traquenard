@@ -31,7 +31,7 @@ class App extends React.Component {
             startPage: 'SelectPlayer',
             alert: true
         };
-         // AsyncStorage.removeItem('tutorial')  // uncomment to have it all time
+         // AsyncStorage.removeItem('tutorial')
     }
 
     async componentDidMount(): void {
@@ -77,8 +77,16 @@ class App extends React.Component {
             {cancelable: false});
         return (
             <View style={styles.container}>
-                <Image source={require('./assets/logo_captain.png')} />
+                <View style={styles.content}>
+                    <Image source={require('./assets/logo_captain.png')} />
+                </View>
+                <View style={styles.bottom}>
+                    <Text style={styles.text}>
+                        Relancez l'application
+                    </Text>
+                </View>
             </View>
+
         );
     }
 
@@ -129,10 +137,22 @@ class App extends React.Component {
 }
 const styles = StyleSheet.create({
     container: {
-        backgroundColor: '#E0BA77',
         flex: 1,
+        backgroundColor: '#E0BA77',
         justifyContent: 'center',
         alignItems: 'center'
+    },
+    content: {
+        flex: 0.9,
+    },
+    bottom: {
+        flex: 0.1,
+    },
+    text: {
+        textAlign: 'center',
+        color: '#fff',
+        fontSize: wp("7.5%"),
+        fontFamily: "questionText",
     }
 })
 
