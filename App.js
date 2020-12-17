@@ -69,8 +69,7 @@ class App extends React.Component {
             [
                 {
                     text: 'OK',
-                    onPress: () => this.setState({alert: false}),
-                    style: "cancel"
+                    onPress: () => this.setState({alert: false})
                 },
                 {text: 'FERMER', onPress: () => BackHandler.exitApp()}
             ],
@@ -132,7 +131,13 @@ class App extends React.Component {
     }
 
     render() {
-        return this.state.alert === true ? this.renderAlert() : this.state.fontIsLoaded ? this.renderFontLoaded() : this.renderFontNotLoaded()
+        if(!this.state.fontIsLoaded) {
+            return this.renderFontNotLoaded()
+        }
+        if(this.state.alert) {
+            return this.renderAlert()
+        }
+        return this.renderFontLoaded()
     }
 }
 const styles = StyleSheet.create({

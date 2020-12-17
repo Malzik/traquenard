@@ -117,7 +117,7 @@ class TutorialComponent extends React.Component {
     }
 
     render() {
-        const { currentTutorial, images, tutorials, activeStep } = this.state;
+        const { currentTutorial, images, activeStep } = this.state;
 
         ScreenOrientation.lockAsync(ScreenOrientation.OrientationLock.LANDSCAPE_RIGHT);
         return (
