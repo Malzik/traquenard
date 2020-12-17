@@ -19,6 +19,7 @@ import { All }                                                                  
 import { Tutorial }                                                                        from "./src/components/TutorialComponent";
 import AsyncStorage                                                                        from '@react-native-async-storage/async-storage';
 import { widthPercentageToDP as wp }                                                       from "react-native-responsive-screen";
+import {Button} from "react-native-elements";
 
 const Stack = createStackNavigator();
 
@@ -74,15 +75,36 @@ class App extends React.Component {
                 {text: 'FERMER', onPress: () => BackHandler.exitApp()}
             ],
             {cancelable: false});
+
         return (
             <View style={styles.container}>
                 <View style={styles.content}>
                     <Image source={require('./assets/logo_captain.png')} />
                 </View>
+                <View style={styles.middle}>
+                    <Button titleStyle={{
+                        textAlign: 'center', fontSize: wp("8%")
+                    }} buttonStyle={{
+                        backgroundColor: "#D42A2A",
+                        borderRadius: wp("3%"), width: wp("70%"),
+                        marginLeft: wp("3%"),
+                    }}
+                            title="Jouer"
+                            onPress={() => {
+                                Alert.alert("Attention !",
+                                    "L'abus d'alcool est dangereux pour la santé. En poursuivant vous confirmez être responsable des éventuelles conséquences que pourrait engendrer l'utilisation de Captain Gnole",
+                                    [
+                                        {
+                                            text: 'OK',
+                                            onPress: () => this.setState({alert: false})
+                                        },
+                                        {text: 'FERMER', onPress: () => BackHandler.exitApp()}
+                                    ],
+                                    {cancelable: false})
+                            }}
+                    />
+                </View>
                 <View style={styles.bottom}>
-                    <Text style={styles.text}>
-                        Relancez l'application
-                    </Text>
                 </View>
             </View>
 
@@ -148,16 +170,18 @@ const styles = StyleSheet.create({
         alignItems: 'center'
     },
     content: {
-        flex: 0.9,
+        flex: 0.5,
+    },
+    middle: {
+        flex: 0.1,
     },
     bottom: {
-        flex: 0.1,
+        flex: 0.4,
     },
     text: {
         textAlign: 'center',
         color: '#fff',
         fontSize: wp("7.5%"),
-        fontFamily: "questionText",
     }
 })
 
