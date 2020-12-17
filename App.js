@@ -31,7 +31,7 @@ class App extends React.Component {
             startPage: 'SelectPlayer',
             alert: true
         };
-         // AsyncStorage.removeItem('tutorial')
+         // AsyncStorage.removeItem('tutorial')  // uncomment to have it all time
     }
 
     async componentDidMount(): void {
