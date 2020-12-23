@@ -2,7 +2,7 @@
     "screen1": {
       "name": "screen1",
       "title": "Comment jouer ?",
-      "text": "Vous jouez a tour de rôle",
+      "text": "Vous jouez à tour de rôle",
       "text2": "Possibilité de choisir entre 4 choix",
       "img": "'./icons/card_tuto.jpg'",
       "position": 0
