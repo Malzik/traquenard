@@ -58,7 +58,10 @@ class TutorialComponent extends React.Component {
         const {navigation} = this.props;
 
         await AsyncStorage.setItem("tutorial", "true").then(() => {
-            navigation.navigate("SelectPlayer")
+            navigation.reset({
+                index: 0,
+                routes: [{ name: 'SelectPlayer' }],
+            });
         })
     }
 

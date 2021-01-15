@@ -9,17 +9,17 @@ import {createStackNavigator} from '@react-navigation/stack';
 import {SelectDifficulty}           from "./src/components/SelectDifficultyComponent";
 import {EndGame}                                                                           from "./src/components/EndGameComponent";
 import {SelectOtherPlayer}                                                                 from "./src/components/SelectOtherPlayerComponent";
-import {Question}                                                                          from "./src/components/QuestionComponent";
-import {AnswerQuestion}                                                                    from "./src/components/AnswerQuestionComponent";
-import {EveryonePlay}                                                                      from "./src/components/EveryonePlayComponent";
-import * as Font                                                                           from 'expo-font'
-import {SelectCategoryOneVersusAll}                                                        from "./src/components/SelectCategoryOneVersusAllComponent";
-import { WinLoose }                                                                        from "./src/components/WinLooseComponent";
-import { All }                                                                             from "./src/components/AllComponent";
-import { Tutorial }                                                                        from "./src/components/TutorialComponent";
-import AsyncStorage                                                                        from '@react-native-async-storage/async-storage';
-import { widthPercentageToDP as wp }                                                       from "react-native-responsive-screen";
-import {Button} from "react-native-elements";
+import {Question}                    from "./src/components/QuestionComponent";
+import {AnswerQuestion}              from "./src/components/AnswerQuestionComponent";
+import {EveryonePlay}                from "./src/components/EveryonePlayComponent";
+import * as Font                     from 'expo-font'
+import {SelectCategoryOneVersusAll}  from "./src/components/SelectCategoryOneVersusAllComponent";
+import { WinLoose }                  from "./src/components/WinLooseComponent";
+import { All }                       from "./src/components/AllComponent";
+import { Tutorial }                  from "./src/components/TutorialComponent";
+import AsyncStorage                  from '@react-native-async-storage/async-storage';
+import { widthPercentageToDP as wp } from "react-native-responsive-screen";
+import {Button}                      from "react-native-elements";
 
 const Stack = createStackNavigator();
 
