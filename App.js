@@ -30,10 +30,12 @@ class App extends React.Component {
         this.state = {
             fontIsLoaded: false,
             startPage: 'SelectPlayer',
-            alert: true
+            alert: false,
+            playButton: true
         };
-         // AsyncStorage.removeItem('tutorial')
+        // AsyncStorage.removeItem('tutorial')
     }
+
 
     async componentDidMount(): void {
         await this.getStorageData();
@@ -55,60 +57,59 @@ class App extends React.Component {
                 if (response !== 'true') {
                     this.setState({
                         startPage: 'Tutorial'
-                    })
+                    });
                 }
             });
         } catch (error) {
             console.log(error);
         }
     }
-
-    renderAlert()
-    {
+    alert() {
         Alert.alert("Attention !",
             "L'abus d'alcool est dangereux pour la santé. En poursuivant vous confirmez être responsable des éventuelles conséquences que pourrait engendrer l'utilisation de Captain Gnole",
             [
                 {
                     text: 'OK',
-                    onPress: () => this.setState({alert: false})
+                    onPress: () => this.setState({alert: false, playButton: false})
                 },
-                {text: 'FERMER', onPress: () => BackHandler.exitApp()}
+                {text: 'FERMER', onPress: () => {
+                        this.setState({playButton: true});
+                        BackHandler.exitApp()
+                    }}
             ],
-            {cancelable: false});
+            {cancelable: false})
+    }
 
+    renderPlayerButton() {
+        return (<View style={styles.container}>
+            <View style={styles.content}>
+                <Image source={require('./assets/logo_captain.png')} />
+            </View>
+            <View style={styles.middle}>
+                <Button titleStyle={{
+                    textAlign: 'center', fontSize: wp("8%")
+                }} buttonStyle={{
+                    backgroundColor: "#D42A2A",
+                    borderRadius: wp("3%"), width: wp("70%"),
+                    marginLeft: wp("3%"),
+                }}
+                        title="Jouer"
+                        onPress={() => this.alert()}
+                />
+            </View>
+        </View>)
+    }
+
+    renderAlert()
+    {
+        this.alert()
         return (
             <View style={styles.container}>
                 <View style={styles.content}>
                     <Image source={require('./assets/logo_captain.png')} />
                 </View>
-                <View style={styles.middle}>
-                    <Button titleStyle={{
-                        textAlign: 'center', fontSize: wp("8%")
-                    }} buttonStyle={{
-                        backgroundColor: "#D42A2A",
-                        borderRadius: wp("3%"), width: wp("70%"),
-                        marginLeft: wp("3%"),
-                    }}
-                            title="Jouer"
-                            onPress={() => {
-                                Alert.alert("Attention !",
-                                    "L'abus d'alcool est dangereux pour la santé. En poursuivant vous confirmez être responsable des éventuelles conséquences que pourrait engendrer l'utilisation de Captain Gnole",
-                                    [
-                                        {
-                                            text: 'OK',
-                                            onPress: () => this.setState({alert: false})
-                                        },
-                                        {text: 'FERMER', onPress: () => BackHandler.exitApp()}
-                                    ],
-                                    {cancelable: false})
-                            }}
-                    />
-                </View>
-                <View style={styles.bottom}>
-                </View>
             </View>
-
-        );
+        )
     }
 
     renderFontLoaded() {
@@ -153,6 +154,9 @@ class App extends React.Component {
     }
 
     render() {
+        if(this.state.playButton) {
+            return this.renderPlayerButton()
+        }
         if(!this.state.fontIsLoaded) {
             return this.renderFontNotLoaded()
         }
@@ -170,13 +174,10 @@ const styles = StyleSheet.create({
         alignItems: 'center'
     },
     content: {
-        flex: 0.5,
+        flex: 0.6,
     },
     middle: {
-        flex: 0.1,
-    },
-    bottom: {
-        flex: 0.4,
+        flex: 0.2,
     },
     text: {
         textAlign: 'center',
