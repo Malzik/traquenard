@@ -49,6 +49,9 @@ class SelectDifficultyComponent extends React.Component {
                         <Image source={require('./icons/diff_5.png')} style={{width: wp("30%"), height: wp("30%")}}/>
                     </TouchableOpacity>
                 </View>
+                <Text style={styles.textDesc}>
+                    Plus la difficulté est élevée, plus le nombre de gorgées sera élevé.
+                </Text>
             </View>
 
         );
@@ -66,14 +69,21 @@ const styles = StyleSheet.create({
         flexDirection: 'column'
     },
     header: {
-        height: wp('20%'),
+        height: wp('15%'),
     },
     content: {
-        height: wp('80%'),
+        height: wp('50%'),
         marginTop: wp('20%'),
         flexDirection: 'row',
         justifyContent: 'space-between',
         marginHorizontal: wp('7%'),
+    },
+    textDesc: {
+        color: '#fff',
+        fontSize: wp("4%"),
+        fontFamily: "gorgeesText",
+        padding: wp("2%"),
+        textAlign: 'center'
     },
     img: {
         padding: wp("1%")

@@ -1,19 +1,19 @@
-import React from "react";
-import {FlatList, Image, StyleSheet, Text, TextInput, InteractionManager, TouchableOpacity, View} from "react-native";
-import {Button} from 'react-native-elements';
-import PropTypes from "prop-types";
-import {bindActionCreators} from "redux";
-import * as gameActions from "../store/actions/gameAction";
-import * as textActions from "../store/actions/textAction";
-import {connect} from "react-redux";
-import * as ScreenOrientation from "expo/build/ScreenOrientation/ScreenOrientation";
-import {widthPercentageToDP as wp, heightPercentageToDP as hp} from "react-native-responsive-screen";
-
+import React                                                                                                from "react";
+import {FlatList, Image, StyleSheet, Text, TextInput, InteractionManager, TouchableOpacity, View, Keyboard} from "react-native";
+import {Button}                                                                                             from 'react-native-elements';
+import PropTypes                                                                                            from "prop-types";
+import {bindActionCreators}                                                                                 from "redux";
+import * as gameActions                                                                                     from "../store/actions/gameAction";
+import * as textActions                                                                                     from "../store/actions/textAction";
+import {connect}                                                                                            from "react-redux";
+import * as ScreenOrientation from 'expo-screen-orientation';
+import {widthPercentageToDP as wp}                                              from "react-native-responsive-screen";
 
 class SelectPlayerComponent extends React.Component {
 
     constructor(props) {
         super(props);
+
         this.state = {
             players: [].reverse(),
             currentPlayer: "",
@@ -26,7 +26,7 @@ class SelectPlayerComponent extends React.Component {
 
     addPlayer() {
         if (this.state.currentPlayer.length > 0) {
-            const newPlayer = {name: this.state.currentPlayer, sipCount: 0, sipGiven: 0};
+            const newPlayer = {name: this.state.currentPlayer, points: 0};
             this.setState({
                 players: [newPlayer, ...this.state.players],
                 currentPlayer: "",
@@ -40,16 +40,17 @@ class SelectPlayerComponent extends React.Component {
     }
 
     async changeScreenOrientation() {
-        await ScreenOrientation.lockAsync(ScreenOrientation.OrientationLock.LANDSCAPE_LEFT);
+        await ScreenOrientation.lockAsync(ScreenOrientation.OrientationLock.LANDSCAPE_RIGHT);
     }
 
     startGame() {
         const {addPlayers, initGame, navigation} = this.props;
-        this.changeScreenOrientation();
-
-        initGame();
-        addPlayers(this.state.players);
-        navigation.navigate('SelectDifficulty')
+        Keyboard.dismiss()
+        this.changeScreenOrientation().then(() => {
+            initGame();
+            addPlayers(this.state.players);
+            navigation.navigate('SelectDifficulty')
+        });
     }
 
     checkEnoughPlayer() {
@@ -76,12 +77,13 @@ class SelectPlayerComponent extends React.Component {
         });
     }
 
+
     message(){
         if (this.state.players.length < 1){
             return(
                 <View style={styles.messageView}>
                     <Image source={require('./icons/info.png')}
-                           style={{width: wp("13%"), height: wp("13%")}}/>
+                           style={{width: wp("9%"), height: wp("9%")}}/>
                     <Text style={styles.message}>Ajouter au moins 2 joueurs pour jouer !</Text>
                 </View>
             )
@@ -107,12 +109,13 @@ class SelectPlayerComponent extends React.Component {
         }
     }
 
+
     render() {
         return (
             <View style={styles.container}>
                 <View style={styles.content}>
                     <View style={styles.header}>
-                        <Text style={styles.title}> Traquenard </Text>
+                        <Text style={styles.title_captain}> Captain Gnole </Text>
                     </View>
                     <View style={styles.middle}>
                         {this.message()}
@@ -122,7 +125,9 @@ class SelectPlayerComponent extends React.Component {
                                     ref={this.inputRef}
                                     autoFocus={true}
                                     style={styles.textInputPlayer}
+                                    maxLength={10}
                                     placeholder='Ajouter un joueur ..'
+                                    placeholderTextColor={"#fff"}
                                     onChangeText={(text) => this.setState({currentPlayer: text})}
                                     value={this.state.currentPlayer}
                                 />
@@ -136,11 +141,12 @@ class SelectPlayerComponent extends React.Component {
                     </View>
                     <View style={styles.bottom}>
                         <Button titleStyle={{
-                            textAlign: 'center', color: '#fff',
-                            fontSize: wp("9%"), fontFamily: "MainTitle"
+                            textAlign: 'center',
+                            fontSize: wp("8%"), fontFamily: "MainTitle"
                         }} buttonStyle={{
-                            backgroundColor: "#DA2A2A",
-                            borderRadius: wp("10%"), width: wp("70%"),
+                            backgroundColor: "#D42A2A",
+                            borderRadius: wp("3%"), width: wp("70%"),
+                            marginLeft: wp("3%"),
                         }}
                                 title="Commencer"
                                 onPress={() => {this.startGame()}}
@@ -159,17 +165,20 @@ const styles = StyleSheet.create({
         backgroundColor: '#2A2A2A',
     },
     content: {
-        height: "70%"
+        flex: 0.6
     },
     header: {
-        height: "20%"
+        flexDirection: 'row',
+        justifyContent: 'center',
+        flex: 0.2,
+        alignItems: 'center'
     },
     middle: {
-        height: "60%"
+        flex: 0.68,
     },
     bottom: {
-        height: "20%",
-        alignItems: 'center'
+        flex: 0.12,
+        alignItems: 'center',
     },
     messageView: {
         marginTop: wp("1%"),
@@ -185,10 +194,18 @@ const styles = StyleSheet.create({
     },
     title: {
         marginTop: wp("7%"),
+        paddingRight: wp("5%"),
         textAlign: 'center',
         color: '#fff',
-        fontSize: wp("10%"),
-        fontFamily: "titre"
+        fontSize: wp("7%"),
+        fontFamily: "titre",
+    },
+    title_captain: {
+        marginTop: wp("7%"),
+        textAlign: 'center',
+        color: '#fff',
+        fontSize: wp("14%"),
+        fontFamily: "TheTitle",
     },
     player: {
         flex: 1,
@@ -217,9 +234,19 @@ const styles = StyleSheet.create({
         marginTop: wp("8%"),
     },
     textInputPlayer: {
-        color: '#fff',
+        color: 'white',
         fontSize: wp("6%"),
         fontFamily: 'ABeeZee-Regular',
+    },
+    col3: {
+        width: "20%",
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    col4: {
+        width: "33%",
+        justifyContent: 'center',
+        alignItems: 'center',
     }
 });
 

@@ -11,6 +11,7 @@ import {AnswerQuestion} from "./AnswerQuestionComponent";
 import {FormattedText} from "./helpers/FormattedText";
 
 class QuestionComponent extends React.Component {
+    static TYPE = "question";
     constructor(props) {
         super(props);
 
@@ -33,7 +34,7 @@ class QuestionComponent extends React.Component {
         });
     }
 
-    componentDidMount(): void {
+    componentDidMount() {
         const {textReducer, removeQuestion} = this.props;
 
         const questions = textReducer.questions;
@@ -44,7 +45,7 @@ class QuestionComponent extends React.Component {
         removeQuestion("questions", question);
     }
 
-    changeScene(selectedAnswer): void {
+    changeScene(selectedAnswer) {
         const {navigation} = this.props;
         const {question} = this.state;
 
@@ -59,11 +60,13 @@ class QuestionComponent extends React.Component {
             <View style={styles.container}>
                 <View style={styles.contentTitle}>
                     <Text style={styles.title}>
-                        <FormattedText text={texts["text.question.title"]}/>
+                        <FormattedText text={texts["text.questions.title"]}/>
                     </Text>
                 </View>
                 <View style={styles.contentQuestion}>
-                    <Text style={styles.questionText}>{question}</Text>
+                    <Text style={styles.questionText}>
+                        <FormattedText text={question}/>
+                    </Text>
                 </View>
                 <View style={styles.contentAnswer}>
                     {
@@ -91,7 +94,7 @@ class QuestionComponent extends React.Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#FFE332',
+        backgroundColor: '#3FBD4E',
     },
     contentTitle :{
         height: wp('17%'),

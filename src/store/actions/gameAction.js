@@ -31,13 +31,22 @@ const updateCategory = selectedCategory => ({
     selectedCategory
 });
 
-const addSip = sip => ({
-    type: 'ADD_SIP',
-    sip
+const addPointsDuel = (points, win) => ({
+    type: 'ADD_POINTS_DUEL',
+    points,
+    win
 });
 
-const addTurn = () => ({
-    type: 'ADD_TURN'
+const addPointsFriendship = (points, win) => ({
+    type: 'ADD_POINTS_FRIENDSHIP',
+    points,
+    win
+});
+
+const addPoints = (points, win) => ({
+    type: 'ADD_POINTS',
+    points,
+    win
 });
 
 
@@ -49,6 +58,7 @@ export {
     updateCurrentUser,
     updateSelectedPlayer,
     updateCategory,
-    addSip,
-    addTurn
+    addPointsDuel,
+    addPointsFriendship,
+    addPoints
 };

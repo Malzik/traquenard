@@ -5,7 +5,7 @@ import * as gameActions from '../store/actions/gameAction';
 import * as textActions from '../store/actions/textAction';
 import {bindActionCreators} from "redux";
 import {FormattedText} from "./helpers/FormattedText";
-import {widthPercentageToDP as wp, heightPercentageToDP as hp} from "react-native-responsive-screen";
+import {widthPercentageToDP as wp} from "react-native-responsive-screen";
 
 class EveryonePlayComponent extends React.Component {
 
@@ -20,7 +20,7 @@ class EveryonePlayComponent extends React.Component {
         };
     }
 
-    componentDidMount(): void {
+    componentDidMount() {
         const {textReducer, removeQuestion} = this.props;
 
         const everyone = textReducer.everyone;
@@ -31,19 +31,12 @@ class EveryonePlayComponent extends React.Component {
         removeQuestion("everyone", question);
     }
 
-    async changeScene(): void {
-        const {navigation, addSip, updateCurrentUser, addTurn, gameReducer} = this.props;
-        const {everyone} = this.state;
+    changeScene() {
+        const {navigation, updateCurrentUser, gameReducer} = this.props;
 
         updateCurrentUser();
-        addSip(everyone.sip);
-        await addTurn();
 
-        if (this.props.gameReducer.currentTurn >= gameReducer.maxTurn || this.props.textReducer.everyone.length === 0) {
-            navigation.navigate("EndGame");
-        } else {
-            navigation.navigate("Card")
-        }
+        navigation.navigate("Card")
     }
 
     render() {

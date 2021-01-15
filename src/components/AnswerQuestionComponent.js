@@ -6,18 +6,19 @@ import {connect} from "react-redux";
 import {Button} from 'react-native-elements';
 import PropTypes from "prop-types";
 import {FormattedText} from "./helpers/FormattedText";
-import {widthPercentageToDP as wp, heightPercentageToDP as hp} from "react-native-responsive-screen";
+import {widthPercentageToDP as wp} from "react-native-responsive-screen";
 
 class AnswerQuestionComponent extends React.Component {
+    POINTS = 2;
     constructor(props) {
         super(props);
 
         const {selectedAnswer, question} = this.props.route.params;
         const texts = [
-            "text.question.win",
-            "text.question.loose",
-            "text.question.win.description",
-            "text.question.loose.description"
+            "text.questions.win",
+            "text.questions.loose",
+            "text.questions.win.description",
+            "text.questions.loose.description"
         ];
         let textCollection = {};
         texts.forEach(text => {
@@ -27,35 +28,43 @@ class AnswerQuestionComponent extends React.Component {
         let title;
         let description;
         if (selectedAnswer.true_false) {
-            title = textCollection["text.question.win"];
-            description = textCollection["text.question.win.description"];
+            title = textCollection["text.questions.win"];
+            description = textCollection["text.questions.win.description"];
         } else {
-            title = textCollection["text.question.loose"];
-            description = textCollection["text.question.loose.description"];
+            title = textCollection["text.questions.loose"];
+            description = textCollection["text.questions.loose.description"];
         }
 
         this.state = {
             question: question,
-            answerPlayer: selectedAnswer,
+            selectedAnswer,
             title,
             description,
             texts: textCollection
         };
     }
 
-    changeScene(): void {
-        const {navigation, addSip} = this.props;
-        const {question} = this.state;
+    changeScene() {
+        const {navigation, addPoints, gameReducer, updateCurrentUser} = this.props;
+        const { selectedAnswer } = this.state;
 
-        addSip(question.sip);
-        navigation.navigate("EveryonePlay")
+        addPoints(this.POINTS, selectedAnswer.true_false);
+
+        if (gameReducer.showEveryone) {
+            navigation.navigate("EveryonePlay")
+        } else {
+            updateCurrentUser();
+            navigation.navigate("Card")
+        }
     }
 
     render() {
         return (
             <TouchableOpacity style={styles.container} onPress={() => this.changeScene()}>
                 <View style={styles.contentTitle}>
-                    <Text style={styles.title}><FormattedText text={this.state.title}/></Text>
+                    <Text style={styles.title}>
+                        <FormattedText text={this.state.title}/>
+                    </Text>
                 </View>
                 <View style={styles.contentQuestion}>
                     <Text style={styles.questionText}>

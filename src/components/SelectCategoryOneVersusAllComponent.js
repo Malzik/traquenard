@@ -3,10 +3,9 @@ import {connect} from 'react-redux';
 import React from "react";
 import * as gameActions from '../store/actions/gameAction';
 import {bindActionCreators} from "redux"
-import {OneVersusAll} from "./OneVersusAllComponent";
 import {FormattedText} from "./helpers/FormattedText";
 import {Button} from "react-native-elements";
-import {widthPercentageToDP as wp, heightPercentageToDP as hp} from "react-native-responsive-screen";
+import {widthPercentageToDP as wp} from "react-native-responsive-screen";
 
 class SelectCategoryOneVersusAllComponent extends React.Component {
 
@@ -17,7 +16,8 @@ class SelectCategoryOneVersusAllComponent extends React.Component {
             game: this.props.game,
             currentPlayer: {
                 name: null
-            }
+            },
+            card: this.props.route.params.card
         };
     }
 
@@ -27,11 +27,12 @@ class SelectCategoryOneVersusAllComponent extends React.Component {
         })
     }
 
-    changeScene(category): void {
+    changeScene(category) {
         const {navigation, updateCategory} = this.props;
+        const {card} = this.state;
 
         updateCategory(category);
-        navigation.navigate("OneVersusAll")
+        navigation.navigate("All", {card})
     }
 
     checkIfQuestionRemaining(category) {
@@ -82,7 +83,7 @@ class SelectCategoryOneVersusAllComponent extends React.Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#3FBD4E',
+        backgroundColor: '#DA2A2A',
     },
     title: {
         padding: wp("4%"),

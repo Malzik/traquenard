@@ -1,21 +1,15 @@
 {
   "expo": {
-    "name": "Traquenard",
-    "slug": "Traquenard",
+    "name": "Captain Gnole",
+    "slug": "CaptainGnole",
     "privacy": "public",
-    "sdkVersion": "36.0.0",
-    "platforms": [
-      "ios",
-      "android",
-      "web"
-    ],
     "version": "1.0.0",
     "orientation": "default",
-    "icon": "./assets/logo.png",
+    "icon": "./assets/logo_captain.png",
     "splash": {
-      "image": "./assets/logo.png",
+      "image": "./assets/logo_captain.png",
       "resizeMode": "contain",
-      "backgroundColor": "#FFFFFF"
+      "backgroundColor": "#E0BA77"
     },
     "updates": {
       "fallbackToCacheTimeout": 0
@@ -30,12 +24,14 @@
     },
     "android": {
       "package": "com.traquenard.corp",
-      "versionCode": 1,
+      "versionCode": 3,
       "permissions": []
     },
-    "description": "",
+    "web": {
+      "favicon": "./assets/logo_captain.png"
+    },
     "androidNavigationBar": {
-      "visible": true,
+      "visible": "leanback",
       "backgroundColor": "#2A2A2A"
     }
   }
