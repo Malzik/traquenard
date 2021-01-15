@@ -23,7 +23,8 @@ class AllComponent extends React.Component {
             question: {
                 question: null,
                 sip: null
-            }
+            },
+            isButtonDisabled: true
         }
     }
 
@@ -38,10 +39,10 @@ class AllComponent extends React.Component {
         } else {
             this.getRule(rules, card)
         }
+        setTimeout(() => this.setState({ isButtonDisabled: false }), 1000);
     }
 
-    getRule(rules, card)
-    {
+    getRule(rules, card) {
         const { removeQuestion} = this.props;
         const question = rules[Math.floor(Math.random() * rules.length)];
         this.setState({
@@ -50,8 +51,7 @@ class AllComponent extends React.Component {
         removeQuestion(card.type, question);
     }
 
-    getRuleOneVersusAll(rules)
-    {
+    getRuleOneVersusAll(rules) {
         const { gameReducer, removeQuestionFromCategory} = this.props;
 
         const category = gameReducer.selectedCategory;
@@ -72,11 +72,11 @@ class AllComponent extends React.Component {
 
     render() {
         const {texts} = this.props.textReducer;
-        const {card} = this.state;
+        const {card, isButtonDisabled} = this.state;
         const {question, sip} = this.state.question;
 
         return (
-            <TouchableOpacity style={styles[card.type + 'Container']} onPress={() => this.changeScene()}>
+            <TouchableOpacity style={styles[card.type + 'Container']} disabled={isButtonDisabled} onPress={() => this.changeScene()}>
                 <View style={styles.flex1}>
                     <Text style={styles.title}>
                         <FormattedText text={texts['text.' + card.type + '.title']}/>
