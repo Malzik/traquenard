@@ -1,13 +1,25 @@
 import React                                                                                                from "react";
-import {FlatList, Image, StyleSheet, Text, TextInput, InteractionManager, TouchableOpacity, View, Keyboard} from "react-native";
-import {Button}                                                                                             from 'react-native-elements';
-import PropTypes                                                                                            from "prop-types";
-import {bindActionCreators}                                                                                 from "redux";
-import * as gameActions                                                                                     from "../store/actions/gameAction";
-import * as textActions                                                                                     from "../store/actions/textAction";
-import {connect}                                                                                            from "react-redux";
-import * as ScreenOrientation from 'expo-screen-orientation';
-import {widthPercentageToDP as wp}                                              from "react-native-responsive-screen";
+import {
+    FlatList,
+    Image,
+    StyleSheet,
+    Text,
+    TextInput,
+    InteractionManager,
+    TouchableOpacity,
+    View,
+    Keyboard,
+    ToastAndroid, Alert
+}                                  from "react-native";
+import {Button}                    from 'react-native-elements';
+import PropTypes                   from "prop-types";
+import {bindActionCreators}        from "redux";
+import * as gameActions            from "../store/actions/gameAction";
+import * as textActions            from "../store/actions/textAction";
+import {connect}                   from "react-redux";
+import * as ScreenOrientation      from 'expo-screen-orientation';
+import {widthPercentageToDP as wp} from "react-native-responsive-screen";
+import AsyncStorage                from "@react-native-async-storage/async-storage";
 
 class SelectPlayerComponent extends React.Component {
 
@@ -16,16 +28,67 @@ class SelectPlayerComponent extends React.Component {
 
         this.state = {
             players: [].reverse(),
-            currentPlayer: "",
-            errors: {
-                addPlayer: ""
-            }
+            currentPlayer: ""
         };
         ScreenOrientation.lockAsync(ScreenOrientation.OrientationLock.PORTRAIT);
     }
 
+    async componentDidMount() {
+        await this.getStorageData()
+        this.focusInputWithKeyboard()
+    }
+
+    async getStorageData() {
+        try {
+            await AsyncStorage.getItem('players').then(response => {
+                if (response !== null) {
+                    this.renderAlert(response)
+                }
+            });
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+    renderAlert(players) {
+        Alert.alert("",
+            "Voulez-vous continuer avec les joueurs de la dernière partie ?",
+            [
+                {
+                    text: 'OUI',
+                    onPress: () => this.setState({players: JSON.parse(players)})
+                },
+                {
+                    text: 'NON',
+                    onPress: () => {
+                        AsyncStorage.removeItem('players')
+                    }
+                }
+            ],
+            {cancelable: false})
+    }
+
+    showToast(message) {
+        ToastAndroid.showWithGravity(
+            message,
+            ToastAndroid.SHORT,
+            ToastAndroid.CENTER
+        );
+    };
+
+    playerAlreadyExist(name) {
+        const find = this.state.players.find(player => player.name === name)
+
+        return find !== undefined;
+    }
+
     addPlayer() {
-        if (this.state.currentPlayer.length > 0) {
+        const playerName = this.state.currentPlayer.trim();
+        if (playerName.length > 0) {
+            if(this.playerAlreadyExist(playerName)){
+                this.showToast("Un joueur a déjà le même nom")
+                return;
+            }
             const newPlayer = {name: this.state.currentPlayer, points: 0};
             this.setState({
                 players: [newPlayer, ...this.state.players],
@@ -33,9 +96,7 @@ class SelectPlayerComponent extends React.Component {
                 errors: {...this.state.errors, addPlayer: ""}
             })
         } else {
-            this.setState({
-                errors: {...this.state.errors, addPlayer: "Le nom ne peut pas être vide"}
-            })
+            this.showToast("Le nom ne peut pas être vide")
         }
     }
 
@@ -49,8 +110,14 @@ class SelectPlayerComponent extends React.Component {
         this.changeScreenOrientation().then(() => {
             initGame();
             addPlayers(this.state.players);
-            navigation.navigate('SelectDifficulty')
+            this.savePlayers().then(() => {
+                navigation.navigate('SelectDifficulty')
+            })
         });
+    }
+
+    async savePlayers() {
+        await AsyncStorage.setItem("players", JSON.stringify(this.state.players))
     }
 
     checkEnoughPlayer() {
@@ -67,16 +134,11 @@ class SelectPlayerComponent extends React.Component {
 
     inputRef = React.createRef();
 
-    componentDidMount() {
-        this.focusInputWithKeyboard()
-    }
-
     focusInputWithKeyboard() {
         InteractionManager.runAfterInteractions(() => {
             this.inputRef.current.focus()
         });
     }
-
 
     message(){
         if (this.state.players.length < 1){
@@ -108,7 +170,6 @@ class SelectPlayerComponent extends React.Component {
             )
         }
     }
-
 
     render() {
         return (
