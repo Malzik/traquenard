@@ -30,8 +30,8 @@ class App extends React.Component {
         this.state = {
             fontIsLoaded: false,
             startPage: 'SelectPlayer',
-            alert: false,
-            playButton: true
+            alert: true,
+            playButton: false
         };
         // AsyncStorage.removeItem('tutorial')
     }
