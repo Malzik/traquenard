@@ -1,5 +1,15 @@
-import React from "react";
-import {Image, StyleSheet, Text, TouchableOpacity, View} from "react-native";
+import React, { Component } from "react";
+import {
+    Image,
+    StyleSheet,
+    Text,
+    TouchableOpacity,
+    TouchableHighlight,
+    View,
+    Alert,
+    Modal,
+    FlatList
+} from "react-native";
 import {bindActionCreators} from "redux";
 import * as gameActions from "../store/actions/gameAction";
 import PropTypes from "prop-types";
@@ -7,6 +17,8 @@ import {connect} from "react-redux";
 import {FormattedText} from "./helpers/FormattedText";
 import {handleAndroidBackButton, removeAndroidBackButtonHandler} from "./helpers/BackHandlerHelper";
 import {widthPercentageToDP as wp} from "react-native-responsive-screen";
+import { EndGamePlayer } from "./EndGamePlayerComponent";
+
 
 class CardComponent extends React.Component {
 
@@ -55,6 +67,7 @@ class CardComponent extends React.Component {
                     points: 5
                 },
             ],
+            modalVisible: false
         };
 
     }
@@ -93,20 +106,101 @@ class CardComponent extends React.Component {
         }
     }
 
+    setModalVisible = (visible) => {
+        this.setState({ modalVisible: visible });
+    }
+
+    sortPlayer() {
+        const {players} = this.props.gameReducer;
+
+
+        players.sort((a, b) => (a.points - b.points))
+
+        const length = players.length;
+        const winner = players[length-1]
+
+        players.forEach((player, index) => {
+            if (player.points === winner.points) {
+                player.position = 1
+            } else {
+                player.position = length - index;
+            }
+        })
+
+        return players;
+    }
+
     render() {
         const {texts} = this.props.textReducer;
         const {cards} = this.state;
+        const { modalVisible } = this.state;
+        const players = this.sortPlayer();
 
         return (
             <View style={styles.container}
                   onLayout={this.onLayout}>
+
+                <Modal
+                    animationType="slide"
+                    transparent={true}
+                    visible={modalVisible}
+                    onRequestClose={() => {
+                        Alert.alert("Modal has been closed.");
+                    }}
+                >
+                    <View>
+                        <View style={styles.modalView}>
+                            <View style={ styles.headRow }>
+                                <View style={ styles.headRowID }>
+                                    <Text  style={ styles.textHead }> Place </Text>
+                                </View>
+                                <View style={ styles.headRowName }>
+                                    <Text  style={ styles.textHead }> Nom </Text>
+                                </View>
+                                <View style={ styles.headRowPoints }>
+                                    <Text  style={ styles.textHead }> Points </Text>
+                                </View>
+                            </View>
+
+                            <View style={styles.list}>
+                                <FlatList
+                                    ref={el => this.flatList = el}
+                                    inverted
+                                    data={players}
+                                    onContentSizeChange={() => this.flatList.scrollToEnd({animated: true, offset: 0})}
+                                    onLayout={() => this.flatList.scrollToEnd({animated: true, offset: 0 })}
+                                    renderItem={({item, index}) => (
+                                        <EndGamePlayer style={styles.playerInList} time={0} item={item} />
+                                    )}
+                                    keyExtractor={(item, index) => index.toString()}
+                                />
+                            </View>
+                            <View style={styles.alignBtn}>
+                                <TouchableHighlight
+                                    style={{ ...styles.openButton, backgroundColor: "#D42A2A" }}
+                                    onPress={() => {
+                                        this.setModalVisible(!modalVisible);
+                                    }}
+                                >
+                                    <Text style={styles.textStyle}>Fermer</Text>
+                                </TouchableHighlight>
+                            </View>
+
+                        </View>
+                    </View>
+                </Modal>
+
+
+
                 <View style={styles.header}>
                     <Text style={styles.title}>
                         <FormattedText text={texts["text.card.title"]}/>
                     </Text>
-                    <Text style={styles.nbPts}>
-                        Points : <FormattedText text={"points"} />
-                    </Text>
+                    <TouchableOpacity onPress={() => { this.setModalVisible(!modalVisible)}}>
+                        <Text style={styles.nbPts}>
+                            Points : <FormattedText text={"points"} />
+                        </Text>
+                    </TouchableOpacity>
                 </View>
                 <View style={styles.content}>
                     {
@@ -257,7 +351,72 @@ const styles = StyleSheet.create({
         fontSize: wp("4%"),
         fontFamily: "gorgeesText",
         padding: wp("2%"),
-    }
+    },
+
+
+    modalView: {
+        margin: 20,
+        backgroundColor: "#2A2A2A",
+        borderRadius: 20,
+        padding: 35,
+        shadowColor: "#000",
+        shadowOffset: {
+            width: 0,
+            height: 2
+        },
+        shadowOpacity: 0.25,
+        shadowRadius: 3.84,
+        elevation: 5,
+    },
+    alignBtn: {
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    openButton: {
+        borderRadius: 20,
+        padding: 10,
+        elevation: 2,
+        width: wp("50%"),
+    },
+    textStyle: {
+        color: "white",
+        fontWeight: "bold",
+        textAlign: "center"
+    },
+    headRow:{
+        flexDirection: 'row',
+        borderBottomColor: 'white',
+        paddingBottom: wp('1%'),
+        borderBottomWidth: 3,
+        marginBottom:  wp('5%'),
+    },
+    textHead: {
+        fontSize: wp('7%'),
+        color: '#fff',
+        fontFamily: 'titre',
+        textAlign: 'center',
+    },
+    textTable: {
+        fontSize: wp('6%'),
+        color: '#fff',
+        fontFamily: 'gorgeesText',
+        textAlign: 'center',
+    },
+    headRowID: {
+        flex:0.3
+    },
+    headRowName: {
+        flex:0.4
+    },
+    headRowPoints: {
+        flex:0.3
+    },
+    list: {
+        maxHeight: wp("35%"),
+        marginBottom:  wp('10%'),
+    },
+
+
 });
 
 
