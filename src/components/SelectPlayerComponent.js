@@ -9,8 +9,8 @@ import {
     TouchableOpacity,
     View,
     Keyboard,
-    ToastAndroid, Alert, BackHandler
-} from "react-native";
+    ToastAndroid, Alert
+}                                  from "react-native";
 import {Button}                    from 'react-native-elements';
 import PropTypes                   from "prop-types";
 import {bindActionCreators}        from "redux";
