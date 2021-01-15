@@ -45,6 +45,16 @@ class WinLooseComponent extends React.Component {
             navigation.navigate("Card")
         }
     }
+    changeSceneEquality() {
+        const {navigation, gameReducer, updateCurrentUser} = this.props;
+
+        if (gameReducer.showEveryone) {
+            navigation.navigate("EveryonePlay")
+        } else {
+            updateCurrentUser();
+            navigation.navigate("Card")
+        }
+    }
 
     render() {
         const {texts} = this.props.textReducer;
@@ -68,6 +78,9 @@ class WinLooseComponent extends React.Component {
                 <View style={styles.content}>
                     <TouchableOpacity style={styles.loose} onPress={() => this.changeScene(this.LOOSE)}>
                         <Text style={styles.textLoose}>Perdu</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity style={styles.equality} onPress={() => this.changeSceneEquality()}>
+                        <Text style={styles.textLoose}>Egalité</Text>
                     </TouchableOpacity>
                     <TouchableOpacity style={styles.win} onPress={() => this.changeScene(this.WIN)}>
                         <Text style={styles.textWin}>Gagné</Text>
@@ -104,14 +117,21 @@ const styles = StyleSheet.create({
         flex: 0.3
     },
     loose :{
-        flex: 0.5,
+        flex: 0.34,
         justifyContent: 'center',
         backgroundColor: '#D42A2A',
         borderRightColor: "#FFF",
         borderRightWidth: 1,
     },
+    equality :{
+        flex: 0.32,
+        justifyContent: 'center',
+        backgroundColor: '#2A2A2A',
+        borderLeftColor: "#FFF",
+        borderLeftWidth: 1
+    },
     win :{
-        flex: 0.5,
+        flex: 0.34,
         justifyContent: 'center',
         backgroundColor: '#3FBD4E',
         borderLeftColor: "#FFF",
