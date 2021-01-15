@@ -61,7 +61,7 @@ class EndGameComponent extends React.Component {
     }
 
     render() {
-        const players = this.sortPlayer()
+        const players = this.sortPlayer();
         ScreenOrientation.lockAsync(ScreenOrientation.OrientationLock.PORTRAIT);
         return (
             <View style={ styles.container }>
