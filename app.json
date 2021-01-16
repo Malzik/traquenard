@@ -25,6 +25,7 @@
     "android": {
       "package": "com.traquenard.corp",
       "versionCode": 3,
+      "softwareKeyboardLayoutMode": "pan",
       "permissions": []
     },
     "web": {
