@@ -1,13 +1,14 @@
-import React                                                       from "react";
-import {FlatList, StyleSheet, Text, View} from "react-native";
-import {Button}                                                    from 'react-native-elements';
-import {bindActionCreators}                                        from "redux";
-import * as gameActions                                            from "../store/actions/gameAction";
-import {connect}                                                   from "react-redux";
-import * as ScreenOrientation from 'expo-screen-orientation';
-import {widthPercentageToDP as wp}     from "react-native-responsive-screen";
-import { EndGamePlayer }                                           from "./EndGamePlayerComponent";
-
+import React                                       from "react";
+import { Alert, FlatList, StyleSheet, Text, View } from "react-native";
+import {Button}                                    from 'react-native-elements';
+import {bindActionCreators}                        from "redux";
+import * as gameActions                            from "../store/actions/gameAction";
+import {connect}                                   from "react-redux";
+import * as ScreenOrientation                      from 'expo-screen-orientation';
+import {widthPercentageToDP as wp}                 from "react-native-responsive-screen";
+import { EndGamePlayer }                  from "./EndGamePlayerComponent";
+import { getStorageData, setStorageData } from "./helpers/GetFromStore";
+import Rate, {AndroidMarket} from "react-native-rate";
 
 class EndGameComponent extends React.Component {
     constructor(props) {
@@ -17,14 +18,61 @@ class EndGameComponent extends React.Component {
         }
     }
 
+    rating() {
+        getStorageData('isFirstGame').then(response => {
+            console.log(response)
+            if (response === null) {
+                Alert.alert("Tu aimes le jeu ?",
+                    "Mets-nous 5 étoiles ! ⭐⭐⭐⭐⭐",
+                    [
+                        {
+                            text: 'C\'est parti !',
+                            onPress: () => this.rate()
+                        },
+                        {
+                            text: 'Plus tard',
+                            onPress: () => {
+                                this.restart()
+                            }
+                        }
+                    ],
+                    {cancelable: false})
+            } else {
+                this.restart()
+            }
+        })
+    }
+
     restart() {
-        this.props.restartGame();
-        this.props.navigation.navigate('SelectPlayer');
+        const { restartGame } = this.props;
+        setStorageData("isFirstGame", "false").then(() => {
+            this.props.navigation.reset({
+                index: 0,
+                routes: [{ name: 'SelectPlayer' }],
+            });
+            restartGame();
+        })
+    }
+
+    rate() {
+        const options = {
+            AppleAppID:"2193813192",
+            GooglePackageName:"com.traquenard.corp",
+            preferredAndroidMarket: AndroidMarket.Google,
+            preferInApp:false,
+            openAppStoreIfInAppFails:true,
+        }
+        Rate.rate(options, success=>{
+            if (success) {
+                setStorageData("isFirstGame", "false").then(() => {
+                    this.restart()
+                })
+            }
+        })
     }
 
     sortPlayer() {
         const {players} = this.props.gameReducer;
-
 
         players.sort((a, b) => (a.points - b.points))
 
@@ -86,7 +134,7 @@ class EndGameComponent extends React.Component {
                         fontSize: wp('10%'),  fontFamily: "MainTitle"
                     }} buttonStyle={{ backgroundColor: "#DA2A2A",
                         borderRadius: 60, width: wp('50%'), }}
-                            title="Rejouer" onPress={() => { this.restart();
+                            title="Rejouer" onPress={() => { this.rating();
                     }}/>
                 </View>
             </View>
@@ -96,7 +144,6 @@ class EndGameComponent extends React.Component {
     onLayout() {
         this.list.scrollToOffset({ animated: true, offset: 0 });
     }
-
 }
 
 const styles = StyleSheet.create({

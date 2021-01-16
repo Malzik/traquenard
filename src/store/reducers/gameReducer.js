@@ -27,7 +27,8 @@ const gameReducer = (state = initialState, action = {}) => {
     switch (action.type) {
         case 'ADD_PLAYERS':
             newState.players = action.players;
-            newState.maxTurn = getMaxTurn(action.players.length)
+            // newState.maxTurn = getMaxTurn(action.players.length)
+            newState.maxTurn = 0;
             break;
         case 'CHANGE_DIFFICULTY':
             newState.difficulty = action.newDifficulty;

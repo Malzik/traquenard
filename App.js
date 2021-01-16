@@ -20,6 +20,7 @@ import { Tutorial }                  from "./src/components/TutorialComponent";
 import AsyncStorage                  from '@react-native-async-storage/async-storage';
 import { widthPercentageToDP as wp } from "react-native-responsive-screen";
 import {Button}                      from "react-native-elements";
+import { getStorageData }            from "./src/components/helpers/GetFromStore";
 
 const Stack = createStackNavigator();
 
@@ -34,6 +35,7 @@ class App extends React.Component {
             playButton: false
         };
         // AsyncStorage.removeItem('tutorial')
+        // AsyncStorage.removeItem('isFirstGame')
     }
 
 

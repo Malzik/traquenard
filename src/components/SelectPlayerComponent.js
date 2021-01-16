@@ -9,8 +9,8 @@ import {
     TouchableOpacity,
     View,
     Keyboard,
-    ToastAndroid, Alert, KeyboardAvoidingView
-} from "react-native";
+    ToastAndroid, Alert, KeyboardAvoidingView, Linking
+}                                  from "react-native";
 import {Button}                    from 'react-native-elements';
 import PropTypes                   from "prop-types";
 import {bindActionCreators}        from "redux";
@@ -32,8 +32,6 @@ class SelectPlayerComponent extends React.Component {
         };
         ScreenOrientation.lockAsync(ScreenOrientation.OrientationLock.PORTRAIT);
     }
-
-
 
     async componentDidMount() {
         await this.getStorageData()
@@ -58,7 +56,12 @@ class SelectPlayerComponent extends React.Component {
             [
                 {
                     text: 'OUI',
-                    onPress: () => this.setState({players: JSON.parse(players)})
+                    onPress: () => {
+                        this.setState({players: JSON.parse(players)})
+                        InteractionManager.runAfterInteractions(() => {
+                            this.inputRef.current.blur()
+                        });
+                    }
                 },
                 {
                     text: 'NON',

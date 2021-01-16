@@ -24,6 +24,7 @@
     },
     "android": {
       "package": "com.traquenard.corp",
+      "playStoreUrl": "https://play.google.com/store/apps/details?id=com.traquenard.corp",
       "versionCode": 3,
       "softwareKeyboardLayoutMode": "pan",
       "permissions": []
