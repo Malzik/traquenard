@@ -9,8 +9,8 @@ import {
     TouchableOpacity,
     View,
     Keyboard,
-    ToastAndroid, Alert
-}                                  from "react-native";
+    ToastAndroid, Alert, KeyboardAvoidingView
+} from "react-native";
 import {Button}                    from 'react-native-elements';
 import PropTypes                   from "prop-types";
 import {bindActionCreators}        from "redux";
@@ -32,6 +32,8 @@ class SelectPlayerComponent extends React.Component {
         };
         ScreenOrientation.lockAsync(ScreenOrientation.OrientationLock.PORTRAIT);
     }
+
+
 
     async componentDidMount() {
         await this.getStorageData()
@@ -173,7 +175,7 @@ class SelectPlayerComponent extends React.Component {
 
     render() {
         return (
-            <View style={styles.container}>
+            <KeyboardAvoidingView style={styles.container}>
                 <View style={styles.content}>
                     <View style={styles.header}>
                         <Text style={styles.title_captain}> Captain Gnole </Text>
@@ -201,12 +203,24 @@ class SelectPlayerComponent extends React.Component {
                         </View>
                     </View>
                     <View style={styles.bottom}>
+                        <TouchableOpacity onPress={() => this.removePlayer(index)}>
+                            <View style={{
+                                backgroundColor: "#2A9BDA",
+                                borderRadius: wp("3%"),
+                                padding: wp("3%"),
+                                marginRight: wp("3%"),
+                            }}>
+                                <Image source={require('./icons/reglages.png')}
+                                       style={{width: 30, height: 30}}/>
+                            </View>
+                        </TouchableOpacity>
+
                         <Button titleStyle={{
                             textAlign: 'center',
                             fontSize: wp("8%"), fontFamily: "MainTitle"
                         }} buttonStyle={{
                             backgroundColor: "#D42A2A",
-                            borderRadius: wp("3%"), width: wp("70%"),
+                            borderRadius: wp("3%"), width: wp("55%"),
                             marginLeft: wp("3%"),
                         }}
                                 title="Commencer"
@@ -215,7 +229,7 @@ class SelectPlayerComponent extends React.Component {
                         />
                     </View>
                 </View>
-            </View>
+            </KeyboardAvoidingView>
         );
     }
 }
@@ -226,7 +240,7 @@ const styles = StyleSheet.create({
         backgroundColor: '#2A2A2A',
     },
     content: {
-        flex: 0.6
+        flex: 0.9,
     },
     header: {
         flexDirection: 'row',
@@ -240,6 +254,8 @@ const styles = StyleSheet.create({
     bottom: {
         flex: 0.12,
         alignItems: 'center',
+        flexDirection: 'row',
+        justifyContent: 'center'
     },
     messageView: {
         marginTop: wp("1%"),
