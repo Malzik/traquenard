@@ -1,5 +1,3 @@
-import moment from "moment";
-
 const initialState = {
     players: [],
     maxTurn: 4,
@@ -8,10 +6,20 @@ const initialState = {
     currentPlayer: null,
     selectedPlayer: null,
     selectedCategory: null,
-    startTime: null,
     scene: null,
     showEveryone: true
 };
+
+const getMaxTurn = (playersCount) => {
+    if (playersCount === playersCount <= 4) {
+        return 5;
+    } else if (playersCount <= 6) {
+        return 4;
+    } else if (playersCount <= 8) {
+        return 3;
+    }
+    return 2;
+}
 
 const gameReducer = (state = initialState, action = {}) => {
     const newState = { ...state };
@@ -19,7 +27,7 @@ const gameReducer = (state = initialState, action = {}) => {
     switch (action.type) {
         case 'ADD_PLAYERS':
             newState.players = action.players;
-            newState.startTime = moment(new Date());
+            newState.maxTurn = getMaxTurn(action.players.length)
             break;
         case 'CHANGE_DIFFICULTY':
             newState.difficulty = action.newDifficulty;
@@ -32,7 +40,6 @@ const gameReducer = (state = initialState, action = {}) => {
             newState.currentTurn = 0;
             newState.currentPlayer = null;
             newState.scene = null;
-            newState.startTime = null;
             newState.showEveryone = true;
             break;
         case 'UPDATE_CURRENT_PLAYER':
