@@ -240,7 +240,7 @@ const styles = StyleSheet.create({
         backgroundColor: '#2A2A2A',
     },
     content: {
-        flex: 0.9,
+        flex: 0.55,
     },
     header: {
         flexDirection: 'row',
