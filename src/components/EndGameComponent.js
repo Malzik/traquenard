@@ -5,34 +5,16 @@ import {bindActionCreators}                                        from "redux";
 import * as gameActions                                            from "../store/actions/gameAction";
 import {connect}                                                   from "react-redux";
 import * as ScreenOrientation from 'expo-screen-orientation';
-import moment                                                      from "moment";
 import {widthPercentageToDP as wp}     from "react-native-responsive-screen";
 import { EndGamePlayer }                                           from "./EndGamePlayerComponent";
 
 
 class EndGameComponent extends React.Component {
-
-
     constructor(props) {
         super(props);
         this.state = {
             tableDate: []
         }
-    }
-
-    componentDidMount() {
-        const {gameReducer} = this.props;
-        const currentDate = moment(new Date());
-        const duration = currentDate.diff(gameReducer.startTime, 'minutes');
-
-        this.setState({
-            duration,
-            tableData: [
-                ['Durée', duration + ' minutes'],
-                ['Gorgées distribuées', "TODO"],
-                ['Nombre de tour', gameReducer.currentTurn]
-            ],
-        })
     }
 
     restart() {
