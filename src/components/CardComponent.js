@@ -170,7 +170,7 @@ class CardComponent extends React.Component {
                                     onContentSizeChange={() => this.flatList.scrollToEnd({animated: true, offset: 0})}
                                     onLayout={() => this.flatList.scrollToEnd({animated: true, offset: 0 })}
                                     renderItem={({item, index}) => (
-                                        <EndGamePlayer style={styles.playerInList} time={0} item={item} />
+                                        <EndGamePlayer time={0} item={item} />
                                     )}
                                     keyExtractor={(item, index) => index.toString()}
                                 />
@@ -185,7 +185,6 @@ class CardComponent extends React.Component {
                                     <Text style={styles.textStyle}>Fermer</Text>
                                 </TouchableHighlight>
                             </View>
-
                         </View>
                     </View>
                 </Modal>
