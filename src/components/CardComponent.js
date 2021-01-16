@@ -141,7 +141,7 @@ class CardComponent extends React.Component {
                   onLayout={this.onLayout}>
 
                 <Modal
-                    animationType="slide"
+                    animationType="fade"
                     transparent={true}
                     visible={modalVisible}
                     onRequestClose={() => {
@@ -355,10 +355,12 @@ const styles = StyleSheet.create({
 
 
     modalView: {
-        margin: 20,
+        margin: 15,
         backgroundColor: "#2A2A2A",
         borderRadius: 20,
-        padding: 35,
+        padding: 20,
+        borderWidth: 1,
+        borderColor: "#fff",
         shadowColor: "#000",
         shadowOffset: {
             width: 0,
