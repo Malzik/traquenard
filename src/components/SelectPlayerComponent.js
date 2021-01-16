@@ -9,8 +9,11 @@ import {
     TouchableOpacity,
     View,
     Keyboard,
-    ToastAndroid, Alert, KeyboardAvoidingView, Linking
-}                                  from "react-native";
+    ToastAndroid,
+    Alert,
+    TouchableHighlight,
+    Modal
+} from "react-native";
 import {Button}                    from 'react-native-elements';
 import PropTypes                   from "prop-types";
 import {bindActionCreators}        from "redux";
@@ -28,7 +31,8 @@ class SelectPlayerComponent extends React.Component {
 
         this.state = {
             players: [].reverse(),
-            currentPlayer: ""
+            currentPlayer: "",
+            modalVisible: false
         };
         ScreenOrientation.lockAsync(ScreenOrientation.OrientationLock.PORTRAIT);
     }
@@ -145,6 +149,10 @@ class SelectPlayerComponent extends React.Component {
         });
     }
 
+    setModalVisible = (visible) => {
+        this.setState({ modalVisible: visible });
+    }
+
     message(){
         if (this.state.players.length < 1){
             return(
@@ -177,9 +185,72 @@ class SelectPlayerComponent extends React.Component {
     }
 
     render() {
+        const { modalVisible } = this.state;
         return (
-            <KeyboardAvoidingView style={styles.container}>
+            <View style={styles.container}>
                 <View style={styles.content}>
+                    <Modal
+                        animationType="fade"
+                        transparent={true}
+                        visible={modalVisible}
+                        onRequestClose={() => {
+                            Alert.alert("Modal has been closed.");
+                        }}
+                    >
+                        <View style={styles.modalView}>
+                            <View style={styles.headerModal}>
+                                <Text style={styles.titleOption}>Options</Text>
+                                <TouchableOpacity onPress={() => { this.setModalVisible(!modalVisible);}}>
+                                    <Image source={require('./icons/cancel.png')} style={{width: 30, height: 30}}/>
+                                </TouchableOpacity>
+                            </View>
+                            <View style={styles.contentModal}>
+                                <View style={styles.displayLine}>
+                                    <Image source={require('./icons/france.png')} style={{width: 50, height: 50}}/>
+                                    <Image source={require('./icons/united-kingdom.png')} style={{width: 50, height: 50}}/>
+                                </View>
+                                <View>
+                                    <View style={styles.roundView}>
+                                        <Text style={styles.textModal}>Nombre de tours</Text>
+                                    </View>
+                                    <View style={styles.displayLine}>
+                                        <TouchableOpacity onPress={() => { this.setModalVisible(!modalVisible);}}>
+                                            <Image source={require('./icons/is-less-than.png')} style={{width: 30, height: 30}}/>
+                                        </TouchableOpacity>
+                                        <Text style={styles.textModal}>4</Text>
+                                        <TouchableOpacity onPress={() => { this.setModalVisible(!modalVisible);}}>
+                                            <Image source={require('./icons/is-greater-than.png')} style={{width: 30, height: 30}}/>
+                                        </TouchableOpacity>
+                                    </View>
+                                </View>
+                                <View style={styles.btnCenter}>
+                                    <Button titleStyle={{
+                                        textAlign: 'center',
+                                        fontSize: wp("6%"), fontFamily: "MainTitle"
+                                    }} buttonStyle={{
+                                        backgroundColor: "#3FBD4E",
+                                        borderRadius: wp("3%"), width: wp("65%"),
+                                    }}
+                                            title="Evaluer l'application !"
+                                    />
+                                </View>
+                            </View>
+                            <View style={styles.bottomModal}>
+                                <View>
+                                    <Button titleStyle={{
+                                        textAlign: 'center',
+                                        fontSize: wp("6%"), fontFamily: "MainTitle"
+                                    }} buttonStyle={{
+                                        backgroundColor: "#2A9BDA",
+                                        borderRadius: wp("3%"), width: wp("65%"),
+                                    }}
+                                            title="Contactez nous !"
+                                    />
+                                </View>
+                            </View>
+                        </View>
+                    </Modal>
+
                     <View style={styles.header}>
                         <Text style={styles.title_captain}> Captain Gnole </Text>
                     </View>
@@ -206,7 +277,7 @@ class SelectPlayerComponent extends React.Component {
                         </View>
                     </View>
                     <View style={styles.bottom}>
-                        <TouchableOpacity onPress={() => this.removePlayer(index)}>
+                        <TouchableOpacity onPress={() => { this.setModalVisible(!modalVisible)}}>
                             <View style={{
                                 backgroundColor: "#2A9BDA",
                                 borderRadius: wp("3%"),
@@ -232,7 +303,7 @@ class SelectPlayerComponent extends React.Component {
                         />
                     </View>
                 </View>
-            </KeyboardAvoidingView>
+            </View>
         );
     }
 }
@@ -272,12 +343,11 @@ const styles = StyleSheet.create({
         paddingHorizontal: wp("11%"),
         height: wp("40%")
     },
-    title: {
-        marginTop: wp("7%"),
+    titleOption: {
         paddingRight: wp("5%"),
         textAlign: 'center',
         color: '#fff',
-        fontSize: wp("7%"),
+        fontSize: wp("9%"),
         fontFamily: "titre",
     },
     title_captain: {
@@ -327,6 +397,66 @@ const styles = StyleSheet.create({
         width: "33%",
         justifyContent: 'center',
         alignItems: 'center',
+    },
+    modalView: {
+        flex: 0.8,
+        margin: 15,
+        marginTop: wp("20%"),
+        backgroundColor: "#2A2A2A",
+        borderRadius: 20,
+        padding: 20,
+        borderWidth: 1,
+        borderColor: "#fff",
+        shadowColor: "#000",
+        shadowOffset: {
+            width: 0,
+            height: 2
+        },
+        shadowOpacity: 0.25,
+        shadowRadius: 3.84,
+        elevation: 5,
+    },
+    headerModal: {
+        flex: 0.1,
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+
+    },
+    contentModal: {
+        flex: 0.7,
+        justifyContent: 'space-between',
+        marginTop: wp("10%"),
+        marginBottom: wp("15%"),
+    },
+    displayLine: {
+        flexDirection: 'row',
+        justifyContent: 'space-around',
+
+    },
+    textLang: {
+        marginTop: wp("1%"),
+        fontSize: wp("7%"),
+        color: '#fff',
+        fontFamily: 'ABeeZee-Regular',
+    },
+    textModal: {
+        fontSize: wp("7%"),
+        color: '#fff',
+        fontFamily: 'ABeeZee-Regular',
+    },
+    roundView: {
+        alignItems: 'center',
+        justifyContent: 'center',
+        marginBottom: wp("5%")
+    },
+    bottomModal: {
+        flex: 0.2,
+        alignItems: 'center',
+        justifyContent: 'center'
+    },
+    btnCenter: {
+        alignItems: 'center',
+        justifyContent: 'center'
     }
 });
 
