@@ -200,53 +200,44 @@ class SelectPlayerComponent extends React.Component {
                         <View style={styles.modalView}>
                             <View style={styles.headerModal}>
                                 <Text style={styles.titleOption}>Options</Text>
-                                <TouchableOpacity onPress={() => { this.setModalVisible(!modalVisible);}}>
-                                    <Image source={require('./icons/cancel.png')} style={{width: 30, height: 30}}/>
+                                <TouchableOpacity onPress={() => { this.setModalVisible(!modalVisible);}}  style={{padding: 2}}>
+                                    <Image  source={require('./icons/cancel.png')} style={{width: 30, height: 30}}/>
                                 </TouchableOpacity>
                             </View>
                             <View style={styles.contentModal}>
                                 <View style={styles.displayLine}>
-                                    <Image source={require('./icons/france.png')} style={{width: 50, height: 50}}/>
-                                    <Image source={require('./icons/united-kingdom.png')} style={{width: 50, height: 50}}/>
+                                    <TouchableOpacity onPress={() => { this.setModalVisible(!modalVisible);}}
+                                                      style={{borderColor: "white", borderWidth:1, borderRadius: 10, paddingHorizontal: 10}}>
+                                        <Image source={require('./icons/france.png')} style={{width: 60, height: 60}}/>
+                                    </TouchableOpacity>
+                                    <TouchableOpacity onPress={() => { this.setModalVisible(!modalVisible);}}>
+                                        <Image source={require('./icons/united-kingdom.png')} style={{width: 60, height: 60}}/>
+                                    </TouchableOpacity>
                                 </View>
-                                <View>
+                                <View style={styles.marginBot}>
                                     <View style={styles.roundView}>
-                                        <Text style={styles.textModal}>Nombre de tours</Text>
+                                        <Text style={styles.textModal}>Tours</Text>
                                     </View>
                                     <View style={styles.displayLine}>
                                         <TouchableOpacity onPress={() => { this.setModalVisible(!modalVisible);}}>
-                                            <Image source={require('./icons/is-less-than.png')} style={{width: 30, height: 30}}/>
+                                            <Image source={require('./icons/back.png')} style={{width: 40, height: 40}}/>
                                         </TouchableOpacity>
-                                        <Text style={styles.textModal}>4</Text>
+                                        <Text style={styles.numberText}>4</Text>
                                         <TouchableOpacity onPress={() => { this.setModalVisible(!modalVisible);}}>
-                                            <Image source={require('./icons/is-greater-than.png')} style={{width: 30, height: 30}}/>
+                                            <Image source={require('./icons/next.png')} style={{width: 40, height: 40}}/>
                                         </TouchableOpacity>
                                     </View>
                                 </View>
-                                <View style={styles.btnCenter}>
-                                    <Button titleStyle={{
-                                        textAlign: 'center',
-                                        fontSize: wp("6%"), fontFamily: "MainTitle"
-                                    }} buttonStyle={{
-                                        backgroundColor: "#3FBD4E",
-                                        borderRadius: wp("3%"), width: wp("65%"),
-                                    }}
-                                            title="Evaluer l'application !"
-                                    />
-                                </View>
                             </View>
                             <View style={styles.bottomModal}>
-                                <View>
-                                    <Button titleStyle={{
-                                        textAlign: 'center',
-                                        fontSize: wp("6%"), fontFamily: "MainTitle"
-                                    }} buttonStyle={{
-                                        backgroundColor: "#2A9BDA",
-                                        borderRadius: wp("3%"), width: wp("65%"),
-                                    }}
-                                            title="Contactez nous !"
-                                    />
-                                </View>
+                                    <TouchableOpacity style={styles.viewCenter} onPress={() => { this.setModalVisible(!modalVisible);}}>
+                                        <Image source={require('./icons/love.png')} style={{width: 40, height: 40, marginBottom: 5}}/>
+                                        <Text style={styles.textIcon}>Note</Text>
+                                    </TouchableOpacity>
+                                    <TouchableOpacity style={styles.viewCenter} onPress={() => { this.setModalVisible(!modalVisible);}}>
+                                        <Image source={require('./icons/email.png')} style={{width: 40, height: 40, marginBottom: 5}}/>
+                                        <Text style={styles.textIcon}>Contact</Text>
+                                    </TouchableOpacity>
                             </View>
                         </View>
                     </Modal>
@@ -424,25 +415,24 @@ const styles = StyleSheet.create({
     },
     contentModal: {
         flex: 0.7,
-        justifyContent: 'space-between',
         marginTop: wp("10%"),
         marginBottom: wp("15%"),
     },
     displayLine: {
         flexDirection: 'row',
         justifyContent: 'space-around',
+        alignItems: 'center',
 
     },
-    textLang: {
-        marginTop: wp("1%"),
-        fontSize: wp("7%"),
-        color: '#fff',
-        fontFamily: 'ABeeZee-Regular',
-    },
     textModal: {
-        fontSize: wp("7%"),
+        fontSize: wp("8%"),
         color: '#fff',
-        fontFamily: 'ABeeZee-Regular',
+        fontFamily: 'titre',
+    },
+    numberText: {
+        fontSize: wp("15%"),
+        color: '#fff',
+        fontFamily: 'titre',
     },
     roundView: {
         alignItems: 'center',
@@ -451,12 +441,21 @@ const styles = StyleSheet.create({
     },
     bottomModal: {
         flex: 0.2,
+        flexDirection: 'row',
+        justifyContent: 'space-around',
+
+    },
+    viewCenter: {
         alignItems: 'center',
         justifyContent: 'center'
     },
-    btnCenter: {
-        alignItems: 'center',
-        justifyContent: 'center'
+    textIcon: {
+        fontSize: wp("4%"),
+        color: '#fff',
+        fontFamily: 'titre',
+    },
+    marginBot: {
+        marginTop: wp("15%")
     }
 });
 
