@@ -11,7 +11,6 @@ import {
     Keyboard,
     ToastAndroid,
     Alert,
-    TouchableHighlight,
     Modal
 } from "react-native";
 import {Button}                    from 'react-native-elements';
@@ -23,6 +22,8 @@ import {connect}                   from "react-redux";
 import * as ScreenOrientation      from 'expo-screen-orientation';
 import {widthPercentageToDP as wp} from "react-native-responsive-screen";
 import AsyncStorage                from "@react-native-async-storage/async-storage";
+import {getMaxTurn} from "../store/reducers/gameReducer";
+
 
 class SelectPlayerComponent extends React.Component {
 
@@ -32,7 +33,9 @@ class SelectPlayerComponent extends React.Component {
         this.state = {
             players: [].reverse(),
             currentPlayer: "",
-            modalVisible: false
+            modalVisible: false,
+            maxTurnPlayer: 0,
+            maxTurnSystem: getMaxTurn([]),
         };
         ScreenOrientation.lockAsync(ScreenOrientation.OrientationLock.PORTRAIT);
     }
@@ -40,6 +43,37 @@ class SelectPlayerComponent extends React.Component {
     async componentDidMount() {
         await this.getStorageData()
         this.focusInputWithKeyboard()
+    }
+
+    getMaxTurnPlayer() {
+        if (this.state.maxTurnPlayer === 0) {
+            return this.state.maxTurnSystem;
+        }
+        return this.state.maxTurnPlayer;
+    }
+
+    addOneTurn() {
+        console.log(this.state.maxTurnPlayer, this.state.maxTurnSystem, this.getMaxTurnPlayer())
+        if (this.state.maxTurnPlayer < 10) {
+            this.setState({maxTurnPlayer: this.getMaxTurnPlayer() + 1})
+        }
+    }
+
+    removeOneTurn() {
+        console.log(this.state.maxTurnPlayer, this.state.maxTurnSystem, this.getMaxTurnPlayer())
+        if (this.state.maxTurnPlayer > 1) {
+            this.setState({maxTurnPlayer: this.getMaxTurnPlayer() - 1})
+        }
+    }
+
+    changeLang(lang) {
+        if (lang === "fr") {
+
+        } else if (lang === "en") {
+
+        } else {
+
+        }
     }
 
     async getStorageData() {
@@ -102,7 +136,8 @@ class SelectPlayerComponent extends React.Component {
             this.setState({
                 players: [newPlayer, ...this.state.players],
                 currentPlayer: "",
-                errors: {...this.state.errors, addPlayer: ""}
+                errors: {...this.state.errors, addPlayer: ""},
+                maxTurnSystem: getMaxTurn(this.state.players.length)
             })
         } else {
             this.showToast("Le nom ne peut pas être vide")
@@ -118,7 +153,7 @@ class SelectPlayerComponent extends React.Component {
         Keyboard.dismiss()
         this.changeScreenOrientation().then(() => {
             initGame();
-            addPlayers(this.state.players);
+            addPlayers(this.state.players, getMaxTurn());
             this.savePlayers().then(() => {
                 navigation.navigate('SelectDifficulty')
             })
@@ -206,11 +241,11 @@ class SelectPlayerComponent extends React.Component {
                             </View>
                             <View style={styles.contentModal}>
                                 <View style={styles.displayLine}>
-                                    <TouchableOpacity onPress={() => { this.setModalVisible(!modalVisible);}}
+                                    <TouchableOpacity onPress={() => { this.changeLang("fr");}}
                                                       style={{borderColor: "white", borderWidth:1, borderRadius: 10, paddingHorizontal: 10}}>
                                         <Image source={require('./icons/france.png')} style={{width: 60, height: 60}}/>
                                     </TouchableOpacity>
-                                    <TouchableOpacity onPress={() => { this.setModalVisible(!modalVisible);}}>
+                                    <TouchableOpacity onPress={() => { this.changeLang("en");}}>
                                         <Image source={require('./icons/united-kingdom.png')} style={{width: 60, height: 60}}/>
                                     </TouchableOpacity>
                                 </View>
@@ -219,11 +254,11 @@ class SelectPlayerComponent extends React.Component {
                                         <Text style={styles.textModal}>Tours</Text>
                                     </View>
                                     <View style={styles.displayLine}>
-                                        <TouchableOpacity onPress={() => { this.setModalVisible(!modalVisible);}}>
+                                        <TouchableOpacity onPress={() => this.removeOneTurn()}>
                                             <Image source={require('./icons/back.png')} style={{width: 40, height: 40}}/>
                                         </TouchableOpacity>
-                                        <Text style={styles.numberText}>4</Text>
-                                        <TouchableOpacity onPress={() => { this.setModalVisible(!modalVisible);}}>
+                                        <Text style={styles.numberText}>{this.getMaxTurnPlayer()}</Text>
+                                        <TouchableOpacity onPress={() => this.addOneTurn()}>
                                             <Image source={require('./icons/next.png')} style={{width: 40, height: 40}}/>
                                         </TouchableOpacity>
                                     </View>

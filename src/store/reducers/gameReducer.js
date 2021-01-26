@@ -7,11 +7,12 @@ const initialState = {
     selectedPlayer: null,
     selectedCategory: null,
     scene: null,
-    showEveryone: true
+    showEveryone: true,
+    lang: "fr"
 };
 
 const getMaxTurn = (playersCount) => {
-    if (playersCount === playersCount <= 4) {
+    if (playersCount <= 4) {
         return 5;
     } else if (playersCount <= 6) {
         return 4;
@@ -27,7 +28,7 @@ const gameReducer = (state = initialState, action = {}) => {
     switch (action.type) {
         case 'ADD_PLAYERS':
             newState.players = action.players;
-            newState.maxTurn = getMaxTurn(action.players.length)
+            newState.maxTurn = action.maxTurn;
             break;
         case 'CHANGE_DIFFICULTY':
             newState.difficulty = action.newDifficulty;
@@ -83,6 +84,9 @@ const gameReducer = (state = initialState, action = {}) => {
                 currentPlayer.points += action.points;
             }
             break;
+        case 'UPDATE':
+            newState.maxTurn = getMaxTurn(action.players.length)
+            break;
         default:
             break;
     }
@@ -90,4 +94,4 @@ const gameReducer = (state = initialState, action = {}) => {
     return newState;
 };
 
-export { gameReducer };
+export { gameReducer, getMaxTurn };
