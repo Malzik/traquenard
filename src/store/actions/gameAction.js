@@ -1,6 +1,7 @@
-const addPlayers = players => ({
+const addPlayers = (players, maxTurn) => ({
     type: 'ADD_PLAYERS',
     players,
+    maxTurn
 });
 
 const changeScene = newScene => ({
@@ -48,6 +49,7 @@ const addPoints = (points, win) => ({
     points,
     win
 });
+
 
 
 export {
