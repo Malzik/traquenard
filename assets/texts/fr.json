@@ -1,14 +1,21 @@
 {
   "texts": {
     "text.game.duels": "Duel",
+    "text.game.duels.description": "Defi contre un autre joueur de ton choix",
     "text.game.friendships": "Amitié",
+    "text.game.friendships.description": "Defi avec un autre joueur de ton choix",
     "text.game.questions": "Question",
+    "text.game.questions.description": "Question de culture générale",
     "text.game.oneversusall": "Seul VS Tous",
+    "text.game.oneversusall.description": "Tu es seul contre le reste des joueurs",
+    "text.game.everyonePlay.description": "Defi contre un autre joueur de ton choix",
     "text.card.title": "{currentPlayer} à toi de jouer !",
+    "text.card.points": "Points : ",
     "text.selectOtherPlayer.title": "{currentPlayer} choisi avec qui tu veux jouer",
     "text.duels.title": "Duel : {currentPlayer} vs {selectedPlayer}",
     "text.sip": "{sip} gorgées en jeu",
     "text.chooseDifficulty.title": "CHOISIR LA DIFFICULTÉ",
+    "text.chooseDifficulty.description": "Plus la difficulté est élevée, plus le nombre de gorgées sera élevé.",
     "text.everyonePlay.title": "Tout le monde joue !",
     "text.currentPlayer": "{currentPlayer}",
     "text.selectedPlayer": "{selectedPlayer}",
@@ -30,6 +37,9 @@
     "text.alert.title": "Attention !",
     "text.alert.content": "L'abus d'alcool est dangereux pour la santé. En poursuivant vous confirmez être responsable des éventuelles conséquences que pourrait engendrer l'utilisation de Captain Gnole",
     "text.alert.ok": "OK",
-    "text.alert.close": "FERMER"
+    "text.alert.close": "FERMER",
+    "text.leaderboard.index": "Place",
+    "text.leaderboard.username": "Nom",
+    "text.leaderboard.points": "Points"
   }
 }

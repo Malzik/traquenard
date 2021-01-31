@@ -11,7 +11,7 @@ import {
     Keyboard,
     ToastAndroid,
     Alert,
-    Modal
+    Modal, Linking
 } from "react-native";
 import {Button}                    from 'react-native-elements';
 import PropTypes                   from "prop-types";
@@ -22,7 +22,8 @@ import {connect}                   from "react-redux";
 import * as ScreenOrientation      from 'expo-screen-orientation';
 import {widthPercentageToDP as wp} from "react-native-responsive-screen";
 import AsyncStorage                from "@react-native-async-storage/async-storage";
-import {getMaxTurn} from "../store/reducers/gameReducer";
+import {getMaxTurn}            from "../store/reducers/gameReducer";
+import Rate, { AndroidMarket } from "react-native-rate";
 
 
 class SelectPlayerComponent extends React.Component {
@@ -219,6 +220,32 @@ class SelectPlayerComponent extends React.Component {
         }
     }
 
+    renderEvaluationAlert() {
+        Alert.alert("Tu aimes le jeu ?",
+            "Mets-nous 5 étoiles ! ⭐⭐⭐⭐⭐",
+            [
+                {
+                    text: 'C\'est parti !',
+                    onPress: () => this.rate()
+                },
+                {
+                    text: 'Plus tard'
+                }
+            ],
+            {cancelable: true})
+    }
+
+    rate() {
+        const options = {
+            AppleAppID:"2193813192",
+            GooglePackageName:"com.traquenard.corp",
+            preferredAndroidMarket: AndroidMarket.Google,
+            preferInApp:false,
+            openAppStoreIfInAppFails:true,
+        }
+        Rate.rate(options)
+    }
+
     render() {
         const { modalVisible } = this.state;
         return (
@@ -265,11 +292,11 @@ class SelectPlayerComponent extends React.Component {
                                 </View>
                             </View>
                             <View style={styles.bottomModal}>
-                                    <TouchableOpacity style={styles.viewCenter} onPress={() => { this.setModalVisible(!modalVisible);}}>
+                                    <TouchableOpacity style={styles.viewCenter} onPress={() => this.renderEvaluationAlert()}>
                                         <Image source={require('./icons/love.png')} style={{width: 40, height: 40, marginBottom: 5}}/>
                                         <Text style={styles.textIcon}>Note</Text>
                                     </TouchableOpacity>
-                                    <TouchableOpacity style={styles.viewCenter} onPress={() => { this.setModalVisible(!modalVisible);}}>
+                                    <TouchableOpacity style={styles.viewCenter} onPress={() => Linking.openURL('mailto:support@example.com?subject=Captain Gnole')}>
                                         <Image source={require('./icons/email.png')} style={{width: 40, height: 40, marginBottom: 5}}/>
                                         <Text style={styles.textIcon}>Contact</Text>
                                     </TouchableOpacity>
