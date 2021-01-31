@@ -1,19 +1,15 @@
-import React from "react";
-import {Image, StyleSheet, Text, TouchableOpacity, View} from "react-native";
-import {bindActionCreators} from "redux";
-import * as gameActions from "../store/actions/gameAction";
-import PropTypes from "prop-types";
-import {connect} from "react-redux";
-import {FormattedText} from "./helpers/FormattedText";
+import React                                                   from "react";
+import {Image, StyleSheet, Text, TouchableOpacity, View}       from "react-native";
+import {bindActionCreators}                                    from "redux";
+import * as gameActions                                        from "../store/actions/gameAction";
+import PropTypes                                               from "prop-types";
+import {connect}                                               from "react-redux";
+import {FormattedText}                                         from "./helpers/FormattedText";
 import {widthPercentageToDP as wp, heightPercentageToDP as hp} from "react-native-responsive-screen";
+import { ApplicationText }                                     from "./helpers/ApplicationText";
 
 
 class SelectDifficultyComponent extends React.Component {
-
-    constructor(props) {
-        super(props);
-    }
-
     setDifficulty(difficulty) {
         const {changeDifficulty, updateCurrentUser, navigation} = this.props;
 
@@ -50,7 +46,7 @@ class SelectDifficultyComponent extends React.Component {
                     </TouchableOpacity>
                 </View>
                 <Text style={styles.textDesc}>
-                    Plus la difficulté est élevée, plus le nombre de gorgées sera élevé.
+                    {ApplicationText("text.chooseDifficulty.description")}
                 </Text>
             </View>
 

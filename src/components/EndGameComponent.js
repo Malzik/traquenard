@@ -20,7 +20,6 @@ class EndGameComponent extends React.Component {
 
     rating() {
         getStorageData('isFirstGame').then(response => {
-            console.log(response)
             if (response === null) {
                 Alert.alert("Tu aimes le jeu ?",
                     "Mets-nous 5 étoiles ! ⭐⭐⭐⭐⭐",

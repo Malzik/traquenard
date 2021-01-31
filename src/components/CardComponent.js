@@ -9,15 +9,16 @@ import {
     Alert,
     Modal,
     FlatList
-} from "react-native";
-import {bindActionCreators} from "redux";
-import * as gameActions from "../store/actions/gameAction";
-import PropTypes from "prop-types";
-import {connect} from "react-redux";
-import {FormattedText} from "./helpers/FormattedText";
+}                                                                from "react-native";
+import {bindActionCreators}                                      from "redux";
+import * as gameActions                                          from "../store/actions/gameAction";
+import PropTypes                                                 from "prop-types";
+import {connect}                                                 from "react-redux";
+import {FormattedText}                                           from "./helpers/FormattedText";
 import {handleAndroidBackButton, removeAndroidBackButtonHandler} from "./helpers/BackHandlerHelper";
-import {widthPercentageToDP as wp} from "react-native-responsive-screen";
-import { EndGamePlayer } from "./EndGamePlayerComponent";
+import {widthPercentageToDP as wp}                               from "react-native-responsive-screen";
+import { EndGamePlayer }                                         from "./EndGamePlayerComponent";
+import { ApplicationText }                                       from "./helpers/ApplicationText";
 
 
 class CardComponent extends React.Component {
@@ -34,7 +35,7 @@ class CardComponent extends React.Component {
                     selectPlayer: true,
                     text: "text.game.duels",
                     pts: require('./icons/3.png'),
-                    desc: "Defi contre un autre joueur de ton choix",
+                    desc: "text.game.duels.description",
                     points: 3
                 },
                 {
@@ -44,7 +45,7 @@ class CardComponent extends React.Component {
                     selectPlayer: true,
                     text: "text.game.friendships",
                     pts: require('./icons/3.png'),
-                    desc: "Defi avec un autre joueur de ton choix",
+                    desc: "text.game.friendships.description",
                     points: 3
                 },
                 {
@@ -53,7 +54,7 @@ class CardComponent extends React.Component {
                     scene: "Question",
                     text: "text.game.questions",
                     pts: require('./icons/2.png'),
-                    desc: "Question de culture générale",
+                    desc: "text.game.questions.description",
                     points: 2
                 },
                 {
@@ -63,7 +64,7 @@ class CardComponent extends React.Component {
                     selectCategory: true,
                     text: "text.game.oneversusall",
                     pts: require('./icons/5.png'),
-                    desc: "Tu es seul contre le reste des joueurs",
+                    desc: "text.game.oneversusall.description",
                     points: 5
                 },
             ],
@@ -152,13 +153,13 @@ class CardComponent extends React.Component {
                         <View style={styles.modalView}>
                             <View style={ styles.headRow }>
                                 <View style={ styles.headRowID }>
-                                    <Text  style={ styles.textHead }> Place </Text>
+                                    <Text  style={ styles.textHead }>{ApplicationText("text.leaderboard.index")}</Text>
                                 </View>
                                 <View style={ styles.headRowName }>
-                                    <Text  style={ styles.textHead }> Nom </Text>
+                                    <Text  style={ styles.textHead }>{ApplicationText("text.leaderboard.username")}</Text>
                                 </View>
                                 <View style={ styles.headRowPoints }>
-                                    <Text  style={ styles.textHead }> Points </Text>
+                                    <Text  style={ styles.textHead }>{ApplicationText("text.leaderboard.points")}</Text>
                                 </View>
                             </View>
 
@@ -182,7 +183,7 @@ class CardComponent extends React.Component {
                                         this.setModalVisible(!modalVisible);
                                     }}
                                 >
-                                    <Text style={styles.textStyle}>Fermer</Text>
+                                    <Text style={styles.textStyle}>{ApplicationText("text.alert.close")}</Text>
                                 </TouchableHighlight>
                             </View>
                         </View>
@@ -197,7 +198,7 @@ class CardComponent extends React.Component {
                     </Text>
                     <TouchableOpacity onPress={() => { this.setModalVisible(!modalVisible)}}>
                         <Text style={styles.nbPts}>
-                            Points : <FormattedText text={"points"} />
+                            {ApplicationText("text.card.points")}<FormattedText text={"points"} />
                         </Text>
                     </TouchableOpacity>
                 </View>
@@ -235,7 +236,7 @@ class CardComponent extends React.Component {
 
                                             </View>
                                             <View>
-                                                <Text style={styles.textDesc}>{card.desc}</Text>
+                                                <Text style={styles.textDesc}>{ApplicationText(card.desc)}</Text>
                                             </View>
                                         </View>
                                     </TouchableOpacity>
@@ -271,7 +272,7 @@ class CardComponent extends React.Component {
                                                 </View>
                                             </View>
                                             <View>
-                                                <Text style={styles.textDesc}>{card.desc}</Text>
+                                                <Text style={styles.textDesc}>{ApplicationText(card.desc)}</Text>
                                             </View>
                                         </View>
                                     </TouchableOpacity>
