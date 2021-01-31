@@ -2,6 +2,10 @@ const initGame = () => ({
     type: 'INIT_GAME'
 });
 
+const initText = () => ({
+    type: 'INIT_TEXT'
+});
+
 const removeQuestion = (questionType, question) => ({
     type: 'REMOVE_QUESTION',
     questionType,
@@ -17,5 +21,6 @@ const removeQuestionFromCategory = (category, question) => ({
 export {
     initGame,
     removeQuestion,
-    removeQuestionFromCategory
+    removeQuestionFromCategory,
+    initText
 };
