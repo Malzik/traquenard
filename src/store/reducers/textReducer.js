@@ -28,6 +28,9 @@ const textReducer = (state = initialState, action = {}) => {
             newState.everyone = everyone.everyone;
             newState.texts = texts.texts;
             break;
+        case 'INIT_TEXT':
+            newState.texts = texts.texts;
+            break;
         case 'REMOVE_QUESTION':
             newState[action.questionType] = newState[action.questionType].filter(question =>
                 question.question !== action.question.question

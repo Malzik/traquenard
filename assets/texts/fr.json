@@ -24,6 +24,12 @@
     "text.exit.title": "Veux-tu vraiment quitter le jeu ?",
     "text.exit.yes": "Oui",
     "text.exit.no": "Non",
-    "text.winLoose.currentPlayer": "{currentPlayer} tu as ?"
+    "text.winLoose.currentPlayer": "{currentPlayer} tu as ?",
+    "text.loading": "Chargement...",
+    "text.play": "Jouer",
+    "text.alert.title": "Attention !",
+    "text.alert.content": "L'abus d'alcool est dangereux pour la santé. En poursuivant vous confirmez être responsable des éventuelles conséquences que pourrait engendrer l'utilisation de Captain Gnole",
+    "text.alert.ok": "OK",
+    "text.alert.close": "FERMER"
   }
 }
