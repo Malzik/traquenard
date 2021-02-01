@@ -1,26 +1,83 @@
 {
   "texts": {
     "text.game.duel": "Duel",
+    "text.game.duels.description": "Choose an other player to play againts",
     "text.game.friendship": "Friendship",
+    "text.game.friendship.description": "Choose an other player to play with",
     "text.game.question": "Question",
+    "text.game.question.description": "General Knowledge Quiz",
     "text.game.oneversusall": "One versus All",
-    "text.card.title": "{currentPlayer} your turn to play !",
-    "text.selectOtherPlayer.title": "{currentPlayer} chooses who you want to play with",
+    "text.game.oneversusall.description": "You are alone versus all",
+
+
+    "text.card.title": "{currentPlayer}, it's your turn to play !",
+    "text.card.points": "Points : ",
+
+    "text.selectOtherPlayer.title": "{currentPlayer}, who do you like to play with ?",
     "text.duels.title": "Duel: {currentPlayer} vs {selectedPlayer}",
-    "text.sip": "{sip} sips in play",
+    "text.sip": "{sip} sips at stake",
+
     "text.chooseDifficulty.title": "CHOOSE THE DIFFICULTY",
-    "text.everyonePlay.title": "Everyone is playing !",
+    "text.chooseDifficulty.description": "Higher the difficulty is, higher the number of sip will be",
+
+    "text.everyonePlay.title": "Everyone play !",
+    "text.currentPlayer": "{currentPlayer}",
+    "text.selectedPlayer": "{selectedPlayer}",
     "text.friendships.title": "Friendship : {currentPlayer} and {selectedPlayer}",
-    "text.oneVersusAll.title": "One vs All, Category: {selectedCategory}",
-    "text.selectCategory.title": "{currentPlayer}, you are alone against everyone !",
-    "text.selectCategory.description": "You think you are stronger than all the other players in a category, choose it!",
-    "text.question.title": "{currentPlayer} answers the question",
+    "text.oneversusall.title": "{currentPlayer} againts the other players",
+    "text.selectCategory.title": "{currentPlayer}, you are alone againts all !",
+    "text.selectCategory.description": "You think you are stronger than the other players on a category, choose it !",
+
+    "text.questions.title": "{currentPlayer} answer the question",
     "text.questions.win": "Win !",
     "text.questions.loose": "Loose !",
-    "text.questions.win.description": "Gives  {sip} sips",
+    "text.questions.win.description": "Give {sip} sips",
     "text.questions.loose.description": "Drink {sip} sips",
-    "text.exit.title": "Do you really want to quit the game?",
+
+    "text.exit.title": "Are you sure to quit the game?",
     "text.exit.yes": "Yes",
-    "text.exit.no": "No"
+    "text.exit.no": "No",
+
+    "text.winLoose.currentPlayer": "{currentPlayer}, do you have ?",
+    "text.loading": "Loading ...",
+    "text.play": "Play",
+
+    "text.alert.title": "Warning !",
+    "text.alert.content": "Please drink responsibly. By continuing, you agree that you are responsible for any consequences that may result from the use of Captain Gnole",
+    "text.alert.ok": "OK",
+    "text.alert.close": "CLOSE",
+
+    "text.leaderboard.index": "Rank",
+    "text.leaderboard.username": "Name",
+    "text.leaderboard.points": "Points",
+
+    "text.endgame.title": "End of the game",
+    "text.endgame.place_lib": "Rank",
+    "text.endgame.name_lib": "Name",
+    "text.endgame.points_lib": "Points",
+    "text.endgame.play_again_btn": "Play Again",
+
+
+    "text.selectPlayer.playSamePlayerPopUp": "Do you want to play with the same players from the last time ?",
+    "text.selectPlayer.yesBtnPopUp": "YES",
+    "text.selectPlayer.noBtnPopUp": "NO",
+    "text.selectPlayer.sameNameError": "A player alrealdy have the same name",
+    "text.selectPlayer.emptyNameError": "A name can not be empty",
+    "text.selectPlayer.addTwoPlayerLib": "Add at least 2 players to play !",
+    "text.selectPlayer.evaluationTitle": "Do you like the game ?",
+    "text.selectPlayer.evaluationMessage": "Give us 5 stars ! ⭐⭐⭐⭐⭐",
+    "text.selectPlayer.evaluationBtnYes": "Here we go !",
+    "text.selectPlayer.evaluationBtnNo": "Later ..",
+    "text.selectPlayer.modalOptionTitle": "Settings",
+    "text.selectPlayer.modalOptionRound": "Round",
+    "text.selectPlayer.modalOptionMark": "Evaluate",
+    "text.selectPlayer.modalOptionContact": "Contact",
+    "text.selectPlayer.addPlayerPlaceholder": "Add a player ..",
+    "text.selectPlayer.startGameBtn": "Start",
+
+    "text.winLoose.points": "PTS",
+    "text.winLoose.loose": "Loose",
+    "text.winLoose.equality": "Equality",
+    "text.winLoose.win": "Win"
   }
 }
