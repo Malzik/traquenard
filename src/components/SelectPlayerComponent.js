@@ -26,6 +26,10 @@ import {getMaxTurn}            from "../store/reducers/gameReducer";
 import Rate, { AndroidMarket } from "react-native-rate";
 
 
+import texts from '../../assets/texts/fr';
+import {ApplicationText} from "./helpers/ApplicationText";
+
+
 class SelectPlayerComponent extends React.Component {
 
     constructor(props) {
@@ -91,10 +95,10 @@ class SelectPlayerComponent extends React.Component {
 
     renderAlert(players) {
         Alert.alert("",
-            "Voulez-vous continuer avec les joueurs de la dernière partie ?",
+            ApplicationText("text.selectPlayer.playSamePlayerPopUp"),
             [
                 {
-                    text: 'OUI',
+                    text: ApplicationText("text.selectPlayer.yesBtnPopUp"),
                     onPress: () => {
                         this.setState({players: JSON.parse(players)})
                         InteractionManager.runAfterInteractions(() => {
@@ -103,7 +107,7 @@ class SelectPlayerComponent extends React.Component {
                     }
                 },
                 {
-                    text: 'NON',
+                    text: ApplicationText("text.selectPlayer.noBtnPopUp"),
                     onPress: () => {
                         AsyncStorage.removeItem('players')
                     }
@@ -130,7 +134,7 @@ class SelectPlayerComponent extends React.Component {
         const playerName = this.state.currentPlayer.trim();
         if (playerName.length > 0) {
             if(this.playerAlreadyExist(playerName)){
-                this.showToast("Un joueur a déjà le même nom")
+                this.showToast(ApplicationText("text.selectPlayer.sameNameError"))
                 return;
             }
             const newPlayer = {name: this.state.currentPlayer, points: 0};
@@ -141,7 +145,7 @@ class SelectPlayerComponent extends React.Component {
                 maxTurnSystem: getMaxTurn(this.state.players.length)
             })
         } else {
-            this.showToast("Le nom ne peut pas être vide")
+            this.showToast(ApplicationText("text.selectPlayer.emptyNameError"))
         }
     }
 
@@ -195,7 +199,7 @@ class SelectPlayerComponent extends React.Component {
                 <View style={styles.messageView}>
                     <Image source={require('./icons/info.png')}
                            style={{width: wp("9%"), height: wp("9%")}}/>
-                    <Text style={styles.message}>Ajouter au moins 2 joueurs pour jouer !</Text>
+                    <Text style={styles.message}>{ApplicationText("text.selectPlayer.addTwoPlayerLib")}</Text>
                 </View>
             )
         }
@@ -221,15 +225,15 @@ class SelectPlayerComponent extends React.Component {
     }
 
     renderEvaluationAlert() {
-        Alert.alert("Tu aimes le jeu ?",
-            "Mets-nous 5 étoiles ! ⭐⭐⭐⭐⭐",
+        Alert.alert(ApplicationText("text.selectPlayer.evaluationTitle"),
+            ApplicationText("text.selectPlayer.evaluationMessage"),
             [
                 {
-                    text: 'C\'est parti !',
+                    text: ApplicationText("text.selectPlayer.evaluationBtnYes"),
                     onPress: () => this.rate()
                 },
                 {
-                    text: 'Plus tard'
+                    text: ApplicationText("text.selectPlayer.evaluationBtnNo")
                 }
             ],
             {cancelable: true})
@@ -261,7 +265,7 @@ class SelectPlayerComponent extends React.Component {
                     >
                         <View style={styles.modalView}>
                             <View style={styles.headerModal}>
-                                <Text style={styles.titleOption}>Options</Text>
+                                <Text style={styles.titleOption}>{ApplicationText("text.selectPlayer.modalOptionTitle")}</Text>
                                 <TouchableOpacity onPress={() => { this.setModalVisible(!modalVisible);}}  style={{padding: 2}}>
                                     <Image  source={require('./icons/cancel.png')} style={{width: 30, height: 30}}/>
                                 </TouchableOpacity>
@@ -278,7 +282,7 @@ class SelectPlayerComponent extends React.Component {
                                 </View>
                                 <View style={styles.marginBot}>
                                     <View style={styles.roundView}>
-                                        <Text style={styles.textModal}>Tours</Text>
+                                        <Text style={styles.textModal}>{ApplicationText("text.selectPlayer.modalOptionRound")}</Text>
                                     </View>
                                     <View style={styles.displayLine}>
                                         <TouchableOpacity onPress={() => this.removeOneTurn()}>
@@ -294,11 +298,11 @@ class SelectPlayerComponent extends React.Component {
                             <View style={styles.bottomModal}>
                                     <TouchableOpacity style={styles.viewCenter} onPress={() => this.renderEvaluationAlert()}>
                                         <Image source={require('./icons/love.png')} style={{width: 40, height: 40, marginBottom: 5}}/>
-                                        <Text style={styles.textIcon}>Note</Text>
+                                        <Text style={styles.textIcon}>{ApplicationText("text.selectPlayer.modalOptionMark")}</Text>
                                     </TouchableOpacity>
                                     <TouchableOpacity style={styles.viewCenter} onPress={() => Linking.openURL('mailto:support@example.com?subject=Captain Gnole')}>
                                         <Image source={require('./icons/email.png')} style={{width: 40, height: 40, marginBottom: 5}}/>
-                                        <Text style={styles.textIcon}>Contact</Text>
+                                        <Text style={styles.textIcon}>{ApplicationText("text.selectPlayer.modalOptionContact")}</Text>
                                     </TouchableOpacity>
                             </View>
                         </View>
@@ -316,7 +320,7 @@ class SelectPlayerComponent extends React.Component {
                                     autoFocus={true}
                                     style={styles.textInputPlayer}
                                     maxLength={10}
-                                    placeholder='Ajouter un joueur ..'
+                                    placeholder={ApplicationText("text.selectPlayer.addPlayerPlaceholder")}
                                     placeholderTextColor={"#fff"}
                                     onChangeText={(text) => this.setState({currentPlayer: text})}
                                     value={this.state.currentPlayer}
@@ -350,7 +354,7 @@ class SelectPlayerComponent extends React.Component {
                             borderRadius: wp("3%"), width: wp("55%"),
                             marginLeft: wp("3%"),
                         }}
-                                title="Commencer"
+                                title={ApplicationText("text.selectPlayer.startGameBtn")}
                                 onPress={() => {this.startGame()}}
                                 disabled={this.checkEnoughPlayer()}
                         />

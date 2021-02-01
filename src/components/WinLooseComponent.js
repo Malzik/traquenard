@@ -6,6 +6,7 @@ import * as gameActions                           from "../store/actions/gameAct
 import { widthPercentageToDP as wp }              from "react-native-responsive-screen";
 import { AllComponent }                           from "./AllComponent";
 import {FormattedText} from "./helpers/FormattedText";
+import {ApplicationText} from "./helpers/ApplicationText";
 
 class WinLooseComponent extends React.Component {
     WIN = true;
@@ -72,18 +73,18 @@ class WinLooseComponent extends React.Component {
                         </Text>
                     </View>
                     <View style={styles.col3}>
-                        <Text style={styles.textPts}> {this.state.points} PTS</Text>
+                        <Text style={styles.textPts}> {this.state.points} {ApplicationText("text.winLoose.points")}</Text>
                     </View>
                 </View>
                 <View style={styles.content}>
                     <TouchableOpacity style={styles.loose} onPress={() => this.changeScene(this.LOOSE)}>
-                        <Text style={styles.textLoose}>Perdu</Text>
+                        <Text style={styles.textLoose}>{ApplicationText("text.winLoose.loose")}</Text>
                     </TouchableOpacity>
                     <TouchableOpacity style={styles.equality} onPress={() => this.changeSceneEquality()}>
-                        <Text style={styles.textLoose}>Egalité</Text>
+                        <Text style={styles.textLoose}>{ApplicationText("text.winLoose.equality")}</Text>
                     </TouchableOpacity>
                     <TouchableOpacity style={styles.win} onPress={() => this.changeScene(this.WIN)}>
-                        <Text style={styles.textWin}>Gagné</Text>
+                        <Text style={styles.textWin}>{ApplicationText("text.winLoose.win")}</Text>
                     </TouchableOpacity>
                 </View>
             </View>

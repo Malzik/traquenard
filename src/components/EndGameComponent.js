@@ -9,6 +9,7 @@ import {widthPercentageToDP as wp}                 from "react-native-responsive
 import { EndGamePlayer }                  from "./EndGamePlayerComponent";
 import { getStorageData, setStorageData } from "./helpers/GetFromStore";
 import Rate, {AndroidMarket} from "react-native-rate";
+import {ApplicationText} from "./helpers/ApplicationText";
 
 class EndGameComponent extends React.Component {
     constructor(props) {
@@ -95,19 +96,19 @@ class EndGameComponent extends React.Component {
         return (
             <View style={ styles.container }>
                 <View style={ styles.header }>
-                    <Text  style={ styles.title }> Fin de la partie </Text>
+                    <Text  style={ styles.title }>{ApplicationText("text.endgame.title")}</Text>
                 </View>
                 <View style={ styles.middle }>
                     <View>
                         <View style={ styles.headRow }>
                             <View style={ styles.headRowID }>
-                                <Text  style={ styles.textHead }> Place </Text>
+                                <Text  style={ styles.textHead }> {ApplicationText("text.endgame.place_lib")} </Text>
                             </View>
                             <View style={ styles.headRowName }>
-                                <Text  style={ styles.textHead }> Nom </Text>
+                                <Text  style={ styles.textHead }> {ApplicationText("text.endgame.name_lib")} </Text>
                             </View>
                             <View style={ styles.headRowPoints }>
-                                <Text  style={ styles.textHead }> Points </Text>
+                                <Text  style={ styles.textHead }> {ApplicationText("text.endgame.points_lib")} </Text>
                             </View>
                         </View>
 
@@ -133,7 +134,7 @@ class EndGameComponent extends React.Component {
                         fontSize: wp('10%'),  fontFamily: "MainTitle"
                     }} buttonStyle={{ backgroundColor: "#DA2A2A",
                         borderRadius: 60, width: wp('50%'), }}
-                            title="Rejouer" onPress={() => { this.rating();
+                            title={ApplicationText("text.endgame.play_again_btn")} onPress={() => { this.rating();
                     }}/>
                 </View>
             </View>
