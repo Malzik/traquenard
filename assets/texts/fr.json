@@ -8,7 +8,6 @@
     "text.game.questions.description": "Question de culture générale",
     "text.game.oneversusall": "Seul VS Tous",
     "text.game.oneversusall.description": "Tu es seul contre le reste des joueurs",
-    "text.game.everyonePlay.description": "Defi contre un autre joueur de ton choix",
 
     "text.card.title": "{currentPlayer} à toi de jouer !",
     "text.card.points": "Points : ",
@@ -69,7 +68,7 @@
     "text.selectPlayer.evaluationBtnNo": "Plus tard ..",
     "text.selectPlayer.modalOptionTitle": "Option",
     "text.selectPlayer.modalOptionRound": "Tours",
-    "text.selectPlayer.modalOptionMark": "Note",
+    "text.selectPlayer.modalOptionMark": "Evaluer",
     "text.selectPlayer.modalOptionContact": "Contact",
     "text.selectPlayer.addPlayerPlaceholder": "Ajouter un joueur ..",
     "text.selectPlayer.startGameBtn": "Commencer",
