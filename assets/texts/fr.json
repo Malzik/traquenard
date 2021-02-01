@@ -9,13 +9,17 @@
     "text.game.oneversusall": "Seul VS Tous",
     "text.game.oneversusall.description": "Tu es seul contre le reste des joueurs",
     "text.game.everyonePlay.description": "Defi contre un autre joueur de ton choix",
+
     "text.card.title": "{currentPlayer} à toi de jouer !",
     "text.card.points": "Points : ",
+
     "text.selectOtherPlayer.title": "{currentPlayer} choisi avec qui tu veux jouer",
     "text.duels.title": "Duel : {currentPlayer} vs {selectedPlayer}",
     "text.sip": "{sip} gorgées en jeu",
+
     "text.chooseDifficulty.title": "CHOISIR LA DIFFICULTÉ",
     "text.chooseDifficulty.description": "Plus la difficulté est élevée, plus le nombre de gorgées sera élevé.",
+
     "text.everyonePlay.title": "Tout le monde joue !",
     "text.currentPlayer": "{currentPlayer}",
     "text.selectedPlayer": "{selectedPlayer}",
@@ -23,23 +27,56 @@
     "text.oneversusall.title": "{currentPlayer} contre le reste des joueurs",
     "text.selectCategory.title": "{currentPlayer}, tu es seul contre tous !",
     "text.selectCategory.description": "Tu estimes être plus fort que tout les autres joueurs sur une catégorie, choisi la !",
+
     "text.questions.title": "{currentPlayer} répond à la question",
     "text.questions.win": "Gagné !",
     "text.questions.loose": "Perdu !",
     "text.questions.win.description": "Donne {sip} gorgées",
     "text.questions.loose.description": "Bois {sip} gorgées",
+
     "text.exit.title": "Veux-tu vraiment quitter le jeu ?",
     "text.exit.yes": "Oui",
     "text.exit.no": "Non",
+
     "text.winLoose.currentPlayer": "{currentPlayer} tu as ?",
     "text.loading": "Chargement...",
     "text.play": "Jouer",
+
     "text.alert.title": "Attention !",
     "text.alert.content": "L'abus d'alcool est dangereux pour la santé. En poursuivant vous confirmez être responsable des éventuelles conséquences que pourrait engendrer l'utilisation de Captain Gnole",
     "text.alert.ok": "OK",
     "text.alert.close": "FERMER",
+
     "text.leaderboard.index": "Place",
     "text.leaderboard.username": "Nom",
-    "text.leaderboard.points": "Points"
+    "text.leaderboard.points": "Points",
+
+    "text.endgame.title": "Fin de la partie",
+    "text.endgame.place_lib": "Place",
+    "text.endgame.name_lib": "Nom",
+    "text.endgame.points_lib": "Points",
+    "text.endgame.play_again_btn": "Rejouer",
+
+    "text.selectPlayer.playSamePlayerPopUp": "Voulez-vous continuer avec les joueurs de la dernière partie ?",
+    "text.selectPlayer.yesBtnPopUp": "OUI",
+    "text.selectPlayer.noBtnPopUp": "NON",
+    "text.selectPlayer.sameNameError": "Un joueur a déjà le même nom",
+    "text.selectPlayer.emptyNameError": "Le nom ne peut pas être vide",
+    "text.selectPlayer.addTwoPlayerLib": "Ajouter au moins 2 joueurs pour jouer !",
+    "text.selectPlayer.evaluationTitle": "Tu aimes le jeu ?",
+    "text.selectPlayer.evaluationMessage": "Mets-nous 5 étoiles ! ⭐⭐⭐⭐⭐",
+    "text.selectPlayer.evaluationBtnYes": "C'est parti !",
+    "text.selectPlayer.evaluationBtnNo": "Plus tard ..",
+    "text.selectPlayer.modalOptionTitle": "Option",
+    "text.selectPlayer.modalOptionRound": "Tours",
+    "text.selectPlayer.modalOptionMark": "Note",
+    "text.selectPlayer.modalOptionContact": "Contact",
+    "text.selectPlayer.addPlayerPlaceholder": "Ajouter un joueur ..",
+    "text.selectPlayer.startGameBtn": "Commencer",
+
+    "text.winLoose.points": "PTS",
+    "text.winLoose.loose": "Perdu",
+    "text.winLoose.equality": "Egalité",
+    "text.winLoose.win": "Gagné"
   }
 }
