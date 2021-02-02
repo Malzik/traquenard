@@ -18,9 +18,15 @@ const removeQuestionFromCategory = (category, question) => ({
     question
 });
 
+const changeLang = (lang) => ({
+    type: 'CHANGE_LANG',
+    lang
+});
+
 export {
     initGame,
     removeQuestion,
     removeQuestionFromCategory,
-    initText
+    initText,
+    changeLang
 };

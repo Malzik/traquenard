@@ -1,11 +1,11 @@
 {
   "texts": {
-    "text.game.duel": "Duel",
+    "text.game.duels": "Duel",
     "text.game.duels.description": "Choose an other player to play againts",
-    "text.game.friendship": "Friendship",
-    "text.game.friendship.description": "Choose an other player to play with",
-    "text.game.question": "Question",
-    "text.game.question.description": "General Knowledge Quiz",
+    "text.game.friendships": "Friendship",
+    "text.game.friendships.description": "Choose an other player to play with",
+    "text.game.questions": "Question",
+    "text.game.questions.description": "General Knowledge Quiz",
     "text.game.oneversusall": "One versus All",
     "text.game.oneversusall.description": "You are alone versus all",
 

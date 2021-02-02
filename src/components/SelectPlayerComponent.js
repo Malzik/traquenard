@@ -28,6 +28,7 @@ import Rate, { AndroidMarket } from "react-native-rate";
 
 import texts from '../../assets/texts/fr';
 import {ApplicationText} from "./helpers/ApplicationText";
+import {SelectDifficultyComponent} from "./SelectDifficultyComponent";
 
 
 class SelectPlayerComponent extends React.Component {
@@ -72,12 +73,13 @@ class SelectPlayerComponent extends React.Component {
     }
 
     changeLang(lang) {
+        const {changeLang} = this.props;
         if (lang === "fr") {
-
+            changeLang("fr");
         } else if (lang === "en") {
-
+            changeLang("en");
         } else {
-
+            changeLang("fr");
         }
     }
 
@@ -529,6 +531,7 @@ const styles = StyleSheet.create({
 SelectPlayerComponent.propTypes = {
     changeScene: PropTypes.func,
     addPlayers: PropTypes.func,
+    changeLang: PropTypes.func,
 };
 const mapStateToProps = (state) => {
     return state
