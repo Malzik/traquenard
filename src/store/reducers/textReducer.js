@@ -3,7 +3,8 @@ import question from '../../../assets/game/questions';
 import oneversusall from '../../../assets/game/oneversusall';
 import friendships from '../../../assets/game/friendships';
 import everyone from '../../../assets/game/everyone';
-import texts from '../../../assets/texts/fr';
+import fr from '../../../assets/texts/fr';
+import en from '../../../assets/texts/en';
 
 const initialState = {
     duels: [],
@@ -26,10 +27,9 @@ const textReducer = (state = initialState, action = {}) => {
             newState.categories = Object.keys(oneversusall.oneversusall).map(category => ({name: category}));
             newState.friendships = friendships.friendships;
             newState.everyone = everyone.everyone;
-            newState.texts = texts.texts;
             break;
         case 'INIT_TEXT':
-            newState.texts = texts.texts;
+            newState.texts = fr.texts;
             break;
         case 'REMOVE_QUESTION':
             newState[action.questionType] = newState[action.questionType].filter(question =>
@@ -40,6 +40,15 @@ const textReducer = (state = initialState, action = {}) => {
             newState.oneversusall[action.category] = newState.oneversusall[action.category].filter(question =>
                 question.question !== action.question.question
             );
+            break;
+        case 'CHANGE_LANG':
+            if (action.lang === "fr") {
+                newState.texts = fr.texts;
+                break;
+            }
+            if (action.lang === "en") {
+                newState.texts = en.texts;
+            }
             break;
         default:
             break;
