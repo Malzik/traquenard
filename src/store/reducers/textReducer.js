@@ -13,7 +13,8 @@ const initialState = {
     friendships: [],
     everyone: [],
     categories: [],
-    texts: []
+    texts: [],
+    language: "fr"
 };
 
 const textReducer = (state = initialState, action = {}) => {
@@ -44,10 +45,12 @@ const textReducer = (state = initialState, action = {}) => {
         case 'CHANGE_LANG':
             if (action.lang === "fr") {
                 newState.texts = fr.texts;
+                newState.language = "fr";
                 break;
             }
             if (action.lang === "en") {
                 newState.texts = en.texts;
+                newState.language = "en";
             }
             break;
         default:

@@ -8,7 +8,6 @@ const initialState = {
     selectedCategory: null,
     scene: null,
     showEveryone: true,
-    lang: "fr"
 };
 
 const getMaxTurn = (playersCount) => {

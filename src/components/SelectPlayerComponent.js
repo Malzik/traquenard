@@ -252,8 +252,46 @@ class SelectPlayerComponent extends React.Component {
         Rate.rate(options)
     }
 
+    renderFrFlag() {
+        const { textReducer} = this.props;
+        if (textReducer.language === "fr") {
+            return (
+                <TouchableOpacity onPress={() => {this.changeLang("fr");}}>
+                    <Image source={require('./icons/france.png')} style={{width: 80, height: 80}}/>
+                </TouchableOpacity>
+            )
+        } else {
+            return (
+                <TouchableOpacity onPress={() => {this.changeLang("fr");}}>
+                    <Image source={require('./icons/france.png')} style={{width: 50, height: 50, opacity: .7}}/>
+                </TouchableOpacity>
+            )
+        }
+    }
+    renderEnFlag() {
+        const { textReducer} = this.props;
+
+            if (textReducer.language === "en") {
+                return (
+                    <TouchableOpacity onPress={() => { this.changeLang("en");}}>
+                        <Image source={require('./icons/united-kingdom.png')} style={{width: 80, height: 80}}/>
+                    </TouchableOpacity>
+                )
+            } else {
+                return (
+                    <TouchableOpacity onPress={() => { this.changeLang("en");}}>
+                        <Image source={require('./icons/united-kingdom.png')} style={{width: 50, height: 50, opacity: .7}}/>
+                    </TouchableOpacity>
+                )
+            }
+    }
+
+
+
+
     render() {
         const { modalVisible } = this.state;
+
         return (
             <View style={styles.container}>
                 <View style={styles.content}>
@@ -274,13 +312,8 @@ class SelectPlayerComponent extends React.Component {
                             </View>
                             <View style={styles.contentModal}>
                                 <View style={styles.displayLine}>
-                                    <TouchableOpacity onPress={() => { this.changeLang("fr");}}
-                                                      style={{borderColor: "white", borderWidth:1, borderRadius: 10, paddingHorizontal: 10}}>
-                                        <Image source={require('./icons/france.png')} style={{width: 60, height: 60}}/>
-                                    </TouchableOpacity>
-                                    <TouchableOpacity onPress={() => { this.changeLang("en");}}>
-                                        <Image source={require('./icons/united-kingdom.png')} style={{width: 60, height: 60}}/>
-                                    </TouchableOpacity>
+                                    {this.renderFrFlag()}
+                                    {this.renderEnFlag()}
                                 </View>
                                 <View style={styles.marginBot}>
                                     <View style={styles.roundView}>
