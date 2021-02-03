@@ -1,15 +1,15 @@
 {
   "expo": {
-    "name": "Captain Gnole",
-    "slug": "CaptainGnole",
+    "name": "Traquenard",
+    "slug": "Traquenard",
     "privacy": "public",
     "version": "1.0.0",
     "orientation": "default",
     "icon": "./assets/logo_captain.png",
     "splash": {
-      "image": "./assets/logo_captain.png",
+      "image": "",
       "resizeMode": "contain",
-      "backgroundColor": "#E0BA77"
+      "backgroundColor": "#2A2A2A"
     },
     "updates": {
       "fallbackToCacheTimeout": 0

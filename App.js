@@ -109,7 +109,6 @@ class App extends React.Component {
         return (
             <View style={styles.container}>
                 <View style={styles.content}>
-                    <Image source={require('./assets/logo_captain.png')} />
                 </View>
             </View>
         )
@@ -181,7 +180,7 @@ class App extends React.Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#E0BA77',
+        backgroundColor: '#2A2A2A',
         justifyContent: 'center',
         alignItems: 'center'
     },

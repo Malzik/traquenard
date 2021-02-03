@@ -268,6 +268,7 @@ class SelectPlayerComponent extends React.Component {
             )
         }
     }
+
     renderEnFlag() {
         const { textReducer} = this.props;
 
@@ -335,7 +336,9 @@ class SelectPlayerComponent extends React.Component {
                                         <Image source={require('./icons/love.png')} style={{width: 40, height: 40, marginBottom: 5}}/>
                                         <Text style={styles.textIcon}>{ApplicationText("text.selectPlayer.modalOptionMark")}</Text>
                                     </TouchableOpacity>
-                                    <TouchableOpacity style={styles.viewCenter} onPress={() => Linking.openURL('mailto:support@example.com?subject=Captain Gnole')}>
+                                    <TouchableOpacity style={styles.viewCenter} onPress={
+                                        () => Linking.openURL('mailto:traquenard.contact@gmail.com?subject=Traquenard')
+                                    }>
                                         <Image source={require('./icons/email.png')} style={{width: 40, height: 40, marginBottom: 5}}/>
                                         <Text style={styles.textIcon}>{ApplicationText("text.selectPlayer.modalOptionContact")}</Text>
                                     </TouchableOpacity>
@@ -344,7 +347,7 @@ class SelectPlayerComponent extends React.Component {
                     </Modal>
 
                     <View style={styles.header}>
-                        <Text style={styles.title_captain}> Captain Gnole </Text>
+                        <Text style={styles.title_captain}> TRAQUENARD </Text>
                     </View>
                     <View style={styles.middle}>
                         {this.message()}
@@ -446,8 +449,8 @@ const styles = StyleSheet.create({
         marginTop: wp("7%"),
         textAlign: 'center',
         color: '#fff',
-        fontSize: wp("14%"),
-        fontFamily: "TheTitle",
+        fontSize: wp("12%"),
+        fontFamily: "MainTitle",
     },
     player: {
         flex: 1,
