@@ -59,14 +59,12 @@ class SelectPlayerComponent extends React.Component {
     }
 
     addOneTurn() {
-        console.log(this.state.maxTurnPlayer, this.state.maxTurnSystem, this.getMaxTurnPlayer())
         if (this.state.maxTurnPlayer < 10) {
             this.setState({maxTurnPlayer: this.getMaxTurnPlayer() + 1})
         }
     }
 
     removeOneTurn() {
-        console.log(this.state.maxTurnPlayer, this.state.maxTurnSystem, this.getMaxTurnPlayer())
         if (this.state.maxTurnPlayer > 1) {
             this.setState({maxTurnPlayer: this.getMaxTurnPlayer() - 1})
         }
@@ -81,6 +79,11 @@ class SelectPlayerComponent extends React.Component {
         } else {
             changeLang("fr");
         }
+        this.setLang(lang)
+    }
+
+    async setLang(lang) {
+        await AsyncStorage.setItem("lang", lang)
     }
 
     async getStorageData() {

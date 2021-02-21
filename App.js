@@ -21,6 +21,8 @@ import { WinLoose }                   from "./src/components/WinLooseComponent";
 import { EndGame }                    from "./src/components/EndGameComponent";
 import { createStackNavigator }       from "@react-navigation/stack";
 import { ApplicationText }            from "./src/components/helpers/ApplicationText";
+import { NativeModules }              from "react-native";
+import { changeLang }                 from "./src/store/actions/textAction";
 
 const Stack = createStackNavigator();
 
@@ -54,16 +56,34 @@ class App extends React.Component {
 
     async getStorageData() {
         try {
-            await AsyncStorage.getItem('tutorial').then(response => {
-                if (response !== 'true') {
-                    this.setState({
-                        startPage: 'Tutorial'
-                    });
+            await AsyncStorage.multiGet(['tutorial', 'lang']).then(response => {
+                if (response[0][0] === "tutorial") {
+                    if (response[0][1] !== 'true') {
+                        this.setState({
+                            startPage: 'Tutorial'
+                        });
+                    }
+                }
+                if (response[1][0] === "lang") {
+                    let lang = response[1][1]
+                    if (lang === null) {
+                        const deviceLang = this.getDeviceLanguage()
+                        lang = deviceLang.split('_')[0];
+                        AsyncStorage.setItem("lang", lang)
+                    }
+                    store.dispatch(changeLang(lang))
                 }
             });
         } catch (error) {
             console.log(error);
         }
+    }
+
+    getDeviceLanguage() {
+        return Platform.OS === 'ios'
+                ? NativeModules.SettingsManager.settings.AppleLocale ||
+                NativeModules.SettingsManager.settings.AppleLanguages[0] //iOS 13
+                : NativeModules.I18nManager.localeIdentifier;
     }
 
     alert() {
