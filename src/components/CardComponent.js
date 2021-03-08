@@ -309,7 +309,7 @@ const styles = StyleSheet.create({
         marginTop: wp("7%"),
         textAlign: 'center',
         color: '#fff',
-        fontSize: wp("10%"),
+        fontSize: wp("9%"),
         fontFamily: "titre",
         marginLeft: wp("5%")
     },
@@ -318,7 +318,7 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         color: '#fff',
         padding: wp("3%"),
-        fontSize: wp("7%"),
+        fontSize: wp("6%"),
         borderWidth: 1,
         borderColor: "#fff",
         borderRadius: 6,

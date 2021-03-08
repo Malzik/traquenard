@@ -112,10 +112,10 @@ const styles = StyleSheet.create({
         flex: 0.3
     },
     col2: {
-        flex: 0.4
+        flex: 0.5
     },
     col3: {
-        flex: 0.3
+        flex: 0.2
     },
     loose :{
         flex: 0.34,

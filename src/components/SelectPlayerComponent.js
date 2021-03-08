@@ -42,6 +42,7 @@ class SelectPlayerComponent extends React.Component {
             modalVisible: false,
             maxTurnPlayer: 0,
             maxTurnSystem: getMaxTurn([]),
+            languages: "fr"
         };
         ScreenOrientation.lockAsync(ScreenOrientation.OrientationLock.PORTRAIT);
     }
@@ -255,9 +256,8 @@ class SelectPlayerComponent extends React.Component {
         Rate.rate(options)
     }
 
-    renderFrFlag() {
-        const { textReducer} = this.props;
-        if (textReducer.language === "fr") {
+    renderFrFlag(lang) {
+        if (lang === "fr") {
             return (
                 <TouchableOpacity onPress={() => {this.changeLang("fr");}}>
                     <Image source={require('./icons/france.png')} style={{width: 80, height: 80}}/>
@@ -272,29 +272,25 @@ class SelectPlayerComponent extends React.Component {
         }
     }
 
-    renderEnFlag() {
-        const { textReducer} = this.props;
-
-            if (textReducer.language === "en") {
-                return (
-                    <TouchableOpacity onPress={() => { this.changeLang("en");}}>
-                        <Image source={require('./icons/united-kingdom.png')} style={{width: 80, height: 80}}/>
-                    </TouchableOpacity>
-                )
-            } else {
-                return (
-                    <TouchableOpacity onPress={() => { this.changeLang("en");}}>
-                        <Image source={require('./icons/united-kingdom.png')} style={{width: 50, height: 50, opacity: .7}}/>
-                    </TouchableOpacity>
-                )
-            }
+    renderEnFlag(lang) {
+        if (lang === "en") {
+            return (
+                <TouchableOpacity onPress={() => { this.changeLang("en");}}>
+                    <Image source={require('./icons/united-kingdom.png')} style={{width: 80, height: 80}}/>
+                </TouchableOpacity>
+            )
+        } else {
+            return (
+                <TouchableOpacity onPress={() => { this.changeLang("en");}}>
+                    <Image source={require('./icons/united-kingdom.png')} style={{width: 50, height: 50, opacity: .7}}/>
+                </TouchableOpacity>
+            )
+        }
     }
-
-
-
 
     render() {
         const { modalVisible } = this.state;
+        const { language } = this.props.textReducer;
 
         return (
             <View style={styles.container}>
@@ -316,8 +312,8 @@ class SelectPlayerComponent extends React.Component {
                             </View>
                             <View style={styles.contentModal}>
                                 <View style={styles.displayLine}>
-                                    {this.renderFrFlag()}
-                                    {this.renderEnFlag()}
+                                    {this.renderFrFlag(language)}
+                                    {this.renderEnFlag(language)}
                                 </View>
                                 <View style={styles.marginBot}>
                                     <View style={styles.roundView}>
@@ -335,16 +331,16 @@ class SelectPlayerComponent extends React.Component {
                                 </View>
                             </View>
                             <View style={styles.bottomModal}>
-                                    <TouchableOpacity style={styles.viewCenter} onPress={() => this.renderEvaluationAlert()}>
-                                        <Image source={require('./icons/love.png')} style={{width: 40, height: 40, marginBottom: 5}}/>
-                                        <Text style={styles.textIcon}>{ApplicationText("text.selectPlayer.modalOptionMark")}</Text>
-                                    </TouchableOpacity>
-                                    <TouchableOpacity style={styles.viewCenter} onPress={
-                                        () => Linking.openURL('mailto:traquenard.contact@gmail.com?subject=Traquenard')
-                                    }>
-                                        <Image source={require('./icons/email.png')} style={{width: 40, height: 40, marginBottom: 5}}/>
-                                        <Text style={styles.textIcon}>{ApplicationText("text.selectPlayer.modalOptionContact")}</Text>
-                                    </TouchableOpacity>
+                                <TouchableOpacity style={styles.viewCenter} onPress={() => this.renderEvaluationAlert()}>
+                                    <Image source={require('./icons/love.png')} style={{width: 40, height: 40, marginBottom: 5}}/>
+                                    <Text style={styles.textIcon}>{ApplicationText("text.selectPlayer.modalOptionMark")}</Text>
+                                </TouchableOpacity>
+                                <TouchableOpacity style={styles.viewCenter} onPress={
+                                    () => Linking.openURL('mailto:traquenard.contact@gmail.com?subject=Traquenard')
+                                }>
+                                    <Image source={require('./icons/email.png')} style={{width: 40, height: 40, marginBottom: 5}}/>
+                                    <Text style={styles.textIcon}>{ApplicationText("text.selectPlayer.modalOptionContact")}</Text>
+                                </TouchableOpacity>
                             </View>
                         </View>
                     </Modal>
