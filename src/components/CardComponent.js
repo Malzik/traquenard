@@ -113,14 +113,14 @@ class CardComponent extends React.Component {
 
     sortPlayer() {
         const {players} = this.props.gameReducer;
+        const sortedPlayers = players.slice()
 
+        sortedPlayers.sort((a, b) => (a.points - b.points))
 
-        players.sort((a, b) => (a.points - b.points))
+        const length = sortedPlayers.length;
+        const winner = sortedPlayers[length-1]
 
-        const length = players.length;
-        const winner = players[length-1]
-
-        players.forEach((player, index) => {
+        sortedPlayers.forEach((player, index) => {
             if (player.points === winner.points) {
                 player.position = 1
             } else {
@@ -128,7 +128,7 @@ class CardComponent extends React.Component {
             }
         })
 
-        return players;
+        return sortedPlayers;
     }
 
     render() {
