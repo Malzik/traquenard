@@ -1,9 +1,10 @@
 import React                                                     from "react";
 import {bindActionCreators}                                      from "redux";
 import {connect}                                                 from "react-redux";
-import {Button, Image, StyleSheet, Text, TouchableOpacity, View} from "react-native";
+import {Image, StyleSheet, Text, TouchableOpacity, View} from "react-native";
 import AsyncStorage                                              from '@react-native-async-storage/async-storage';
 import tutorial                                                  from '../../assets/tutorial';
+import en_tutorial                                               from '../../assets/en_tutorial';
 import {widthPercentageToDP as wp}                               from "react-native-responsive-screen";
 import * as ScreenOrientation                                    from 'expo-screen-orientation';
 import ProgressSteps                                             from "./progressbar/ProgressSteps";
@@ -14,21 +15,40 @@ class TutorialComponent extends React.Component {
     constructor(props) {
         super(props);
 
-        const tutorials = Object.values(tutorial)
-        this.state = {
-            tutorials,
-            activeStep: 0,
-            currentTutorial: tutorials.find(tutorial => tutorial.position === 0),
-            index: 0,
-            end: false,
-            images: {
-                screen1: require('./icons/card_tuto.jpg'),
-                screen2: require('./icons/card_tuto.jpg'),
-                screen3: require('./icons/win_loose_tuto.jpg'),
-                screen4: require('./icons/regle_tuto.jpg'),
-                screen5: require('./icons/everyone_tuto.jpg'),
+        if (this.props.textReducer.language === 'fr') {
+            const tutorials = Object.values(tutorial)
+            this.state = {
+                tutorials,
+                activeStep: 0,
+                currentTutorial: tutorials.find(tutorial => tutorial.position === 0),
+                index: 0,
+                end: false,
+                images: {
+                    screen1: require('./icons/card_tuto.jpg'),
+                    screen2: require('./icons/card_tuto.jpg'),
+                    screen3: require('./icons/win_loose_tuto.jpg'),
+                    screen4: require('./icons/regle_tuto.jpg'),
+                    screen5: require('./icons/everyone_tuto.jpg'),
+                }
+            }
+        } else {
+            const tutorials = Object.values(en_tutorial)
+            this.state = {
+                tutorials,
+                activeStep: 0,
+                currentTutorial: tutorials.find(tutorials => tutorials.position === 0),
+                index: 0,
+                end: false,
+                images: {
+                    screen1: require('./icons/en_card_tuto.jpg'),
+                    screen2: require('./icons/en_card_tuto.jpg'),
+                    screen3: require('./icons/en_win_loose_tuto.jpg'),
+                    screen4: require('./icons/en_regle_tuto.jpg'),
+                    screen5: require('./icons/en_everyone_tuto.jpg'),
+                }
             }
         }
+
 
         this.changeScene = this.changeScene.bind(this);
     }
