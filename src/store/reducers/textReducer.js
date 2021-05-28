@@ -71,10 +71,8 @@ const textReducer = (state = initialState, action = {}) => {
                 newState.language = "fr";
                 break;
             }
-            if (action.lang === "en") {
-                newState.texts = en.texts;
-                newState.language = "en";
-            }
+            newState.texts = en.texts;
+            newState.language = "en";
             break;
         default:
             break;
