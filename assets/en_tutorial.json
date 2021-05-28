@@ -1,0 +1,39 @@
+{
+    "screen1": {
+      "name": "screen1",
+      "title": "How to play ?",
+      "text": "You play in turn",
+      "text2": "Choose one possibility to earn points",
+      "img": "'./icons/en_card_tuto.jpg'",
+      "position": 0
+    },
+    "screen2": {
+      "name": "screen2",
+      "title": "How to play ?",
+      "text": "Each choice earn different points",
+      "img": "./icons/en_card_tuto.jpg",
+      "position": 1
+    },
+    "screen3": {
+      "name": "screen3",
+      "title": "How to play ?",
+      "text": "After all minigame you will have to select if you have win or loose",
+      "img": "./icons/en_win_loose_tuto.jpg",
+      "position": 2
+    },
+    "screen4": {
+      "name": "screen4",
+      "title": "How to play ?",
+      "text": "You will have to drink if you loose or give sip if you win !",
+      "img": "./icons/en_regle_tuto.jpg",
+      "position": 3
+    },
+    "screen5": {
+      "name": "screen5",
+      "title": "How to play?",
+      "text": "Everyone play, no points are deliver, it's just for fun",
+      "img": "./icons/en_everyone_tuto.jpg",
+      "position": 4,
+      "end": true
+    }
+}
