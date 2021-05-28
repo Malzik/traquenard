@@ -34,7 +34,7 @@
     "text.questions.win.description": "Give {sip} sips",
     "text.questions.loose.description": "Drink {sip} sips",
 
-    "text.exit.title": "Are you sure to quit the game?",
+    "text.exit.title": "Are you sure to quit the game ?",
     "text.exit.yes": "Yes",
     "text.exit.no": "No",
 
