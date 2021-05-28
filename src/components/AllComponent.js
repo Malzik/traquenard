@@ -84,7 +84,7 @@ class AllComponent extends React.Component {
                 </View>
                 <View style={styles.flex2}>
                     <Text style={styles.questionText}>
-                        <FormattedText text={question}/>
+                        <FormattedText text={question} sip={sip}/>
                     </Text>
                 </View>
                 <View style={styles.flex3}>

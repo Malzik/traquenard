@@ -51,9 +51,12 @@ class EveryonePlayComponent extends React.Component {
                     </Text>
                 </View>
                 <View style={styles.flex2}>
-                    <Text style={styles.questionText}>
-                        <FormattedText text={question}/>
-                    </Text>
+                    {
+                        question !== null && sip !== null ?
+                            <Text style={styles.questionText}>
+                                <FormattedText text={question} sip={sip}/>
+                            </Text> : null
+                    }
                 </View>
                 <View style={styles.flex3}>
                     <Text style={styles.sipText}>
