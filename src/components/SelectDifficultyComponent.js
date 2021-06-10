@@ -88,7 +88,7 @@ const styles = StyleSheet.create({
         marginTop: wp("7%"),
         textAlign: 'center',
         color: '#fff',
-        fontSize: wp("10%"),
+        fontSize: wp("8%"),
         fontFamily: "titre"
     },
 });
