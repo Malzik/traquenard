@@ -144,6 +144,7 @@ class CardComponent extends React.Component {
                 <Modal
                     animationType="fade"
                     transparent={true}
+                    supportedOrientations={['portrait', 'landscape']}
                     visible={modalVisible}
                     onRequestClose={() => {
                         Alert.alert("Modal has been closed.");
