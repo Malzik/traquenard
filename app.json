@@ -3,11 +3,11 @@
     "name": "Traquenard",
     "slug": "Traquenard",
     "privacy": "public",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "orientation": "default",
-    "icon": "./assets/logo_captain.png",
+    "icon": "./assets/traquenardicon.png",
     "splash": {
-      "image": "",
+      "image": "./assets/traquenardicon.png",
       "resizeMode": "contain",
       "backgroundColor": "#2A2A2A"
     },
@@ -30,7 +30,7 @@
       "permissions": []
     },
     "web": {
-      "favicon": "./assets/logo_captain.png"
+      "favicon": "./assets/traquenardicon.png"
     },
     "androidNavigationBar": {
       "visible": "leanback",
