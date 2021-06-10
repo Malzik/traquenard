@@ -5,7 +5,7 @@
     "privacy": "public",
     "version": "1.0.1",
     "orientation": "default",
-    "icon": "./assets/traquenardicon.png",
+    "icon": "./assets/traquenardicon2.png",
     "splash": {
       "image": "./assets/traquenardicon.png",
       "resizeMode": "contain",
