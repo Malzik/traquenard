@@ -7,6 +7,7 @@
     "web": "expo start --web",
     "eject": "expo eject"
   },
+
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.32",
     "@fortawesome/free-solid-svg-icons": "^5.15.1",
