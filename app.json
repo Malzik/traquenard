@@ -19,15 +19,15 @@
     ],
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.traquenard.corp",
+      "bundleIdentifier": "com.thetraquenard.corpo",
       "buildNumber": "1.0.0"
     },
     "android": {
-      "package": "com.traquenard.corp",
-      "playStoreUrl": "https://play.google.com/store/apps/details?id=com.traquenard.corp",
-      "versionCode": 3,
-      "softwareKeyboardLayoutMode": "pan",
-      "permissions": []
+      "package": "com.thetraquenard.corpo",
+      "playStoreUrl": "https://play.google.com/store/apps/details?id=com.thetraquenard.corpo",
+      "permissions": [],
+      "versionCode": 7,
+      "softwareKeyboardLayoutMode": "pan"
     },
     "web": {
       "favicon": "./assets/traquenardicon.png"
