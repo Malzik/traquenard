@@ -27,7 +27,7 @@ export default () => {
                 "package": "com.thetraquenard.corpo",
                 "playStoreUrl": "https://play.google.com/store/apps/details?id=com.thetraquenard.corpo",
                 "permissions": [],
-                "versionCode": 7,
+                "versionCode": 9,
                 "softwareKeyboardLayoutMode": "pan"
             },
             "web": {

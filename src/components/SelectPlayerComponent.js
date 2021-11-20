@@ -248,7 +248,7 @@ class SelectPlayerComponent extends React.Component {
     rate() {
         const options = {
             AppleAppID:"2193813192",
-            GooglePackageName:"com.traquenard.corp",
+            GooglePackageName:"com.thetraquenard.corpo",
             preferredAndroidMarket: AndroidMarket.Google,
             preferInApp:false,
             openAppStoreIfInAppFails:true,
