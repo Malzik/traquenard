@@ -300,7 +300,7 @@ class SelectPlayerComponent extends React.Component {
                         transparent={true}
                         visible={modalVisible}
                         onRequestClose={() => {
-                            Alert.alert("Modal has been closed.");
+                            this.setModalVisible(false)
                         }}
                     >
                         <View style={styles.modalView}>
