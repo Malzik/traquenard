@@ -25,9 +25,13 @@ import { NativeModules }              from "react-native";
 import { changeLang }                 from "./src/store/actions/textAction";
 
 const Stack = createStackNavigator();
+const { Yodo1MASAds } = NativeModules;
 
 class App extends React.Component {
     constructor(props) {
+        Yodo1MASAds.initMasSdk();
+        Yodo1MASAds.showInterstitialAds();
+
         super(props);
 
         this.state = {
@@ -40,7 +44,7 @@ class App extends React.Component {
         // AsyncStorage.removeItem('isFirstGame')
     }
 
-    async componentDidMount(): void {
+    async componentDidMount() {
         await this.getStorageData();
         await Font.loadAsync({
             'MainTitle': require('./assets/fonts/RAPIDSQUAD.otf'),

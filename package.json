@@ -1,5 +1,6 @@
 {
   "main": "node_modules/expo/AppEntry.js",
+  "name": "com.thetraquenard.corpo",
   "scripts": {
     "start": "expo start",
     "android": "expo start --android",
@@ -41,7 +42,8 @@
   },
   "devDependencies": {
     "@babel/core": "^7.12.9",
-    "babel-preset-expo": "8.5.1"
+    "babel-preset-expo": "8.5.1",
+    "typescript": "~4.3.5"
   },
   "private": true
 }
