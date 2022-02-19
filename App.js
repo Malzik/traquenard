@@ -23,9 +23,7 @@ import { createStackNavigator }       from "@react-navigation/stack";
 import { ApplicationText }            from "./src/components/helpers/ApplicationText";
 import { NativeModules }              from "react-native";
 import { changeLang }                 from "./src/store/actions/textAction";
-// const { Yodo1MASAds } = NativeModules;
-//
-// Yodo1MASAds.initMasSdk()
+
 const Stack = createStackNavigator();
 
 class App extends React.Component {
@@ -156,20 +154,21 @@ class App extends React.Component {
             <NavigationContainer>
                 <Stack.Navigator
                     initialRouteName={startPage}
+                    headerMode={"none"}
                     gestureEnabled={true}
                 >
-                    <Stack.Screen name="Tutorial" component={Tutorial} options={{ headerShown: false}}/>
-                    <Stack.Screen name="SelectPlayer" component={SelectPlayer} options={{ headerShown: false}}/>
-                    <Stack.Screen name="SelectDifficulty" component={SelectDifficulty} options={{ headerShown: false}}/>
-                    <Stack.Screen name="Card" component={Card} gesturesEnabled={false} options={{ headerShown: false}}/>
-                    <Stack.Screen name="SelectOtherPlayer" component={SelectOtherPlayer} options={{ headerShown: false}}/>
-                    <Stack.Screen name="SelectCategory" component={SelectCategoryOneVersusAll} options={{ headerShown: false}}/>
-                    <Stack.Screen name="All" component={All} options={{ headerShown: false}}/>
-                    <Stack.Screen name="Question" component={Question} options={{ headerShown: false}}/>
-                    <Stack.Screen name="AnswerQuestion" component={AnswerQuestion} options={{ headerShown: false}}/>
-                    <Stack.Screen name="EveryonePlay" component={EveryonePlay} options={{ headerShown: false}}/>
-                    <Stack.Screen name="WinLoose" component={WinLoose} options={{ headerShown: false}}/>
-                    <Stack.Screen name="EndGame" component={EndGame} options={{ headerShown: false}}/>
+                    <Stack.Screen name="Tutorial" component={Tutorial}/>
+                    <Stack.Screen name="SelectPlayer" component={SelectPlayer}/>
+                    <Stack.Screen name="SelectDifficulty" component={SelectDifficulty}/>
+                    <Stack.Screen name="Card" component={Card} gesturesEnabled={false}/>
+                    <Stack.Screen name="SelectOtherPlayer" component={SelectOtherPlayer}/>
+                    <Stack.Screen name="SelectCategory" component={SelectCategoryOneVersusAll}/>
+                    <Stack.Screen name="All" component={All}/>
+                    <Stack.Screen name="Question" component={Question}/>
+                    <Stack.Screen name="AnswerQuestion" component={AnswerQuestion}/>
+                    <Stack.Screen name="EveryonePlay" component={EveryonePlay}/>
+                    <Stack.Screen name="WinLoose" component={WinLoose}/>
+                    <Stack.Screen name="EndGame" component={EndGame}/>
                 </Stack.Navigator>
             </NavigationContainer>
         );
