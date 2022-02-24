@@ -11,7 +11,9 @@ import {
     Keyboard,
     ToastAndroid,
     Alert,
-    Modal, Linking
+    Modal,
+    Linking,
+    NativeModules
 } from "react-native";
 import {Button}                    from 'react-native-elements';
 import PropTypes                   from "prop-types";
@@ -24,6 +26,8 @@ import {widthPercentageToDP as wp} from "react-native-responsive-screen";
 import AsyncStorage                from "@react-native-async-storage/async-storage";
 import {getMaxTurn}            from "../store/reducers/gameReducer";
 import Rate, { AndroidMarket } from "react-native-rate";
+
+const { Yodo1MASAds } = NativeModules;
 
 
 import texts from '../../assets/texts/fr';

@@ -8,8 +8,8 @@ import {
     View,
     Alert,
     Modal,
-    FlatList
-}                                                                from "react-native";
+    FlatList, NativeModules
+} from "react-native";
 import {bindActionCreators}                                      from "redux";
 import * as gameActions                                          from "../store/actions/gameAction";
 import PropTypes                                                 from "prop-types";
@@ -19,6 +19,7 @@ import {handleAndroidBackButton, removeAndroidBackButtonHandler} from "./helpers
 import {widthPercentageToDP as wp}                               from "react-native-responsive-screen";
 import { EndGamePlayer }                                         from "./EndGamePlayerComponent";
 import { ApplicationText }                                       from "./helpers/ApplicationText";
+import {showInterstitialAds} from "./helpers/YodoHelper";
 
 
 class CardComponent extends React.Component {
@@ -103,6 +104,7 @@ class CardComponent extends React.Component {
         const {navigation, gameReducer} = this.props;
 
         if (gameReducer.currentTurn >= gameReducer.maxTurn) {
+            showInterstitialAds().then(r => console.log(r));
             navigation.navigate("EndGame");
         }
     }

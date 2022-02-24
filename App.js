@@ -2,7 +2,7 @@ import * as Font                                           from "expo-font";
 import AsyncStorage                                        from "@react-native-async-storage/async-storage";
 import { Provider }                                        from "react-redux";
 import { store }                                                                           from "./src/store/store";
-import { ActivityIndicator, Alert, BackHandler, Image, StatusBar, StyleSheet, Text, View } from "react-native";
+import { ActivityIndicator, Alert, BackHandler, Image, StatusBar, StyleSheet, Text, View, NativeModules } from "react-native";
 import React                                                                               from "react";
 import { Button }                                          from "react-native-elements";
 import { widthPercentageToDP as wp }                       from "react-native-responsive-screen";
@@ -21,17 +21,14 @@ import { WinLoose }                   from "./src/components/WinLooseComponent";
 import { EndGame }                    from "./src/components/EndGameComponent";
 import { createStackNavigator }       from "@react-navigation/stack";
 import { ApplicationText }            from "./src/components/helpers/ApplicationText";
-import { NativeModules }              from "react-native";
 import { changeLang }                 from "./src/store/actions/textAction";
+import {registerYodoAds} from "./src/components/helpers/YodoHelper";
 
 const Stack = createStackNavigator();
-const { Yodo1MASAds } = NativeModules;
+registerYodoAds();
 
 class App extends React.Component {
     constructor(props) {
-        Yodo1MASAds.initMasSdk();
-        Yodo1MASAds.showInterstitialAds();
-
         super(props);
 
         this.state = {
@@ -104,6 +101,7 @@ class App extends React.Component {
                     }}
             ],
             {cancelable: false})
+
     }
 
     renderPlayerButton() {
