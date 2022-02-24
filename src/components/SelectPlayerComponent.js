@@ -29,6 +29,7 @@ import Rate, { AndroidMarket } from "react-native-rate";
 
 import {ApplicationText} from "./helpers/ApplicationText";
 import {showInterstitialAds} from "./helpers/YodoHelper";
+import {pubState} from "../store/actions/gameAction";
 
 
 class SelectPlayerComponent extends React.Component {
@@ -160,10 +161,11 @@ class SelectPlayerComponent extends React.Component {
     }
 
     startGame() {
-        const {addPlayers, initGame, navigation} = this.props;
+        const {addPlayers, initGame, navigation, pubState} = this.props;
         Keyboard.dismiss()
         this.changeScreenOrientation().then(() => {
             initGame();
+            pubState(true)
             addPlayers(this.state.players, getMaxTurn());
             this.savePlayers().then(() => {
                 navigation.navigate('SelectDifficulty')
