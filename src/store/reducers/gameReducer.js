@@ -8,9 +8,11 @@ const initialState = {
     selectedCategory: null,
     scene: null,
     showEveryone: true,
+    pubState: true
 };
 
 const getMaxTurn = (playersCount) => {
+    return 1
     if (playersCount <= 4) {
         return 5;
     } else if (playersCount <= 6) {
@@ -85,6 +87,10 @@ const gameReducer = (state = initialState, action = {}) => {
             break;
         case 'UPDATE':
             newState.maxTurn = getMaxTurn(action.players.length)
+            break;
+        case 'PUB_STATE':
+            console.log("Debut ou fin de pub: " + action.isOpen)
+            newState.pubState = action.isOpen
             break;
         default:
             break;

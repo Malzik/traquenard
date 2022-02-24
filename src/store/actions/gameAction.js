@@ -51,6 +51,11 @@ const addPoints = (points, win) => ({
 });
 
 
+const pubState = (isOpen) => ({
+    type: 'PUB_STATE',
+    isOpen,
+});
+
 
 export {
     addPlayers,
@@ -62,5 +67,6 @@ export {
     updateCategory,
     addPointsDuel,
     addPointsFriendship,
-    addPoints
+    addPoints,
+    pubState
 };

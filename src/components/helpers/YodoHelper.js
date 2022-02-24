@@ -1,4 +1,5 @@
 import { NativeModules, NativeEventEmitter, Alert } from 'react-native'
+import {store} from "../../store/store";
 const { Yodo1MASAds } = NativeModules
 
 export const hasReward = () => {
@@ -29,7 +30,6 @@ const handleYodoEvent = ({ value }) => {
     switch (value) {
         // Event received when Ads initialization is successful
         case 'onMasInitSuccessful':
-            Yodo1MASAds.showBannerAds() // This has effect only in Android
             setAdsInitialized(true)
             break
 
@@ -53,7 +53,7 @@ const handleYodoEvent = ({ value }) => {
             break
 
         case 'interstitial-onAdOpened':
-            console.log('interstitial-onAdOpened');
+            store.dispatch({type:"PUB_STATE", isOpen: true})
             break
 
         // User closed the Ad, let's check if he earned a reward
@@ -63,7 +63,7 @@ const handleYodoEvent = ({ value }) => {
 
         // Something went wrong, let's skip the checks on reward
         case 'interstitial-onAdClosed':
-            console.log('interstitial-onAdClosed');
+            store.dispatch({type:"PUB_STATE", isOpen: false})
             break
     }
 }

@@ -57,7 +57,7 @@ public class Yodo1MASAds extends ReactContextBaseJavaModule {
             }
             @Override
             public void onAdError(@NonNull Yodo1MasAdEvent event, @NonNull Yodo1MasError error) {
-                sendEvent("banner-onAdError");
+                sendEvent(error.getMessage());
             }
             @Override
             public void onAdClosed(@NonNull Yodo1MasAdEvent event) {
@@ -91,7 +91,7 @@ public class Yodo1MASAds extends ReactContextBaseJavaModule {
             }
             @Override
             public void onAdError(@NonNull Yodo1MasAdEvent event, @NonNull Yodo1MasError error) {
-                sendEvent("reward-onAdError");
+                sendEvent(error.getMessage());
             }
             @Override
             public void onAdClosed(@NonNull Yodo1MasAdEvent event) {
@@ -114,7 +114,7 @@ public class Yodo1MASAds extends ReactContextBaseJavaModule {
             }
             @Override
             public void onAdError(@NonNull Yodo1MasAdEvent event, @NonNull Yodo1MasError error) {
-                sendEvent("giveReward-onAdError");
+                sendEvent(error.getMessage());
             }
             @Override
             public void onAdClosed(@NonNull Yodo1MasAdEvent event) {

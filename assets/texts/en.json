@@ -72,6 +72,7 @@
     "text.selectPlayer.modalOptionRound": "Round",
     "text.selectPlayer.modalOptionMark": "Evaluate",
     "text.selectPlayer.modalOptionContact": "Contact",
+    "text.selectPlayer.pub": "<3",
     "text.selectPlayer.addPlayerPlaceholder": "Add a player ..",
     "text.selectPlayer.startGameBtn": "Start",
 

@@ -104,8 +104,8 @@ class CardComponent extends React.Component {
         const {navigation, gameReducer} = this.props;
 
         if (gameReducer.currentTurn >= gameReducer.maxTurn) {
-            showInterstitialAds().then(r => console.log(r));
-            navigation.navigate("EndGame");
+            showInterstitialAds()
+            navigation.navigate("EndGame")
         }
     }
 

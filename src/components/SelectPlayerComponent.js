@@ -27,12 +27,8 @@ import AsyncStorage                from "@react-native-async-storage/async-stora
 import {getMaxTurn}            from "../store/reducers/gameReducer";
 import Rate, { AndroidMarket } from "react-native-rate";
 
-const { Yodo1MASAds } = NativeModules;
-
-
-import texts from '../../assets/texts/fr';
 import {ApplicationText} from "./helpers/ApplicationText";
-import {SelectDifficultyComponent} from "./SelectDifficultyComponent";
+import {showInterstitialAds} from "./helpers/YodoHelper";
 
 
 class SelectPlayerComponent extends React.Component {
@@ -44,7 +40,7 @@ class SelectPlayerComponent extends React.Component {
             players: [].reverse(),
             currentPlayer: "",
             modalVisible: false,
-            maxTurnPlayer: 0,
+            maxTurnPlayer: getMaxTurn([]),
             maxTurnSystem: getMaxTurn([]),
             languages: "fr"
         };
@@ -338,6 +334,11 @@ class SelectPlayerComponent extends React.Component {
                                 <TouchableOpacity style={styles.viewCenter} onPress={() => this.renderEvaluationAlert()}>
                                     <Image source={require('./icons/love.png')} style={{width: 40, height: 40, marginBottom: 5}}/>
                                     <Text style={styles.textIcon}>{ApplicationText("text.selectPlayer.modalOptionMark")}</Text>
+                                </TouchableOpacity>
+                                <TouchableOpacity style={styles.viewCenter} onPress={
+                                    () => showInterstitialAds()
+                                }>
+                                    <Image source={require('./icons/clicme.png')} style={{width: 70, height: 55, marginBottom: 5}}/>
                                 </TouchableOpacity>
                                 <TouchableOpacity style={styles.viewCenter} onPress={
                                     () => Linking.openURL('mailto:traquenard.contact@gmail.com?subject=Traquenard')

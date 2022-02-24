@@ -93,7 +93,8 @@ class EndGameComponent extends React.Component {
     render() {
         const players = this.sortPlayer();
         ScreenOrientation.lockAsync(ScreenOrientation.OrientationLock.PORTRAIT);
-        return (
+        return this.props.gameReducer.pubState === true ? null :
+         (
             <View style={ styles.container }>
                 <View style={ styles.header }>
                     <Text  style={ styles.title }>{ApplicationText("text.endgame.title")}</Text>
