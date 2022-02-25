@@ -4,7 +4,7 @@ export default () => {
             "name": "Traquenard",
             "slug": "Traquenard",
             "privacy": "public",
-            "version": "1.0.1",
+            "version": "1.0.2",
             "orientation": "default",
             "icon": "./assets/traquenardicon2.png",
             "splash": {
