@@ -149,10 +149,10 @@ android {
     }
     signingConfigs {
         release {
-              storeFile file('Traquenard.jks')
-              storePassword '9f14b03c13b7407eb5e3185c07dccf11'
-              keyAlias 'QHNlbm5paW5uL1RyYXF1ZW5hcmQ'
-              keyPassword 'f167d9da5e5a4428a2379001cff71c7e'
+              storeFile file('keystore.jks')
+              storePassword 'Igkutzf$*Jkf'
+              keyAlias 'upload'
+              keyPassword 'Igkutzf$*Jkf'
             }
 
         debug {
