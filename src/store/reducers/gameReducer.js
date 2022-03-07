@@ -12,7 +12,6 @@ const initialState = {
 };
 
 const getMaxTurn = (playersCount) => {
-    return 1
     if (playersCount <= 4) {
         return 5;
     } else if (playersCount <= 6) {
