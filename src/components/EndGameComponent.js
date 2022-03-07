@@ -19,6 +19,12 @@ class EndGameComponent extends React.Component {
         }
     }
 
+    componentWillUnmount() {
+        this.setState = (state,callback)=>{
+            return;
+        };
+    }
+
     rating() {
         getStorageData('isFirstGame').then(response => {
             if (response === null) {

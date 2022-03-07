@@ -28,6 +28,7 @@ class CardComponent extends React.Component {
         super(props);
 
         this.state = {
+            pubOpen: false,
             cards: [
                 {
                     type: "duels",
@@ -104,7 +105,10 @@ class CardComponent extends React.Component {
         const {navigation, gameReducer} = this.props;
 
         if (gameReducer.currentTurn >= gameReducer.maxTurn) {
-            showInterstitialAds()
+            if (this.state.pubOpen === false) {
+                showInterstitialAds()
+                this.setState({pubOpen: true})
+            }
             navigation.navigate("EndGame")
         }
     }

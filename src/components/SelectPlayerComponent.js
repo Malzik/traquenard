@@ -41,8 +41,7 @@ class SelectPlayerComponent extends React.Component {
             players: [].reverse(),
             currentPlayer: "",
             modalVisible: false,
-            maxTurnPlayer: getMaxTurn([]),
-            maxTurnSystem: getMaxTurn([]),
+            maxTurnPlayer: 3,
             languages: "fr"
         };
         ScreenOrientation.lockAsync(ScreenOrientation.OrientationLock.PORTRAIT);
@@ -148,8 +147,7 @@ class SelectPlayerComponent extends React.Component {
             this.setState({
                 players: [newPlayer, ...this.state.players],
                 currentPlayer: "",
-                errors: {...this.state.errors, addPlayer: ""},
-                maxTurnSystem: getMaxTurn(this.state.players.length)
+                errors: {...this.state.errors, addPlayer: ""}
             })
         } else {
             this.showToast(ApplicationText("text.selectPlayer.emptyNameError"))
@@ -165,8 +163,8 @@ class SelectPlayerComponent extends React.Component {
         Keyboard.dismiss()
         this.changeScreenOrientation().then(() => {
             initGame();
-            pubState(true)
-            addPlayers(this.state.players, getMaxTurn());
+            pubState(false)
+            addPlayers(this.state.players, this.state.maxTurnPlayer);
             this.savePlayers().then(() => {
                 navigation.navigate('SelectDifficulty')
             })
