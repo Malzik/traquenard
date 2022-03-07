@@ -56,12 +56,10 @@ const handleYodoEvent = ({ value }) => {
             store.dispatch({type:"PUB_STATE", isOpen: true})
             break
 
-        // User closed the Ad, let's check if he earned a reward
         case 'interstitial-onAdError':
             console.log('interstitial-onAdError');
             break
 
-        // Something went wrong, let's skip the checks on reward
         case 'interstitial-onAdClosed':
             store.dispatch({type:"PUB_STATE", isOpen: false})
             break

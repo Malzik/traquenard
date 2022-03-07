@@ -88,7 +88,6 @@ const gameReducer = (state = initialState, action = {}) => {
             newState.maxTurn = getMaxTurn(action.players.length)
             break;
         case 'PUB_STATE':
-            console.log("Debut ou fin de pub: " + action.isOpen)
             newState.pubState = action.isOpen
             break;
         default:
